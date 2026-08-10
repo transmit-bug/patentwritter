@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "skills": {
+    "deep-research": {
+      "source": "199-biotechnologies/claude-deep-research-skill",
+      "sourceType": "github",
+      "computedHash": "612fcc6704d615d422cf3e5abc8fa2f02373b882174c83d5ca4338eae59c8720"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "computedHash": "d31e234f0c90694a670222cdd1dafa853e051d7066beda389f1097c22dadd461"
+    },
+    "lawyer-analyst": {
+      "source": "rysweet/amplihack",
+      "sourceType": "github",
+      "computedHash": "ae3d4adfd0f600886eff4cb29c428f5df695384ed6f58dcd3c1b2a4745ed98c1"
+    },
+    "nutrient-document-processing": {
+      "source": "affaan-m/everything-claude-code",
+      "sourceType": "github",
+      "computedHash": "bc513513e737c514447c631d46d3f62447c0d025eb46ba3e5eb8bfe0c3c33acb"
+    },
+    "patent-application-creator": {
+      "source": "robthepcguy/claude-patent-creator",
+      "sourceType": "github",
+      "computedHash": "e29f04ab4071e83f64a8189ef74cfae418523273f70a52eff0242e05c208ceb7"
+    },
+    "patent-architect": {
+      "source": "fradser/dotclaude",
+      "sourceType": "github",
+      "computedHash": "d2f905f5696ce8c59ad1c8d464d3c2d4ab2c434968982dd1909287c03fd1e4ba"
+    },
+    "patent-claims-analyzer": {
+      "source": "robthepcguy/claude-patent-creator",
+      "sourceType": "github",
+      "computedHash": "f16a445701050e92ed65724c89d262d8ff7fef0f428dc50dc870a5a6760dd795"
+    },
+    "patent-diagram-generator": {
+      "source": "robthepcguy/claude-patent-creator",
+      "sourceType": "github",
+      "computedHash": "effc3adf0d18c6696b8cb117e3632cd0c863dff0c43e598f34d2d32a207bb3fb"
+    },
+    "patents-search": {
+      "source": "yorkeccak/scientific-skills",
+      "sourceType": "github",
+      "computedHash": "e4c7adf5610043e51b8fd32a9b36da90b15900989895a3bb27080636c1e00ace"
+    },
+    "technical-writing": {
+      "source": "supercent-io/skills-template",
+      "sourceType": "github",
+      "computedHash": "0f4fb1976596822509e3ef98546250d89337bce036c99b0bae1f6598fe0a156c"
+    }
+  }
+}

@@ -33,15 +33,18 @@ Search the complete global patent database using natural language queries powere
 
 The `scripts/search` commands in this documentation are relative to this skill's installation directory.
 
-Before running any command, locate the script using:
+Before running any command, locate the script (works for both this repo's layout and installed plugins):
 
 ```bash
-PATENTS_SCRIPT=$(find ~/.claude/plugins/cache -name "search" -path "*/patents-search/*/scripts/*" -type f 2>/dev/null | head -1)
+# this repo: scripts live at .agents/skills/patents-search/scripts/search
+PATENTS_SCRIPT="$(dirname "$0")/scripts/search"          # when invoked from inside the skill dir
+# or resolve by name from anywhere:
+PATENTS_SCRIPT=$(find . -name search -path "*/patents-search/*/scripts/*" -type f 2>/dev/null | head -1)
 ```
 
 Then use the full path for all commands:
 ```bash
-$PATENTS_SCRIPT "CRISPR gene editing methods" 15
+"$PATENTS_SCRIPT" "CRISPR gene editing methods" 15
 ```
 
 ## API Key Setup Flow

@@ -43,137 +43,56 @@ Invoke this skill when users ask to:
    - Use clear labels and connections
    - Professional formatting for USPTO filing
 
+## Retrieval & citation (read first)
+
+This skill follows the delegation contract (`docs/prototype/delegation-contract.md`) and the patent-standards catalog (`.agents/skills/patent-standards/SKILL.md`):
+
+1. **Declare** — before asserting a patent *figure requirement* (reference-number rules, drawing format), name the need: `[STANDARD] CN 附图` / `[STANDARD] US drawings`.
+2. **Consume / Cite** — ground each stated requirement in the catalog: CN 附图内容在 说明书 之下 `(依据: 实施细则 第20条 — gov.cn)`; US drawing format `(per 37 CFR §1.84 — ecfr.gov)`.
+3. **Fail loud** — a stated requirement that cannot be read from the declared material is marked `ungrounded` rather than asserted.
+4. **Never invent** — reference-number conventions and drawing rules come from the catalog anchors, not recollection. The diagram craft itself (Graphviz shapes, layouts) needs no citation — it is not a legal assertion.
+
 ## Required Dependencies
 
-This skill requires Graphviz to be installed:
+This skill requires the Graphviz **`dot` binary** (not a Python plugin path):
 
-**Windows**:
 ```bash
-choco install graphviz
+dot -V   # verify; e.g. brew install graphviz / apt install graphviz / choco install graphviz
 ```
 
-**Linux**:
-```bash
-sudo apt install graphviz
-```
-
-**Mac**:
-```bash
-brew install graphviz
-```
-
-**Python Package**:
-```bash
-pip install graphviz
-```
+The `graphviz` Python package is optional; all examples below use the `dot` CLI directly.
 
 ## How to Use
 
 When this skill is invoked:
 
-1. **Load diagram generator**:
-   ```python
-   import sys
-   sys.path.insert(0, os.path.join(os.environ.get('CLAUDE_PLUGIN_ROOT', '.'), 'python'))
-   from python.diagram_generator import PatentDiagramGenerator
-
-   generator = PatentDiagramGenerator()
-   ```
-
-2. **Create flowchart** from steps:
-   ```python
-   steps = [
-       {"id": "start", "label": "Start", "shape": "ellipse", "next": ["step1"]},
-       {"id": "step1", "label": "Initialize System", "shape": "box", "next": ["decision"]},
-       {"id": "decision", "label": "Is Valid?", "shape": "diamond", "next": ["step2", "error"]},
-       {"id": "step2", "label": "Process Data", "shape": "box", "next": ["end"]},
-       {"id": "error", "label": "Handle Error", "shape": "box", "next": ["end"]},
-       {"id": "end", "label": "End", "shape": "ellipse", "next": []}
-   ]
-
-   diagram_path = generator.create_flowchart(
-       steps=steps,
-       filename="method_flowchart",
-       output_format="svg"
-   )
-   ```
-
-3. **Create block diagram**:
-   ```python
-   blocks = [
-       {"id": "input", "label": "Input\\nSensor", "type": "input"},
-       {"id": "cpu", "label": "Central\\nProcessor", "type": "process"},
-       {"id": "memory", "label": "Memory\\nStorage", "type": "storage"},
-       {"id": "output", "label": "Output\\nDisplay", "type": "output"}
-   ]
-
-   connections = [
-       ["input", "cpu", "raw data"],
-       ["cpu", "memory", "store"],
-       ["memory", "cpu", "retrieve"],
-       ["cpu", "output", "processed data"]
-   ]
-
-   diagram_path = generator.create_block_diagram(
-       blocks=blocks,
-       connections=connections,
-       filename="system_diagram",
-       output_format="svg"
-   )
-   ```
-
-4. **Render custom DOT code**:
-   ```python
-   dot_code = """
+1. **Verify Graphviz**: `dot -V` — if missing, install it (see above) or fail loud about the missing dependency.
+2. **Write the DOT source** for the diagram (templates below), with patent-style reference numbers in labels, e.g.:
+   ```dot
    digraph PatentSystem {
        rankdir=LR;
        node [shape=box, style=rounded];
-
-       Input [label="User Input\\n(10)"];
-       Processor [label="Processing Unit\\n(20)"];
-       Output [label="Display\\n(30)"];
-
+       Input [label="User Input\n(10)"];
+       Processor [label="Processing Unit\n(20)"];
+       Output [label="Display\n(30)"];
        Input -> Processor [label="data"];
        Processor -> Output [label="result"];
    }
-   """
-
-   diagram_path = generator.render_dot_diagram(
-       dot_code=dot_code,
-       filename="custom_diagram",
-       output_format="svg",
-       engine="dot"
-   )
    ```
-
-5. **Add reference numbers**:
-   ```python
-   # After creating a diagram, add patent-style reference numbers
-   reference_map = {
-       "Input Sensor": 10,
-       "Central Processor": 20,
-       "Memory Storage": 30,
-       "Output Display": 40
-   }
-
-   annotated_path = generator.add_reference_numbers(
-       svg_path=diagram_path,
-       reference_map=reference_map
-   )
+3. **Render** with the `dot` CLI:
+   ```bash
+   dot -Tsvg method_flowchart.dot -o method_flowchart.svg   # svg / png / pdf
    ```
+4. **Reference numbers**: keep the numbering consistent with the 说明书文字部分 — CN: 附图标记应与文字部分描述一致 `(依据: 实施细则 第20条 — gov.cn)`; US: drawing format `(per 37 CFR §1.84 — ecfr.gov)`.
 
 ## Diagram Templates
 
-Get common templates:
-```python
-templates = generator.get_diagram_templates()
+Build DOT directly from these shapes (Graphviz-native; no wrapper needed):
 
-# Available templates:
-# - simple_flowchart: Basic process flow
-# - system_block: System architecture
-# - method_steps: Sequential method
-# - component_hierarchy: Hierarchical structure
-```
+- **simple_flowchart**: `digraph { start [shape=ellipse]; step1 [shape=box]; decision [shape=diamond]; }`
+- **system_block**: `digraph { rankdir=LR; node [shape=box, style=rounded]; }`
+- **method_steps**: sequential `rankdir=TB` chain with numbered step labels `S1..Sn`
+- **component_hierarchy**: `digraph { rankdir=TB; }` with parent→child edges
 
 ## Shape Types
 
@@ -204,7 +123,7 @@ templates = generator.get_diagram_templates()
 
 - `svg`: Scalable Vector Graphics (best for editing)
 - `png`: Raster image (good for viewing)
-- `pdf`: Portable Document Format (USPTO compatible)
+- `pdf`: Portable Document Format (drawing format per 37 CFR §1.84 — ecfr.gov)
 
 ## Patent-Style Reference Numbers
 
@@ -234,7 +153,7 @@ When creating diagrams:
    Run Python code to create SVG/PNG/PDF
 
 3. **Show file location**:
-   "Diagram created: ${CLAUDE_PLUGIN_ROOT}/python\diagrams\method_flowchart.svg"
+   "Diagram created: <output path>.svg (next to the DOT source)"
 
 4. **List reference numbers** (if added):
    ```
@@ -266,8 +185,8 @@ When creating diagrams:
 If Graphviz is not installed:
 1. Check installation: `dot -V`
 2. Install for your OS (see above)
-3. Verify Python package: `pip show graphviz`
-4. Test generation: `python scripts/test_diagrams.py`
+3. Verify the `dot` binary is on PATH: `which dot`
+4. Re-render the DOT source; a missing dependency is reported loudly, never silently skipped
 
 ## Tools Available
 

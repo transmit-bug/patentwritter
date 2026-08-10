@@ -20,14 +20,26 @@ Invoke this skill when users ask to:
 
 ## What This Skill Does
 
-Orchestrates the complete patent creation workflow:
+Orchestrates the complete patent creation workflow as follows. The skill owns the authoring logic; all retrieval is delegated:
 
-1. **Prior Art Search** → Identify existing patents
+1. **Prior Art Search (delegated)** → Identify existing patents via delegated search
 2. **Claims Drafting** → Write independent and dependent claims
 3. **Specification Writing** → Create detailed description
 4. **Diagram Generation** → Produce technical figures
 5. **Abstract Creation** → Write concise summary
-6. **Compliance Checking** → Validate USPTO requirements
+6. **Compliance Checking** → Validate USPTO requirements against catalog standards
+
+## Retrieval & citation (read first)
+
+This skill follows the delegation contract (`docs/prototype/delegation-contract.md`) and the patent-standards catalog (`.agents/skills/patent-standards/SKILL.md`):
+
+1. **Declare** — before any novelty or legal assertion, name the need: `[PRIOR-ART] <technology description>` / `[STANDARD] US <topic>`.
+2. **Consume** — work only from what retrieval returned (search results with real patent numbers/URLs; standards read from catalog-declared materials).
+3. **Cite** — every assertion in the output carries its anchor: `(prior art: <title>, <pub. no.>, <URL>)`; `(per 35 U.S.C. §112; MPEP §2106 — uspto.gov)`.
+4. **Fail loud** — a needed grounding that cannot be obtained (no search tool, no material access) stops that portion with a 无法获取依据/blocked block; the rest still delivers grounded.
+5. **Never invent** — no prior art from memory, no law from memory. User-supplied prior art (patent numbers, PDFs) counts as grounding: `(provided: <file or patent number>)`.
+
+Before delivering, scan the output: any legal or prior-art assertion without a citation must be cited or failed loud.
 7. **IDS Preparation** → List prior art for disclosure
 
 ## Complete Workflow
@@ -40,11 +52,12 @@ Orchestrates the complete patent creation workflow:
    - Identify problem being solved
    - List all components/steps
 
-2. **Prior Art Search**:
-   - Use **Prior Art Search** skill (7-step methodology)
-   - Find 10-20 most relevant patents
+2. **Prior Art Search (delegated)**:
+   - Declare `[PRIOR-ART] <technology description>`; resolve via the **patents-search** skill (Valyu) or any search tool the environment exposes, or user-supplied material
+   - Find 10-20 most relevant patents; each cited in output as `(prior art: <title>, <pub. no.>, <URL>)`
    - Document key differences
    - Assess patentability
+   - No search tool and no user-supplied prior art → fail loud for this portion; do not draft novelty assertions
 
 3. **Technology Landscape**:
    - Identify CPC classifications
@@ -101,7 +114,7 @@ Orchestrates the complete patent creation workflow:
    - Problem statement (2-3 paragraphs)
    - Limitations of existing solutions
    - Need for invention
-   - Cite prior art from search
+   - Cite prior art from search, each with `(prior art: <title>, <pub. no.>, <URL>)`
 
 4. **Summary**:
    - High-level description (3-5 paragraphs)
@@ -132,9 +145,8 @@ Orchestrates the complete patent creation workflow:
    - Explain improvements over prior art
 
 9. **Specification Review**:
-   - Use **Patent Claims Analyzer** skill (specification mode)
-   - Verify all claims are supported
-   - Check enablement
+   - Run **patent-claims-analyzer** on the claims; verify every claim element is supported by the specification text
+   - Check enablement (per 35 U.S.C. §112(a); MPEP §2164 — uspto.gov)
    - Validate completeness
 
 **Output**: Complete specification (20-50 pages)
@@ -167,7 +179,7 @@ Orchestrates the complete patent creation workflow:
 ### Phase 5: Abstract & Front Matter (10-15 min)
 
 1. **Abstract**:
-   - 50-150 words (USPTO requirement)
+   - 50-150 words (per 37 CFR §1.72 — ecfr.gov)
    - Single paragraph
    - No claim limitations
    - Broad technical description
@@ -189,32 +201,30 @@ Orchestrates the complete patent creation workflow:
 
 ### Phase 6: Compliance & Validation (15-20 min)
 
+Every check cites its catalog anchor; never assert compliance from memory. The catalog: `.agents/skills/patent-standards/SKILL.md` (35 USC / 37 CFR / MPEP), provenance `docs/research/standards-catalog.md`.
+
 1. **Formalities Check**:
-   - Use **Patent Claims Analyzer** skill (formalities mode)
-   - Abstract length: 50-150 words
-   - Title length: < 500 characters
-   - Required sections present
-   - Drawing references valid
+   - Run **patent-claims-analyzer** on the claims
+   - Abstract length: 50-150 words (per 37 CFR §1.72 — ecfr.gov)
+   - Title: short and descriptive (per 37 CFR §1.72 — ecfr.gov)
+   - Required sections present (per 37 CFR §1.77 — ecfr.gov)
+   - Drawing references valid (per 37 CFR §1.84 — ecfr.gov)
 
 2. **Claims Compliance**:
-   - 35 USC 112(b) definiteness
-   - Antecedent basis correct
-   - No indefinite terms
+   - 35 USC 112(b) definiteness (per MPEP §2171-2176 — uspto.gov)
+   - Antecedent basis correct (per MPEP §2173.05(e) — uspto.gov)
+   - No indefinite terms (per MPEP §2173.05(b) — uspto.gov)
    - Proper dependencies
 
 3. **Specification Compliance**:
-   - 35 USC 112(a) written description
-   - Enablement complete
-   - Best mode disclosed
+   - 35 USC 112(a) written description (per MPEP §2163 — uspto.gov)
+   - Enablement complete (per MPEP §2164 — uspto.gov)
    - All claims supported
 
 4. **MPEP Guidance**:
-   - Use **MPEP Search** skill
-   - Verify format requirements
-   - Check section 608 compliance
-   - Review any special requirements
+   - Use the catalog's declared MPEP anchors for format requirements (MPEP §608 disclosure/claims format, §706 rejections) — read them via whatever the environment offers; if a section can't be read, mark the affected check `ungrounded` and say what is missing
 
-**Output**: Compliance report with fixes
+**Output**: Compliance report with fixes, each finding carrying its citation
 
 ---
 
@@ -322,21 +332,21 @@ What is claimed is:
 
 Before finalizing, verify:
 
-- [ ] Prior art search completed (Top 10 documented)
+- [ ] Prior art search completed (Top 10 documented, each cited `(prior art: …)`)
 - [ ] Claims drafted (1-3 independent, 10-20 dependent)
 - [ ] Specification written (20+ pages)
 - [ ] All claim elements supported in specification
 - [ ] Diagrams created (3+ figures with reference numbers)
-- [ ] Abstract written (50-150 words)
-- [ ] Title created (< 500 characters)
+- [ ] Abstract written (50-150 words, per 37 CFR §1.72)
+- [ ] Title short and descriptive (per 37 CFR §1.72)
 - [ ] Antecedent basis checked (no critical issues)
 - [ ] Definiteness verified (no indefinite terms)
 - [ ] Enablement complete (sufficient detail)
-- [ ] Formalities compliant (MPEP 608)
+- [ ] Formalities compliant (per MPEP §608; 37 CFR §1.77/§1.84)
 - [ ] IDS list prepared (all prior art included)
 - [ ] Figures match description
 - [ ] Reference numbers consistent
-- [ ] USPTO format requirements met
+- [ ] No uncited legal or prior-art assertions remain (self-check)
 
 ## File Organization
 
@@ -376,12 +386,14 @@ patent-application/
 
 ## Integration with Other Skills
 
-This workflow orchestrates:
-- **Prior Art Search** skill (Phase 1)
-- **Patent Claims Analyzer** skill (Phase 2, 6)
-- **Patent Diagram Generator** skill (Phase 4)
-- **MPEP Search** skill (Phase 6)
-- **BigQuery Patent Search** skill (Phase 1)
+This skill delegates, it does not orchestrate. It composes with other skills in this repo as consumers:
+
+- **patents-search** (delegated prior art, Phase 1) — or any environment search tool
+- **patent-claims-analyzer** (claim compliance, Phase 2, 6)
+- **patent-diagram-generator** (figures, Phase 4)
+- **patent-standards** (catalog of 35 USC / 37 CFR / MPEP anchors for all compliance claims, Phase 6)
+
+No skill referenced here is expected to exist beyond this repo's set; where a named skill is absent from the environment, the phase still completes via delegation or fail loud — never via a phantom tool.
 
 ## Estimated Timeline
 
@@ -413,7 +425,7 @@ Throughout the workflow, pause to:
 
 ## Tools Available
 
-- **Bash**: Run Python tools for search, analysis
+- **Bash**: Run the bundled claims analyzer (patent-claims-analyzer) and delegated search scripts
 - **Write**: Save all documents and sections
 - **Read**: Load user invention descriptions, prior art
 - **Grep**: Search through generated content

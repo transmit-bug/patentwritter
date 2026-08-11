@@ -1,6 +1,8 @@
 # Patent Writing Skill Hub
 
-A hub of agent skills (`.agents/skills/`) for writing patent applications, built **delegation-first**: the set owns only authoring/decision logic; every legal assertion traces to a declared authoritative source, every prior-art reference comes from an external search tool — never model improvisation.
+A skills **package** (`skills/`) for writing patent applications, installable via `npx skills add transmit-bug/patentwritter`. Built **delegation-first**: the set owns only authoring/decision logic; every legal assertion traces to a declared authoritative source, every prior-art reference comes from an external search tool — never model improvisation.
+
+> Install state (`.agents/`, `skills-lock.json`) is consumer-side and gitignored — regenerate it with `npx skills add transmit-bug/patentwritter`.
 
 ## Language
 

@@ -45,7 +45,7 @@ Invoke this skill when users ask to:
 
 ## Retrieval & citation (read first)
 
-This skill follows the delegation contract (`docs/prototype/delegation-contract.md`) and the patent-standards catalog (`.agents/skills/patent-standards/SKILL.md`):
+This skill follows the delegation contract (`docs/prototype/delegation-contract.md`) and the patent-standards catalog (`skills/patent-standards/SKILL.md`):
 
 1. **Declare** — before asserting a patent *figure requirement* (reference-number rules, drawing format), name the need: `[STANDARD] CN 附图` / `[STANDARD] US drawings`.
 2. **Consume / Cite** — ground each stated requirement in the catalog: CN 附图内容在 说明书 之下 `(依据: 实施细则 第20条 — gov.cn)`; US drawing format `(per 37 CFR §1.84 — ecfr.gov)`.

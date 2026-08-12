@@ -12,6 +12,12 @@ current, who issues it, where the official text lives, and how to cite it.
   No secondary write-ups. Every factual claim below carries its source URL.
 - Verified on 2026-08-10 (all URLs re-checked at retrieval time).
 
+> **2026-08-11 复核(ADR-0004 重构后)** — 撰写相关的条文号已对官方全文逐条实测核实
+> (2023 实施细则全文、专利法 2020 文本,均取自 CNIPA)。核实结果以
+> `skills/patent-standards/SKILL.md` 的 **Verified rule anchors** 节为单一来源,本文件不再重复条文要旨。
+> 核实要点:细则 第17/20/21/22/23/24/25/26/33/43/46/47条、专利法 第2/9/22/24/26/33/42条
+> 与旧目录锚点全部一致;并发现 **2023 版细则已删除旧版"摘要不超过300字"的限制**(第26条,以简短为要)。
+
 ---
 
 ## China (CN)

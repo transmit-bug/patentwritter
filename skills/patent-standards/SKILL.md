@@ -1,6 +1,6 @@
 ---
 name: patent-standards
-description: The standards catalog (专利标准/资料目录) and citation discipline for the patent-writing skill set. Declares which authoritative texts govern CN and US patent drafting/examination, where they officially live, and their citation anchors. Consumed by the writing skills (patent-application-creator, patent-architect, patent-claims-analyzer, patent-diagram-generator) to ground every legal assertion. This skill declares WHAT exists and where — it never fetches, never holds keys, and never prescribes how to retrieve.
+description: The standards catalog (专利标准/资料目录) for the patent-writing skill set: which authoritative CN/US texts govern drafting/examination, where they officially live, and their citation anchors — including the Verified rule anchors section (条文号于 2026-08-11 对 CNIPA 官方全文实测核实). Consumed by the self-service skills (patent-application, patent-claims, patent-specification, patent-drawings, patent-compliance, patent-filing) and the professional US skills. Declares WHAT exists and where — never fetches, never holds keys, never prescribes how to retrieve.
 ---
 
 # Patent Standards (专利标准/资料目录)
@@ -70,7 +70,14 @@ Verified against primary sources on 2026-08-10 (full per-fact provenance: `../..
 | 37 C.F.R. Title 37 | eCFR current (amended 2026-07-20) | ecfr.gov (Part 1) | 37 CFR §1.71(说明书), §1.75(权利要求), §1.77(申请文件排列), §1.104(审查), §1.121(修改) |
 | MPEP | 9th Ed., Rev. 01.2024 (current to 2024-01-31) | uspto.gov (mpep/index.html) | MPEP §608(公开内容/权利要求格式), §706(驳回), §2106(客体适格), §2164(能够实现), §2171-2176(112(b) 清楚性) |
 
-## The discipline — four clauses, one prohibition
+## How writing skills invoke this skill
+
+Two consumption modes (ADR-0004):
+
+- **自服务组(`skills/self-service/`)**:直接引用上方 **Verified rule anchors** 的条号作为锚点(如 `细则第20条`),需要向发明人解释时说明来源。不声明 `[STANDARD]` 需求、不强求环境检索法条;现有技术按诚实红线(三类素材)处理,见 `../../docs/prototype/delegation-contract.md` 的"自服务组简化变体"节。
+- **专业组(`skills/professional/`,US 技能,当前隐藏)**:按下方完整纪律(declare/consume/cite)执行。
+
+## The discipline — four clauses, one prohibition (专业组完整版)
 
 Writing skills apply the delegation contract (`../../docs/prototype/delegation-contract.md`) when they consume this catalog:
 
@@ -80,11 +87,14 @@ Writing skills apply the delegation contract (`../../docs/prototype/delegation-c
 4. **Fail loud** — if the material can't be read, emit the 无法获取依据 block and don't draft that portion.
 5. **Never invent** — never restate law from memory; the catalog's material is the only authority.
 
-## How writing skills invoke this skill
+## 自服务组纪律(简化版)
 
-- Read this catalog for the material + anchor of any `[STANDARD]` need.
-- Reference `../../docs/research/standards-catalog.md` for official URLs and verification.
-- Do NOT ask this skill to fetch, download, or parse anything — the environment does that.
+自服务技能引用本目录时遵守:
+
+1. **锚点**:引用 Verified rule anchors 的条号(实测核实),不凭记忆编号。
+2. **诚实红线**:现有技术只写三类素材 — 发明人已知方案 / 客观通用问题 / 检索工具真实返回。绝不编造专利号、文献、实验数据。
+3. **Fail loud**:缺输入(如四要素不齐)、缺工具(如无 dot)时明说缺什么,不硬写。
+4. **范围外**:OA 答复等专业工作不在本包。
 
 ## Scope guard
 

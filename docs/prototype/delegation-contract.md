@@ -80,6 +80,16 @@ The skill drafts only what it can ground (structural sections, embodiments from 
 - Key handling, fetching, scraping: out of contract. The environment does it.
 - `patents-search` (Valyu) is the canonical delegated search in this repo; any environment search tool may substitute when present.
 
-## Status
+## Status 与适用范围(2026-08-11 更新)
 
-- **Accepted** (prototype ticket #3, 2026): shape confirmed, anchors verified against the research catalog. The patent-standards skill (ticket #4) implements the catalog + this contract; the four writing skills (ticket #5) consume it.
+- **历史**:本契约是 wayfinder prototype 决策(ticket #3),旧包(CN/US 专业撰写)的架构基础;2026-08-11 之前所有 writing skill 遵循它。
+- **现状(ADR-0004 重构后)**:完整版(declare/consume/cite)仍适用于 `skills/professional/` 组(US 技能,当前 `disable-model-invocation` 隐藏)。
+- **自服务组(`skills/self-service/`)采用简化变体**:
+  - 法律断言:直接引用 `patent-standards` 的 **Verified rule anchors**(2026-08-11 对 CNIPA 全文实测核实),不再声明 `[STANDARD]` 需求、不强求环境检索法条。
+  - 现有技术:按**诚实红线**写背景技术(三类素材:发明人已知方案 / 客观通用问题 / 检索工具真实返回),不再声明 `[PRIOR-ART]`;拿不到就不写,绝不编造公开号。
+  - **Fail loud 保留**:缺输入(四要素不齐)/缺工具(如无 dot)时明说缺什么,不硬写。
+  - 引用格式:条号即锚点(如 `细则第20条`),需向用户解释时附 `patent-standards` 锚点来源。
+
+## 旧版 Status(历史记录)
+
+- **Accepted** (prototype ticket #3, 2026): shape confirmed, anchors verified against the research catalog. The patent-standards skill (ticket #4) implements the catalog + this contract; the four writing skills (ticket #5) consume it. (四技能已随 ADR-0004 重构:architect/diagram-generator 删除,application-creator/claims-analyzer 移至 professional 组隐藏。)

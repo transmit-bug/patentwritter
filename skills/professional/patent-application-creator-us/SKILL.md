@@ -393,8 +393,9 @@ This skill delegates, it does not orchestrate. It composes with other skills in 
 
 - **patents-search** (delegated prior art, Phase 1) — or any environment search tool
 - **patent-claims-analyzer** (claim compliance, Phase 2, 6)
-- **patent-diagram-generator** (figures, Phase 4)
 - **patent-standards** (catalog of 35 USC / 37 CFR / MPEP anchors for all compliance claims, Phase 6)
+
+> 注(ADR-0004 重构):本技能为 A 组保留资产(隐藏)。原引用的 patent-diagram-generator 已删除并重做为 self-service/patent-drawings;本技能重做前,附图阶段按"delegation or fail loud"自行完成。
 
 No skill referenced here is expected to exist beyond this repo's set; where a named skill is absent from the environment, the phase still completes via delegation or fail loud — never via a phantom tool.
 

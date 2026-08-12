@@ -6,7 +6,9 @@ Agent skills for patent writing (专利申请), installable as a single package:
 npx skills add transmit-bug/patentwritter
 ```
 
-**方向(2026-08-11 重构后)**:面向**发明人/非专业人士的自助申请向导**,只覆盖专利申请全流程(交底 → 类型判断 → 撰写 → 自检 → 递交与补正)。专业代理人方向(OA 答复、三步法论证等)留待未来以独立技能组接入,见 `docs/adr/0004-self-service-package.md`。
+**方向(2026-08-11 重构后)**:面向**发明人/非专业人士的自助申请向导**,只覆盖专利申请全流程(交底 → 类型判断 → 撰写 → 自检 → 递交与补正;发明/实用新型/外观设计)。专业代理人方向(OA 答复、三步法论证等)留待未来以独立技能组接入,见 `docs/adr/0004-self-service-package.md`。
+
+**`.patent/` 支撑层工作目录**:发明人项目根目录下三档分级(`sources/` 引用清单、`materials/` 素材、`queries/` 检索记录),与申请文件草稿 `patent-application/` 分治;建议加入发明人项目的 gitignore(留痕可自行取消)。
 
 **诚实红线**:不编造现有技术、专利号、文献、实验数据。背景技术只写发明人已知的、客观通用问题、检索工具真实返回的三类素材。
 
@@ -15,18 +17,19 @@ npx skills add transmit-bug/patentwritter
 ```
 skills/
 ├── self-service/                  # B 组:发明人自助(本包主体)
-│   ├── patent-application/        # 入口(user-invoked):交底访谈+类型判断+编排
+│   ├── patent-application/        # 入口(user-invoked):交底访谈+类型判断+编排(含外观设计分支)
 │   ├── patent-claims/             # 权利要求撰写(独权/从权/上位化/退路布防)
 │   ├── patent-specification/      # 说明书五段式+摘要
-│   ├── patent-drawings/           # 附图+附图标记一致性+摘要附图
+│   ├── patent-drawings/           # 附图+附图标记一致性+摘要附图+外观视图清单
 │   ├── patent-compliance/         # 递交前自检(支撑链/清楚性/形式)
 │   └── patent-filing/             # 递交与补正指引
 ├── professional/                  # A 组(未来):当前只寄放保留的 US 技能,默认不参与发现
 │   ├── patent-application-creator-us/
 │   └── patent-claims-analyzer-us/
 ├── tools/
-│   └── patents-search/            # 委托检索(可选工具,流程不依赖)
-└── patent-standards/              # 共享目录:CN/US 权威文本+实测核实的条文锚点
+│   ├── patents-search/            # 委托检索(可选工具,流程不依赖)
+│   └── conversion/                # 纯文档转换纪律:Word 交付/材料摄入(零脚本,可选依赖)
+└── patent-standards/              # 共享目录:CN/US 权威文本+实测核实的条文锚点+声明外部源
 ```
 
 ## 技能关系(依赖化/层级化)

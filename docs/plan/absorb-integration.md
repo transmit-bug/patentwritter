@@ -1,4 +1,6 @@
-# 整合方案：吸收 patent-disclosure-skill 实用能力（分阶段执行）
+# 整合方案:吸收 patent-disclosure-skill 实用能力(分阶段执行)
+
+> **执行状态:三阶段已于 2026-08-12 全部落地**,实施记录见 [ADR-0005](../adr/0005-absorb-external-patent-tools.md) 的「实施记录」节。本文件保留为方案原文,供追溯。
 
 > 依据 [ADR-0005](../adr/0005-absorb-external-patent-tools.md)（2026-08-12 生效）。本文是地图终点的落地物：三块吸收的**分阶段执行计划**。每个阶段独立可交付、可验收；实现由**方案确认后另起 effort** 执行（地图本身只出决策，不实现）。
 

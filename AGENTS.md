@@ -12,10 +12,11 @@ The package source lives in `skills/<name>/SKILL.md` (skills.sh standard layout)
 
 The package ships skills under the skills.sh category layout (see `docs/adr/0004-self-service-package.md` for the 2026-08-11 restructure):
 
-- **`skills/self-service/` — 发明人自助组(本包主体)**: `patent-application`(入口:交底访谈+类型判断+编排), `patent-claims`(权利要求撰写), `patent-specification`(说明书+摘要), `patent-drawings`(附图), `patent-compliance`(递交前自检), `patent-filing`(递交与补正)。
+- **`skills/self-service/` — 发明人自助组(本包主体)**: `patent-application`(入口:交底访谈+类型判断+编排,发明/实用新型/外观设计), `patent-claims`(权利要求撰写), `patent-specification`(说明书+摘要), `patent-drawings`(附图+外观视图清单), `patent-compliance`(递交前自检), `patent-filing`(递交与补正)。
 - **`skills/professional/` — 专业组(未来,默认不参与发现)**: 目前只寄放保留的 US 技能(`patent-application-creator-us`, `patent-claims-analyzer-us`)。
 - **`skills/tools/patents-search`** — 委托检索(可选工具,流程不依赖)。
-- **`skills/patent-standards`** — 共享目录:CN/US 权威文本 + 实测核实的条文锚点(2026-08-11 对 CNIPA 全文核实)。
+- **`skills/tools/conversion`** — 纯文档转换纪律(Word 交付/材料摄入,零脚本零依赖,按需安装可选依赖,见 `requirements-optional.txt`)。
+- **`skills/patent-standards`** — 共享目录:CN/US 权威文本 + 实测核实的条文锚点(2026-08-11 对 CNIPA 全文核实)+ 声明外部源(CNIPA 公布公告系统)。
 
 第三方案例技能(如 `deep-research`, `technical-writing`)**不是**本包自带的 — 按需从各自来源安装。
 

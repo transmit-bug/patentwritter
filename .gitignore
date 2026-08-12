@@ -1,4 +1,7 @@
 patent-applications/
+
+# 发明人项目支撑层工作目录(建议 gitignore;申请文件草稿 patent-application/ 保持可见)
+.patent/
 .DS_Store
 __pycache__/
 *.pyc

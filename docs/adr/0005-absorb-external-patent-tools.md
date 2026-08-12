@@ -73,6 +73,33 @@ research 实测(分支 `research/cnipa-epub-forms`,报告 `docs/research/cnipa-e
 - 检索保持委托式:Valyu 核心 + 国知局/Google Patents 人工外部源。
 - 附图管线补 PNG 双输出,Word 交付成为可能且合规。
 
+## 实施记录(2026-08-12,三阶段执行完毕)
+
+整合方案 `docs/plan/absorb-integration.md` 三阶段已按序落地(本次提交)。逐项状态:
+
+### 阶段1 转换/交付文档化 — 完成
+- 新增 `skills/tools/conversion/SKILL.md` + `requirements-optional.txt`(纯文档,零脚本):交付降级链(①python-docx 内联 → ②pandoc → ③.md+手动另存,固定文件名、分文件对应、无时间戳)、摄入降级链(.docx/.pptx 内联读取或请发明人提供)、公式 latex2mathml→OMML 可选、附图只嵌 PNG。
+- patent-application 阶段5 补「生成 Word 交付」完成标准并引用 conversion;patent-drawings 步骤2 补 `dot -Tsvg` + `dot -Tpng` 双输出,完成标准补「figN.svg+figN.png 并存、Word 嵌入图无缺图」。
+- 实测:本机 dot(2.43)/pandoc(3.10)可用;python-docx/mammoth/python-pptx/latex2mathml 均未安装 → 文档按「可选、探测降级」表述;dot 双输出与 pandoc PNG 内嵌均实测通过(阶段1 验收达成)。
+
+### 阶段2 查新外部源 — 完成
+- patent-application 阶段2 补「查新」小节:主路径 Valyu(注明官方清单仅 US/EP,CN 命中不保证)+ 补充路径 CNIPA 公布公告系统人工检索(浏览器步骤 / 引用锚点=公开号/公告号 / agent_browser 可选代跑 / 验证码退路 Google Patents country:CN)。
+- `.patent/` 三档结构(sources/materials/queries)写入 patent-application(含 gitignore 建议);包 `.gitignore` 补 `.patent/`;README 与 AGENTS.md 包说明同步。
+- patent-standards 新增「Declared external sources」节:CNIPA 公布公告系统条目(官方名 / URL=http 非 https / 管辖区 CN / 管辖内容 / 引用锚点 / 2026-08-12 核实)。
+
+### 阶段3 外观设计轻量向导 — 完成
+- patent-application 外观分支:阶段1 外观访谈线 / 阶段2 类型判断加外观+洛迦诺提示 / 阶段3 生成 简要说明.md+视图清单.md / 阶段5 外观文件清单。
+- 新增 `references/design-points.md`(外观四要素不适用,改走类别+设计要点;相似设计≤10项、成套条件、简要说明内容与禁止项、保护范围与修改红线);type-decision.md 加外观分支与依据表。
+- patent-standards 外观锚点 2026-08-12 后台 research 核实(报告 `docs/research/design-patent-anchors.md`):专利法 第2条第4款/第23条/第27条/第31条第2款/第33条第2款;细则 第30/31/32/40/44条、第57条第2款/第58条第2款;指南 第一部分第三章 4.2-4.5。
+- patent-drawings 加「外观设计附图」节(dot 不适用、素材由发明人提供);patent-compliance 加检查项 8;patent-filing 加外观电子申请要点与补正对照表外观行。
+- **偏离/修正(相对本 ADR 决策5)**:research 核实 2023 版细则与指南**无**固定六视图强制与「3cm×3cm/15cm×22cm」图片尺寸数值(2010 版旧规则已删);视图数量按「设计要点涉及的面数」决定(指南 第一部分第三章 4.2),省略视图须在简要说明写明原因。各技能外观文档均按核实结果表述,不写旧规则。
+
+### 验收口径
+- 阶段1:文档可循样例流程从 .md 产出 .docx(本机 pandoc 实测通过,PNG 内嵌验证)。
+- 阶段2:patent-application 阶段2 含可直接照做的国知局检索步骤(人工或 agent_browser)。
+- 阶段3:按外观分支可走通「类别→要点→视图清单→自检→递交指引」,四技能链路齐备。
+- `.patent/` 约定未与现有发明人工作流冲突,无需回地图 #6 复议。
+
 ## 未来(非本次范围)
 
 - 整合方案执行(见 `docs/plan/absorb-integration.md`)——每阶段完成后更新本 ADR 状态或追加补充记录。

@@ -53,15 +53,7 @@ allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion, Bash
 
 按 `references/type-decision.md` 的决策树判断 发明 / 实用新型 / 外观设计 / 一案两请。规则依据来自 patent-standards 的核实锚点,不凭印象。类型为外观设计时,继续按 `references/design-points.md` 收类别与洛迦诺分类提示。
 
-**查新(可选,建议)**——撰写背景技术前跑一轮,结果只写真实返回(诚实红线):
-- **主路径**:委托检索工具 `../../tools/patents-search/SKILL.md`(Valyu)。注意:Valyu 专利数据源按官方清单仅覆盖 US(USPTO)+EP(EPO),CN 命中不保证。
-- **补充路径:国知局人工检索**(声明外部源,目录条目见 `../../patent-standards/references/catalog.md`):CNIPA 公布公告系统 `http://epub.cnipa.gov.cn/` —— 人工浏览器步骤:
-  1. 浏览器打开首页,等待反爬校验放行(该站有动态 JS 反爬网关;遇验证码直接切路径,不硬闯);
-  2. 输入关键词,勾选类型(发明公布/发明授权/实用新型/外观设计);
-  3. 逐条记录命中:标题 + **公开号/公告号**(如 CN209861402U)为引用锚点;写背景技术时注明"CNIPA 公布公告系统检索所得";
-  4. 可选:用 agent_browser 等浏览器自动化工具代跑上述步骤(真浏览器天然过网关,结果同样按诚实红线处理);
-  5. 被拦/超时:改用 Google Patents(加 `country:CN`)或 WebSearch。
-- 检索记录分级落盘 `.patent/`(见上)。
+**查新(可选,建议)**——撰写背景技术前跑一轮,结果只写真实返回(诚实红线):见 `references/search-guide.md`(Valyu 主路径 + 国知局人工检索五步)。
 
 ### 阶段3 撰写 → 完成标准:四个文件落盘,无占位符(外观设计:简要说明 + 视图清单)
 

@@ -46,5 +46,5 @@ Human-operated sources the set **documents but never automates** (CONTEXT.md「D
 | 管辖区 | CN |
 | 管辖内容 | 专利公布/公告的著录项目、全文、法律状态(发明公布/发明授权/实用新型/外观设计) |
 | 引用锚点 | 公开号/公告号,如 CN209861402U;详情页形如 http://epub.cnipa.gov.cn/patent/{公开号} |
-| 检索形态 | 人工浏览器(步骤见 `../../self-service/patent-application/SKILL.md` 阶段2 查新);agent_browser 等真浏览器自动化可代跑;遇验证码改用 Google Patents(country:CN)/WebSearch |
+| 检索形态 | 人工浏览器(步骤见 `../../self-service/patent-application/references/search-guide.md`);agent_browser 等真浏览器自动化可代跑;遇验证码改用 Google Patents(country:CN)/WebSearch |
 | 核实 | 2026-08-12 curl 实测 + 第三方源码交叉,详见 `../../../docs/research/cnipa-epub-search-forms.md` |

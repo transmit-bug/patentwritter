@@ -55,7 +55,7 @@ allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion, Bash
 
 **查新(可选,建议)**——撰写背景技术前跑一轮,结果只写真实返回(诚实红线):
 - **主路径**:委托检索工具 `../../tools/patents-search/SKILL.md`(Valyu)。注意:Valyu 专利数据源按官方清单仅覆盖 US(USPTO)+EP(EPO),CN 命中不保证。
-- **补充路径:国知局人工检索**(声明外部源,目录条目见 `../../patent-standards/SKILL.md`):CNIPA 公布公告系统 `http://epub.cnipa.gov.cn/` —— 人工浏览器步骤:
+- **补充路径:国知局人工检索**(声明外部源,目录条目见 `../../patent-standards/references/catalog.md`):CNIPA 公布公告系统 `http://epub.cnipa.gov.cn/` —— 人工浏览器步骤:
   1. 浏览器打开首页,等待反爬校验放行(该站有动态 JS 反爬网关;遇验证码直接切路径,不硬闯);
   2. 输入关键词,勾选类型(发明公布/发明授权/实用新型/外观设计);
   3. 逐条记录命中:标题 + **公开号/公告号**(如 CN209861402U)为引用锚点;写背景技术时注明"CNIPA 公布公告系统检索所得";
@@ -108,4 +108,4 @@ patent-application/
 ## 技能关系
 
 - 本入口只调用上述 model-invoked discipline 技能,不调用其他入口技能。
-- 法律锚点统一在 `../../patent-standards/SKILL.md`,本技能不重复条文内容,只在判断点引用。
+- 法律锚点统一在 `../../patent-standards/`(发明/实用新型 → `references/cn-invention-utility.md`;外观设计 → `references/cn-design.md`),本技能不重复条文内容,只在判断点引用。

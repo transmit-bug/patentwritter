@@ -24,7 +24,7 @@ Invoke this skill when users ask to:
 
 ## Retrieval & citation (read first)
 
-This skill follows the delegation contract (`docs/prototype/delegation-contract.md`) and the patent-standards catalog (`skills/patent-standards/SKILL.md`):
+This skill follows the delegation contract (`docs/prototype/delegation-contract.md`) and the patent-standards catalog (`skills/patent-standards/references/us.md`):
 
 1. **Declare** — `[STANDARD] US claim definiteness` etc.; the catalog declares the governing material (MPEP §2171-2176 for 112(b); §2164 enablement; §608 claim format; §2181 means-plus-function).
 2. **Consume** — each reported issue carries the anchor it is grounded on; never assert an MPEP rule that was not read from the declared material.
@@ -122,7 +122,7 @@ MPEP anchoring is real and catalog-declared, not asserted:
 - **§2181** — means-plus-function limitations
 - **§706** — rejection practice context
 
-Catalog: `skills/patent-standards/SKILL.md`; full provenance: `docs/research/standards-catalog.md`.
+Catalog: `skills/patent-standards/references/us.md`; full provenance: `docs/research/standards-catalog.md`.
 
 ## Tools Available
 

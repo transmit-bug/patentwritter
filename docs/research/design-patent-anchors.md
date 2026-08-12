@@ -1,6 +1,6 @@
 # 外观设计专利 — 官方条文核实报告（Design-Patent Anchors）
 
-> 用途：供 `skills/patent-standards/SKILL.md` 的 **Verified rule anchors** 节新增外观设计条目使用。
+> 用途：供 `skills/patent-standards/references/cn-design.md` 分型锚点文件使用(原 "Verified rule anchors" 节已拆分)。
 > 方法：**只读核实**，逐条对照官方全文原文摘录，不做凭记忆转述。所有条号均给出所在章/节位置作为编号核对证据。
 > 核实日期：**2026-08-12**。
 

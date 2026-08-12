@@ -29,14 +29,14 @@ skills/
 ├── tools/
 │   ├── patents-search/            # 委托检索(可选工具,流程不依赖)
 │   └── conversion/                # 纯文档转换纪律:Word 交付/材料摄入(零脚本,可选依赖)
-└── patent-standards/              # 共享目录:CN/US 权威文本+实测核实的条文锚点+声明外部源
+└── patent-standards/              # 共享目录:薄索引 + 分型 references(发明/实用新型、外观、US 锚点 + 目录 + 声明外部源)
 ```
 
 ## 技能关系(依赖化/层级化)
 
 - **入口**(`patent-application`,disable-model-invocation)编排全流程,调用 model-invoked discipline 技能;入口不调用入口。
 - **Discipline 技能**(claims/specification/drawings/compliance/filing)承载可复用撰写纪律,模型按需自动加载,也被入口调用。
-- **法律锚点单一来源**:`patent-standards` 的"Verified rule anchors"节(2026-08-11 对 CNIPA 全文实测核实),各技能只引用锚点,不重复条文。
+- **法律锚点单一来源**:`patent-standards` 的分型 references(发明/实用新型、外观设计、US;2026-08-11/12 对 CNIPA 全文实测核实),各技能按类型引用锚点,不重复条文。
 
 ## 设计原则
 

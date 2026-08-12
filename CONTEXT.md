@@ -29,7 +29,7 @@ The authoritative texts governing drafting and examination — 专利法, 专利
 _Avoid_: rules, best practices
 
 **Standards catalog (资料目录)**:
-The core content of the patent-standards skill — a table declaring each authoritative material: official name, edition, official location, what it governs, citation anchors. It declares **what** to look up, never **how** ("我们只能声明哪些资料可以去查找,不应该负责具体如何去查找").
+The core content of the patent-standards skill — a table declaring each authoritative material: official name, edition, official location, what it governs, citation anchors. It declares **what** to look up, never **how** ("我们只能声明哪些资料可以去查找,不应该负责具体如何去查找"). 内容按类型拆分在 `patent-standards/references/`(cn-invention-utility / cn-design / us / catalog),SKILL.md 只做索引与消费纪律。
 _Avoid_: retrieval instructions, fetch commands
 
 **Delegated search (委托搜索)**:

@@ -1,6 +1,6 @@
 # 申请类型判断决策树
 
-规则依据:patent-standards 核实锚点(专利法 第2条/第9条/第22条/第23条/第26条/第27条/第42条;细则 第20条/第43条/第46条/第47条)。
+规则依据:patent-standards 核实锚点(发明/实用新型 → `references/cn-invention-utility.md`;外观设计 → `references/cn-design.md`)。
 
 ## 决策树
 

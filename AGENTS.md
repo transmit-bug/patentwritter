@@ -16,7 +16,7 @@ The package ships skills under the skills.sh category layout (see `docs/adr/0004
 - **`skills/professional/` — 专业组(未来,默认不参与发现)**: 目前只寄放保留的 US 技能(`patent-application-creator-us`, `patent-claims-analyzer-us`)。
 - **`skills/tools/patents-search`** — 委托检索(可选工具,流程不依赖)。
 - **`skills/tools/conversion`** — 纯文档转换纪律(Word 交付/材料摄入,零脚本零依赖,按需安装可选依赖,见 `requirements-optional.txt`)。
-- **`skills/patent-standards`** — 共享目录:CN/US 权威文本 + 实测核实的条文锚点(2026-08-11 对 CNIPA 全文核实)+ 声明外部源(CNIPA 公布公告系统)。
+- **`skills/patent-standards`** — 共享目录(薄 SKILL.md 索引 + `references/`):发明/实用新型、外观设计、US 分型锚点(2026-08-11/12 对 CNIPA 全文核实)+ 权威文本目录 + 声明外部源(CNIPA 公布公告系统)。
 
 第三方案例技能(如 `deep-research`, `technical-writing`)**不是**本包自带的 — 按需从各自来源安装。
 

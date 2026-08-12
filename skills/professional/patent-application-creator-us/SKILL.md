@@ -34,7 +34,7 @@ Orchestrates the complete patent creation workflow as follows. The skill owns th
 
 ## Retrieval & citation (read first)
 
-This skill follows the delegation contract (`docs/prototype/delegation-contract.md`) and the patent-standards catalog (`skills/patent-standards/SKILL.md`):
+This skill follows the delegation contract (`docs/prototype/delegation-contract.md`) and the patent-standards catalog (`skills/patent-standards/references/us.md`):
 
 1. **Declare** — before any novelty or legal assertion, name the need: `[PRIOR-ART] <technology description>` / `[STANDARD] US <topic>`.
 2. **Consume** — work only from what retrieval returned (search results with real patent numbers/URLs; standards read from catalog-declared materials).
@@ -204,7 +204,7 @@ Before delivering, scan the output: any legal or prior-art assertion without a c
 
 ### Phase 6: Compliance & Validation (15-20 min)
 
-Every check cites its catalog anchor; never assert compliance from memory. The catalog: `skills/patent-standards/SKILL.md` (35 USC / 37 CFR / MPEP), provenance `docs/research/standards-catalog.md`.
+Every check cites its catalog anchor; never assert compliance from memory. The catalog: `skills/patent-standards/references/us.md` (35 USC / 37 CFR / MPEP), provenance `docs/research/standards-catalog.md`.
 
 1. **Formalities Check**:
    - Run **patent-claims-analyzer** on the claims
@@ -393,7 +393,7 @@ This skill delegates, it does not orchestrate. It composes with other skills in 
 
 - **patents-search** (delegated prior art, Phase 1) — or any environment search tool
 - **patent-claims-analyzer** (claim compliance, Phase 2, 6)
-- **patent-standards** (catalog of 35 USC / 37 CFR / MPEP anchors for all compliance claims, Phase 6)
+- **patent-standards** (catalog of 35 USC / 37 CFR / MPEP anchors in `references/us.md` for all compliance claims, Phase 6)
 
 > 注(ADR-0004 重构):本技能为 A 组保留资产(隐藏)。原引用的 patent-diagram-generator 已删除并重做为 self-service/patent-drawings;本技能重做前,附图阶段按"delegation or fail loud"自行完成。
 

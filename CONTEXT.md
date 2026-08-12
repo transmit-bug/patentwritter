@@ -55,3 +55,19 @@ _Avoid_: drafting with made-up grounding
 **Citation convention**:
 The agreed format for referencing catalog sources and search results in skill output — fixed by the prototype ticket; every writing skill follows it.
 _Avoid_: informal references, no anchors
+
+**Declared external source (声明外部源)**:
+A human-operated source the set documents but never automates — e.g. CNIPA 公布公告系统 (epub.cnipa.gov.cn), Google Patents. The docs state source info, manual search steps, and citation anchors (公开号/公告号); the set never ships crawler code for it. Peer-level with delegated tools (Valyu), not a fallback ladder.
+_Avoid_: in-repo crawler, thin wrapper scripts, 爬虫
+
+**Document-only capability (纯文档能力)**:
+A capability delivered as skill prose + inline-generation guidance rather than vendored scripts — e.g. Word delivery, docx/pptx intake. The agent probes the environment (python-docx → pandoc → manual save) and degrades; no script is committed to the package.
+_Avoid_: vendoring conversion scripts, hard tool dependencies
+
+**Archived reference (归档参考)**:
+External design kept as reference material for a future skill group without changing the current package boundary — e.g. 审查答复 (OA case-RAG) archived for the future professional/ group.
+_Avoid_: expanding current scope with archived designs
+
+**`.patent/` workspace (支撑层工作目录)**:
+The tiered support layer under the inventor's project root: `sources/` (declarations, citation lists), `materials/` (inventor materials, retrieved documents), `queries/` (search records and results). Draft application files stay in the visible `patent-application/`; `.patent/` is suggested gitignored.
+_Avoid_: mixing support layer into draft directory

@@ -23,17 +23,11 @@ The catalog of authoritative texts governing patent drafting and examination in 
 Two consumption modes (ADR-0004):
 
 - **自服务组(`skills/self-service/`)**:按类型读对应 references 文件,引用其中的条号作为锚点(如 `细则第20条`),需要向发明人解释时说明来源。不声明 `[STANDARD]` 需求、不强求环境检索法条;现有技术按诚实红线(三类素材)处理,见 `../../docs/prototype/delegation-contract.md` 的"自服务组简化变体"节。
-- **专业组(`skills/professional/`,US 技能,当前隐藏)**:读 `references/us.md`,按下方完整纪律(declare/consume/cite)执行。
+- **专业组(`skills/professional/`,US 技能,当前隐藏)**:读 `references/us.md`(内含完整纪律 declare/consume/cite/fail loud/never invent),按其中纪律执行。
 
 ## The discipline — four clauses, one prohibition (专业组完整版)
 
-Writing skills apply the delegation contract (`../../docs/prototype/delegation-contract.md`) when they consume this catalog:
-
-1. **Declare** — before a legal assertion, name the need: `[STANDARD] <jurisdiction> <topic>`. Look up the governing material + anchor in the per-type reference file, then have the environment read that material. Never fetch it yourself.
-2. **Consume** — ground only on what was actually read.
-3. **Cite** — every assertion in output carries the anchor: `(依据: 指南 第二部分第四章[创造性] — cnipa.gov.cn)` / `(per MPEP §2106 — uspto.gov)`.
-4. **Fail loud** — if the material can't be read, emit the 无法获取依据 block and don't draft that portion.
-5. **Never invent** — never restate law from memory; the per-type reference files are the only authority.
+> 专业组完整纪律(declare/consume/cite/fail loud/never invent)执行版在 `references/us.md`,来源契约 `../../docs/prototype/delegation-contract.md`。
 
 ## 自服务组纪律(简化版)
 

@@ -1,6 +1,9 @@
 ---
 name: patent-claims-analyzer
-description: Automated analysis of patent claims for USPTO compliance with 35 USC 112(b) requirements - antecedent basis, definiteness, claim structure
+description: [A组保留资产,默认不参与发现] US 112(b) claim compliance lint (English-only). 待 A 方向(专业代理人)重启时重做。
+disable-model-invocation: true
+metadata:
+  internal: true
 tools: Bash, Read, Write
 model: sonnet
 ---

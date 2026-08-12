@@ -1,6 +1,9 @@
 ---
 name: patent-application-creator
-description: Complete end-to-end patent application creation from invention disclosure to USPTO-ready filing - prior art search, claims drafting, specification writing, diagrams, compliance checking
+description: [A组保留资产,默认不参与发现] US utility patent application creation workflow — prior art, claims, specification, diagrams, compliance. 待 A 方向(专业代理人)重启时重做。
+disable-model-invocation: true
+metadata:
+  internal: true
 tools: Bash, Read, Write
 model: sonnet
 ---

@@ -2,7 +2,25 @@
 
 A skills **package** (`skills/`) for writing patent applications, installable via `npx skills add transmit-bug/patentwritter`. Built **delegation-first**: the set owns only authoring/decision logic; every legal assertion traces to a declared authoritative source, every prior-art reference comes from an external search tool — never model improvisation.
 
+> **方向(2026-08-11,ADR-0004)**:面向发明人自助的专利申请向导(发明+实用新型,全流程)。专业代理人方向(A 组)未建,仅预留 `skills/professional/`。
+
 > Install state (`.agents/`, `skills-lock.json`) is consumer-side and gitignored — regenerate it with `npx skills add transmit-bug/patentwritter`.
+
+## Self-service 撰写词表
+
+**四要素**:交底访谈必得的四个要素 — 技术问题 / 技术方案(最小可实施)/ 区别特征 / 技术效果。缺一不可进入撰写。
+
+**删除测试**:判定必要技术特征的判据 — 删掉该特征,技术问题还解决吗?能解决 = 非必要,下沉从权或删。
+
+**阶梯**:上位化概括的三层(具体实现 → 中间概括 → 功能概括),每上一层过三问(仍解决原问题 / 说明书有支撑 / 非纯功能限定)。
+
+**退路**:从权 = 独权被驳时的退路;布防三方向(细化 / 变体 / 增强),按商业重要度排序。
+
+**诚实红线**:背景技术只写三类素材 — 发明人已知的现有方案、客观通用问题、检索工具真实返回的结果。绝不编造专利号/文献/数据。
+
+**支撑链**:每条权利要求特征在说明书有出处(专利法第26条第4款:权利要求以说明书为依据)。
+
+**标记一致**:附图标记与说明书文字双向一致(细则第21条)。
 
 ## Language
 

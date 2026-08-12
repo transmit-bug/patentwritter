@@ -10,7 +10,14 @@ The package source lives in `skills/<name>/SKILL.md` (skills.sh standard layout)
 
 ## Package contents
 
-The package ships 6 skills (see `skills/`): `patent-standards` (catalog + citation discipline), `patent-architect` (CN 申请表), `patent-application-creator`, `patent-claims-analyzer` (USPTO compliance), `patent-diagram-generator`, `patents-search` (delegated prior-art search). Third-party skills (e.g. `deep-research`, `technical-writing`) are **not** vendored here — install them from their own sources if needed.
+The package ships skills under the skills.sh category layout (see `docs/adr/0004-self-service-package.md` for the 2026-08-11 restructure):
+
+- **`skills/self-service/` — 发明人自助组(本包主体)**: `patent-application`(入口:交底访谈+类型判断+编排), `patent-claims`(权利要求撰写), `patent-specification`(说明书+摘要), `patent-drawings`(附图), `patent-compliance`(递交前自检), `patent-filing`(递交与补正)。
+- **`skills/professional/` — 专业组(未来,默认不参与发现)**: 目前只寄放保留的 US 技能(`patent-application-creator-us`, `patent-claims-analyzer-us`)。
+- **`skills/tools/patents-search`** — 委托检索(可选工具,流程不依赖)。
+- **`skills/patent-standards`** — 共享目录:CN/US 权威文本 + 实测核实的条文锚点(2026-08-11 对 CNIPA 全文核实)。
+
+第三方案例技能(如 `deep-research`, `technical-writing`)**不是**本包自带的 — 按需从各自来源安装。
 
 ## Agent skills
 

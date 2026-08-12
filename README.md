@@ -1,45 +1,59 @@
 # Patent Writing Skill Hub
 
-Agent skills for writing patent applications (专利申请), installable as a single package:
+Agent skills for patent writing (专利申请), installable as a single package:
 
 ```bash
 npx skills add transmit-bug/patentwritter
 ```
 
-Built **delegation-first**: the set owns only authoring/decision logic. Every legal assertion traces to a declared authoritative source (the standards catalog), every prior-art reference comes from an external search tool — never model improvisation.
+**方向(2026-08-11 重构后)**:面向**发明人/非专业人士的自助申请向导**,只覆盖专利申请全流程(交底 → 类型判断 → 撰写 → 自检 → 递交与补正)。专业代理人方向(OA 答复、三步法论证等)留待未来以独立技能组接入,见 `docs/adr/0004-self-service-package.md`。
 
-## Skills
+**诚实红线**:不编造现有技术、专利号、文献、实验数据。背景技术只写发明人已知的、客观通用问题、检索工具真实返回的三类素材。
 
-| Skill | Purpose |
-| --- | --- |
-| [`patent-architect`](skills/patent-architect/SKILL.md) | Chinese patent application forms (专利申请表), grounded in delegated prior-art search + standards catalog |
-| [`patent-application-creator`](skills/patent-application-creator/SKILL.md) | End-to-end USPTO application creation — prior art, claims, specification, diagrams, compliance |
-| [`patent-claims-analyzer`](skills/patent-claims-analyzer/SKILL.md) | Automated 35 USC 112(b) compliance analysis of claims (antecedent basis, definiteness, structure) |
-| [`patent-diagram-generator`](skills/patent-diagram-generator/SKILL.md) | Patent-style diagrams (flowcharts, block diagrams, architecture) via Graphviz with reference numbering |
-| [`patent-standards`](skills/patent-standards/SKILL.md) | Standards catalog (专利标准/资料目录): which authoritative CN/US texts govern drafting, where they live, citation anchors |
-| [`patents-search`](skills/patents-search/SKILL.md) | Delegated prior-art search over global patents (Valyu) |
-
-## Design principles
-
-- **Thin skills** — each writing skill owns only its authoring/decision logic; it consumes the catalog (`patent-standards`) and delegated search, and produces grounded output or refuses.
-- **Fail loud** — if no retrieval tool is available, a skill refuses to draft and states exactly which grounding it could not obtain.
-- **No vendored law** — the catalog declares *what* exists and where; it never restates law from memory.
-
-## Repository layout
+## 布局(skills.sh 类别目录标准)
 
 ```
-skills/                     # ← package source (npx skills discovery root)
-  <skill>/SKILL.md          #    each skill: YAML frontmatter (name + description) + body
-CONTEXT.md                  # domain glossary (delegation-first vocabulary)
+skills/
+├── self-service/                  # B 组:发明人自助(本包主体)
+│   ├── patent-application/        # 入口(user-invoked):交底访谈+类型判断+编排
+│   ├── patent-claims/             # 权利要求撰写(独权/从权/上位化/退路布防)
+│   ├── patent-specification/      # 说明书五段式+摘要
+│   ├── patent-drawings/           # 附图+附图标记一致性+摘要附图
+│   ├── patent-compliance/         # 递交前自检(支撑链/清楚性/形式)
+│   └── patent-filing/             # 递交与补正指引
+├── professional/                  # A 组(未来):当前只寄放保留的 US 技能,默认不参与发现
+│   ├── patent-application-creator-us/
+│   └── patent-claims-analyzer-us/
+├── tools/
+│   └── patents-search/            # 委托检索(可选工具,流程不依赖)
+└── patent-standards/              # 共享目录:CN/US 权威文本+实测核实的条文锚点
+```
+
+## 技能关系(依赖化/层级化)
+
+- **入口**(`patent-application`,disable-model-invocation)编排全流程,调用 model-invoked discipline 技能;入口不调用入口。
+- **Discipline 技能**(claims/specification/drawings/compliance/filing)承载可复用撰写纪律,模型按需自动加载,也被入口调用。
+- **法律锚点单一来源**:`patent-standards` 的"Verified rule anchors"节(2026-08-11 对 CNIPA 全文实测核实),各技能只引用锚点,不重复条文。
+
+## 设计原则
+
+- **内容 = 判断逻辑,不是流程清单**:每个技能给可执行的判断(删除测试/三问判据/双向核对),质量门是可检查的完成标准,不是数量指标。
+- **Grounding 诚实**:条文号来自实测核实,拿不到的如实说"以官方为准",不凭记忆引用。
+- **Fail loud**:缺输入/缺工具时明说缺什么,不硬写。
+
+## 仓库布局
+
+```
+skills/                     # ← 包源码(npx skills 发现根)
+CONTEXT.md                  # 领域术语表
 docs/
-  adr/                      # architectural decision records
-  prototype/                # delegation-contract prototype
-  research/                 # standards-catalog research
-  agents/                   # issue tracker, triage labels, domain-doc conventions
+  adr/                      # 架构决策记录(0004 为本包方向)
+  review/                   # skills 有效性审查(2026)
+  research/                 # standards-catalog 研究底稿
+  prototype/                # delegation-contract(历史,professional 组仍引用)
+  agents/                   # issue tracker、triage labels、domain 约定
 ```
 
-`.agents/` and `skills-lock.json` are consumer-side install state (gitignored); regenerate with the install command above. Note: this repo is also used as a working project — `docs/` and `CONTEXT.md` document the design process, not the package itself.
+## 标准
 
-## Standards
-
-Follows the [skills.sh / Agent Skills](https://www.skills.sh/docs) package convention: each skill is a directory containing `SKILL.md` with `name` and `description` in YAML frontmatter, discovered from the `skills/` container.
+遵循 [skills.sh / Agent Skills](https://www.skills.sh/docs) 包约定:技能 = 含 `SKILL.md`(frontmatter 有 `name`+`description`)的目录,从 `skills/` 容器发现,支持 `skills/<category>/<name>/` 类别布局。

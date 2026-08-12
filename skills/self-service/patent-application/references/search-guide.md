@@ -1,10 +1,10 @@
 # 查新指南(可选,撰写背景技术前)
 
-查新是**可选、建议**步骤:撰写背景技术前跑一轮,结果只写真实返回(诚实红线,执行版见 `../patent-specification/SKILL.md` 段2)。在阶段2 类型判断后、阶段3 撰写前执行。检索记录按 `.patent/` 三档约定落盘(见 patent-application/SKILL.md 的「.patent/ 支撑层工作目录」节):**检索记录与结果落 `.patent/queries/`**,素材落 `materials/`,引用清单落 `sources/`。
+查新是**可选、建议**步骤:撰写背景技术前跑一轮,结果只写真实返回(诚实红线,执行版见 `../../patent-specification/SKILL.md` 段2)。在阶段2 类型判断后、阶段3 撰写前执行。检索记录按 `.patent/` 三档约定落盘(见 patent-application/SKILL.md 的「.patent/ 支撑层工作目录」节):**检索记录与结果落 `.patent/queries/`**,素材落 `materials/`,引用清单落 `sources/`。
 
 ## 主路径:委托检索工具(Valyu)
 
-调用 `../../tools/patents-search/SKILL.md`(脚本路径解析/API key 配置/输出格式/错误处理全在该文件,不在此重复):
+调用 `../../../tools/patents-search/SKILL.md`(脚本路径解析/API key 配置/输出格式/错误处理全在该文件,不在此重复):
 
 ```bash
 "$PATENTS_SCRIPT" "<自然语言查询>" <maxResults>   # 返回 results[].title/url/content/relevance_score

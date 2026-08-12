@@ -1,6 +1,6 @@
 # 申请类型判断决策树
 
-规则依据:patent-standards 核实锚点(发明/实用新型 → `references/cn-invention-utility.md`;外观设计 → `references/cn-design.md`)。
+规则依据:`../../../patent-standards/references/cn-invention-utility.md`(发明/实用新型)、`../../../patent-standards/references/cn-design.md`(外观设计)。
 
 ## 决策树
 

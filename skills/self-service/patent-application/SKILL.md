@@ -79,7 +79,7 @@ patent-application/
 patent-application/
 ├── 申请信息.md       ← 类别 + 设计要点 + 色彩声明 + 相似设计
 ├── 简要说明.md       ← 名称/用途/设计要点/指定图/省略视图/色彩
-├── 图片/主视图.png … ← 发明人提供(黑白/灰度,按设计要点涉及面数,见 patent-drawings 外观节)
+├── 图片/主视图.png … ← 发明人提供(黑白/灰度,按设计要点涉及面数,见 references/design-points.md)
 └── 视图清单.md       ← 六视图 + 立体图对应表
 ```
 

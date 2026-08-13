@@ -14,6 +14,8 @@ The professional group follows the shared professional discipline (declare / con
 | 第20条 | honesty / good-faith principle (added 2020): prosecuting and exercising patent rights shall follow the principle of good faith — the professional discipline's honesty red line at the agent level |
 | 第22条 | novelty (22.2) / inventive step (22.3) / practical applicability (22.4); prior art definition — the substantive grounds behind OA and invalidation |
 | 第26条 | 26.3 sufficient disclosure; 26.4 claims supported by the description, clear and concise — clarity / support rejections |
+| 第29条 | priority windows: foreign priority — invention / utility model within 12 months of the first foreign filing, design within 6 months; domestic priority — invention / utility model 12 months, design 6 months, same subject filed in China |
+| 第30条 | claiming priority: written declaration at filing + copy of the first application within 16 months (invention / utility model) or 3 months (design); missing declaration / copy → 视为未要求优先权 |
 | 第33条 | amendments must not go beyond the original specification and claims — the red line for every OA / re-exam / invalidation amendment |
 | 第35条 | request for substantive examination within 3 years from the filing date (invention) |
 | 第37条 | after substantive examination, notify the applicant to state opinions or amend; failure to respond within the specified period → deemed withdrawn — the OA trigger |
@@ -30,6 +32,8 @@ The professional group follows the shared professional discipline (declare / con
 | Article | Gist (prosecution-relevant) |
 |---|---|
 | 第57条 | 1: invention voluntary amendment within 3 months of the substantive-examination request / entry notice; 2: utility model / design voluntary amendment within 2 months of filing; **3: after an OA notice, amendments shall be directed to the defects pointed out in the notice**; 4: ex-officio correction of obvious errors |
+| 第48条 | division (分案): an application covering two or more inventions / utility models / designs may be divided before the 细则第60条第1款 deadline; not possible once rejected / withdrawn / deemed withdrawn; 分案不得改变原申请类别 |
+| 第49条 | division retains the original filing date (and priority date if claimed), must not exceed the original disclosure; the request states the original application number and filing date |
 | 第58条 | amended parts submitted as replacement pages (designs: pictures / photos likewise) |
 | 第59条 | the cases in which rejection under 法38 applies — rejection-basis checklist |
 | 第62条 | evaluation-report requester: patentee, interested party, **and (2023 addition) the accused infringer**; subject matter; request form |
@@ -71,7 +75,7 @@ The professional group follows the shared professional discipline (declare / con
 | patent-re-exam | 法41 (request + remedy); 细则65-68 (request / amendment limit / decision / withdrawal); 指南IV-2 (formal check / 前置审查 / collegial examination / decision) |
 | patent-invalidation | 法45-47 (request / decision / effect); 细则69-76 (request / closed grounds / 1-month evidence deadline / response / amendment limit / oral hearing / withdrawal); 指南IV-3 (incl. 4.6 amendment), 指南IV-4 (oral hearing), 指南IV-8 (evidence) |
 | patent-evaluation-report | 法50.2, 法66.2; 细则62-63; 指南V-10 |
-| patent-claim-strategy | 法33 (amendment red line), 法22.3 (inventive step), 细则57.3 (response amendment), 指南II-4 3.2.1.1 (three-step), plus self-service drafting anchors (`cn-invention-utility.md`) for mechanical drafting |
+| patent-claim-strategy | 法33 (amendment red line), 法22.3 (inventive step), 法29-30 (priority), 细则48-49 (division), 细则57.3 (response amendment), 指南II-4 3.2.1.1 (three-step), plus self-service drafting anchors (`cn-invention-utility.md`) for mechanical drafting |
 | 检索 (all skills) | 指南II-7; delegated / external-source discipline unchanged (ADR-0005); no in-package search, no keys |
 
 ## 摘要 300 字 — 三处文本不一致 (annotate in outputs, 按细则为准)
@@ -94,6 +98,7 @@ The professional group follows the shared professional discipline (declare / con
 ## Notes (如实标注)
 
 - 2026 年度考试大纲 (675 号公告) 将发布并以其命题范围为准;本文件锚点以 2025 大纲 + 2023 细则 / 指南为基线,2026 大纲发布后复核。
+- 分案 / 优先权锚点 (法29-30、细则48-49) 于 2026-08-13 直接对照 CNIPA 官方全文核实 (专利法页 / 细则页,与 research 同源)。
 - 复审 / 无效中的修改权限比 OA 更窄:复审限于消除驳回决定指出的缺陷（细则66）;无效限于权利要求书、不得扩大保护范围、发明/实用不得动说明书附图（细则73）。
 - 禁止反悔原则是 OA 答复的内在约束:意见陈述书应内置「陈述与修改的禁反悔审查」(大纲 2.1 原文要求)。
 - 答复期限是指定期限（第一次 4 个月 / 再次 2 个月）且可依细则请求延长 — 技能不写死期限,以通知书载明期限为准。

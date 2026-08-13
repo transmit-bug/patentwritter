@@ -52,7 +52,8 @@ CN 技能平铺 `skills/en/professional/<name>/SKILL.md`（skills.sh 三级发�
 
 ## 实施记录
 
-实现另起；本 ADR 落盘于 2026-08-13（wayfinder 地图 #19 终点达成，`docs/plan/professional-integration.md` 同步落盘）。
+- 2026-08-13 落盘(wayfinder 地图 #19 终点达成,`docs/plan/professional-integration.md` 同步落盘)。
+- 2026-08-13 实现完成(阶段 0-4 全部落地,见 `docs/plan/professional-integration.md` 执行状态):阶段 0 结构基座(专业纪律中立化 `references/professional-discipline.md` + `references/cn-professional.md` + US 技能去后缀) → 阶段 1 `patent-oa-response`(模式 D 纯文档收编,三步法从指南 II-4 3.2.1.1 重建) → 阶段 2 `patent-invalidation`(双向) → 阶段 3 `patent-re-exam` + `patent-evaluation-report` → 阶段 4 `patent-claim-strategy`(分案/优先权锚点法29-30、细则48-49 对照 CNIPA 官方全文补核)+ 入口 `patent-prosecution`。
 
 ## 未来（非本次范围）
 

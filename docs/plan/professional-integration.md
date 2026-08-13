@@ -1,6 +1,6 @@
 # 整合方案：专业组（professional，A 组）接入（分阶段执行）
 
-> **执行状态：执行中（阶段 0-2 完成）**。依据 [ADR-0007](../adr/0007-professional-group-integration.md)（2026-08-13 生效）。本文是 wayfinder 地图 [专业组（professional，A 组）接入：决策与整合方案 #19](https://github.com/transmit-bug/patentwritter/issues/19) 的终点落地物：专业组接入的**分阶段执行计划**。每阶段独立可交付、可验收；实现由**方案确认后另起 effort** 执行（地图只出决策，不实现）。
+> **执行状态：执行完成（阶段 0-4 全部落地）**。依据 [ADR-0007](../adr/0007-professional-group-integration.md)（2026-08-13 生效）。本文是 wayfinder 地图 [专业组（professional，A 组）接入：决策与整合方案 #19](https://github.com/transmit-bug/patentwritter/issues/19) 的终点落地物：专业组接入的**分阶段执行计划**。每阶段独立可交付、可验收；实现由**方案确认后另起 effort** 执行（地图只出决策，不实现）。
 
 **执行前置**：本方案经用户确认后，按阶段顺序执行；每阶段完成标准达成即验收，再进入下一阶段。
 
@@ -47,7 +47,7 @@
 
 | 项 | 内容 | 完成标准 |
 |---|---|---|
-| 4.1 | claim-strategy：保护范围设计 / 答复修改策略 / 分案 / 优先权 / 布局 | 策略纪律文档化 |
+| 4.1 | claim-strategy：保护范围设计 / 答复修改策略 / 分案 / 优先权 / 布局 | 策略纪律文档化（分案/优先权锚点法29-30、细则48-49 已于 2026-08-13 对照 CNIPA 官方全文补核；组合级专利布局按 ADR-0007 决策 7 标注 out of scope） |
 | 4.2 | 入口 `patent-prosecution`：编排五 discipline，user-invoked（`disable-model-invocation: true`） | 入口存在并引用全部 discipline |
 
 ## 验收口径
@@ -59,4 +59,4 @@
 
 ## 执行主体与节奏
 
-实现由方案确认后另起 effort；执行主体与节奏另议（参照 ADR-0005 先例）。
+实现由方案确认后另起 effort 执行（地图只出决策）；2026-08-13 起按阶段执行，阶段 0-4 已全部落地（master）。

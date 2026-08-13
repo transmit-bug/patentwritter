@@ -29,7 +29,7 @@ pandoc --version 2>/dev/null | head -1                  # hit → chain ②
 
 Write an inline Python script (python-docx) generating the files one by one: map headings to Word's built-in heading styles, write body text as paragraphs, embed the figures from `附图/figN.png` inline (keep aspect ratio; width at a clearly legible size). Spot-check after generation: each .docx opens with no missing figures, no empty paragraphs, correct heading hierarchy.
 - **Formulas**: when latex2mathml is available, LaTeX → MathML → OMML (editable formulas in Word); otherwise keep the LaTeX source as-is, no image fallback.
-- **PNG only**: Word inline embedding supports bitmaps only; the figure pipeline already produces both formats as PNG (see `../../self-service/patent-drawings/SKILL.md` Step 2).
+- **PNG only**: Word inline embedding supports bitmaps only; the figure pipeline already produces both formats as PNG (see `../patent-drawings/SKILL.md` Step 2).
 
 ### Chain ② pandoc available → command conversion
 

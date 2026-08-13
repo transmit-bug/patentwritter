@@ -1,6 +1,6 @@
 # Materials Catalog — CN/US authoritative texts + declared external source (资料目录)
 
-> Pointed to by `../SKILL.md` (thin index). Declares **which materials exist, where they officially live, and what the citation anchors are**; not responsible for how to retrieve (retrieval is done by environment tools / humans). Verification info: `../../../../docs/research/standards-catalog.md` (per-item sources) and `../../../../docs/research/design-patent-anchors.md` (design anchors).
+> Pointed to by `../SKILL.md` (thin index). Declares **which materials exist, where they officially live, and what the citation anchors are**; not responsible for how to retrieve (retrieval is done by environment tools / humans). Verification info: package-repo provenance `docs/research/standards-catalog.md` (per-item sources) and `docs/research/design-patent-anchors.md` (design anchors); these files are not shipped with the installed skill.
 
 ## China — the 2023 package (one body, effective 2024-01-20)
 
@@ -46,5 +46,5 @@ Human-operated sources the set **documents but never automates** (CONTEXT.md "De
 | Jurisdiction | CN |
 | Governs | bibliographic data, full text, legal status of patent publication / announcement (invention publication / invention grant / utility model / design) |
 | Citation anchor | publication / announcement number, e.g. CN209861402U; detail pages like http://epub.cnipa.gov.cn/patent/{公开号} |
-| Search form | manual browser (steps in `../../self-service/patent-application/references/search-guide.md`); real-browser automation like agent_browser can run it; on captcha fall back to Google Patents (country:CN) / WebSearch |
-| Verification | 2026-08-12 curl-tested + third-party source cross-check, see `../../../../docs/research/cnipa-epub-search-forms.md` |
+| Search form | manual browser (steps in `../../patent-application/references/search-guide.md`); real-browser automation like agent_browser can run it; on captcha fall back to Google Patents (country:CN) / WebSearch |
+| Verification | 2026-08-12 curl-tested + third-party source cross-check; repo-side evidence `docs/research/cnipa-epub-search-forms.md` |

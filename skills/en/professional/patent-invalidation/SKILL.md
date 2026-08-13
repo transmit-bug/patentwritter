@@ -1,6 +1,6 @@
 ---
 name: patent-invalidation
-description: Draft invalidation pleadings (无效宣告, 双向) for CN patents — the invalidation request (无效宣告请求书) with grounds inside the closed list of 细则69.2 and the evidence register, or the patentee's response (答辩意见陈述书) verifying grounds and evidence, rebutting (incl. reverse three-step method against inventive-step grounds), and amending claims under the narrow invalidation limits of 细则73 (no broadening, no spec/drawing amendments for invention / utility model). Embed the procedural discipline: oral hearing (口审, 细则74), the 1-month ground/evidence deadline (细则71), estoppel review, and withdrawal (细则76). Evidence retrieval is delegated / external only — no in-package search, no keys, no scripts. Use when the user asks to request invalidation, respond to an invalidation request, draft an 无效宣告请求书 or 答辩意见陈述书, or assess whether a ground is admissible. Model-invoked discipline of the professional group (entry: patent-prosecution).
+description: "Draft invalidation pleadings (无效宣告, 双向) for CN patents — the invalidation request (无效宣告请求书) with grounds inside the closed list of 细则69.2 and the evidence register, or the patentee's response (答辩意见陈述书) verifying grounds and evidence, rebutting (incl. reverse three-step method against inventive-step grounds), and amending claims under the narrow invalidation limits of 细则73 (no broadening, no spec/drawing amendments for invention / utility model). Embed the procedural discipline: oral hearing (口审, 细则74), the 1-month ground/evidence deadline (细则71), estoppel review, and withdrawal (细则76). Evidence retrieval is delegated / external only — no in-package search, no keys, no scripts. Use when the user asks to request invalidation, respond to an invalidation request, draft an 无效宣告请求书 or 答辩意见陈述书, or assess whether a ground is admissible. Model-invoked discipline of the professional group (entry: patent-prosecution)."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
@@ -10,8 +10,8 @@ Professional-group discipline skill (ADR-0007 decision 1). Two directions, one s
 
 ## Read first
 
-1. **Discipline**: `../../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent. Follow it.
-2. **Anchors**: `../../patent-standards/references/cn-professional.md` — patent-invalidation row: 法45-47; 细则69-76; 指南 IV-3 (incl. 4.6 amendment), IV-4 (oral hearing), IV-8 (evidence). Cite anchors, never renumber from memory.
+1. **Discipline**: `../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent. Follow it.
+2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-invalidation row: 法45-47; 细则69-76; 指南 IV-3 (incl. 4.6 amendment), IV-4 (oral hearing), IV-8 (evidence). Cite anchors, never renumber from memory.
 3. **Honesty red line**: every piece of evidence is a real document (patent publication, 公知常识 carrier, internet evidence with disclosure date); no invented references, dates, or data.
 4. **Workspace**: drafts + evidence register land in `.patent/invalidation/<case>/` (suggest gitignored).
 
@@ -83,7 +83,7 @@ Evidence: 证据一式两份 with the request (细则69.1); grounds may be added
 
 ## Evidence retrieval (证据检索 — 委托式)
 
-Same discipline as the B group and the OA skill: declare `[PRIOR-ART] <technology description>` / `[STANDARD] CN <topic>`, resolve via the **patents-search** skill (Valyu), the CNIPA 公布公告系统 (declared external source, manual steps in `../../patent-standards/references/catalog.md`), or user-supplied documents. 公知常识 assertions require a carrier (教科书 / 技术词典 / 工具书) — cite it, don't assert from memory. The package ships no crawler, no search harness, no keys. No usable evidence → fail loud for that ground; a ground without evidence is not drafted.
+Same discipline as the B group and the OA skill: declare `[PRIOR-ART] <technology description>` / `[STANDARD] CN <topic>`, resolve via the **patents-search** skill (Valyu), the CNIPA 公布公告系统 (declared external source, manual steps in `../patent-standards/references/catalog.md`), or user-supplied documents. 公知常识 assertions require a carrier (教科书 / 技术词典 / 工具书) — cite it, don't assert from memory. The package ships no crawler, no search harness, no keys. No usable evidence → fail loud for that ground; a ground without evidence is not drafted.
 
 ## Fail loud (网关)
 

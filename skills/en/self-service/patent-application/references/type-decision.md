@@ -1,6 +1,6 @@
 # Application Type Determination Decision Tree (申请类型判断决策树)
 
-Rule basis: `../../../patent-standards/references/cn-invention-utility.md` (invention / utility model), `../../../patent-standards/references/cn-design.md` (design).
+Rule basis: `../../patent-standards/references/cn-invention-utility.md` (invention / utility model), `../../patent-standards/references/cn-design.md` (design).
 
 ## Decision tree
 

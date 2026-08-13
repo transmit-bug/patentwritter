@@ -10,3 +10,9 @@ __pycache__/
 .claude/skills/
 .agents/
 skills-lock.json
+
+# CLI 在仓库内执行安装时产生的消费者工件(非包源码):
+# agent/skills/ 副本 + skills/ 下与技能同名的顶层符号链接(OpenClaw 等 agent 目录)
+agent/
+skills/*
+!skills/en/

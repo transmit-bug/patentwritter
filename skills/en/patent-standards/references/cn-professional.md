@@ -1,7 +1,7 @@
 # China — Professional Practice Anchors (中国 — 专业代理执业锚点)
 
 > Consumers: professional CN group (`skills/en/professional/`, planned): patent-oa-response, patent-re-exam, patent-invalidation, patent-evaluation-report, patent-claim-strategy, and the patent-prosecution entry. Self-service drafting anchors live in `cn-invention-utility.md` / `cn-design.md` (B 组撰写技能仍按分型引用,本文件只管授权链路).
-> Verification: 2026-08-13 verified item by item against the official full texts (专利法 2020 CNIPA 转载页、实施细则 2023 CNIPA 全文、审查指南 2023 CNIPA PDF 全文); chapter/section positions recorded as numbering evidence. Provenance: `../../../docs/research/professional-agent-practice.md` (§4 锚点表). **Cite article numbers, never number from memory.**
+> Verification: 2026-08-13 verified item by item against the official full texts (专利法 2020 CNIPA 转载页、实施细则 2023 CNIPA 全文、审查指南 2023 CNIPA PDF 全文); chapter/section positions recorded as numbering evidence. Provenance: package-repo `docs/research/professional-agent-practice.md` (§4 锚点表; not shipped). **Cite article numbers, never number from memory.**
 
 ## Discipline
 

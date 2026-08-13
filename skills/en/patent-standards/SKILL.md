@@ -18,18 +18,18 @@ The catalog of authoritative texts governing patent drafting and examination in 
 | `references/professional-discipline.md` | The shared professional discipline — declare / consume / cite / fail loud / never invent (jurisdiction-neutral single home; us.md and cn-professional.md reference it) | professional group, all jurisdictions |
 | `references/catalog.md` | CN/US authoritative-text catalog (official location, edition, edition summary) + declared external source (CNIPA Publication & Announcement System) | when source info / external-source entries are needed |
 
-Anchor verification: invention / utility model 2026-08-11, design 2026-08-12, both tested against the official CNIPA full texts; US 2026-08-10 verified against official sources; CN professional practice 2026-08-13 (provenance `../../../docs/research/professional-agent-practice.md`). Evidence: `../../../docs/research/standards-catalog.md` and `../../../docs/research/design-patent-anchors.md`. **Skills must cite the per-type anchors — not chapter-level approximations — and never renumber from memory.**
+Anchor verification: invention / utility model 2026-08-11, design 2026-08-12, both tested against the official CNIPA full texts; US 2026-08-10 verified against official sources; CN professional practice 2026-08-13 (provenance: package-repo `docs/research/professional-agent-practice.md`). Evidence (package-repo provenance, not shipped with the install): `docs/research/standards-catalog.md` and `docs/research/design-patent-anchors.md`. **Skills must cite the per-type anchors — not chapter-level approximations — and never renumber from memory.**
 
 ## How writing skills invoke this skill
 
 Two consumption modes (ADR-0004):
 
-- **Self-service group (`skills/en/self-service/`)**: read the corresponding reference file per type, cite its article numbers as anchors (e.g. `细则第20条`), and state the source when explaining to the inventor. Do not declare `[STANDARD]` requirements, do not force the environment to fetch statutes; prior art follows the honesty red line (three kinds of material), see the "self-service simplified variant" section of `../../../docs/prototype/delegation-contract.md`.
+- **Self-service group (`skills/en/self-service/`)**: read the corresponding reference file per type, cite its article numbers as anchors (e.g. `细则第20条`), and state the source when explaining to the inventor. Do not declare `[STANDARD]` requirements, do not force the environment to fetch statutes; prior art follows the honesty red line (three kinds of material), see the "self-service simplified variant" section of package-repo `docs/prototype/delegation-contract.md` (not shipped).
 - **Professional group (`skills/en/professional/`)**: read `references/professional-discipline.md` (the shared discipline — declare / consume / cite / fail loud / never invent, single jurisdiction-neutral home) and the per-jurisdiction anchor file — `references/us.md` (US skills, reserved, hidden) or `references/cn-professional.md` (CN prosecution skills, per ADR-0007). Follow the discipline; cite the per-jurisdiction anchors.
 
 ## The discipline — four clauses, one prohibition (professional full version)
 
-> The professional discipline (declare / consume / cite / fail loud / never invent) lives in `references/professional-discipline.md`, jurisdiction-neutral and shared by the professional group; `references/us.md` and `references/cn-professional.md` reference it and carry the per-jurisdiction anchors. Source contract `../../../docs/prototype/delegation-contract.md`.
+> The professional discipline (declare / consume / cite / fail loud / never invent) lives in `references/professional-discipline.md`, jurisdiction-neutral and shared by the professional group; `references/us.md` and `references/cn-professional.md` reference it and carry the per-jurisdiction anchors. Source contract: package-repo `docs/prototype/delegation-contract.md` (not shipped).
 
 ## Self-service discipline (simplified version)
 

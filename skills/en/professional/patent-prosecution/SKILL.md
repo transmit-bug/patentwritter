@@ -1,6 +1,6 @@
 ---
 name: patent-prosecution
-description: Entry point for the professional (professional, A 组) prosecution pipeline — route the user's situation to the right discipline skill of the 授权链路 (OA 答复 / 复审 / 无效 / 评价报告 / 权利要求策略), check the input gate each skill requires, and dispatch. User-invoked orchestrator only — it carries no pleading logic itself (that lives in the five discipline skills). Trigger with /skill:patent-prosecution, or when the user asks to respond to an office action, request re-examination, invalidate / defend a patent, request or use a patent evaluation report, or work out claim scope / amendment / division / priority strategy. Out of scope: 授权后业务 (FTO / 布局 / 维权 / 许可) and US prosecution (ADR-0007 decision 7).
+description: "Entry point for the professional (professional, A 组) prosecution pipeline — route the user's situation to the right discipline skill of the 授权链路 (OA 答复 / 复审 / 无效 / 评价报告 / 权利要求策略), check the input gate each skill requires, and dispatch. User-invoked orchestrator only — it carries no pleading logic itself (that lives in the five discipline skills). Trigger with /skill:patent-prosecution, or when the user asks to respond to an office action, request re-examination, invalidate / defend a patent, request or use a patent evaluation report, or work out claim scope / amendment / division / priority strategy. Out of scope: 授权后业务 (FTO / 布局 / 维权 / 许可) and US prosecution (ADR-0007 decision 7)."
 disable-model-invocation: true
 allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion
 ---

@@ -1,6 +1,6 @@
 ---
 name: patent-claim-strategy
-description: Professional claim strategy for CN patents — design the protection scope (essential-feature weighing, generalization, claim tiers, fallback positioning), choose the response amendment strategy under an OA (argue vs amend, amendment ladder, estoppel-aware drafting), and decide when to divide (分案, 细则48-49) or claim priority (优先权, 法29-30) with their deadlines. Strategy discipline only — mechanical claim drafting stays in the self-service group (patent-claims); enforcement / portfolio-level layout (专利布局), FTO and licensing are out of scope (ADR-0007 decision 7). Grounded output: every legal assertion cites the verified anchors; never number from memory. Use when the user asks about claim scope, protection breadth, 保护范围, amendment strategy in an OA, whether to divide or claim priority, or 分案 / 优先权. Model-invoked discipline of the professional group (entry: patent-prosecution).
+description: "Professional claim strategy for CN patents — design the protection scope (essential-feature weighing, generalization, claim tiers, fallback positioning), choose the response amendment strategy under an OA (argue vs amend, amendment ladder, estoppel-aware drafting), and decide when to divide (分案, 细则48-49) or claim priority (优先权, 法29-30) with their deadlines. Strategy discipline only — mechanical claim drafting stays in the self-service group (patent-claims); enforcement / portfolio-level layout (专利布局), FTO and licensing are out of scope (ADR-0007 decision 7). Grounded output: every legal assertion cites the verified anchors; never number from memory. Use when the user asks about claim scope, protection breadth, 保护范围, amendment strategy in an OA, whether to divide or claim priority, or 分案 / 优先权. Model-invoked discipline of the professional group (entry: patent-prosecution)."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
@@ -10,8 +10,8 @@ Professional-group discipline skill (ADR-0007 decisions 1-2): the **strategy lay
 
 ## Read first
 
-1. **Discipline**: `../../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent. Follow it.
-2. **Anchors**: `../../patent-standards/references/cn-professional.md` — patent-claim-strategy row: 法33, 法22.3, 法29-30 (优先权), 细则48-49 (分案), 细则57.3, 指南 II-4 3.2.1.1; plus `cn-invention-utility.md` for drafting mechanics (法22 / 26.4, 细则22-25).
+1. **Discipline**: `../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent. Follow it.
+2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-claim-strategy row: 法33, 法22.3, 法29-30 (优先权), 细则48-49 (分案), 细则57.3, 指南 II-4 3.2.1.1; plus `cn-invention-utility.md` for drafting mechanics (法22 / 26.4, 细则22-25).
 3. **Honesty red line**: prior art from real delegated-search results / user-supplied material only; strategy is argued against the actual cited references, never against imagined ones.
 4. **Workspace**: strategy notes in `.patent/strategy/<case>/` (suggest gitignored).
 

@@ -1,6 +1,6 @@
 # Design Application Points (外观设计申请要点: design interview group + drafting points)
 
-A design protects the **product appearance itself** (shape, pattern, color and their combinations, aesthetically pleasing and fit for industrial application), not a technical solution. Therefore the invention/utility-model **"four elements" (technical problem / technical solution / distinguishing feature / technical effect) do not apply** — designs run on: **class + design points**. Rule basis: `../../../patent-standards/references/cn-design.md` (专利法第2条第4款 / 第23条 / 第27条 / 第31条第2款 / 第33条第2款; 细则第30/31/40条; 指南 第一部分第三章 4.2-4.5).
+A design protects the **product appearance itself** (shape, pattern, color and their combinations, aesthetically pleasing and fit for industrial application), not a technical solution. Therefore the invention/utility-model **"four elements" (technical problem / technical solution / distinguishing feature / technical effect) do not apply** — designs run on: **class + design points**. Rule basis: `../../patent-standards/references/cn-design.md` (专利法第2条第4款 / 第23条 / 第27条 / 第31条第2款 / 第33条第2款; 细则第30/31/40条; 指南 第一部分第三章 4.2-4.5).
 
 ## Design interview group (Stage-1 disclosure interview, replaces the four-element questioning)
 

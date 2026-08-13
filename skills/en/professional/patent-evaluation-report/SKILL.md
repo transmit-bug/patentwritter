@@ -1,6 +1,6 @@
 ---
 name: patent-evaluation-report
-description: Guide requesting and using a patent evaluation report (专利权评价报告) for CN utility models and designs — decide whether / by whom a report should be requested (专利权人 / 利害关系人 / 被控侵权人, 细则62), check the request conditions (授权后, 2个月内作出, 同一专利权只作一份, 可查阅复制, 细则63), state the report's evidentiary role in infringement disputes (法66.2) and the open-license obligation (法50.2), and frame how to read the CNIPA's novelty / inventive-step evaluation (指南 V-10 3.2/3.3) — noting the report is not an administrative decision and is not appealable. Evidence and prior-art assertions stay grounded in real delegated-search results / user-supplied material; the report itself is made by CNIPA, not drafted by the skill. Use when the user asks about a 专利权评价报告 / 评价报告, whether to request one, 维权前评估, or how to respond to an evaluation report's findings. Model-invoked discipline of the professional group (entry: patent-prosecution).
+description: "Guide requesting and using a patent evaluation report (专利权评价报告) for CN utility models and designs — decide whether / by whom a report should be requested (专利权人 / 利害关系人 / 被控侵权人, 细则62), check the request conditions (授权后, 2个月内作出, 同一专利权只作一份, 可查阅复制, 细则63), state the report's evidentiary role in infringement disputes (法66.2) and the open-license obligation (法50.2), and frame how to read the CNIPA's novelty / inventive-step evaluation (指南 V-10 3.2/3.3) — noting the report is not an administrative decision and is not appealable. Evidence and prior-art assertions stay grounded in real delegated-search results / user-supplied material; the report itself is made by CNIPA, not drafted by the skill. Use when the user asks about a 专利权评价报告 / 评价报告, whether to request one, 维权前评估, or how to respond to an evaluation report's findings. Model-invoked discipline of the professional group (entry: patent-prosecution)."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
@@ -10,8 +10,8 @@ Professional-group discipline skill (ADR-0007 decision 1). Unlike the pleading s
 
 ## Read first
 
-1. **Discipline**: `../../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent. Follow it.
-2. **Anchors**: `../../patent-standards/references/cn-professional.md` — patent-evaluation-report row: 法50.2, 法66.2; 细则62-63; 指南 V-10. Cite anchors, never renumber from memory.
+1. **Discipline**: `../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent. Follow it.
+2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-evaluation-report row: 法50.2, 法66.2; 细则62-63; 指南 V-10. Cite anchors, never renumber from memory.
 3. **Honesty red line**: any prior-art discussion in the skill's output traces to real search results or user-supplied material — the skill never fabricates what CNIPA "would" find.
 4. **Workspace**: notes in `.patent/evaluation-report/<case>/` (suggest gitignored).
 

@@ -4,7 +4,7 @@ The novelty search is an **optional, recommended** step: run one pass before dra
 
 ## Main path: delegated search tool (Valyu)
 
-Invoke `../../../tools/patents-search/SKILL.md` (script-path resolution / API-key config / output format / error handling all live in that file, not repeated here):
+Invoke `../../patents-search/SKILL.md` (script-path resolution / API-key config / output format / error handling all live in that file, not repeated here):
 
 ```bash
 "$PATENTS_SCRIPT" "<natural-language query>" <maxResults>   # returns results[].title/url/content/relevance_score
@@ -16,7 +16,7 @@ Invoke `../../../tools/patents-search/SKILL.md` (script-path resolution / API-ke
 
 ## Supplement path: CNIPA manual search (declared external source)
 
-The CNIPA Publication & Announcement System is a declared external source (catalog entry in `../../../patent-standards/references/catalog.md`); only the source info and citation anchors are referenced — no crawler code ships in the package. Manual browser steps:
+The CNIPA Publication & Announcement System is a declared external source (catalog entry in `../../patent-standards/references/catalog.md`); only the source info and citation anchors are referenced — no crawler code ships in the package. Manual browser steps:
 
 1. Open http://epub.cnipa.gov.cn/ in a browser, wait for the anti-crawl check to pass (the site has a dynamic JS anti-crawl gateway; **on captcha, switch path directly — don't force through**);
 2. Enter keywords, tick the types (invention publication / invention grant / utility model / design);

@@ -1,6 +1,6 @@
 ---
 name: patent-re-exam
-description: Draft a re-examination request (复审请求书) for a CN patent application rejected at substantive examination — challenge the rejection decision item by item within the 3-month window (法41.1), limit amendments to removing the defects the rejection decision or re-exam notice points out (细则66), and lay out the re-exam procedure (形式审查 → 前置审查 → 合议审查 → 复审决定, 指南 IV-2; withdrawal 细则68; suit within 3 months 法41.2). Same discipline and grounding rules as patent-oa-response — the re-exam request re-argues the OA grounds (incl. three-step method, 指南 II-4 3.2.1.1) against the rejection decision. Use when the user asks to request re-examination, draft a 复审请求书, respond to a rejection decision (驳回决定), or challenge a 驳回. Model-invoked discipline of the professional group (entry: patent-prosecution).
+description: "Draft a re-examination request (复审请求书) for a CN patent application rejected at substantive examination — challenge the rejection decision item by item within the 3-month window (法41.1), limit amendments to removing the defects the rejection decision or re-exam notice points out (细则66), and lay out the re-exam procedure (形式审查 → 前置审查 → 合议审查 → 复审决定, 指南 IV-2; withdrawal 细则68; suit within 3 months 法41.2). Same discipline and grounding rules as patent-oa-response — the re-exam request re-argues the OA grounds (incl. three-step method, 指南 II-4 3.2.1.1) against the rejection decision. Use when the user asks to request re-examination, draft a 复审请求书, respond to a rejection decision (驳回决定), or challenge a 驳回. Model-invoked discipline of the professional group (entry: patent-prosecution)."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
@@ -10,8 +10,8 @@ Professional-group discipline skill (ADR-0007 decision 1). The OA-response skill
 
 ## Read first
 
-1. **Discipline**: `../../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent. Follow it.
-2. **Anchors**: `../../patent-standards/references/cn-professional.md` — patent-re-exam row: 法41; 细则65-68; 指南 IV-2 (形式审查 / 前置审查 / 合议审查 / 复审决定). Cite anchors, never renumber from memory.
+1. **Discipline**: `../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent. Follow it.
+2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-re-exam row: 法41; 细则65-68; 指南 IV-2 (形式审查 / 前置审查 / 合议审查 / 复审决定). Cite anchors, never renumber from memory.
 3. **Honesty red line**: prior art and evidence from real delegated-search results or user-supplied material only.
 4. **Workspace**: drafts in `.patent/re-exam/<case>/` (suggest gitignored).
 

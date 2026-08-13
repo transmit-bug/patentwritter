@@ -43,7 +43,7 @@ Is the technical solution mainly a method / algorithm / process / formula?
 - **Design + utility model can be evaluated in parallel**: one product may have both functional-structural improvements and appearance improvements, filed separately (e.g., structure innovation → utility model, styling innovation → design).
 - **Ask first**: any plans to go overseas? Overseas mainly looks at inventions (most countries have no utility-model counterpart); hint but don't elaborate.
 
-## Output format (write into 申请信息.md)
+## Output format (write into 草稿/申请信息.md)
 
 ```
 申请类型:发明 / 实用新型 / 外观设计 / 一案两请

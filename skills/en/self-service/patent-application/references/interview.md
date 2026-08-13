@@ -1,6 +1,6 @@
 # Disclosure Interview Question Bank (交底访谈问题库)
 
-Grouped by the four elements. Ask the groups in order; skip a question when the inventor's answer already covers it. At most 4 questions per AskUserQuestion. Record the answers into 申请信息.md.
+Grouped by the four elements. Ask the groups in order; skip a question when the inventor's answer already covers it. At most 4 questions per AskUserQuestion. Record the answers into 草稿/申请信息.md.
 
 ## A. Technical problem (what is being solved)
 

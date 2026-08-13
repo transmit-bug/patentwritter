@@ -10,13 +10,21 @@ This skill is a **document-only capability** (ADR-0005 decision 1): md→docx an
 
 ## Delivery degradation chain (Stage-5 assembly → Word delivery)
 
-Goal: turn the `.md` drafts under `patent-application/` into filable `.docx` files. **Fixed filenames, one file per document, no timestamps**:
+Goal: turn the `.md` drafts under `草稿/` into the **two delivery sets** under `成品/` (layout in `../patent-application/SKILL.md` Stage 3 / Stage 5). **Drafts and deliverables never mix**: everything under `成品/` is directly usable, nothing under `草稿/` is final.
 
-| Source file (.md) | Delivered file (.docx) |
+1. **申请文件** (CNIPA 分文件递交用): three same-named `.docx`, one file per document, no timestamps.
+2. **技术交底书** (交代理机构/内部评审用): one consolidated `.docx`.
+
+**Step 0 — assemble `草稿/技术交底书.md` first**: merge 申请信息 / 说明书 / 附图 / 权利要求书 / 摘要 into one disclosure document per the assembly table in `../patent-application/references/disclosure-document.md`. Then convert all four sources below.
+
+| Source file (草稿/) | Delivered file (成品/) |
 |---|---|
-| 权利要求书.md | 权利要求书.docx |
-| 说明书.md | 说明书.docx |
-| 摘要.md | 摘要.docx |
+| 权利要求书.md | 申请文件/权利要求书.docx |
+| 说明书.md | 申请文件/说明书.docx |
+| 摘要.md | 申请文件/摘要.docx |
+| 技术交底书.md | 技术交底书.docx |
+
+Figure references inside the `.md` drafts are written as relative paths `../附图/嵌入/figN.png` (figures live in `附图/嵌入/`, see `../patent-drawings/SKILL.md` Step 2). **Run all conversion commands from inside `草稿/`** so those `../` paths resolve against the project root `patent-application/`.
 
 ### Probe (do this first; it decides the chain)
 
@@ -27,23 +35,25 @@ pandoc --version 2>/dev/null | head -1                  # hit → chain ②
 
 ### Chain ① python-docx available → generate inline
 
-Write an inline Python script (python-docx) generating the files one by one: map headings to Word's built-in heading styles, write body text as paragraphs, embed the figures from `附图/figN.png` inline (keep aspect ratio; width at a clearly legible size). Spot-check after generation: each .docx opens with no missing figures, no empty paragraphs, correct heading hierarchy.
+Write an inline Python script (python-docx): read each source from `草稿/`, resolve `../附图/嵌入/figN.png` **relative to the source file's directory** (not the working directory), map headings to Word's built-in heading styles, write body text as paragraphs, embed the figures inline (keep aspect ratio; width at a clearly legible size), and write the output to `成品/申请文件/` (three filing docs) or `成品/` (技术交底书). Spot-check after generation: each .docx opens with no missing figures, no empty paragraphs, correct heading hierarchy.
 - **Formulas**: when latex2mathml is available, LaTeX → MathML → OMML (editable formulas in Word); otherwise keep the LaTeX source as-is, no image fallback.
 - **PNG only**: Word inline embedding supports bitmaps only; the figure pipeline already produces both formats as PNG (see `../patent-drawings/SKILL.md` Step 2).
 
 ### Chain ② pandoc available → command conversion
 
 ```bash
-pandoc 权利要求书.md -o 权利要求书.docx
-pandoc 说明书.md -o 说明书.docx
-pandoc 摘要.md -o 摘要.docx
+cd 草稿
+pandoc 权利要求书.md -o ../成品/申请文件/权利要求书.docx
+pandoc 说明书.md -o ../成品/申请文件/说明书.docx
+pandoc 摘要.md -o ../成品/申请文件/摘要.docx
+pandoc 技术交底书.md -o ../成品/技术交底书.docx
 ```
 
-Figures in the .md are written as relative paths `附图/figN.png`; pandoc embeds the PNGs automatically. Spot-check after conversion for missing figures.
+Run from inside `草稿/`: pandoc resolves the figure paths `../附图/嵌入/figN.png` against the working directory, so `../` steps up to the project root. (Alternative: run from the root with `pandoc --resource-path=草稿 草稿/xxx.md -o ...`.) Spot-check after conversion for missing figures.
 
 ### Chain ③ neither available → deliver .md + manual save-as
 
-Deliver the `.md` drafts and give the inventor a one-line instruction: open the .md with WPS/Word (or copy-paste) and choose "Save As" → .docx.
+Deliver the `.md` drafts from `草稿/` (the assembled `技术交底书.md` included) and give the inventor a one-line instruction: open the .md with WPS/Word (or copy-paste) and choose "Save As" → .docx.
 
 ### Fail loud
 

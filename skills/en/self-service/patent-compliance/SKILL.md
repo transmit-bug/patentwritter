@@ -6,7 +6,7 @@ allowed-tools: Read, Grep, Glob, Write, Edit
 
 # Pre-Filing Self-Check (递交前自检)
 
-Input: 权利要求书.md + 说明书.md + 摘要.md + 附图说明.md (+ the original application documents during a rectification phase). Output: a check report (severity + location + repair guidance).
+Input: 草稿/权利要求书.md + 草稿/说明书.md + 草稿/摘要.md + 草稿/附图说明.md (+ the original application documents during a rectification phase). Output: a check report (severity + location + repair guidance).
 
 ## Check items, each with "how to check"
 
@@ -26,7 +26,7 @@ How: search the full text for these patterns —
 
 ### 3 Subject consistency → three-way table
 
-How: build a table — request title (申请信息.md), independent-claim subject name, specification title. Any mismatch = critical (细则第20条: title consistent with the request).
+How: build a table — request title (草稿/申请信息.md), independent-claim subject name, specification title. Any mismatch = critical (细则第20条: title consistent with the request).
 
 ### 4 Reference-numeral consistency → two-direction check
 

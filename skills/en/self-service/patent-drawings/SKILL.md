@@ -29,7 +29,7 @@ Check: parts mentioned in the text without numerals get numerals; parts you want
 
 ### Step 2 Draw → Done when: each figure corresponds to a specification paragraph, all numerals come from the list
 
-Render with Graphviz DOT (output to `patent-application/附图/`):
+Render with Graphviz DOT into the layered figure workspace (ADR-0008; layout in `../patent-application/SKILL.md` Stage 3): `源文件/` holds the `.dot` sources, `预览/` the svg previews, `嵌入/` the png bitmaps used for Word embedding and filing. Output under `patent-application/附图/`:
 
 ```dot
 digraph {
@@ -42,9 +42,13 @@ digraph {
 ```
 
 ```bash
-dot -Tsvg fig1.dot -o fig1.svg   # svg preview / version retention
-dot -Tpng fig1.dot -o fig1.png   # png for Word inline embedding (conversion delivery chain); black-white line art fits practice
+cd patent-application/附图
+mkdir -p 源文件 预览 嵌入
+dot -Tsvg 源文件/fig1.dot -o 预览/fig1.svg   # svg preview / version retention
+dot -Tpng 源文件/fig1.dot -o 嵌入/fig1.png   # png for Word inline embedding / filing; black-white line art fits practice
 ```
+
+The `.md` drafts (草稿/说明书.md, 草稿/技术交底书.md) reference each figure as `../附图/嵌入/figN.png`.
 
 Rules (细则第21条):
 - Figures are numbered "图1, 图2, …" in order, one-to-one with the "brief description of drawings" in the specification.
@@ -60,7 +64,7 @@ Rules (细则第21条):
 
 ### Step 4 Designate the abstract figure → Done when: a sensible figure is chosen and recorded
 
-Under 细则第26条: when there are drawings, choose the single figure that best illustrates the technical features as the abstract figure, and record it in `附图说明.md`. Selection standard: the figure containing the independent claim's distinguishing feature (usually the system architecture figure or the main flowchart), not a partial detail figure.
+Under 细则第26条: when there are drawings, choose the single figure that best illustrates the technical features as the abstract figure, and record it in `草稿/附图说明.md`. Selection standard: the figure containing the independent claim's distinguishing feature (usually the system architecture figure or the main flowchart), not a partial detail figure.
 
 ## Utility model mandatory items
 
@@ -77,4 +81,4 @@ A design's "drawings" are **pictures or photographs** (专利法第27条), not d
 - [ ] Black-white line art, no stray annotations
 - [ ] Abstract figure designated (utility model: structural figure preferred)
 - [ ] Utility model: has a structural figure
-- [ ] Every figure produced as both figN.svg and figN.png (Word embedding figures generated, none missing)
+- [ ] Every figure produced as both `预览/figN.svg` and `嵌入/figN.png` (Word embedding figures generated, none missing)

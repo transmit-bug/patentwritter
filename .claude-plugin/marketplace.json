@@ -1,0 +1,44 @@
+{
+  "metadata": {},
+  "plugins": [
+    {
+      "name": "self-service",
+      "source": "./",
+      "skills": [
+        "./skills/en/self-service/patent-application",
+        "./skills/en/self-service/patent-claims",
+        "./skills/en/self-service/patent-specification",
+        "./skills/en/self-service/patent-drawings",
+        "./skills/en/self-service/patent-compliance",
+        "./skills/en/self-service/patent-filing"
+      ]
+    },
+    {
+      "name": "professional",
+      "source": "./",
+      "skills": [
+        "./skills/en/professional/patent-prosecution",
+        "./skills/en/professional/patent-oa-response",
+        "./skills/en/professional/patent-re-exam",
+        "./skills/en/professional/patent-invalidation",
+        "./skills/en/professional/patent-evaluation-report",
+        "./skills/en/professional/patent-claim-strategy"
+      ]
+    },
+    {
+      "name": "tools",
+      "source": "./",
+      "skills": [
+        "./skills/en/tools/conversion",
+        "./skills/en/tools/patents-search"
+      ]
+    },
+    {
+      "name": "standards",
+      "source": "./",
+      "skills": [
+        "./skills/en/patent-standards"
+      ]
+    }
+  ]
+}

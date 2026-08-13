@@ -1,24 +1,11 @@
 # United States — Verified Anchors (US — 核实锚点)
 
-> Consumers: professional group (`skills/en/professional/`'s patent-application-creator-us / patent-claims-analyzer-us, currently hidden).
+> Consumers: professional group (`skills/en/professional/`'s patent-application-creator / patent-claims-analyzer, currently hidden).
 > Verification: 2026-08-10 verified item by item against official sources (per-item sources in `../../../../docs/research/standards-catalog.md`).
 
-## The full discipline (declare / consume / cite / fail loud / never invent)
+## Discipline
 
-The professional group consuming this catalog follows the five clauses below (source contract: `../../../../docs/prototype/delegation-contract.md`; index-side pointer in `../SKILL.md`):
-
-1. **Declare** — before a legal assertion, declare the need: `[STANDARD] <jurisdiction> <topic>`. Determine the governing material from this file's anchors, then have the environment read that material; the skill itself never scrapes, never holds keys, never goes beyond the URLs declared in the catalog.
-2. **Consume** — assert only from material actually read; no material read, no assertion.
-3. **Cite** — every assertion in the output carries an anchor: `(per 35 U.S.C. §112 — uscode.house.gov)` / `(per MPEP §2106 — uspto.gov)` / `(per 37 CFR §1.75 — ecfr.gov)`.
-4. **Fail loud** — when a material cannot be read, emit a "cannot obtain basis" block and stop drafting that part; never force output:
-
-```
-无法获取依据: [STANDARD] <jurisdiction> <topic>
-缺少: <tool or material>
-请提供: <concrete options — enable a retrieval tool, supply the material as a file, or waive>
-```
-
-5. **Never invent** — never restate the law from memory; this file's anchors and the contract are the only authority.
+The professional group follows the shared professional discipline (declare / consume / cite / fail loud / never invent) in [`professional-discipline.md`](professional-discipline.md) — jurisdiction-neutral, single home, do not duplicate it here. This file supplies the US anchor tables that the discipline's declare / cite steps point at.
 
 ## 35 U.S.C. — Title 35, United States Code
 

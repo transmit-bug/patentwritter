@@ -6,7 +6,7 @@ Agent skills for patent writing (专利申请), installable as a single package:
 npx skills add transmit-bug/patentwritter
 ```
 
-**方向(2026-08-11 重构后)**:面向**发明人/非专业人士的自助申请向导**,只覆盖专利申请全流程(交底 → 类型判断 → 撰写 → 自检 → 递交与补正;发明/实用新型/外观设计)。专业代理人方向(OA 答复、三步法论证等)留待未来以独立技能组接入,见 `docs/adr/0004-self-service-package.md`。
+**方向(2026-08-11 重构后;2026-08-13 ADR-0007 补充)**:面向**发明人/非专业人士的自助申请向导**,覆盖专利申请全流程(交底 → 类型判断 → 撰写 → 自检 → 递交与补正;发明/实用新型/外观设计)。专业代理人方向(A 组)已由 `docs/adr/0007-professional-group-integration.md` 规划(授权链路核心技能集 + 分阶段整合方案,实现另起,见 `docs/plan/professional-integration.md`),尚未实现。
 
 **`.patent/` 支撑层工作目录**:发明人项目根目录下三档分级(`sources/` 引用清单、`materials/` 素材、`queries/` 检索记录),与申请文件草稿 `patent-application/` 分治;建议加入发明人项目的 gitignore(留痕可自行取消)。
 
@@ -24,13 +24,13 @@ skills/
 │   │   ├── patent-drawings/         # 附图+附图标记一致性+摘要附图+外观视图清单
 │   │   ├── patent-compliance/       # 递交前自检(支撑链/清楚性/形式)
 │   │   └── patent-filing/           # 递交与补正指引
-│   ├── professional/                # A 组(未来):当前只寄放保留的 US 技能,默认不参与发现
-│   │   ├── patent-application-creator-us/
-│   │   └── patent-claims-analyzer-us/
+│   ├── professional/                # A 组(ADR-0007 已规划,实现另起):CN 授权链路技能(待实现) + 保留 US 技能(隐藏)
+│   │   ├── patent-application-creator/   # 保留 US 资产(隐藏,待重做)
+│   │   └── patent-claims-analyzer/       # 保留 US 资产(隐藏,待重做)
 │   ├── tools/
 │   │   ├── patents-search/          # 委托检索(可选工具,流程不依赖)
 │   │   └── conversion/              # 纯文档转换纪律:Word 交付/材料摄入(零脚本,可选依赖)
-│   └── patent-standards/            # 共享目录:薄索引 + 分型 references(发明/实用新型、外观、US 锚点 + 目录 + 声明外部源)
+│   └── patent-standards/            # 共享目录:薄索引 + 分型 references(发明/实用新型、外观、US 锚点 + CN 专业执业锚点 + 共享专业纪律 + 目录 + 声明外部源)
 ```
 
 ## 技能关系(依赖化/层级化)

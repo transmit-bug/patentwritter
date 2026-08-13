@@ -2,7 +2,7 @@
 
 A skills **package** (`skills/`) for writing patent applications, installable via `npx skills add transmit-bug/patentwritter`. Built **delegation-first**: the set owns only authoring/decision logic; every legal assertion traces to a declared authoritative source, every prior-art reference comes from an external search tool — never model improvisation.
 
-> **方向(2026-08-11,ADR-0004)**:面向发明人自助的专利申请向导(发明+实用新型,全流程)。专业代理人方向(A 组)未建,仅预留 `skills/en/professional/`(2026-08-13 内容英文化后迁入 `skills/en/` 语言组)。
+> **方向(2026-08-11,ADR-0004;2026-08-13,ADR-0007)**:面向发明人自助的专利申请向导(发明+实用新型,全流程)。专业代理人方向(A 组)已由 ADR-0007 规划(授权链路核心技能集 + 分阶段整合方案,实现另起);`skills/en/professional/` 当前仍只寄放预留 US 技能(隐藏,2026-08-13 内容英文化后迁入 `skills/en/` 语言组)。
 
 > Install state (`.agents/`, `skills-lock.json`) is consumer-side and gitignored — regenerate it with `npx skills add transmit-bug/patentwritter`.
 

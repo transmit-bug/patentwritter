@@ -16,20 +16,21 @@ npx skills add transmit-bug/patentwritter
 
 ```
 skills/
-├── self-service/                  # B 组:发明人自助(本包主体)
-│   ├── patent-application/        # 入口(user-invoked):交底访谈+类型判断+编排(含外观设计分支)
-│   ├── patent-claims/             # 权利要求撰写(独权/从权/上位化/退路布防)
-│   ├── patent-specification/      # 说明书五段式+摘要
-│   ├── patent-drawings/           # 附图+附图标记一致性+摘要附图+外观视图清单
-│   ├── patent-compliance/         # 递交前自检(支撑链/清楚性/形式)
-│   └── patent-filing/             # 递交与补正指引
-├── professional/                  # A 组(未来):当前只寄放保留的 US 技能,默认不参与发现
-│   ├── patent-application-creator-us/
-│   └── patent-claims-analyzer-us/
-├── tools/
-│   ├── patents-search/            # 委托检索(可选工具,流程不依赖)
-│   └── conversion/                # 纯文档转换纪律:Word 交付/材料摄入(零脚本,可选依赖)
-└── patent-standards/              # 共享目录:薄索引 + 分型 references(发明/实用新型、外观、US 锚点 + 目录 + 声明外部源)
+├── en/                              # en 语言组(2026-08 起,内容英文化,语言作为顶层命名空间)
+│   ├── self-service/                # B 组:发明人自助(本包主体)
+│   │   ├── patent-application/      # 入口(user-invoked):交底访谈+类型判断+编排(含外观设计分支)
+│   │   ├── patent-claims/           # 权利要求撰写(独权/从权/上位化/退路布防)
+│   │   ├── patent-specification/    # 说明书五段式+摘要
+│   │   ├── patent-drawings/         # 附图+附图标记一致性+摘要附图+外观视图清单
+│   │   ├── patent-compliance/       # 递交前自检(支撑链/清楚性/形式)
+│   │   └── patent-filing/           # 递交与补正指引
+│   ├── professional/                # A 组(未来):当前只寄放保留的 US 技能,默认不参与发现
+│   │   ├── patent-application-creator-us/
+│   │   └── patent-claims-analyzer-us/
+│   ├── tools/
+│   │   ├── patents-search/          # 委托检索(可选工具,流程不依赖)
+│   │   └── conversion/              # 纯文档转换纪律:Word 交付/材料摄入(零脚本,可选依赖)
+│   └── patent-standards/            # 共享目录:薄索引 + 分型 references(发明/实用新型、外观、US 锚点 + 目录 + 声明外部源)
 ```
 
 ## 技能关系(依赖化/层级化)
@@ -59,4 +60,4 @@ docs/
 
 ## 标准
 
-遵循 [skills.sh / Agent Skills](https://www.skills.sh/docs) 包约定:技能 = 含 `SKILL.md`(frontmatter 有 `name`+`description`)的目录,从 `skills/` 容器发现,支持 `skills/<category>/<name>/` 类别布局。
+遵循 [skills.sh / Agent Skills](https://www.skills.sh/docs) 包约定:技能 = 含 `SKILL.md`(frontmatter 有 `name`+`description`)的目录,从 `skills/` 容器发现,支持 `skills/<category>/<name>/` 类别布局。**语言组约定(2026-08-13)**:标准本身无语言概念,本包把语言作为顶层类别目录(`skills/en/<category>/<name>/SKILL.md`),发现机制 3 层遍历兼容;法律条文引用(专利法/细则/指南条号)与发明人交付物模板保留中文原文。

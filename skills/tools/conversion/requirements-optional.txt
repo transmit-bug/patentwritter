@@ -1,7 +1,0 @@
-# 可选依赖清单(conversion 技能) — 全部可选,按需安装;不装则走降级链
-# 版本下限取自外部评估(2026-08-12, research/absorb-conversion-tools.md),仅作参考。
-# 安装示例: pip install python-docx pandoc 见各自官方文档
-python-docx>=1.1.0      # 链①:内联生成 .docx(Word 交付)
-mammoth>=1.6.0          # 摄入: .docx → Markdown
-python-pptx>=0.6.21     # 摄入: .pptx → Markdown
-latex2mathml>=3.77.0    # 公式: LaTeX → OMML(Word 可编辑公式;缺省保留 LaTeX 原文)

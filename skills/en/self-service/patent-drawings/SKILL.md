@@ -1,0 +1,80 @@
+---
+name: patent-drawings
+description: Generate the drawings (附图) for a CN patent specification. Use Graphviz to draw structural diagrams and flowcharts, manage figure numbers and reference-numeral consistency under 细则第21条, cross-check the specification text against the drawings, and designate the abstract figure. The design (外观设计) view rules (six views / view list) have their single executable version in `../patent-application/references/design-points.md` and are not repeated here (view materials are provided by the inventor). Use when the user asks to "draw figures", "figures", "flowchart", "schematic", "abstract figure", "six views"; also invoked by the patent-application entry skill. Requires the `dot` command in the environment (design views do not depend on dot).
+allowed-tools: Read, Grep, Glob, Write, Edit, Bash
+---
+
+# Generating the Drawings (附图)
+
+Input: the claims + the specification text. Drawings are not free composition — they mirror the specification text (细则第21条: numerals not mentioned in the text must not appear in the drawings, and vice versa).
+
+## Prerequisite
+
+```bash
+dot -V   # if absent, state the missing dependency explicitly; do not force drawing
+```
+
+## Working protocol, every step with a completion standard
+
+### Step 1 Extract the numeral list → Done when: the list matches the specification item by item
+
+Extract every "<name>(<numeral>)" from the specification text and build the numeral table:
+
+```
+10 门体本体     20 图像采集模块   22 红外摄像头   24 广角镜头
+30 识别模块     40 门锁执行机构   50 通信接口
+```
+
+Check: parts mentioned in the text without numerals get numerals; parts you want to draw that the text never mentions — either add them to the text or don't draw them.
+
+### Step 2 Draw → Done when: each figure corresponds to a specification paragraph, all numerals come from the list
+
+Render with Graphviz DOT (output to `patent-application/附图/`):
+
+```dot
+digraph {
+    rankdir=LR;
+    node [shape=box];
+    "门体本体(10)" -> "图像采集模块(20)";
+    "图像采集模块(20)" -> "识别模块(30)" [label="图像数据"];
+    "识别模块(30)" -> "门锁执行机构(40)" [label="控制信号"];
+}
+```
+
+```bash
+dot -Tsvg fig1.dot -o fig1.svg   # svg preview / version retention
+dot -Tpng fig1.dot -o fig1.png   # png for Word inline embedding (conversion delivery chain); black-white line art fits practice
+```
+
+Rules (细则第21条):
+- Figures are numbered "图1, 图2, …" in order, one-to-one with the "brief description of drawings" in the specification.
+- No annotations beyond essential words in a figure (no parameter values, no explanatory text).
+- Line style: black-white line art; no color figures, photos, or gray shading (practice).
+- One view per figure, one subject per view (overall view / partial enlarged view / flowchart drawn separately).
+
+### Step 3 Cross-check → Done when: both directions, zero omissions
+
+- Direction A: every figure listed in the "brief description of drawings" exists among the drawings.
+- Direction B: every numeral in the drawings is mentioned in the specification text; the same part carries the same numeral (细则第21条).
+- Reference numerals in the claims: only inside parentheses after the feature, never as limitations (细则第22条) — the claims are patent-claims' domain; here only the numeral digits are checked.
+
+### Step 4 Designate the abstract figure → Done when: a sensible figure is chosen and recorded
+
+Under 细则第26条: when there are drawings, choose the single figure that best illustrates the technical features as the abstract figure, and record it in `附图说明.md`. Selection standard: the figure containing the independent claim's distinguishing feature (usually the system architecture figure or the main flowchart), not a partial detail figure.
+
+## Utility model mandatory items
+
+A utility model **must** have drawings showing the shape / construction / combination of the product (细则第20条/第43条). Missing drawings = acceptance / filing-date risk; after drawing, self-check for at least one structural figure first.
+
+## Design (外观设计, six-view trigger → redirect)
+
+A design's "drawings" are **pictures or photographs** (专利法第27条), not dot-rendered line diagrams — **dot does not apply**. The view rules (number of views per the faces the design points involve, six orthographic views, omitted-view statements, black-white/gray, view naming) have their single executable version in `../patent-application/references/design-points.md`; this skill does not repeat the rules.
+
+## Completion standard (before handover)
+
+- [ ] Numeral list matches the specification text in both directions (Steps 1 + 3)
+- [ ] Figure-number order consistent with the brief description of drawings
+- [ ] Black-white line art, no stray annotations
+- [ ] Abstract figure designated (utility model: structural figure preferred)
+- [ ] Utility model: has a structural figure
+- [ ] Every figure produced as both figN.svg and figN.png (Word embedding figures generated, none missing)

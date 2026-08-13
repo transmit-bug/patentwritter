@@ -2,7 +2,7 @@
 
 A skills **package** (`skills/`) for writing patent applications, installable via `npx skills add transmit-bug/patentwritter`. Built **delegation-first**: the set owns only authoring/decision logic; every legal assertion traces to a declared authoritative source, every prior-art reference comes from an external search tool — never model improvisation.
 
-> **方向(2026-08-11,ADR-0004)**:面向发明人自助的专利申请向导(发明+实用新型,全流程)。专业代理人方向(A 组)未建,仅预留 `skills/professional/`。
+> **方向(2026-08-11,ADR-0004)**:面向发明人自助的专利申请向导(发明+实用新型,全流程)。专业代理人方向(A 组)未建,仅预留 `skills/en/professional/`(2026-08-13 内容英文化后迁入 `skills/en/` 语言组)。
 
 > Install state (`.agents/`, `skills-lock.json`) is consumer-side and gitignored — regenerate it with `npx skills add transmit-bug/patentwritter`.
 
@@ -29,7 +29,7 @@ The authoritative texts governing drafting and examination — 专利法, 专利
 _Avoid_: rules, best practices
 
 **Standards catalog (资料目录)**:
-The core content of the patent-standards skill — a table declaring each authoritative material: official name, edition, official location, what it governs, citation anchors. It declares **what** to look up, never **how** ("我们只能声明哪些资料可以去查找,不应该负责具体如何去查找"). 内容按类型拆分在 `patent-standards/references/`(cn-invention-utility / cn-design / us / catalog),SKILL.md 只做索引与消费纪律。
+The core content of the patent-standards skill — a table declaring each authoritative material: official name, edition, official location, what it governs, citation anchors. It declares **what** to look up, never **how** ("我们只能声明哪些资料可以去查找,不应该负责具体如何去查找"). 内容按类型拆分在 `skills/en/patent-standards/references/`(cn-invention-utility / cn-design / us / catalog),SKILL.md 只做索引与消费纪律。
 _Avoid_: retrieval instructions, fetch commands
 
 **Delegated search (委托搜索)**:

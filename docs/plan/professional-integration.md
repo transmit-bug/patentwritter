@@ -1,6 +1,6 @@
 # 整合方案：专业组（professional，A 组）接入（分阶段执行）
 
-> **执行状态：执行中（阶段 0 完成，阶段 1 完成）**。依据 [ADR-0007](../adr/0007-professional-group-integration.md)（2026-08-13 生效）。本文是 wayfinder 地图 [专业组（professional，A 组）接入：决策与整合方案 #19](https://github.com/transmit-bug/patentwritter/issues/19) 的终点落地物：专业组接入的**分阶段执行计划**。每阶段独立可交付、可验收；实现由**方案确认后另起 effort** 执行（地图只出决策，不实现）。
+> **执行状态：执行中（阶段 0-2 完成）**。依据 [ADR-0007](../adr/0007-professional-group-integration.md)（2026-08-13 生效）。本文是 wayfinder 地图 [专业组（professional，A 组）接入：决策与整合方案 #19](https://github.com/transmit-bug/patentwritter/issues/19) 的终点落地物：专业组接入的**分阶段执行计划**。每阶段独立可交付、可验收；实现由**方案确认后另起 effort** 执行（地图只出决策，不实现）。
 
 **执行前置**：本方案经用户确认后，按阶段顺序执行；每阶段完成标准达成即验收，再进入下一阶段。
 

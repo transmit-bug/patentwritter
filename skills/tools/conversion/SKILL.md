@@ -1,6 +1,6 @@
 ---
 name: conversion
-description: Conversion discipline for Word delivery of application documents and ingestion of existing .docx / .pptx materials (document-only capability, zero scripts zero dependencies, ADR-0005). Use when the user asks to "convert to Word", "generate docx", "export to Word", "turn my existing disclosure / PPT into text", or "use a Word template"; also invoked by the patent-intake entry skill (ingestion at the pipeline head, delivery at the tail).
+description: Conversion discipline for Word delivery of application documents and ingestion of existing .docx / .pptx materials (document-only capability, zero scripts zero dependencies, ADR-0005). Covers two template modes — style inheritance and filling content into an existing DOCX template. Use when the user asks to "convert to Word", "generate docx", "export to Word", "turn my existing disclosure / PPT into text", "use a Word template", or "fill my template"; also invoked by the patent-intake entry skill (ingestion at the pipeline head, delivery at the tail).
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
@@ -40,7 +40,7 @@ Before conversion, classify the source: plain prose, tables/figures, or **formul
 
 Write an inline Python script (python-docx): read each source from `草稿/`, resolve `../附图/嵌入/figN.png` **relative to the source file's directory** (not the working directory), map headings to Word's built-in heading styles, convert Markdown emphasis/links/blockquote/list/checklist/table syntax into native Word runs, paragraphs, list styles, and tables, embed the figures inline (keep aspect ratio; width at a clearly legible size), and write the output to `成品/申请文件/` (three filing docs) or `成品/` (技术交底书).
 
-When a `.docx` template is supplied, use this policy: preserve page setup, headers/footers, styles, numbering, and table geometry where safe; fill explicit placeholders only when their boundaries are unambiguous; otherwise create content using extracted template styles; report every unsupported feature. Never copy template instructions or placeholder prose into the deliverable.
+When a `.docx` template is supplied, the modes and fill protocol in the "Template filling" section below govern. Chain ① is the only chain that can fill content into a template's own structure; it preserves page setup, headers/footers, styles, numbering, and table geometry where safe, and reports every unsupported feature.
 
 - **Formulas**: convert every core formula to editable OMML; define variables in adjacent prose; preserve equation numbering if the template has it. Before conversion, verify that the source formula is semantically complete rather than merely a string containing Greek letters. Do not emit Markdown delimiters, raw LaTeX, Unicode-only equations, or formula images as the only representation.
 - **PNG only**: Word inline embedding supports bitmaps only; the figure pipeline already produces both formats as PNG (see `../patent-drawings/SKILL.md` Step 2).
@@ -56,7 +56,7 @@ pandoc 摘要.md -o ../成品/申请文件/摘要.docx
 pandoc 技术交底书.md -o ../成品/技术交底书.docx
 ```
 
-Run from inside `草稿/`: pandoc resolves the figure paths `../附图/嵌入/figN.png` against the working directory, so `../` steps up to the project root. (Alternative: run from the root with `pandoc --resource-path=草稿 草稿/xxx.md -o ...`.) Use a reference DOCX as a style/template input only when the chosen path can preserve it safely; otherwise use the inline python-docx path and report the downgrade. Spot-check after conversion for missing figures and formula conversion.
+Run from inside `草稿/`: pandoc resolves the figure paths `../附图/嵌入/figN.png` against the working directory, so `../` steps up to the project root. (Alternative: run from the root with `pandoc --resource-path=草稿 草稿/xxx.md -o ...`.) `--reference-doc` is **style inheritance only** — it cannot place content into a template's structure; for content fill see the "Template filling" section. Spot-check after conversion for missing figures and formula conversion.
 
 ### Chain ③ neither available → deliver .md + manual save-as
 
@@ -64,11 +64,33 @@ Deliver the `.md` drafts from `草稿/` (the assembled `技术交底书.md` incl
 
 ### Word acceptance gate
 
-A DOCX is complete only when all applicable checks pass: zero Markdown tokens (`**`, leading `>`, raw list markers, `$...$`, backticks, `---`, `[ ]`); headings have native heading styles; tables and figures are present; core formulas are editable/readable OMML with variables defined; source citations are absent from the clean body except approved `[S#]` markers; and template placeholders/instructions are absent. Reopen and inspect the generated DOCX structurally before handover. Record counts for paragraphs, tables, figures, formulas, and residual Markdown markers.
+A DOCX is complete only when all applicable checks pass: zero Markdown tokens (`**`, leading `>`, raw list markers, `$...$`, backticks, `---`, `[ ]`); headings have native heading styles; tables and figures are present; core formulas are editable/readable OMML with variables defined; source citations are absent from the clean body except approved `[S#]` markers; and template placeholders/instructions are absent. In content-fill mode additionally: zero unfilled placeholders, and every unfilled template slot is reported (see "Template filling"). Reopen and inspect the generated DOCX structurally before handover. Record counts for paragraphs, tables, figures, formulas, and residual Markdown markers.
 
 ### Fail loud
 
 When the probe fails or conversion errors, tell the user truthfully: which dependency is missing, which chain was taken, and what format the artifact is in. If a core formula cannot be converted to OMML, keep the task blocked or deliver Markdown with a blocker report; never produce a broken .docx and pass it off as done.
+
+## Template filling (fill content into an existing DOCX template)
+
+Two modes — decide before conversion. The route record's 模板 axis (项目默认 / 指定模板 / 无) says a template exists; this section decides which mode:
+
+| Mode | What it does | Chain |
+|---|---|---|
+| Style inheritance | template supplies styles / page setup; content structure follows the drafts | any chain (pandoc `--reference-doc`, or python-docx style extraction) |
+| **Content fill** | generated content is inserted **into the template's existing structure** — cover page, fixed sections, tables, headers/footers stay as the template designed them | chain ① only (python-docx inline) |
+
+Scope: content fill applies to the 技术交底书. The three 申请文件 docx keep their statutory one-document structure (ADR-0008) — a template may style them, never restructure them.
+
+Content-fill protocol:
+
+1. **Ingest the template** → Done when: a section map is recorded — every heading, placeholder, and table in the template, with what belongs in each.
+2. **Map drafts to slots** → Done when: every 交底书 section (assembly table in `../patent-intake/references/disclosure-document.md`) has a target slot; draft sections without a slot and template slots without a source are both listed — neither silently dropped nor filled.
+3. **Fill** → Done when: each slot receives its content verbatim (assembly rules apply — copy, don't rewrite); template boilerplate (cover, headers/footers, numbering, fixed clauses) is preserved untouched; the template's own styles carry the inserted text.
+4. **Verify** → Done when: zero unfilled placeholders remain (`{{...}}`, `【...】`, `____`); no template instructions copied into the body; the filled DOCX passes the acceptance gate above.
+
+Degradation: without a docx-capable environment (chain ① unavailable), content fill is **impossible** — state it loudly and fall back to style inheritance or `.md` + paste instructions. Never fake a fill by appending generated content after a copied template body, and never overwrite the supplied template file itself — fill into a copy.
+
+Record back into 草稿/申请信息.md (模板适配说明): which template was used, mode taken, inheritance scope, and any downgrade.
 
 ## Ingestion degradation chain (Stage-1 disclosure interview → scan existing materials)
 

@@ -11,7 +11,7 @@ license: MIT
 
 # Patents Search
 
-Search patents with natural language queries powered by Valyu's semantic search API. Invoked by the self-service flow (patent-application Stage-2 novelty search, see `skills/en/self-service/patent-application/references/search-guide.md`) as the delegated-search main path; results are consumed as real prior art under the honesty red line — never invented.
+Search patents with natural language queries powered by Valyu's semantic search API. Invoked by the self-service flow (patent-intake optional novelty search, see `patent-intake/references/search-guide.md`) as the delegated-search main path; results are consumed as real prior art under the honesty red line — never invented.
 
 ## CN coverage warning
 

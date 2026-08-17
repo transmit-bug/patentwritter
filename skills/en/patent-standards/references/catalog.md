@@ -46,5 +46,5 @@ Human-operated sources the set **documents but never automates** (CONTEXT.md "De
 | Jurisdiction | CN |
 | Governs | bibliographic data, full text, legal status of patent publication / announcement (invention publication / invention grant / utility model / design) |
 | Citation anchor | publication / announcement number, e.g. CN209861402U; detail pages like http://epub.cnipa.gov.cn/patent/{公开号} |
-| Search form | manual browser (steps in `../../patent-application/references/search-guide.md`); real-browser automation like agent_browser can run it; on captcha fall back to Google Patents (country:CN) / WebSearch |
+| Search form | manual browser (steps in `../../patent-intake/references/search-guide.md`); real-browser automation like agent_browser can run it; on captcha fall back to Google Patents (country:CN) / WebSearch |
 | Verification | 2026-08-12 curl-tested + third-party source cross-check; repo-side evidence `docs/research/cnipa-epub-search-forms.md` |

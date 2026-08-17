@@ -1,12 +1,12 @@
 ---
 name: patent-claim-strategy
-description: "Professional claim strategy for CN patents — design the protection scope (essential-feature weighing, generalization, claim tiers, fallback positioning), choose the response amendment strategy under an OA (argue vs amend, amendment ladder, estoppel-aware drafting), and decide when to divide (分案, 细则48-49) or claim priority (优先权, 法29-30) with their deadlines. Strategy discipline only — mechanical claim drafting stays in the self-service group (patent-claims); enforcement / portfolio-level layout (专利布局), FTO and licensing are out of scope (ADR-0007 decision 7). Grounded output: every legal assertion cites the verified anchors; never number from memory. Use when the user asks about claim scope, protection breadth, 保护范围, amendment strategy in an OA, whether to divide or claim priority, or 分案 / 优先权. Model-invoked discipline of the professional group (entry: patent-prosecution)."
+description: "Professional claim strategy for CN patents — design the protection scope (essential-feature weighing, generalization, claim tiers, fallback positioning), choose the response amendment strategy under an OA (argue vs amend, amendment ladder, estoppel-aware drafting), and decide when to divide (分案, 细则48-49) or claim priority (优先权, 法29-30) with their deadlines. Strategy discipline only — mechanical claim drafting stays in the self-service group (patent-drafting); enforcement / portfolio-level layout (专利布局), FTO and licensing are out of scope (ADR-0007 decision 7). Grounded output: every legal assertion cites the verified anchors; never number from memory. Use when the user asks about claim scope, protection breadth, 保护范围, amendment strategy in an OA, whether to divide or claim priority, or 分案 / 优先权. Model-invoked discipline of the professional group (entry: patent-prosecution)."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
 # Claim Strategy (权利要求策略 — 保护范围 / 答复修改 / 分案 / 优先权)
 
-Professional-group discipline skill (ADR-0007 decisions 1-2): the **strategy layer** over claim drafting. Mechanical drafting (claims text, 上位化 mechanics, dependent-claim structure) stays in the B 组 self-service skill (`patent-claims`); this skill decides **what scope to pursue and how to defend it**. Every legal assertion traces to a verified anchor — never number from memory.
+Professional-group discipline skill (ADR-0007 decisions 1-2): the **strategy layer** over claim drafting. Mechanical drafting (claims text, 上位化 mechanics, dependent-claim structure) stays in the B 组 self-service skill (`patent-drafting`); this skill decides **what scope to pursue and how to defend it**. Every legal assertion traces to a verified anchor — never number from memory.
 
 ## Read first
 
@@ -62,7 +62,7 @@ Strategy view (anchors 法29-30, verified against the official text):
 
 - In scope: scope design, response amendment strategy, division / priority strategy, estoppel-aware drafting, interplay with the prosecution pipeline.
 - Out of scope (ADR-0007 decision 7): **专利布局 (portfolio-level layout across applications), FTO (自由实施), 维权 / 侵权诉讼, 许可** — these are 授权后业务; 分案/优先权 strategy *within a prosecution* is in scope, portfolio strategy is not.
-- Out of scope (sibling skills): mechanical drafting → `patent-claims` (B 组); the actual OA response / 复审请求书 / 无效 pleadings → `patent-oa-response` / `patent-re-exam` / `patent-invalidation`.
+- Out of scope (sibling skills): mechanical drafting → `patent-drafting` (B 组); the actual OA response / 复审请求书 / 无效 pleadings → `patent-oa-response` / `patent-re-exam` / `patent-invalidation`.
 - Not a substitute for the agent's judgment or signature.
 
 ## Minimal walkthrough (最小案例)

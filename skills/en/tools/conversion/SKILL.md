@@ -1,6 +1,6 @@
 ---
 name: conversion
-description: Conversion discipline for Word delivery of application documents and ingestion of existing .docx / .pptx materials (document-only capability, zero scripts zero dependencies, ADR-0005). Use when the user asks to "convert to Word", "generate docx", "export to Word", "turn my existing disclosure / PPT into text", or "use a Word template"; also invoked by the patent-application entry skill (Stage-1 ingestion, Stage-5 delivery).
+description: Conversion discipline for Word delivery of application documents and ingestion of existing .docx / .pptx materials (document-only capability, zero scripts zero dependencies, ADR-0005). Use when the user asks to "convert to Word", "generate docx", "export to Word", "turn my existing disclosure / PPT into text", or "use a Word template"; also invoked by the patent-intake entry skill (ingestion at the pipeline head, delivery at the tail).
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
@@ -10,12 +10,12 @@ This skill is a **document-only capability** (ADR-0005 decision 1): md→docx an
 
 ## Delivery degradation chain (Stage-5 assembly → Word delivery)
 
-Goal: turn the `.md` drafts under `草稿/` into the **two delivery sets** under `成品/` (layout in `../patent-application/SKILL.md` Stage 3 / Stage 5). **Drafts and deliverables never mix**: everything under `成品/` is directly usable, nothing under `草稿/` is final.
+Goal: turn the `.md` drafts under `草稿/` into the **two delivery sets** under `成品/` (layout in `../patent-intake/SKILL.md` "Workspace layout"). **Drafts and deliverables never mix**: everything under `成品/` is directly usable, nothing under `草稿/` is final.
 
 1. **申请文件** (CNIPA 分文件递交用): three same-named `.docx`, one file per document, no timestamps.
 2. **技术交底书** (交代理机构/内部评审用): one consolidated `.docx`.
 
-**Step 0 — assemble `草稿/技术交底书.md` first**: merge 申请信息 / 说明书 / 附图 / 权利要求书 / 摘要 into one disclosure document per the assembly table in `../patent-application/references/disclosure-document.md`. Then convert all four sources below.
+**Step 0 — assemble `草稿/技术交底书.md` first**: merge 申请信息 / 说明书 / 附图 / 权利要求书 / 摘要 into one disclosure document per the assembly table in `../patent-intake/references/disclosure-document.md`. Then convert all four sources below.
 
 | Source file (草稿/) | Delivered file (成品/) |
 |---|---|
@@ -80,7 +80,7 @@ When the inventor provides existing .docx (disclosure / design description / old
 | python-pptx available | read the .pptx inline → per-slide Markdown (including speaker notes); extract images to the materials directory |
 | none available | ask the inventor for text / Markdown / paste the key paragraphs directly |
 
-Ingested materials and images land in `.patent/materials/` (see the "`.patent/` support workspace" section of patent-application), never mixed into the application documents directory.
+Ingested materials and images land in `.patent/materials/` (see the "Workspace layout" section of patent-intake), never mixed into the application documents directory.
 
 ## Optional dependencies
 

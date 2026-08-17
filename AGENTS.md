@@ -12,7 +12,7 @@ The package source lives in `skills/<name>/SKILL.md` (skills.sh standard layout)
 
 The package ships skills under the skills.sh category layout (see `docs/adr/0004-self-service-package.md` for the 2026-08-11 restructure; 2026-08-13 内容英文化并迁入 `skills/en/` 语言组):
 
-- **`skills/en/self-service/` — 发明人自助组(本包主体)**: `patent-router`(入口:材料来源+交付目标+专利类型+模板路由), `patent-application`(访谈与编排), `patent-claims`(权利要求撰写), `patent-specification`(说明书+摘要), `patent-drawings`(附图), `patent-compliance`(递交前自检), `patent-filing`(递交与补正)。外观设计分支由 router 转入 `patent-application/references/design-points.md`;标准仅通过 `patent-standards` 文件索引按需读取。
+- **`skills/en/self-service/` — 发明人自助组(本包主体,ADR-0009 后 5 技能)**: `patent-intake`(前门+编排:路由三轴+统一来源处理+访谈+阶段清单+回边路由,共享 `references/`), `patent-drafting`(权利要求书+说明书+摘要,支撑链单一所有者), `patent-drawings`(附图), `patent-compliance`(递交前自检), `patent-filing`(递交与补正)。外观设计分支由 intake 转入 `patent-intake/references/design-points.md`;来源处理统一走 `patent-intake/references/source-modes.md`;标准仅通过 `patent-standards` 文件索引按需读取。
 - **`skills/en/professional/` — 专业组(ADR-0007 已实现,发现模式与 B 组同级)**:入口 `patent-prosecution`(user-invoked, `disable-model-invocation: true`)编排授权链路五 discipline — `patent-oa-response`(OA 答复,旗舰)、`patent-re-exam`(复审)、`patent-invalidation`(无效,请求+答辩双向)、`patent-evaluation-report`(评价报告)、`patent-claim-strategy`(权利要求策略),五 discipline 均 model-invoked、正常参与发现;同目录仍寄放保留的 US 技能(`patent-application-creator`, `patent-claims-analyzer`,`metadata.internal: true` 隐藏,待重做)。
 - **`skills/en/tools/patents-search`** — 委托检索(可选工具,流程不依赖)。
 - **`skills/en/tools/conversion`** — 纯文档转换纪律(Word 交付/材料摄入,零脚本零依赖,按需安装可选依赖,见 `requirements-optional.txt`)。
@@ -22,7 +22,7 @@ The package ships skills under the skills.sh category layout (see `docs/adr/0004
 
 ## 正文引用约定(Reference convention)
 
-- 技能正文内的相对引用一律按**安装后布局**书写与解析:安装后技能目录为 `<agent-skills-dir>/<skill-name>/`(如 `.agents/skills/patent-claims/`),引用相对 `dirname(SKILL.md)`:同组技能 `../<skill-name>/...`,共享锚点 `../patent-standards/...`,`references/` 子目录内的文件再加一级 `../`。源码目录 `skills/en/<category>/<name>/` 的层级只用于组织与三级发现,**不是**正文引用的深度基准(2026-08-13 已把全部跨组引用改为安装几何,源树中这些引用会悬空,属预期)。
+- 技能正文内的相对引用一律按**安装后布局**书写与解析:安装后技能目录为 `<agent-skills-dir>/<skill-name>/`(如 `.agents/skills/patent-drafting/`),引用相对 `dirname(SKILL.md)`:同组技能 `../<skill-name>/...`,共享锚点 `../patent-standards/...`,`references/` 子目录内的文件再加一级 `../`。源码目录 `skills/en/<category>/<name>/` 的层级只用于组织与三级发现,**不是**正文引用的深度基准(2026-08-13 已把全部跨组引用改为安装几何,源树中这些引用会悬空,属预期)。
 - 仓库侧文档(`docs/research/`、`docs/prototype/`、`docs/plan/`)不随安装分发,正文以「package-repo `docs/...`」措辞作溯源注释,不写成可解析的相对路径。
 - 修改引用后必须以**安装副本**验证:`npx skills add <repo>`(或 `npx skills add .`)装到临时目录,逐条解析 `..` 引用,断裂即失败。frontmatter 的 `description` 含 `词: 词` 时必须加引号(否则安装时被静默跳过)。
 

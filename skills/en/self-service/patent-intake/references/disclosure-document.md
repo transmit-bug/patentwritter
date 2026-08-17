@@ -2,7 +2,7 @@
 
 A 技术交底书 (invention disclosure) is the **single consolidated document** handed to a patent agency for drafting, or used for internal patentability review. It is not a filing document — no statutory five-part structure, but it does use a clean, stable reading structure and may inherit an approved company template. It leads with the invention itself: problem → solution → core formulas/logic → embodiments/effect → distinguishing features → alternatives, then the source and draft-claim appendices. One 交底书 = one document; the three filing documents stay separate (their .docx are `成品/申请文件/`, for CNIPA 分文件递交).
 
-Assembled at Stage-5 (before Word delivery) by the patent-application entry skill: merge the 草稿/ drafts into `草稿/技术交底书.md`, then convert it to `成品/技术交底书.docx` (delivery chain in `../../conversion/SKILL.md`).
+Assembled at Stage-5 (before Word delivery) by the patent-intake entry skill: merge the 草稿/ drafts into `草稿/技术交底书.md`, then convert it to `成品/技术交底书.docx` (delivery chain in `../../conversion/SKILL.md`).
 
 ## Structure and assembly table
 

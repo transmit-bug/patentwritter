@@ -1,10 +1,12 @@
 ---
 name: patent-filing
-description: Guidance for filing and rectifying CN patent applications (invention / utility model / design). All e-filing steps (registration / digital certificate / filing / fee payment), fees and fee reduction, post-filing process (acceptance / preliminary examination / publication / substantive examination), design image filing points, and the rectification-notice handling protocol (common rectification items + beyond-scope red line + deadlines). Marks which steps only the applicant themselves can perform. Use when the user asks "how do I file", "how do I pay the fees", "I received a rectification notice", "rectification"; also invoked by the patent-application entry skill.
+description: "Filing and rectification guidance for CN patent applications (发明/实用新型/外观设计) — e-filing steps, fees and fee reduction, post-filing process, rectification-notice protocol with the beyond-scope red line and deadlines. Marks the steps only the applicant can perform; amounts and deadlines follow the official system."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
 # Filing and Rectification Guidance (递交与补正指引)
+
+Role: **discipline** of the self-service group (ADR-0009). A re-entry point independent of drafting — filing and rectification happen weeks later, against the finished deliverables. On completion, update the 递交 stage in `草稿/申请信息.md`.
 
 Standards pointer: `../patent-standards/`. Verify current amounts, deadlines, and portal prompts against the official system and the actual notice.
 
@@ -36,7 +38,7 @@ Input: the completed application file package + application type. This skill is 
 
 - A design filing uses the request, pictures or photographs, and brief description; it does not use invention/utility-model claims, specification, or abstract.
 - Picture/photo format and size: follow the upload prompts of the Patent Business Processing System and ensure the protected appearance is clearly shown. Do not rely on remembered legacy size rules.
-- Views: submit orthographic views for the faces involved by the design points (six views only when six faces are involved; view rules in `../patent-application/references/design-points.md`), black-white/gray in practice; keep color only when color protection is claimed — then submit color pictures or photographs.
+- Views: submit orthographic views for the faces involved by the design points (six views only when six faces are involved; view rules in `../patent-intake/references/design-points.md`), black-white/gray in practice; keep color only when color protection is claimed — then submit color pictures or photographs.
 - Designate in the system the single image best showing the design points.
 
 ## Rectification-notice handling protocol (补正通知书)
@@ -74,3 +76,4 @@ On receiving a "Notice of Rectification" (formal defects at the preliminary-exam
 - [ ] Post-filing process and key deadlines (3-year substantive-examination request / fee deadlines) explained
 - [ ] Rectification protocol given: match → delete don't change → deadline → replacement pages
 - [ ] "Amounts and deadlines per the official sources" reminder given
+- [ ] 递交 stage updated in `草稿/申请信息.md`

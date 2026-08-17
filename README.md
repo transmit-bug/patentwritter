@@ -8,7 +8,7 @@ npx skills add transmit-bug/patentwritter
 
 **方向(2026-08-11 重构后;2026-08-13 ADR-0007 落地)**:面向**发明人/非专业人士的自助申请向导**,覆盖专利申请全流程(交底 → 类型判断 → 撰写 → 自检 → 递交与补正;发明/实用新型/外观设计)。专业代理人方向(A 组)已按 `docs/adr/0007-professional-group-integration.md` 分阶段实现并落地 `skills/en/professional/`(授权链路:OA 答复 / 复审 / 无效 / 评价报告 / 权利要求策略 + 入口),见 `docs/plan/professional-integration.md`。
 
-**`.patent/` 支撑层工作目录**:发明人项目根目录下三档分级(`sources/` 引用清单、`materials/` 素材、`queries/` 检索记录),与申请文件草稿 `patent-application/` 分治;建议加入发明人项目的 gitignore(留痕可自行取消)。
+**`.patent/` 支撑层工作目录**:发明人项目根目录下三档分级(`sources/` 引用清单、`materials/` 素材、`queries/` 检索记录),与申请文件草稿目录 `patent-application/`(工作区目录名,与技能名无关,ADR-0008)分治;建议加入发明人项目的 gitignore(留痕可自行取消)。
 
 **诚实红线**:不编造现有技术、专利号、文献、实验数据。背景技术只写发明人已知的、客观通用问题、检索工具真实返回的三类素材。
 
@@ -17,11 +17,9 @@ npx skills add transmit-bug/patentwritter
 ```
 skills/
 ├── en/                              # en 语言组(2026-08 起,内容英文化,语言作为顶层命名空间)
-│   ├── self-service/                # B 组:发明人自助(本包主体)
-│   │   ├── patent-router/           # 总入口:材料来源+交付目标+专利类型+模板路由
-│   │   ├── patent-application/      # 访谈与编排(不再承担总路由)
-│   │   ├── patent-claims/           # 权利要求撰写(独权/从权/上位化/退路布防)
-│   │   ├── patent-specification/    # 说明书五段式+摘要
+│   ├── self-service/                # B 组:发明人自助(本包主体,ADR-0009 后 5 技能)
+│   │   ├── patent-intake/           # 前门+编排:路由三轴+统一来源处理+访谈+阶段清单+回边路由
+│   │   ├── patent-drafting/         # 权利要求书+说明书五段式+摘要(支撑链单一所有者)
 │   │   ├── patent-drawings/         # 附图+附图标记一致性+摘要附图+外观视图清单
 │   │   ├── patent-compliance/       # 递交前自检(支撑链/清楚性/形式)
 │   │   └── patent-filing/           # 递交与补正指引
@@ -48,9 +46,8 @@ skills/
 
 ## 技能关系(依赖化/层级化)
 
-- **Router**(`patent-router`)先处理材料来源、交付目标、专利类型和模板选择，再转交最小技能集合。
-- **Application orchestrator**(`patent-application`)只负责访谈、顺序和交付编排；不重复路由和类型规则。
-- **Discipline 技能**(claims/specification/drawings/compliance/filing)只承载各自工件的撰写或检查纪律。
+- **前门+编排**(`patent-intake`,ADR-0009 合并原 router+application)处理统一来源、路由三轴、访谈、阶段清单与回边路由;共享 references(来源模式/类型判定/外观要点/交底书组装/检索指引)挂其名下。
+- **Discipline 技能**(drafting/drawings/compliance/filing)只承载各自工件的撰写或检查纪律;技能间零横向调用,只通过产物文件衔接。
 - **法律锚点单一来源**:`patent-standards` 的分型 references；self-service 技能只保留文件索引，法律细节按需读取，不把 Rule basis 表格复制进用户文稿。
 
 ## 设计原则
@@ -66,6 +63,7 @@ skills/                     # ← 包源码(npx skills 发现根)
 CONTEXT.md                  # 领域术语表
 docs/
   adr/                      # 架构决策记录(0004 为本包方向)
+  guide/                    # Skills 使用指南:技能介绍 + 实用案例(docs/guide/README.md、use-cases.md)
   review/                   # skills 有效性审查(2026)
   research/                 # standards-catalog 研究底稿
   prototype/                # delegation-contract(历史,professional 组仍引用)

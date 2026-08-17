@@ -1,6 +1,6 @@
 # Novelty Search Guide (查新指南, optional, before drafting the background art)
 
-The novelty search is an **optional, recommended** step: run one pass before drafting the background art; write only the actual results (honesty red line; executable version in `../../patent-specification/SKILL.md` Part 2). Execute after Stage-2 type determination and before Stage-3 drafting. Search records follow the `.patent/` three-tier convention (see the "`.patent/` support workspace" section of patent-application/SKILL.md): **search records and results land in `.patent/queries/`**, materials in `materials/`, citation lists in `sources/`.
+The novelty search is an **optional, recommended** step: run one pass before drafting the background art; write only the actual results (honesty red line; executable version in `../../patent-drafting/SKILL.md` Part B). Execute after the 路由 stage and before drafting (stage checklist). Search records follow the `.patent/` three-tier convention (see the "`.patent/` support workspace" section of patent-intake/SKILL.md): **search records and results land in `.patent/queries/`**, materials in `materials/`, citation lists in `sources/`.
 
 ## Main path: delegated search tool (Valyu)
 

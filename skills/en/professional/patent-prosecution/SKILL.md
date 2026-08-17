@@ -13,7 +13,7 @@ Professional-group **entry** skill (ADR-0007 decisions 1 & 5): user-invoked, orc
 
 - Scope: the 授权链路 core — OA 答复 (`patent-oa-response`), 复审 (`patent-re-exam`), 无效 (`patent-invalidation`), 评价报告 (`patent-evaluation-report`), 权利要求策略 (`patent-claim-strategy`).
 - Out of scope (ADR-0007 decision 7): FTO / 专利布局 / 维权 / 许可 (授权后业务); US prosecution (US 组重做另起); 专利通俗解读 / 政策嗅探.
-- Mechanical claim drafting for a fresh application: not this entry — route to the self-service `patent-application` entry (B 组).
+- Mechanical claim drafting for a fresh application: not this entry — route to the self-service `patent-intake` entry (B 组).
 
 ## Route (dispatch table)
 
@@ -25,7 +25,7 @@ Professional-group **entry** skill (ADR-0007 decisions 1 & 5): user-invoked, orc
 | Received an 无效宣告请求 — respond (答辩) | `patent-invalidation` (Direction B) | 无效请求书 + evidence + granted claims + spec |
 | Need a 专利权评价报告 (维权前 / 应对侵权指控 / 开放许可) | `patent-evaluation-report` | utility-model / design patent text + purpose |
 | Claim scope / amendment strategy / 分案 / 优先权 questions | `patent-claim-strategy` | claim text + spec + prior art (as available) |
-| Fresh application drafting | → self-service `patent-application` (B 组) | — |
+| Fresh application drafting | → self-service `patent-intake` (B 组) | — |
 | FTO / 布局 / 维权 / 许可 / US prosecution | out of scope — state so, per ADR-0007 decision 7 | — |
 
 ## Flow

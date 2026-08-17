@@ -1,10 +1,12 @@
 ---
 name: patent-drawings
-description: Generate the drawings (附图) for a CN patent specification. Use Graphviz to draw structural diagrams and flowcharts, manage figure numbers and reference-numeral consistency, cross-check the specification text against the drawings, and designate the abstract figure. The design (外观设计) view rules (six views / view list) have their single executable version in `../patent-application/references/design-points.md` and are not repeated here (view materials are provided by the inventor). Use when the user asks to "draw figures", "figures", "flowchart", "schematic", "abstract figure", "six views"; also invoked by the patent-application entry skill. Requires the `dot` command in the environment (design views do not depend on dot).
+description: "Generate the drawings (附图) for a CN patent specification — Graphviz structural diagrams and flowcharts, reference-numeral consistency with the specification text, abstract-figure designation. Requires the `dot` command in the environment. Design (外观设计) view rules redirect to `../patent-intake/references/design-points.md`."
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
 # Generating the Drawings (附图)
+
+Role: **discipline** of the self-service group (ADR-0009). On completion, update the 附图 stage in `草稿/申请信息.md`.
 
 Standards pointer: `../patent-standards/references/cn-invention-utility.md` and the applicable design reference. This skill uses the pointer; it does not reproduce statutory text.
 
@@ -31,7 +33,7 @@ Check: parts mentioned in the text without numerals get numerals; parts you want
 
 ### Step 2 Draw → Done when: each figure corresponds to a specification paragraph, all numerals come from the list
 
-Render with Graphviz DOT into the layered figure workspace (ADR-0008; layout in `../patent-application/SKILL.md` Stage 3): `源文件/` holds the `.dot` sources, `预览/` the svg previews, `嵌入/` the png bitmaps used for Word embedding and filing. Output under `patent-application/附图/`:
+Render with Graphviz DOT into the layered figure workspace (ADR-0008; layout in `../patent-intake/SKILL.md` "Workspace layout"): `源文件/` holds the `.dot` sources, `预览/` the svg previews, `嵌入/` the png bitmaps used for Word embedding and filing. Output under `patent-application/附图/`:
 
 ```dot
 digraph {
@@ -62,7 +64,7 @@ Figure checks:
 
 - Direction A: every figure listed in the "brief description of drawings" exists among the drawings.
 - Direction B: every numeral in the drawings is mentioned in the specification text; the same part carries the same numeral .
-- Reference numerals in the claims: only inside parentheses after the feature, never as limitations — the claims are patent-claims' domain; here only the numeral digits are checked.
+- Reference numerals in the claims: only inside parentheses after the feature, never as limitations — the claims are patent-drafting's domain; here only the numeral digits are checked.
 
 ### Step 4 Designate the abstract figure → Done when: a sensible figure is chosen and recorded
 
@@ -74,7 +76,7 @@ A utility model **must** have drawings showing the shape / construction / combin
 
 ## Design (外观设计, six-view trigger → redirect)
 
-A design's "drawings" are **pictures or photographs** not dot-rendered line diagrams — **dot does not apply**. The view rules (number of views per the faces the design points involve, six orthographic views, omitted-view statements, black-white/gray, view naming) have their single executable version in `../patent-application/references/design-points.md`; this skill does not repeat the rules.
+A design's "drawings" are **pictures or photographs** not dot-rendered line diagrams — **dot does not apply**. The view rules (number of views per the faces the design points involve, six orthographic views, omitted-view statements, black-white/gray, view naming) have their single executable version in `../patent-intake/references/design-points.md`; this skill does not repeat the rules.
 
 ## Completion standard (before handover)
 
@@ -84,3 +86,4 @@ A design's "drawings" are **pictures or photographs** not dot-rendered line diag
 - [ ] Abstract figure designated (utility model: structural figure preferred)
 - [ ] Utility model: has a structural figure
 - [ ] Every figure produced as both `预览/figN.svg` and `嵌入/figN.png` (Word embedding figures generated, none missing)
+- [ ] 附图 stage updated in `草稿/申请信息.md`

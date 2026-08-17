@@ -1,0 +1,47 @@
+# Source Modes (统一来源处理)
+
+Any material source — 口述, 文档 (docx / pdf / pptx), 网页, 对谈记录, 代码, or other technical material (paper, product material, publication) — is handled by **one protocol with two orthogonal parameters**: the source's *form* decides the ingestion channel; the source's *completeness* decides the interview strategy. There are no per-source branches, no per-source skills. Once the four elements are recorded, downstream skills never read the source kind — only the five cross-cutting flags.
+
+## Archive contract (mandatory, every source)
+
+Archive the source **as-is** under `.patent/materials/` and register provenance in `草稿/申请信息.md` (材料位置): what it is, when obtained, how obtained, whose it is. This is the physical basis of the honesty red line — the user must always be able to say where a piece of content came from.
+
+## Ingestion channel table (form → channel)
+
+| Source form | Channel | Archived artifact |
+|---|---|---|
+| Document (docx / pdf / pptx) | `../../conversion/SKILL.md` ingestion chain | original + extraction notes |
+| Web page | environment fetch / browsing tool + snapshot | URL + access date + snapshot |
+| Dialogue / meeting record | archive the transcript directly | record + participants |
+| Code | read the repository directly | code location + structure notes |
+| Inventor's oral description | none — the interview itself is the channel | interview record |
+
+## Extract-confirm-fill (completeness → interview strategy)
+
+The interview mode **emerges** from material completeness; the question bank never changes:
+
+1. **Extract**: from whatever material exists, draft the four elements (technical problem / minimal solution / distinguishing feature / technical effect) as a candidate record.
+2. **Confirm**: show the draft to the inventor element by element — "this is what I read from your material; correct it where I read it wrong."
+3. **Fill**: ask only the question-bank groups (`interview.md`) covering actual gaps.
+
+Modes that emerge: oral description = empty extraction → full question bank (**mining**); a paper or complete draft = near-full extraction → only boundary conditions asked (**confirm**); a webpage or slide deck = partial extraction → gap-filling (**mixed**).
+
+## Five cross-cutting flags (what downstream skills consume)
+
+Set during extraction, written into `草稿/申请信息.md`. Downstream skills read flags, never the source kind:
+
+| Flag | Trigger | Consumer |
+|---|---|---|
+| 公开状态 | paper published / webpage accessible / shown to a third party | novelty go/no-go before drafting; grace-period check (`interview.md` group F) |
+| 语言纯度 | material is marketing or colloquial language | terminology regularization before claims (conversion table in `../../patent-drafting/SKILL.md`) |
+| 数据可用性 | material carries real experimental / test data | beneficial effects may cite it, with measurement conditions stated |
+| 图可用性 | material carries figures | figures are **redraw source only** — never pasted into the drawings (rules in `../../patent-drawings/SKILL.md`) |
+| 多贡献风险 | one material contains multiple independent inventive contributions | singleness check → split-application decision (record it; do not silently merge) |
+
+## Paper-source delta (the one source with extra traps)
+
+- **Published?** If the paper is already published, the novelty risk is a **go/no-go decision, not a routine question**: the grace period covers only statutory exceptions (see the disclosure/grace-period treatment in `../../patent-standards/references/cn-invention-utility.md`; never restate the law here). Unpublished → "file before publication" becomes a scheduling constraint.
+- **Related work** belongs to the first legal category of background-art material ("prior solutions the inventor knows") — mine it honestly, with or without citation numbers.
+- **Core formulas**: never inferred from the paper's abstract or from a familiar algorithm name (`interview.md` group C); every variable's engineering meaning, units/ranges, and boundary handling need the inventor's confirmation.
+- **Figures** are redraw material only: paper figures are not CN filing drawings (black-white line art, reference numerals, no parameter annotations).
+- **Experimental data** in the paper may be cited as real evidence for beneficial effects — stating measurement conditions; never fabricated, never embellished.

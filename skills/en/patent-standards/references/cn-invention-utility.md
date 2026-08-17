@@ -1,6 +1,6 @@
 # Invention / Utility Model — Verified Anchors (发明/实用新型 — 核实锚点)
 
-> Consumers: patent-application (invention / utility-model branch), patent-claims, patent-specification, patent-drawings (drawings part), patent-compliance (checks 1-7), patent-filing (invention / utility-model parts). Design anchors in `cn-design.md`.
+> Consumers: patent-intake (invention / utility-model branch), patent-drafting, patent-drawings (drawings part), patent-compliance (checks 1-7), patent-filing (invention / utility-model parts). Design anchors in `cn-design.md`.
 > Verification: 2026-08-11 tested against the official CNIPA full texts (2023 实施细则 full text + 2020 专利法 text); **cite article numbers, never number from memory**.
 
 ## 专利法 (2020 text; the 2023 revision did not change article numbers; source: cnipa.gov.cn full text + flk.npc.gov.cn)

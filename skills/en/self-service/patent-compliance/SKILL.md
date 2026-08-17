@@ -1,14 +1,16 @@
 ---
 name: patent-compliance
-description: Pre-filing self-check for the selected Chinese patent branch. Check only the requested deliverables; report severity, location, and repair guidance. Use after drafting and before Word delivery or filing.
+description: "Pre-filing self-check of the drafted CN patent deliverables — support chain, claim clarity, title and figure consistency, formula provenance. Reports severity, location, and repair guidance to 草稿/检查报告.md; checks existing drafts and never drafts or silently repairs content itself."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
 # Pre-Filing Self-Check
 
+Role: **discipline** of the self-service group (ADR-0009), independent from the drafters by design — the checker and the drafter never share a file. On completion, update the 自检 stage in `草稿/申请信息.md`.
+
 Standards pointer: `../patent-standards/`. Use the relevant anchor when a check needs a legal interpretation; this skill owns the executable check, not a reproduction of the standards.
 
-Input: the drafts and supplied figures for the selected branch. Output a report with `critical`, `important`, or `minor`, a location, the observed problem, and a repair instruction.
+Input: the drafts and supplied figures for the selected branch. Output a report at `草稿/检查报告.md` with `critical`, `important`, or `minor`, a location, the observed problem, and a repair instruction.
 
 ## Invention / utility-model checks
 
@@ -87,4 +89,5 @@ When this is a rectification task, compare each amended feature with the origina
 - [ ] Every critical has a location and repair instruction
 - [ ] Support chain and formula checks are complete where applicable
 - [ ] Figures, titles, terminology, and deliverable files are consistent
-- [ ] Word delivery is separately passed through `../tools/conversion/SKILL.md`
+- [ ] Word delivery is separately passed through `../conversion/SKILL.md`
+- [ ] 自检 stage updated in `草稿/申请信息.md`

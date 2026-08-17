@@ -1,6 +1,6 @@
 # Design — Verified Anchors (外观设计 — 核实锚点)
 
-> Consumers: patent-application (design branch), patent-drawings (design drawings section), patent-compliance (check 8), patent-filing (design e-filing points). Invention / utility-model anchors in `cn-invention-utility.md`.
+> Consumers: patent-intake (design branch), patent-drawings (design drawings section), patent-compliance (check 8), patent-filing (design e-filing points). Invention / utility-model anchors in `cn-invention-utility.md`.
 > Verification: 2026-08-12 tested against the official CNIPA full texts (2020 专利法 text + 2023 实施细则 full text + 2023 审查指南 PDF full text); per-item evidence in package-repo `docs/research/design-patent-anchors.md` (not shipped with the skill). **The 2023 细则 / 指南 have no mandatory six-view rule and no "3cm×3cm / 15cm×22cm" image-size numbers (2010 old rules deleted); views follow the number of faces involved by the design points.**
 
 ## 专利法 (2020 text; source: cnipa.gov.cn full text)

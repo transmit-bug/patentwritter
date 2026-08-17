@@ -24,7 +24,7 @@ Anchor verification: invention / utility model 2026-08-11, design 2026-08-12, bo
 
 Two consumption modes (ADR-0004):
 
-- **Self-service group (`skills/en/self-service/`)**: read the corresponding reference file per type, cite its article numbers as anchors (e.g. `细则第20条`), and state the source when explaining to the inventor. Do not declare `[STANDARD]` requirements, do not force the environment to fetch statutes; prior art follows the honesty red line (three kinds of material), see the "self-service simplified variant" section of package-repo `docs/prototype/delegation-contract.md` (not shipped).
+- **Self-service group (`skills/en/self-service/`)**: use the corresponding reference file as an on-demand standards pointer. Keep the drafting and interview content clean; do not paste article numbers, statutory explanations, or `Rule basis` tables into the user-facing draft. Only surface a standards detail when the user asks for a legal explanation or a compliance blocker requires it.
 - **Professional group (`skills/en/professional/`)**: read `references/professional-discipline.md` (the shared discipline — declare / consume / cite / fail loud / never invent, single jurisdiction-neutral home) and the per-jurisdiction anchor file — `references/us.md` (US skills, reserved, hidden) or `references/cn-professional.md` (CN prosecution skills, per ADR-0007). Follow the discipline; cite the per-jurisdiction anchors.
 
 ## The discipline — four clauses, one prohibition (professional full version)
@@ -35,7 +35,7 @@ Two consumption modes (ADR-0004):
 
 Self-service skills referencing this catalog follow:
 
-1. **Anchors**: read `references/cn-invention-utility.md` / `references/cn-design.md` per type, cite the verified article numbers, never number from memory.
+1. **Standards pointer**: read `references/cn-invention-utility.md` / `references/cn-design.md` only when a standards question or check requires it; the normal drafting output carries the file index, not a legal citation dump.
 2. **Honesty red line**: prior art only from the three kinds of material — known prior solutions / objective common problems / real search-tool results. Never invent patent numbers, references, or experimental data.
 3. **Fail loud**: when input is missing (e.g. incomplete four elements) or a tool is missing (e.g. no dot), state exactly what is missing — don't force output.
 4. **Out of scope**: professional work such as OA responses is not in this package.

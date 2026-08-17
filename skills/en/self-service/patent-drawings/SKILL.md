@@ -1,12 +1,14 @@
 ---
 name: patent-drawings
-description: Generate the drawings (附图) for a CN patent specification. Use Graphviz to draw structural diagrams and flowcharts, manage figure numbers and reference-numeral consistency under 细则第21条, cross-check the specification text against the drawings, and designate the abstract figure. The design (外观设计) view rules (six views / view list) have their single executable version in `../patent-application/references/design-points.md` and are not repeated here (view materials are provided by the inventor). Use when the user asks to "draw figures", "figures", "flowchart", "schematic", "abstract figure", "six views"; also invoked by the patent-application entry skill. Requires the `dot` command in the environment (design views do not depend on dot).
+description: Generate the drawings (附图) for a CN patent specification. Use Graphviz to draw structural diagrams and flowcharts, manage figure numbers and reference-numeral consistency, cross-check the specification text against the drawings, and designate the abstract figure. The design (外观设计) view rules (six views / view list) have their single executable version in `../patent-application/references/design-points.md` and are not repeated here (view materials are provided by the inventor). Use when the user asks to "draw figures", "figures", "flowchart", "schematic", "abstract figure", "six views"; also invoked by the patent-application entry skill. Requires the `dot` command in the environment (design views do not depend on dot).
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
 # Generating the Drawings (附图)
 
-Input: the claims + the specification text. Drawings are not free composition — they mirror the specification text (细则第21条: numerals not mentioned in the text must not appear in the drawings, and vice versa).
+Standards pointer: `../patent-standards/references/cn-invention-utility.md` and the applicable design reference. This skill uses the pointer; it does not reproduce statutory text.
+
+Input: the claims + the specification text. Drawings are not free composition — they mirror the specification text (the text and drawings must use the same reference-numeral set).
 
 ## Prerequisite
 
@@ -50,7 +52,7 @@ dot -Tpng 源文件/fig1.dot -o 嵌入/fig1.png   # png for Word inline embeddin
 
 The `.md` drafts (草稿/说明书.md, 草稿/技术交底书.md) reference each figure as `../附图/嵌入/figN.png`.
 
-Rules (细则第21条):
+Figure checks:
 - Figures are numbered "图1, 图2, …" in order, one-to-one with the "brief description of drawings" in the specification.
 - No annotations beyond essential words in a figure (no parameter values, no explanatory text).
 - Line style: black-white line art; no color figures, photos, or gray shading (practice).
@@ -59,20 +61,20 @@ Rules (细则第21条):
 ### Step 3 Cross-check → Done when: both directions, zero omissions
 
 - Direction A: every figure listed in the "brief description of drawings" exists among the drawings.
-- Direction B: every numeral in the drawings is mentioned in the specification text; the same part carries the same numeral (细则第21条).
-- Reference numerals in the claims: only inside parentheses after the feature, never as limitations (细则第22条) — the claims are patent-claims' domain; here only the numeral digits are checked.
+- Direction B: every numeral in the drawings is mentioned in the specification text; the same part carries the same numeral .
+- Reference numerals in the claims: only inside parentheses after the feature, never as limitations — the claims are patent-claims' domain; here only the numeral digits are checked.
 
 ### Step 4 Designate the abstract figure → Done when: a sensible figure is chosen and recorded
 
-Under 细则第26条: when there are drawings, choose the single figure that best illustrates the technical features as the abstract figure, and record it in `草稿/附图说明.md`. Selection standard: the figure containing the independent claim's distinguishing feature (usually the system architecture figure or the main flowchart), not a partial detail figure.
+When there are drawings, choose the single figure that best illustrates the technical features as the abstract figure, and record it in `草稿/附图说明.md`. Selection standard: the figure containing the independent claim's distinguishing feature (usually the system architecture figure or the main flowchart), not a partial detail figure.
 
 ## Utility model mandatory items
 
-A utility model **must** have drawings showing the shape / construction / combination of the product (细则第20条/第43条). Missing drawings = acceptance / filing-date risk; after drawing, self-check for at least one structural figure first.
+A utility model **must** have drawings showing the shape / construction / combination of the product Missing structural drawings are a delivery blocker; after drawing, self-check for at least one structural figure first.
 
 ## Design (外观设计, six-view trigger → redirect)
 
-A design's "drawings" are **pictures or photographs** (专利法第27条), not dot-rendered line diagrams — **dot does not apply**. The view rules (number of views per the faces the design points involve, six orthographic views, omitted-view statements, black-white/gray, view naming) have their single executable version in `../patent-application/references/design-points.md`; this skill does not repeat the rules.
+A design's "drawings" are **pictures or photographs** not dot-rendered line diagrams — **dot does not apply**. The view rules (number of views per the faces the design points involve, six orthographic views, omitted-view statements, black-white/gray, view naming) have their single executable version in `../patent-application/references/design-points.md`; this skill does not repeat the rules.
 
 ## Completion standard (before handover)
 

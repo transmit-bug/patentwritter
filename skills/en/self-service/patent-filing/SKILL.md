@@ -6,6 +6,8 @@ allowed-tools: Read, Grep, Glob, Write, Edit
 
 # Filing and Rectification Guidance (递交与补正指引)
 
+Standards pointer: `../patent-standards/`. Verify current amounts, deadlines, and portal prompts against the official system and the actual notice.
+
 Input: the completed application file package + application type. This skill is a walk-through: step-by-step actions, with steps marked 👤 executable only by the applicant themselves (registration / payment / signature — identity and funds).
 
 ## Before filing
@@ -32,8 +34,8 @@ Input: the completed application file package + application type. This skill is 
 
 ## Design e-filing points
 
-- The application consists of: request + pictures or photographs + brief description (专利法第27条; **no** claims / specification / abstract).
-- Picture/photo format and size: follow the upload prompts of the Patent Business Processing System (the 2023 Implementing Regulations and Guidelines **removed** the old size requirements such as "pictures no smaller than 3cm×3cm, no larger than 15cm×22cm"; the requirement is to clearly show the product's design, 专利法第27条第2款).
+- A design filing uses the request, pictures or photographs, and brief description; it does not use invention/utility-model claims, specification, or abstract.
+- Picture/photo format and size: follow the upload prompts of the Patent Business Processing System and ensure the protected appearance is clearly shown. Do not rely on remembered legacy size rules.
 - Views: submit orthographic views for the faces involved by the design points (six views only when six faces are involved; view rules in `../patent-application/references/design-points.md`), black-white/gray in practice; keep color only when color protection is claimed — then submit color pictures or photographs.
 - Designate in the system the single image best showing the design points.
 
@@ -42,9 +44,9 @@ Input: the completed application file package + application type. This skill is 
 On receiving a "Notice of Rectification" (formal defects at the preliminary-examination stage; possible for invention / utility model / design):
 
 1. **Match first**: copy down the rectification items one by one and compare against the original application (common items in the table below).
-2. **Amendment principle**: delete, don't change — **amendments must not go beyond the scope recorded in the original specification and claims** (专利法第33条). New content = beyond scope = dead end. When unsure about a feature, rather delete it than "improve" it.
+2. **Amendment principle**: delete, don't change — **amendments must not go beyond the scope recorded in the original specification and claims**. New content = beyond scope = dead end. When unsure about a feature, rather delete it than "improve" it.
 3. 👤 Submit the rectified documents through the system within the deadline stated in the notice (generally 2 months, per the notice), otherwise deemed withdrawn.
-4. When amendments involve replacement pages of the specification / claims, submit them per the system requirements (细则第58条).
+4. When amendments involve replacement pages of the specification / claims, submit them per the system's replacement-page requirements.
 
 ### Common rectification items
 
@@ -54,8 +56,8 @@ On receiving a "Notice of Rectification" (formal defects at the preliminary-exam
 | Reference-numeral issues | text and drawing numerals inconsistent / not numbered "图1, 图2" | align numerals (patent-compliance check 4) |
 | Missing abstract figure / not designated | drawings exist but no abstract figure designated | designate the figure best showing the technical features |
 | Abstract contains marketing language | "首创""领先" etc. | delete |
-| Claim format | multiple-dependent-claim citation violations / numerals as limitations | fix per 细则第25条 / 第22条 |
-| Missing documents | abstract / drawings omitted | submit later (note: late drawings may affect the filing date, 细则第46条) |
+| Claim format | multiple-dependent-claim citation violations / numerals as limitations | fix using the claims discipline and compliance check |
+| Missing documents | abstract / drawings omitted | follow the system's late-document procedure and assess filing-date impact |
 | Design: class / product-name mismatch | request inconsistent with brief description / images | unify the product name, verify the Locarno class |
 | Design: insufficient views or omission not declared | views don't match the faces involved by the design points; omitted views not declared in the brief description | add views or add the omission statement |
 | Design: brief description missing items | missing use / design points / designated image | complete the brief description |

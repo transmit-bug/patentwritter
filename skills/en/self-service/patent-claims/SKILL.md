@@ -6,13 +6,15 @@ allowed-tools: Read, Grep, Glob, Write, Edit
 
 # Writing the Claims (权利要求书)
 
+Standards pointer: `../patent-standards/references/cn-invention-utility.md`.
+
 Input: the four elements (technical problem / technical solution / distinguishing feature / technical effect) + application type (invention / utility model). If any input is missing, go back and ask — never write on guesswork.
 
 ## Type differences (settle the template first)
 
 | Dimension | Invention | Utility model |
 |---|---|---|
-| Independent-claim subject | Product / method / system | **Product only** (shape / construction / combination, 专利法第2条) |
+| Independent-claim subject | Product / method / system | **Product only** (shape / construction / combination) |
 | Method features | Algorithm / process allowed | **No method steps as main features**; only known method names as qualifiers |
 | Reference numerals | Allowed, in parentheses | Same |
 | Typical claim count | 8-15 | 5-10 |
@@ -28,7 +30,7 @@ For every feature in the solution ask: **if deleted, is the technical problem st
 
 ### Step 2 Write the independent claim → Done when: single paragraph, preamble + characterizing portion, one full stop
 
-Format (细则第24条):
+Format:
 
 ```
 一种<上位主题名称>,包括:<与最接近现有技术共有的必要特征>;其特征在于:<区别于现有技术的特征>。
@@ -36,7 +38,7 @@ Format (细则第24条):
 
 - Preamble: subject name + shared features. The X in "一种<X>" uses a **generic/upper-level term** (see Step 3), not the product name.
 - Characterizing portion: introduced by "其特征在于". If the distinguishing feature is not yet clear, go back to Stage 1 and ask — don't force it.
-- One application has only one independent claim (细则第24条), placed before all dependent claims.
+- Place the independent claim before dependent claims and keep the claim set internally consistent.
 
 ### Step 3 The generalization ladder (上位化) → Done when: every term passed the three questions
 
@@ -50,7 +52,7 @@ Abstract the concrete implementation level by level along "the essence of the pr
 
 **The three-question test** (every level up must pass):
 1. Does the generalization **still solve the original technical problem**? → No: step back one level.
-2. Is it **supported by an embodiment in the specification**? (专利法第26条第4款: claims shall be supported by the description) → No: either add an embodiment or step back.
+2. Is it **supported by an embodiment in the specification**? claims shall be supported by the description → No: either add an embodiment or step back.
 3. Is it a **pure functional limitation**? (only states "what it does", not "how it does it") → Yes: at least one implementation path must be disclosed, otherwise unsupported/unclear.
 
 - The generalization direction is set by the essence of the problem: if the problem is about "interaction between the user and a data service", app→client holds; if it is about "Bluetooth low-energy power saving", app→client fails and that limitation must be kept.
@@ -66,7 +68,7 @@ Dependent claims = **fallbacks**: when the over-broad independent claim is rejec
 | Variants | One claim per alternative implementation | independent "第一通信方式" → dependent "所述第一通信方式为蓝牙" + "为Wi-Fi" |
 | Enhancement | Add functional features | independent solution + dependent "还包括:根据用户反馈更新所述匹配模型" |
 
-Citation rules (细则第25条):
+Citation rules:
 - A dependent claim may only cite an **earlier** claim.
 - A multiple dependent claim must cite a single alternative: "根据权利要求1或2所述的…".
 - A multiple dependent claim **must not** serve as the basis of another multiple dependent claim ("根据权利要求3或4所述的…" violates this if claim 3 is multiple).
@@ -76,13 +78,13 @@ Citation rules (细则第25条):
 
 | Check | Rule |
 |---|---|
-| Terms consistent with the specification | 细则第22条; if the claims write "传感器", the specification must not write "感应器" for the same part |
+| Terms consistent with the specification | if the claims write "传感器", the specification must not write "感应器" for the same part |
 | Subject name consistent | independent claim, dependent-claim citation parts, and the specification title must agree |
 | "所述" has an antecedent | "所述处理器" must be preceded by "处理器" or "一种处理器" |
-| No "as shown in the figures" | 细则第22条: unless absolutely necessary, no "如图…所示" |
-| Reference numerals in parentheses only | 细则第22条: numerals go in parentheses, never as limitations |
+| No "as shown in the figures" | unless absolutely necessary, no "如图…所示" |
+| Reference numerals in parentheses only | numerals go in parentheses, never as limitations |
 | No leading phrases | "优选""例如""最好" are drafting words, not claim content |
-| No marketing language | 细则第20条 (specification) / 第22条 |
+| No marketing language | keep claim language technical and bounded |
 | One claim, one full stop | Practice: each claim ends with a single period |
 
 ## Term conversion table (product words → patent words)
@@ -105,7 +107,7 @@ Citation rules (细则第25条):
 | "一种智能门锁,其特征在于:能够自动识别用户" | pure functional limitation, no implementation path | state the mechanism: "包括图像采集模块和与所述图像采集模块连接的识别模块,所述识别模块配置为…" |
 | Putting "摄像头装在左上角" into the independent claim | implementation detail locks the protection scope | demote to dependent: "所述图像采集模块设于门体的上部" |
 | Mixing "一种X的方法" with "一种X" apparatus claims | mixed subjects, rejected in examination | method claims state steps, apparatus claims state structure, keep separate |
-| Multiple dependent claim citing another multiple dependent claim | violation (细则第25条) | cite a single claim, or split |
+| Multiple dependent claim citing another multiple dependent claim | violation | cite a single claim, or split |
 | "优选地,摄像头为红外摄像头" in the independent claim | leading phrase, muddled limitation | delete "优选地"; that limitation goes into a dependent claim |
 
 ## Completion standard (before handover)

@@ -17,26 +17,36 @@ Grouped by the four elements. Ask the groups in order; skip a question when the 
 8. What are the key parameters? (values / thresholds / counts / dimensions — → dependent-claim material and sufficient disclosure)
 9. How does data / signal flow? Who sends to whom? (→ connection relationships, for the drawings and embodiments)
 
-## C. Distinguishing feature (what differs from existing practice)
+## C. Core formula and implementation gate (formula-bearing cases only)
+
+Ask this group for algorithm, control, signal-processing, image-processing, optimization, and scheduling inventions. Do not infer answers from a paper abstract or from a familiar algorithm name.
+
+19. What exact quantity is calculated or judged at the inventive step? Write the equation or logic predicate in your own notation. (→ core formula)
+20. What does every symbol mean, what are its units/range, and what are the input/output signals? (→ variable semantics and physical meaning)
+21. How are initialization, thresholds, empty sets, ties, saturation, and boundary cases handled? (→ implementability and edge conditions)
+22. Where did the relation come from: your derivation, an experiment, a known formula, or a design choice? What alternative relation also works? (→ derivation/provenance and fallback)
+
+Completion gate: the core formula/logic is written, all variables are defined, boundary handling is known, and at least one embodiment and claim feature are linked to it. If any item is missing, record a blocker in 草稿/申请信息.md and pause only the affected core feature.
+
+## D. Distinguishing feature (what differs from existing practice)
 
 10. How is this step usually done on the market / in existing products? (→ closest prior art)
 11. Compared with that, what did you add? Which step did you change? (→ distinguishing feature, the core of the claims)
 12. Is this difference "never done by anyone", or "done but not done well"? (→ inventive-step argument material)
 13. Have you thought of other approaches achieving the same effect? (→ variants, fallback-deployment material)
 
-## D. Technical effect (how it is proven)
+## E. Technical effect (how it is proven)
 
 14. What's the benefit of doing it this way? (→ beneficial effects)
 15. How do you prove these benefits? Is there test / comparison data? What are the numbers? (→ data if available; otherwise mechanism reasoning only)
 16. Any side effects / costs? (→ honestly state the weaknesses, to avoid being caught in examination)
 
-## E. Disclosure and risk (triggers the grace-period reminder)
+## F. Disclosure and risk (triggers the grace-period reminder)
 
-17. Has this been disclosed before? — published an article? shown at an exhibition? sold a product? open-sourced? posted on a feed / 公众号? (→ 专利法第24条 grace-period determination)
-18. Could anyone else know your solution? (colleagues / partners / outsourcing) — disclosure without your consent: novelty is not lost within 6 months (专利法第24条第4项).
+17. Has this been disclosed before — published, exhibited, sold, open-sourced, posted, or shown to a third party?
+18. Could anyone else know the solution through colleagues, partners, outsourcing, or an unauthorized disclosure?
 
-Grace-period reminder wording (when any E-group item hits):
-"Under 专利法第24条, within 6 months before the filing date, three situations do not destroy novelty: first display at an international exhibition sponsored or recognized by the Chinese government, first publication at a prescribed academic or technical meeting, and disclosure by others without your consent. **Actively posting on 公众号 / open-sourcing / selling the product usually does NOT fall under the grace period** — if it already happened and more than 6 months have passed, the application has likely lost novelty and needs reassessment."
+When either answer is yes, record the date, channel, audience, evidence, and whether the inventor claims a statutory exception. Point to `../../patent-standards/references/cn-invention-utility.md` for the current disclosure/grace-period treatment; do not paste legal explanations into the interview record.
 
 ## Closing check (are the four elements complete)
 

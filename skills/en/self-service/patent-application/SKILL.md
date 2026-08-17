@@ -1,117 +1,73 @@
 ---
 name: patent-application
-description: Full-flow guide for inventors to file patents on their own (invention / utility model / design, CN) — disclosure interview, type determination, generating the application documents, pre-filing self-check, e-filing and rectification guidance. Entry skill; trigger with /skill:patent-application.
-disable-model-invocation: true
+description: "Coordinate the invention/utility-model drafting flow after routing: interview, record the four elements, invoke claims/specification/drawings, self-check, and assemble the requested delivery."
 allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion, Bash
 ---
 
-# Self-Service Patent Application Guide (发明/实用新型/外观设计)
+# Patent Application Orchestrator
 
-Turn the technology (or product appearance) in the inventor's head into a filable application package: invention / utility model = claims / specification / drawings / abstract; design = pictures or photographs + brief description. Then guide the filing.
+Use this skill **after** `../patent-router/` has recorded the source, deliverable, and type. This file owns sequencing and the inventor interview. It does not decide the route, repeat type rules, or duplicate the drafting disciplines.
 
-## Boundaries
+## Inputs and outputs
 
-- Scope: disclosure → type determination → drafting → self-check → assembly → filing and rectification.
-- Substantive-examination OA responses are not in this package (the professional-agent direction, the `professional/` group of the repo).
-- Inventors are not fluent in jargon: ask questions in plain language, produce output in formal application language.
+Input: a route record in `草稿/申请信息.md`, inventor materials under `.patent/materials/`, and any declared template.
 
-## Honesty red line
+For invention / utility model:
 
-The background art only contains prior art with a source; if none can be obtained, write nothing — definition (the three kinds of material) single source: CONTEXT.md「诚实红线」; the executable version (including the "can the user tell you where this came from" test) is in `../patent-specification/SKILL.md` Part 2.
+- filing set: `草稿/权利要求书.md`, `草稿/说明书.md`, `草稿/摘要.md`, `草稿/附图说明.md`, applicable drawings, and the corresponding `成品/申请文件/*.docx` when Word is requested;
+- disclosure only: `草稿/技术交底书.md` and, when requested, `成品/技术交底书.docx`;
+- both: produce both sets without treating the disclosure as a filing document.
 
-## `.patent/` support workspace (optional, recommended)
+For design: use the design branch's brief description, view list, and supplied images; do not generate invention/utility-model claims or a five-part specification.
 
-Create `.patent/` under the inventor's project root, kept separate from the application drafts:
+## Sequence
 
-```
-.patent/
-├── sources/    # declarative: patent-standard citation lists, declared external-source entries
-├── materials/  # documentary: inventor materials, copies of retrieved hits (ingested docx/pptx and extracted figures also land here)
-└── queries/    # networked lookup process: Valyu / CNIPA / Google Patents search records and results
-```
+### 1. Intake interview → four elements complete
 
-- Search results land in `queries/`, materials in `materials/`, citation lists in `sources/` (both Stage-1 ingestion and Stage-2 novelty search follow this).
-- Application drafts stay in the visible `patent-application/`, never mixed into `.patent/`.
-- Suggest gitignoring `.patent/` (keep the trail if you want).
+For invention / utility model, read `references/interview.md` and record:
 
-## Process: six stages, each with a completion standard
+- technical problem;
+- minimally implementable technical solution;
+- distinguishing feature;
+- technical effect and its evidence.
 
-### Stage 1 Disclosure interview → Done when: the four elements are complete, written into 草稿/申请信息.md
+For a formula-bearing case, complete the core-formula questions in that reference. The model may normalize confirmed material, but must not invent a core formula or experimental result. For design, use `references/design-points.md` instead of the four-element interview.
 
-The four elements = technical problem / technical solution (minimally implementable) / distinguishing feature / technical effect. Ask group by group using the question bank in `references/interview.md`, at most 4 questions per group via AskUserQuestion.
+Ask about disclosure status and preserve the inventor's source trail. Put retrieved references and user materials in `.patent/`; keep the drafting body readable.
 
-**Designs run a different interview line** (the inventor describes the product appearance — shape / pattern / color, aesthetics-driven, no functional-structural improvement): ask the design interview groups in `references/design-points.md` instead (class / design points / view materials / similar designs / color), with the completion standard "class + design points + view materials complete".
+### 2. Draft only the requested branch
 
-Questioning discipline:
-- The inventor gives the description first; you extract the four elements and **ask only for what's missing**, not what's already there.
-- Record product names / brands / UI words on the spot; hand them to patent-claims' term conversion table at drafting time.
-- Always ask "how do you prove the effect": data if there is data, mechanism reasoning only if not — never fabricate.
-- Ask whether it has been disclosed (article / exhibition / sale / leak) → triggers the grace-period reminder (专利法第24条, see interview.md).
-- If the inventor brings existing materials (.docx disclosure / design description / .pptx review deck): ingest via the degradation chain in `../conversion/SKILL.md`; materials and extracted figures land in `.patent/materials/` (above).
+- Filing set, invention / utility model: read and execute `../patent-claims/SKILL.md`, then `../patent-specification/SKILL.md`, then `../patent-drawings/SKILL.md` when figures apply.
+- Filing set, design: execute the design branch in `references/design-points.md`; images are inventor-supplied.
+- Disclosure only: assemble according to `references/disclosure-document.md`; do not manufacture claims or statutory filing sections merely to fill space.
 
-### Stage 2 Type determination → Done when: type + rule basis written into 草稿/申请信息.md
+Each discipline owns its own completion standard. Every retained claim feature must have a specification landing point; every core formula must have confirmed variables, conditions, and embodiment support.
 
-Use the decision tree in `references/type-decision.md` to determine invention / utility model / design / dual filing (一案两请). The rule basis comes from patent-standards' verified anchors, never from impression. For designs, continue with `references/design-points.md` for the class and Locarno classification hints.
+### 3. Self-check → zero unresolved criticals
 
-**Novelty search (optional, recommended)** — run one pass before drafting the background art; write only the actual results (honesty red line): see `references/search-guide.md` (Valyu main path + CNIPA manual five-step search).
+Read `../patent-compliance/SKILL.md`. Run only the checks applicable to the selected type and deliverable. Return unresolved blockers to the inventor instead of silently filling them.
 
-### Stage 3 Drafting → Done when: the four files are on disk, no placeholders (design: brief description + view list)
+### 4. Assemble and deliver
 
-**Invention / utility model**: read the three discipline skills in full and execute per them (paths relative to this directory):
-1. `../patent-claims/SKILL.md` — claims
-2. `../patent-specification/SKILL.md` — specification + abstract
-3. `../patent-drawings/SKILL.md` — drawings + abstract-figure designation (mandatory for utility models; an invention with figures is sturdier)
+Read `../conversion/SKILL.md` for Markdown-to-Word conversion, template reuse, formula conversion, and the acceptance gate. Read `references/disclosure-document.md` for the single consolidated disclosure structure. Never mix `草稿/` and `成品/`.
 
-Output to the user's working directory `patent-application/` — **drafts, figure sources and deliverables are layered, never mixed** (ADR-0008):
-```
-patent-application/
-├── 草稿/                     ← editable working drafts (md)
-│   ├── 申请信息.md           ← four elements + type + grace-period determination
-│   ├── 权利要求书.md
-│   ├── 说明书.md
-│   ├── 摘要.md
-│   └── 附图说明.md           ← numbering + numeral list + abstract-figure designation
-├── 附图/                     ← figure workspace (see ../patent-drawings/SKILL.md Step 2)
-│   ├── 源文件/fig1.dot …     ← dot sources (regenerable)
-│   ├── 预览/fig1.svg …       ← vector preview / version retention
-│   └── 嵌入/fig1.png …       ← bitmap for Word inline embedding / filing
-└── 成品/                     ← deliverables, created at Stage 5 (directly usable)
-    ├── 申请文件/…            ← CNIPA 分文件递交 docx
-    └── 技术交底书.docx       ← consolidated disclosure (agency / review)
-```
-The md drafts reference figures as relative paths `../附图/嵌入/figN.png`.
+### 5. Filing guidance, only when requested
 
-**Design**: read `references/design-points.md` → generate `简要说明.md` + `视图清单.md`; view materials (by the number of faces the design points involve, photos or line drawings) are provided by the inventor — the AI only organizes the view list and checks compliance, never draws. Output layout:
+When the user requests filing or rectification guidance, hand off to `../patent-filing/SKILL.md`. Do not load filing procedure during drafting unless the route record asks for it.
 
-```
-patent-application/
-├── 草稿/
-│   ├── 申请信息.md       ← class + design points + color declaration + similar designs
-│   ├── 简要说明.md       ← name / use / design points / designated image / omitted views / color
-│   └── 视图清单.md       ← six views + perspective view correspondence table
-├── 图片/主视图.png …     ← provided by the inventor (black-white/gray, by the faces the design points involve, see references/design-points.md); these ARE the filing deliverables
-└── 成品/                 ← created at Stage 5
-```
+## Single pointers
 
-### Stage 4 Self-check → Done when: zero criticals (at most two rounds; anything still critical after two rounds gets listed explicitly)
+- Type choice: `references/type-decision.md`.
+- Design interview and views: `references/design-points.md`.
+- Prior-art search: `references/search-guide.md` and `../tools/patents-search/`.
+- CN standards: `../patent-standards/SKILL.md` and the one relevant reference named there. Do not copy statutory text or long rule-basis tables into this orchestrator.
+- Word and existing-material conversion: `../conversion/SKILL.md`.
 
-Read `../patent-compliance/SKILL.md`, run all check items against the produced files (invention / utility model: claims + specification + drawings; design: brief description + views), output the check report. Critical issues → back to Stage 3 to fix; anything still critical after two rounds: list it and let the user decide.
+## Completion standard
 
-### Stage 5 Assembly → Done when: filing checklist confirmed + Word delivery (optional)
-
-Verify: title consistency, files complete, reference-numeral consistency, abstract figure designated. Give the filing document list for each type (the request form is generated by the system; remind the user to fill it).
-
-**Generate Word delivery (invention / utility model, when the inventor needs .docx)**: read `../conversion/SKILL.md` and produce **both delivery sets** (ADR-0008):
-1. **申请文件**: same-named .docx for `草稿/权利要求书.md / 说明书.md / 摘要.md` → `成品/申请文件/` (fixed filenames, one file per document, no timestamps), figures inlined from `附图/嵌入/figN.png` — for CNIPA 分文件递交.
-2. **技术交底书**: first assemble `草稿/技术交底书.md` per `references/disclosure-document.md` (merge 申请信息 + 说明书 + 附图 + 权利要求书 + 摘要), then convert → `成品/技术交底书.docx` — for 交代理机构/内部评审.
-
-Done when: the four .docx exist under `成品/` with no missing figures; or the degradation chain was explicitly followed (deliver .md + manual save-as guidance), telling the user the current artifact format.
-
-### Stage 6 Filing and rectification guidance → Done when: step-by-step guidance given, human-only steps marked
-
-Read `../patent-filing/SKILL.md`, give the inventor the e-filing steps they can do themselves, marking which only a human can do (registration / payment / signature). When the user receives a rectification notice, come back to this stage and use patent-filing's rectification protocol.
-
-## Skill relations
-
-- This entry invokes only the model-invoked discipline skills above; it never invokes another entry skill.
-- Legal anchors live centrally in `../patent-standards/` (invention / utility model → `references/cn-invention-utility.md`; design → `references/cn-design.md`); this skill does not repeat statute text, only cites at decision points.
+- [ ] Route record exists and is respected
+- [ ] Only the selected type and deliverable branches ran
+- [ ] Four elements or design points are recorded
+- [ ] Requested drafts and figures exist, with no invented material
+- [ ] Applicable self-check has no unresolved criticals
+- [ ] Word output passed the conversion acceptance gate, or the degradation/blocker report was delivered

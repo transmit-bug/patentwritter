@@ -18,7 +18,8 @@ npx skills add transmit-bug/patentwritter
 skills/
 ├── en/                              # en 语言组(2026-08 起,内容英文化,语言作为顶层命名空间)
 │   ├── self-service/                # B 组:发明人自助(本包主体)
-│   │   ├── patent-application/      # 入口(user-invoked):交底访谈+类型判断+编排(含外观设计分支)
+│   │   ├── patent-router/           # 总入口:材料来源+交付目标+专利类型+模板路由
+│   │   ├── patent-application/      # 访谈与编排(不再承担总路由)
 │   │   ├── patent-claims/           # 权利要求撰写(独权/从权/上位化/退路布防)
 │   │   ├── patent-specification/    # 说明书五段式+摘要
 │   │   ├── patent-drawings/         # 附图+附图标记一致性+摘要附图+外观视图清单
@@ -47,9 +48,10 @@ skills/
 
 ## 技能关系(依赖化/层级化)
 
-- **入口**(`patent-application`,disable-model-invocation)编排全流程,调用 model-invoked discipline 技能;入口不调用入口。
-- **Discipline 技能**(claims/specification/drawings/compliance/filing)承载可复用撰写纪律,模型按需自动加载,也被入口调用。
-- **法律锚点单一来源**:`patent-standards` 的分型 references(发明/实用新型、外观设计、US;2026-08-11/12 对 CNIPA 全文实测核实),各技能按类型引用锚点,不重复条文。
+- **Router**(`patent-router`)先处理材料来源、交付目标、专利类型和模板选择，再转交最小技能集合。
+- **Application orchestrator**(`patent-application`)只负责访谈、顺序和交付编排；不重复路由和类型规则。
+- **Discipline 技能**(claims/specification/drawings/compliance/filing)只承载各自工件的撰写或检查纪律。
+- **法律锚点单一来源**:`patent-standards` 的分型 references；self-service 技能只保留文件索引，法律细节按需读取，不把 Rule basis 表格复制进用户文稿。
 
 ## 设计原则
 

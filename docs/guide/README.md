@@ -8,7 +8,7 @@
 npx skills add transmit-bug/patentwritter
 ```
 
-安装后技能位于 `<agent-skills-dir>/` 下,按 `skills/en/<组别>/<技能>/` 三层结构被发现(语言命名空间见根 README「标准」一节)。技能正文为英文(2026-08-13 英文化),法律条文引用与发明人交付物保留中文。
+安装后技能位于 `<agent-skills-dir>/<skill-name>/` 下;源树同样拍平(`skills/<skill-name>/`,ADR-0010,无语言/类别目录)。技能正文为英文(2026-08-13 英文化),法律条文引用与发明人交付物保留中文。
 
 ## 两条独立链路,各有入口
 
@@ -23,7 +23,7 @@ npx skills add transmit-bug/patentwritter
 
 ## 技能清单
 
-### B 组:自助申请(`skills/en/self-service/`)
+### B 组:自助申请(5 技能)
 
 | 技能 | 职责 | 不做什么 |
 |---|---|---|
@@ -35,7 +35,7 @@ npx skills add transmit-bug/patentwritter
 
 B 组内共享的判断逻辑放在 `patent-intake/references/` 下按需读取(来源模式 `source-modes.md`、访谈、类型判定 `type-decision.md`、外观要点 `design-points.md`、交底书结构、检索指引 `search-guide.md`)。
 
-### A 组:专业授权(`skills/en/professional/`)
+### A 组:专业授权
 
 入口 `patent-prosecution`(user-invoked)按「你手里有什么材料」查表分发到五个 discipline(model-invoked,各自可独立被发现):
 
@@ -51,14 +51,14 @@ B 组内共享的判断逻辑放在 `patent-intake/references/` 下按需读取(
 
 **A 组边界(ADR-0007 决策 7)**:FTO / 专利布局 / 维权 / 许可(授权后业务)与 US 执业不在范围内;全新申请的机械撰写也不走 A 组——回到 B 组入口。
 
-### 工具组(`skills/en/tools/`)
+### 工具组
 
 | 技能 | 职责 | 关键约束 |
 |---|---|---|
 | `patents-search` | 委托检索:Valyu 语义检索 API 查先有技术(USPTO/EPO 全文) | 可选工具,流程不依赖;CN 专利不在 Valyu 数据源内,CN 现有技术走 CNIPA 手动检索(search-guide);需自备 API key |
 | `conversion` | 纯文档转换纪律:Stage-1 材料摄入(docx/pptx → md)与 Stage-5 Word 交付(md → docx) | 零脚本零依赖(ADR-0005),环境探测降级链(python-docx → pandoc → 手动),全不可用则 fail loud |
 
-### 共享目录(`skills/en/patent-standards/`)
+### 共享目录
 
 薄索引 + 按类型拆分的权威文本锚点(`references/`:CN 发明/实用新型、CN 外观、US、CN 专业执业、专业纪律、目录)。**单一来源**:所有技能的法律断言按需读取这里核实的条号,不在各自正文复制法条表格;它只声明**有什么、在哪里**,从不负责怎么检索。
 

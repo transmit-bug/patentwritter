@@ -1,6 +1,6 @@
 # Professional Discipline (专业组共享纪律 — declare / consume / cite / fail loud / never invent)
 
-> Consumers: every skill in the professional group (`skills/en/professional/`), jurisdiction-neutral — CN skills follow it via `cn-professional.md`, US skills via `us.md`.
+> Consumers: every skill in the professional direction, jurisdiction-neutral — CN skills follow it via `cn-professional.md`, US skills via `us.md`.
 > Source contract: package-repo `docs/prototype/delegation-contract.md` (not shipped); index-side pointer in `../SKILL.md`.
 > This file is the **single home** of the professional discipline. The per-jurisdiction anchor files (`us.md`, `cn-professional.md`) reference it and never maintain a second copy — keep the five clauses here only.
 

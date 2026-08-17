@@ -7,7 +7,7 @@ allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion
 
 # Professional Prosecution Pipeline (授权链路编排入口)
 
-Professional-group **entry** skill (ADR-0007 decisions 1 & 5): user-invoked, orchestrates the five discipline skills of `skills/en/professional/` — the discipline skills carry the pleading logic and are model-invoked; this skill only routes and gates. No statute text is repeated here; every discipline skill reads the shared discipline and its anchors itself.
+Professional-group **entry** skill (ADR-0007 decisions 1 & 5): user-invoked, orchestrates the five discipline skills of the professional direction — the discipline skills carry the pleading logic and are model-invoked; this skill only routes and gates. No statute text is repeated here; every discipline skill reads the shared discipline and its anchors itself.
 
 ## Boundaries
 

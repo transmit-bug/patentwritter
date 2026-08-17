@@ -1,6 +1,6 @@
 # United States — Verified Anchors (US — 核实锚点)
 
-> Consumers: professional group (`skills/en/professional/`'s patent-application-creator / patent-claims-analyzer, currently hidden).
+> Consumers: professional group (professional direction's patent-application-creator / patent-claims-analyzer, currently hidden).
 > Verification: 2026-08-10 verified item by item against official sources (per-item sources in package-repo `docs/research/standards-catalog.md`, not shipped).
 
 ## Discipline

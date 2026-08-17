@@ -15,27 +15,24 @@ npx skills add transmit-bug/patentwritter
 ## 布局(skills.sh 类别目录标准)
 
 ```
-skills/
-├── en/                              # en 语言组(2026-08 起,内容英文化,语言作为顶层命名空间)
-│   ├── self-service/                # B 组:发明人自助(本包主体,ADR-0009 后 5 技能)
-│   │   ├── patent-intake/           # 前门+编排:路由三轴+统一来源处理+访谈+阶段清单+回边路由
-│   │   ├── patent-drafting/         # 权利要求书+说明书五段式+摘要(支撑链单一所有者)
-│   │   ├── patent-drawings/         # 附图+附图标记一致性+摘要附图+外观视图清单
-│   │   ├── patent-compliance/       # 递交前自检(支撑链/清楚性/形式)
-│   │   └── patent-filing/           # 递交与补正指引
-│   ├── professional/                # A 组(ADR-0007 已实现):CN 授权链路技能集 + 入口 + 保留 US 技能(隐藏)
-│   │   ├── patent-prosecution/          # 入口(user-invoked):授权链路编排路由
-│   │   ├── patent-oa-response/          # OA 答复(旗舰:模式 D 纯文档收编 + 三步法)
-│   │   ├── patent-re-exam/              # 复审请求书
-│   │   ├── patent-invalidation/         # 无效(请求+答辩双向)
-│   │   ├── patent-evaluation-report/    # 专利权评价报告(请求与解读)
-│   │   ├── patent-claim-strategy/       # 权利要求策略(保护范围/答复修改/分案/优先权)
-│   │   ├── patent-application-creator/  # 保留 US 资产(隐藏,待重做)
-│   │   └── patent-claims-analyzer/      # 保留 US 资产(隐藏,待重做)
-│   ├── tools/
-│   │   ├── patents-search/          # 委托检索(可选工具,流程不依赖)
-│   │   └── conversion/              # 纯文档转换纪律:Word 交付/材料摄入(零脚本,可选依赖)
-│   └── patent-standards/            # 共享目录:薄索引 + 分型 references(发明/实用新型、外观、US 锚点 + CN 专业执业锚点 + 共享专业纪律 + 目录 + 声明外部源)
+skills/                              # flat 源树(ADR-0010):全部技能直挂 skills/ 下,依赖图不分目录
+├── README.md                       # 包级技能关系图(自助链路三流模型)
+├── patent-intake/                  # 自助链路前门+编排:路由三轴+统一来源处理+访谈+阶段清单+回边路由
+├── patent-drafting/                # 权利要求书+说明书五段式+摘要(支撑链单一所有者)
+├── patent-drawings/                # 附图+附图标记一致性+摘要附图
+├── patent-compliance/              # 递交前自检(支撑链/清楚性/形式)
+├── patent-filing/                  # 递交与补正指引
+├── patent-standards/               # 共享目录:薄索引 + 分型 references(发明/实用新型、外观、US 锚点 + CN 专业执业锚点 + 共享专业纪律 + 目录 + 声明外部源)
+├── conversion/                     # 纯文档转换纪律:Word 交付/材料摄入(零脚本,可选依赖)
+├── patents-search/                 # 委托检索(可选工具,流程不依赖)
+├── patent-prosecution/             # 专业链路入口(user-invoked):授权链路编排路由
+├── patent-oa-response/             # OA 答复(旗舰:模式 D 纯文档收编 + 三步法)
+├── patent-re-exam/                 # 复审请求书
+├── patent-invalidation/            # 无效(请求+答辩双向)
+├── patent-evaluation-report/       # 专利权评价报告(请求与解读)
+├── patent-claim-strategy/          # 权利要求策略(保护范围/答复修改/分案/优先权)
+├── patent-application-creator/     # 保留 US 资产(隐藏,待重做)
+└── patent-claims-analyzer/         # 保留 US 资产(隐藏,待重做)
 ```
 
 ## 专业组(A 组)构成
@@ -72,4 +69,4 @@ docs/
 
 ## 标准
 
-遵循 [skills.sh / Agent Skills](https://www.skills.sh/docs) 包约定:技能 = 含 `SKILL.md`(frontmatter 有 `name`+`description`)的目录,从 `skills/` 容器发现,支持 `skills/<category>/<name>/` 类别布局。**语言组约定(2026-08-13)**:标准本身无语言概念,本包把语言作为顶层类别目录(`skills/en/<category>/<name>/SKILL.md`),发现机制 3 层遍历兼容;法律条文引用(专利法/细则/指南条号)与发明人交付物模板保留中文原文。
+遵循 [skills.sh / Agent Skills](https://www.skills.sh/docs) 包约定:技能 = 含 `SKILL.md`(frontmatter 有 `name`+`description`)的目录,从 `skills/` 容器发现。**源树拍平(2026-08-13,ADR-0010)**:全部技能直挂 `skills/<name>/`,不设语言命名空间与类别目录——技能间是跨方向共享的依赖图,分组只制造目录开销;正文为英文(2026-08-13 英文化),法律条文引用(专利法/细则/指南条号)与发明人交付物模板保留中文原文。

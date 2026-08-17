@@ -34,7 +34,7 @@ Orchestrates the complete patent creation workflow as follows. The skill owns th
 
 ## Retrieval & citation (read first)
 
-This skill follows the delegation contract (`docs/prototype/delegation-contract.md`) and the patent-standards catalog (`skills/en/patent-standards/references/us.md`):
+This skill follows the delegation contract (`docs/prototype/delegation-contract.md`) and the patent-standards catalog (`patent-standards/references/us.md`):
 
 1. **Declare** — before any novelty or legal assertion, name the need: `[PRIOR-ART] <technology description>` / `[STANDARD] US <topic>`.
 2. **Consume** — work only from what retrieval returned (search results with real patent numbers/URLs; standards read from catalog-declared materials).
@@ -204,7 +204,7 @@ Before delivering, scan the output: any legal or prior-art assertion without a c
 
 ### Phase 6: Compliance & Validation (15-20 min)
 
-Every check cites its catalog anchor; never assert compliance from memory. The catalog: `skills/en/patent-standards/references/us.md` (35 USC / 37 CFR / MPEP), provenance `docs/research/standards-catalog.md`.
+Every check cites its catalog anchor; never assert compliance from memory. The catalog: `patent-standards/references/us.md` (35 USC / 37 CFR / MPEP), provenance `docs/research/standards-catalog.md`.
 
 1. **Formalities Check**:
    - Run **patent-claims-analyzer** on the claims

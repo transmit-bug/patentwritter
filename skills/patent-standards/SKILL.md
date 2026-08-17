@@ -24,8 +24,8 @@ Anchor verification: invention / utility model 2026-08-11, design 2026-08-12, bo
 
 Two consumption modes (ADR-0004):
 
-- **Self-service group (`skills/en/self-service/`)**: use the corresponding reference file as an on-demand standards pointer. Keep the drafting and interview content clean; do not paste article numbers, statutory explanations, or `Rule basis` tables into the user-facing draft. Only surface a standards detail when the user asks for a legal explanation or a compliance blocker requires it.
-- **Professional group (`skills/en/professional/`)**: read `references/professional-discipline.md` (the shared discipline — declare / consume / cite / fail loud / never invent, single jurisdiction-neutral home) and the per-jurisdiction anchor file — `references/us.md` (US skills, reserved, hidden) or `references/cn-professional.md` (CN prosecution skills, per ADR-0007). Follow the discipline; cite the per-jurisdiction anchors.
+- **Self-service direction (B 组)**: use the corresponding reference file as an on-demand standards pointer. Keep the drafting and interview content clean; do not paste article numbers, statutory explanations, or `Rule basis` tables into the user-facing draft. Only surface a standards detail when the user asks for a legal explanation or a compliance blocker requires it.
+- **Professional direction (A 组)**: read `references/professional-discipline.md` (the shared discipline — declare / consume / cite / fail loud / never invent, single jurisdiction-neutral home) and the per-jurisdiction anchor file — `references/us.md` (US skills, reserved, hidden) or `references/cn-professional.md` (CN prosecution skills, per ADR-0007). Follow the discipline; cite the per-jurisdiction anchors.
 
 ## The discipline — four clauses, one prohibition (professional full version)
 

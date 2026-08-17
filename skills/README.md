@@ -1,6 +1,24 @@
-# Skills map (flat source layout, ADR-0010)
+# Skills map (grouped source layout, ADR-0011)
 
-All skills sit directly under `skills/` — the dependency graph crosses former group boundaries, so there are no category directories. The **self-service chain** below is the package's core; the **professional chain** (`patent-prosecution` entry + five prosecution disciplines + hidden reserved US skills) lives alongside, see package-repo `docs/guide/README.md`.
+```text
+skills/
+├── self-service/     自助组:发明人自助链路(5 技能,包主体)
+├── professional/     专业组:CN 授权链路(入口 + 5 discipline + 2 隐藏 US 保留)
+├── tools/            工具组:conversion(转换纪律)、patents-search(委托检索,可选)
+└── patent-standards/ 跨组共享:分型法律锚点(两组均依赖)
+```
+
+**分组 = 安装单元**(实测 2026-08-13):
+
+```bash
+npx skills add transmit-bug/patentwritter                        # 整包(推荐,14 技能引用全通)
+npx skills add transmit-bug/patentwritter/skills/self-service    # 只装自助组 5 技能
+npx skills add transmit-bug/patentwritter/skills/professional    # 只装专业组 6 可见技能
+```
+
+子路径安装后,跨组引用需一并补装共享与工具:`skills/patent-standards`(两组都需要)、`skills/tools/conversion`(自助组需要)、`skills/tools/patents-search`(可选)。也支持 `-s <names>` 按名选择。
+
+The **self-service chain** is the package's core; the professional chain and reserved US skills live under `professional/`, see package-repo `docs/guide/README.md`.
 
 `patent-intake` is the front door and orchestrator of the self-service chain; the disciplines below it each own one artifact. The workspace directory in the inventor's project is `patent-application/` (草稿/附图/成品, ADR-0008) — a **workspace name, not a skill name**.
 
@@ -8,14 +26,14 @@ All skills sit directly under `skills/` — the dependency graph crosses former 
 
 | Skill | Role | Owns |
 |---|---|---|
-| `patent-intake` | front door + orchestrator | routing (source × deliverable × type), interview, stage checklist, back edges, assembly handoff; shared `references/` |
-| `patent-drafting` | discipline | 权利要求书 + 说明书 + 摘要, the support chain as one owner (claims first, then specification) |
-| `patent-drawings` | discipline | 附图, numeral consistency, abstract figure |
-| `patent-compliance` | discipline | pre-filing self-check, report at `草稿/检查报告.md` |
-| `patent-filing` | discipline | filing / rectification guidance, 👤 steps marked |
-| `patent-standards/` | service | standards index and on-demand anchors |
-| `conversion/` | service | DOCX/PDF/PPTX intake **and** Word delivery (one skill, two ends of the pipeline) |
-| `patents-search/` | service | delegated prior-art search (optional) |
+| `self-service/patent-intake` | front door + orchestrator | routing (source × deliverable × type), interview, stage checklist, back edges, assembly handoff; shared `references/` |
+| `self-service/patent-drafting` | discipline | 权利要求书 + 说明书 + 摘要, the support chain as one owner (claims first, then specification) |
+| `self-service/patent-drawings` | discipline | 附图, numeral consistency, abstract figure |
+| `self-service/patent-compliance` | discipline | pre-filing self-check, report at `草稿/检查报告.md` |
+| `self-service/patent-filing` | discipline | filing / rectification guidance, 👤 steps marked |
+| `patent-standards` | shared service | standards index and on-demand anchors |
+| `tools/conversion` | service | DOCX/PDF/PPTX intake **and** Word delivery (one skill, two ends of the pipeline) |
+| `tools/patents-search` | service | delegated prior-art search (optional) |
 
 Merge rationale (ADR-0009): a skill survives only if it passes one of four tests — independent re-entry, distinct tool surface / failure mode, checker independence from drafter, load budget. router+application and claims+specification failed all four and were merged into `patent-intake` / `patent-drafting`.
 

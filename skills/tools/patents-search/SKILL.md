@@ -29,7 +29,7 @@ The `scripts/search` commands in this documentation are relative to this skill's
 Before running any command, locate the script (works for both this repo's layout and installed plugins):
 
 ```bash
-# this repo: scripts live at patents-search/scripts/search
+# this repo: scripts live at tools/patents-search/scripts/search (grouped source layout)
 PATENTS_SCRIPT="$(dirname "$0")/scripts/search"          # when invoked from inside the skill dir
 # or resolve by name from anywhere:
 PATENTS_SCRIPT=$(find . -name search -path "*/patents-search/*/scripts/*" -type f 2>/dev/null | head -1)

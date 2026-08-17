@@ -31,7 +31,7 @@ Extract every "<name>(<numeral>)" from the specification text and build the nume
 
 Check: parts mentioned in the text without numerals get numerals; parts you want to draw that the text never mentions — either add them to the text or don't draw them.
 
-### Step 2 Draw → Done when: each figure corresponds to a specification paragraph, all numerals come from the list
+### Step 2 Draw → Done when: each figure corresponds to a specification paragraph, all numerals come from the list, and the layout is landscape and well-filled
 
 Render with Graphviz DOT into the layered figure workspace (ADR-0008; layout in `../patent-intake/SKILL.md` "Workspace layout"): `源文件/` holds the `.dot` sources, `预览/` the svg previews, `嵌入/` the png bitmaps used for Word embedding and filing. Output under `patent-application/附图/`:
 
@@ -53,6 +53,12 @@ dot -Tpng 源文件/fig1.dot -o 嵌入/fig1.png   # png for Word inline embeddin
 ```
 
 The `.md` drafts (草稿/说明书.md, 草稿/技术交底书.md) reference each figure as `../附图/嵌入/figN.png`.
+
+**Landscape-first layout** (readability rule, applies to every figure): the figure must read at a glance — **width greater than height, near-rectangular, canvas well filled (饱满)**. Squint at the svg preview: a landscape rectangle with no large empty corners and no dangling outliers passes.
+
+- Default `rankdir=LR` for chains and flows; structural diagrams stay balanced, not deep towers. Target 宽:高 roughly between 4:3 and 16:9.
+- A tall narrow snake (one node per rank, many ranks) fails: regroup branches into rows (`rank=same`), or split a long sequence into two figures (each still one subject per view).
+- Keep it full: uniform spacing (`nodesep`/`ranksep` close in value), parallel branches aligned, no orphan subgraph floating in a corner.
 
 Figure checks:
 - Figures are numbered "图1, 图2, …" in order, one-to-one with the "brief description of drawings" in the specification.
@@ -83,6 +89,7 @@ A design's "drawings" are **pictures or photographs** not dot-rendered line diag
 - [ ] Numeral list matches the specification text in both directions (Steps 1 + 3)
 - [ ] Figure-number order consistent with the brief description of drawings
 - [ ] Black-white line art, no stray annotations
+- [ ] Landscape, near-rectangular, well-filled layout for every figure
 - [ ] Abstract figure designated (utility model: structural figure preferred)
 - [ ] Utility model: has a structural figure
 - [ ] Every figure produced as both `预览/figN.svg` and `嵌入/figN.png` (Word embedding figures generated, none missing)

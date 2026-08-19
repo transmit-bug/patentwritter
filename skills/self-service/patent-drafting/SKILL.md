@@ -6,7 +6,7 @@ allowed-tools: Read, Grep, Glob, Write, Edit
 
 # Patent Drafting (claims → specification → abstract)
 
-Role: **discipline** of the self-service group (ADR-0009). Input: the four elements (technical problem / technical solution / distinguishing feature / technical effect) + application type (invention / utility model), plus the route record from `../patent-intake/SKILL.md`. If any input is missing, go back to the interview — never write on guesswork. This skill does not interview the inventor; when a fact is missing, return it as a blocker to patent-intake.
+Role: **discipline** of the self-service group. Input: the four elements (technical problem / technical solution / distinguishing feature / technical effect) + application type (invention / utility model), plus the route record from `../patent-intake/SKILL.md`. If any input is missing, go back to the interview — never write on guesswork. This skill does not interview the inventor; when a fact is missing, return it as a blocker to patent-intake.
 
 Order is fixed: **claims first, then the specification** — the specification is the support structure for the claims. The support chain is owned here in one place; a gap found while writing Part B is fixed by re-entering Part A, not by papering over it.
 
@@ -93,28 +93,7 @@ Citation rules:
 | No marketing language | keep claim language technical and bounded |
 | One claim, one full stop | Practice: each claim ends with a single period |
 
-### Term conversion table (product words → patent words)
-
-| The inventor says | The claim writes |
-|---|---|
-| 手机/平板 | 移动终端、便携式计算设备 |
-| 服务器/云端 | 服务端、远程处理单元 |
-| 按钮/页面/弹窗 | 输入控件、显示界面、提示信息 |
-| 微信/支付宝/App | 应用程序、第三方应用接口 |
-| 摄像头 | 图像采集装置 |
-| 芯片/CPU | 处理单元 |
-| "自动" | 根据…确定 / 响应于…(写明触发条件) |
-| 口语连接词 | 响应于 / 根据 / 基于 / 配置为 |
-
-### Common mistakes (wrong vs right)
-
-| Mistake | Problem | Fix |
-|---|---|---|
-| "一种智能门锁,其特征在于:能够自动识别用户" | pure functional limitation, no implementation path | state the mechanism: "包括图像采集模块和与所述图像采集模块连接的识别模块,所述识别模块配置为…" |
-| Putting "摄像头装在左上角" into the independent claim | implementation detail locks the protection scope | demote to dependent: "所述图像采集模块设于门体的上部" |
-| Mixing "一种X的方法" with "一种X" apparatus claims | mixed subjects, rejected in examination | method claims state steps, apparatus claims state structure, keep separate |
-| Multiple dependent claim citing another multiple dependent claim | violation | cite a single claim, or split |
-| "优选地,摄像头为红外摄像头" in the independent claim | leading phrase, muddled limitation | delete "优选地"; that limitation goes into a dependent claim |
+While writing A2 / A3 / A5, consult `references/claim-language.md` (same directory as this skill): the term conversion table (product words → patent words) and the common-mistakes table (wrong vs right).
 
 ---
 

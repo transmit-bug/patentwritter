@@ -1,12 +1,12 @@
 ---
 name: conversion
-description: Conversion discipline for Word delivery of application documents and ingestion of existing .docx / .pptx materials (document-only capability, zero scripts zero dependencies, ADR-0005). Covers two template modes — style inheritance and filling content into an existing DOCX template. Use when the user asks to "convert to Word", "generate docx", "export to Word", "turn my existing disclosure / PPT into text", "use a Word template", or "fill my template"; also invoked by the patent-intake entry skill (ingestion at the pipeline head, delivery at the tail).
+description: Conversion discipline for Word delivery of application documents and ingestion of existing .docx / .pptx materials (document-only capability, zero scripts zero dependencies). Covers two template modes — style inheritance and filling content into an existing DOCX template. Use when the user asks to "convert to Word", "generate docx", "export to Word", "turn my existing disclosure / PPT into text", "use a Word template", or "fill my template"; also invoked by the patent-intake entry skill (ingestion at the pipeline head, delivery at the tail).
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
 # Conversion and Delivery Discipline (纯文档)
 
-This skill is a **document-only capability** (ADR-0005 decision 1): md→docx and docx/pptx→md are generated inline by the AI at conversion time; no conversion script ships in the package. Probe the environment first on every conversion, take the first available path in the degradation chain; if none is available, fail loud (state exactly what is missing) rather than pretending to produce output.
+This skill is a **document-only capability**: md→docx and docx/pptx→md are generated inline by the AI at conversion time; no conversion script ships in the package. Probe the environment first on every conversion, take the first available path in the degradation chain; if none is available, fail loud (state exactly what is missing) rather than pretending to produce output.
 
 ## Delivery degradation chain (Stage-5 assembly → Word delivery)
 
@@ -15,7 +15,7 @@ Goal: turn the `.md` drafts under `草稿/` into the **two delivery sets** under
 1. **申请文件** (CNIPA 分文件递交用): three same-named `.docx`, one file per document, no timestamps.
 2. **技术交底书** (交代理机构/内部评审用): one consolidated `.docx`.
 
-**Step 0 — assemble `草稿/技术交底书.md` first**: merge 申请信息 / 说明书 / 附图 / 权利要求书 / 摘要 into one disclosure document per the assembly table in `../patent-intake/references/disclosure-document.md`. Then convert all four sources below.
+**Step 0 — assemble `草稿/技术交底书.md` first**: merge the tracked sources per the route-aware assembly table in `../patent-intake/references/disclosure-document.md` — 两者: 申请信息 / 说明书 / 附图 / 权利要求书 / 摘要 drafts; 仅交底书: the interview four-element record + confirmed materials (no filing drafts, no filing-track gates). Then convert every deliverable source the route actually produced — on a disclosure-only route that is `技术交底书.md` alone.
 
 | Source file (草稿/) | Delivered file (成品/) |
 |---|---|
@@ -79,7 +79,7 @@ Two modes — decide before conversion. The route record's 模板 axis (项目�
 | Style inheritance | template supplies styles / page setup; content structure follows the drafts | any chain (pandoc `--reference-doc`, or python-docx style extraction) |
 | **Content fill** | generated content is inserted **into the template's existing structure** — cover page, fixed sections, tables, headers/footers stay as the template designed them | chain ① only (python-docx inline) |
 
-Scope: content fill applies to the 技术交底书. The three 申请文件 docx keep their statutory one-document structure (ADR-0008) — a template may style them, never restructure them.
+Scope: content fill applies to the 技术交底书. The three 申请文件 docx keep their statutory one-document structure — a template may style them, never restructure them.
 
 Content-fill protocol:
 

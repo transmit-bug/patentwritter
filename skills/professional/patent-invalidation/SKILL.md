@@ -1,17 +1,17 @@
 ---
 name: patent-invalidation
-description: "Draft invalidation pleadings (无效宣告, 双向) for CN patents — the invalidation request (无效宣告请求书) with grounds inside the closed list of 细则69.2 and the evidence register, or the patentee's response (答辩意见陈述书) verifying grounds and evidence, rebutting (incl. reverse three-step method against inventive-step grounds), and amending claims under the narrow invalidation limits of 细则73 (no broadening, no spec/drawing amendments for invention / utility model). Embed the procedural discipline: oral hearing (口审, 细则74), the 1-month ground/evidence deadline (细则71), estoppel review, and withdrawal (细则76). Evidence retrieval is delegated / external only — no in-package search, no keys, no scripts. Use when the user asks to request invalidation, respond to an invalidation request, draft an 无效宣告请求书 or 答辩意见陈述书, or assess whether a ground is admissible. Model-invoked discipline of the professional group (entry: patent-prosecution)."
+description: "Draft CN invalidation pleadings (无效宣告, both directions): the 无效宣告请求书 with grounds inside the closed 细则69.2 list and the evidence register, or the patentee's 答辩意见陈述书 rebutting grounds (incl. reverse three-step method) and amending claims within the narrow 细则73 limits — with the oral-hearing, deadline, estoppel, and withdrawal procedure embedded. Use when the user asks to request invalidation, respond to an invalidation request, draft an 无效宣告请求书 or 答辩意见陈述书, or assess whether a ground is admissible."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
 # Invalidation (无效宣告 — 请求方与答辩方)
 
-Professional-group discipline skill (ADR-0007 decision 1). Two directions, one skill: **请求方** (request invalidation) and **答辩方** (patentee responding). Owns the pleading logic only; every legal assertion traces to a declared anchor, every piece of evidence to a real, verifiable document. **Input = 专利文件 (claims + spec as granted) + the other side's material (patent for the requester; 无效宣告请求书 + 证据 for the respondent).** Missing input → fail loud.
+Professional-group discipline skill. Two directions, one skill: **请求方** (request invalidation) and **答辩方** (patentee responding). Owns the pleading logic only. **Input = 专利文件 (claims + spec as granted) + the other side's material (patent for the requester; 无效宣告请求书 + 证据 for the respondent).** Missing input → fail loud.
 
 ## Read first
 
-1. **Discipline**: `../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent. Follow it.
-2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-invalidation row: 法45-47; 细则69-76; 指南 IV-3 (incl. 4.6 amendment), IV-4 (oral hearing), IV-8 (evidence). Cite anchors, never renumber from memory.
+1. **Discipline**: `../patent-standards/references/professional-discipline.md`. Follow it.
+2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-invalidation row: 法45-47; 细则69-76; 指南 IV-3 (incl. 4.6 amendment), IV-4 (oral hearing), IV-8 (evidence). Cite anchors.
 3. **Honesty red line**: every piece of evidence is a real document (patent publication, 公知常识 carrier, internet evidence with disclosure date); no invented references, dates, or data.
 4. **Workspace**: drafts + evidence register land in `.patent/invalidation/<case>/` (suggest gitignored).
 
@@ -94,7 +94,7 @@ Same discipline as the B group and the OA skill: declare `[PRIOR-ART] <technolog
 ## Boundaries
 
 - In scope: 无效宣告请求书 (请求方) + 答辩意见陈述书 (答辩方), grounds audit, evidence register, amendment under 细则73, oral-hearing preparation.
-- Out of scope (sibling skills, per ADR-0007): 复审 → `patent-re-exam`; OA 答复 → `patent-oa-response`; 评价报告 → `patent-evaluation-report`; claim strategy → `patent-claim-strategy`; mechanical drafting → B 组 self-service.
+- Out of scope (sibling skills): 复审 → `patent-re-exam`; OA 答复 → `patent-oa-response`; 评价报告 → `patent-evaluation-report`; claim strategy → `patent-claim-strategy`; mechanical drafting → the self-service group.
 - 诉讼 / 行政处理代理 (法46.2 起诉、侵权诉讼): out of scope — the pleading ends at the CNIPA decision stage; litigation is not a patent-agency-only practice in this package.
 - Not a substitute for the agent's signature or formal filing.
 

@@ -23,7 +23,9 @@ The package ships skills under the skills.sh category layout (see `docs/adr/0004
 ## 正文引用约定(Reference convention)
 
 - 技能正文内的相对引用一律按**安装几何**(flat)书写与解析:安装器把任何分组下的技能都拍平到 `<agent-skills-dir>/<skill-name>/`,故正文引用相对 `dirname(SKILL.md)` 写 `../<skill-name>/...`、`../patent-standards/...`,`references/` 子目录内再加一级 `../`,在安装副本恒解析。分组源树(ADR-0011)服务浏览与分组安装,源树中跨组引用悬空属预期(组织结构 ≠ 引用深度)。修改引用后必须以**安装副本**验证:`npx skills add <repo>`(或 `npx skills add .`)装到临时目录,逐条解析 `..` 引用,断裂即失败。frontmatter 的 `description` 含 `词: 词` 时必须加引号(否则安装时被静默跳过)。
-- 仓库侧文档(`docs/research/`、`docs/prototype/`、`docs/plan/`)不随安装分发,正文以「package-repo `docs/...`」措辞作溯源注释,不写成可解析的相对路径。
+- 仓库侧文档(`docs/research/`、`docs/prototype/`、`docs/plan/`)不随安装分发,**安装副本里解析不到,不得以任何形式出现在技能正文中** —— 既不写成可解析的相对路径,也不作 `package-repo docs/...` 式溯源注释(安装后的 agent 看不到它,只能读到死重)。
+- **安装侧自包含(硬规则)**:技能正文(含 frontmatter `description` 与 `references/` 全部文件)必须自解释,零仓库侧引用——不引 ADR 号(`ADR-NNNN` 是 `docs/adr/` 里的仓库侧决策号)、不引 `CONTEXT.md` 词表当定义权威、不引 `docs/` 路径、不引仓库侧组名词汇(如旧「A 组/B 组」)。规则要么在本地写完整,要么指向安装几何下可解析的 shipped 文件;验证事实可陈述(如「2026-08-11 对 CNIPA 官方全文逐条核实」),但不带仓库路径。术语首次使用处本地定义或指向 shipped 定义文件(如「规则双轨」的操作定义在 `patent-intake/references/disclosure-document.md`)。`CONTEXT.md` 是维护者侧镜像词表,永远不是安装侧定义权威。验证:装到临时目录后对 `skills/` 全部安装文件 grep `ADR-|docs/(research|prototype|adr|plan)|CONTEXT\.md|package-repo|A 组|B 组`,零命中才通过。
+- 仓库侧工件(`docs/adr/`、`CONTEXT.md`、`docs/research/`)只服务仓库内浏览与维护,引用它们的是 AGENTS.md、ADR、README 等仓库文档,不是技能正文。`npx skills` CLI 按设计把技能拍平到 `<agent-skills-dir>/<skill-name>/`(安装目标取 frontmatter `name`,不保留源树分组,实测 v1.5.22);分组安装面由仓库根 `.claude-plugin/marketplace.json` 提供(Claude Code 插件市场,四分组),该清单必须与源树同步 —— 技能增删/改名/迁移时一并更新,路径悬空即失效。
 
 ## Agent skills
 

@@ -6,7 +6,7 @@ allowed-tools: Read, Grep, Glob, Write, Edit
 
 # Pre-Filing Self-Check
 
-Role: **discipline** of the self-service group (ADR-0009), independent from the drafters by design — the checker and the drafter never share a file. On completion, update the 自检 stage in `草稿/申请信息.md`.
+Role: **discipline** of the self-service group, independent from the drafters by design — the checker and the drafter never share a file. On completion, update the 自检 stage in `草稿/申请信息.md`.
 
 Standards pointer: `../patent-standards/`. Use the relevant anchor when a check needs a legal interpretation; this skill owns the executable check, not a reproduction of the standards.
 

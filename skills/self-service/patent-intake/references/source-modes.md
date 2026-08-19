@@ -35,11 +35,12 @@ Set during extraction, written into `草稿/申请信息.md`. Downstream skills 
 | 公开状态 | paper published / webpage accessible / shown to a third party | novelty go/no-go before drafting; grace-period check (`interview.md` group F) |
 | 语言纯度 | material is marketing or colloquial language | terminology regularization before claims (conversion table in `../../patent-drafting/SKILL.md`) |
 | 数据可用性 | material carries real experimental / test data | beneficial effects may cite it, with measurement conditions stated |
-| 图可用性 | material carries figures | figures are **redraw source only** — never pasted into the drawings (rules in `../../patent-drawings/SKILL.md`) |
+| 图可用性 | material carries figures | filing-track figures: dot-drawable types are **redraw source only** (never pasted), external types route per `../../patent-drawings/SKILL.md` Step 2 (integrated or requested); the disclosure track may embed confirmed figures as-is |
 | 多贡献风险 | one material contains multiple independent inventive contributions | singleness check → split-application decision (record it; do not silently merge) |
 
 ## Paper-source delta (the one source with extra traps)
 
+- **Two-column PDF text**: default `pdftotext` output interleaves the columns into unreadable text; extract per column (page width W: `pdftotext -x 40 -W W/2-30 -y 0 -H <pageheight>` for the left half, then `-x W/2+4` for the right) and concatenate — one faithful readable copy under `.patent/extract/`.
 - **Published?** If the paper is already published, the novelty risk is a **go/no-go decision, not a routine question**: the grace period covers only statutory exceptions (see the disclosure/grace-period treatment in `../../patent-standards/references/cn-invention-utility.md`; never restate the law here). Unpublished → "file before publication" becomes a scheduling constraint.
 - **Related work** belongs to the first legal category of background-art material ("prior solutions the inventor knows") — mine it honestly, with or without citation numbers.
 - **Core formulas**: never inferred from the paper's abstract or from a familiar algorithm name (`interview.md` group C); every variable's engineering meaning, units/ranges, and boundary handling need the inventor's confirmation.

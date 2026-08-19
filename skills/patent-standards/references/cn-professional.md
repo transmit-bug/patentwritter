@@ -1,7 +1,7 @@
 # China — Professional Practice Anchors (中国 — 专业代理执业锚点)
 
-> Consumers: professional CN group (skills/professional/, per ADR-0007): patent-oa-response, patent-re-exam, patent-invalidation, patent-evaluation-report, patent-claim-strategy, and the patent-prosecution entry. Self-service drafting anchors live in `cn-invention-utility.md` / `cn-design.md` (B 组撰写技能仍按分型引用,本文件只管授权链路).
-> Verification: 2026-08-13 verified item by item against the official full texts (专利法 2020 CNIPA 转载页、实施细则 2023 CNIPA 全文、审查指南 2023 CNIPA PDF 全文); chapter/section positions recorded as numbering evidence. Provenance: package-repo `docs/research/professional-agent-practice.md` (§4 锚点表; not shipped). **Cite article numbers, never number from memory.**
+> Consumers: professional CN group (patent-oa-response, patent-re-exam, patent-invalidation, patent-evaluation-report, patent-claim-strategy, and the patent-prosecution entry). Self-service drafting anchors live in `cn-invention-utility.md` / `cn-design.md` (self-service drafting skills still reference per patent type; this file governs the prosecution pipeline only).
+> Verification: 2026-08-13 verified item by item against the official full texts (专利法 2020 CNIPA 转载页、实施细则 2023 CNIPA 全文、审查指南 2023 CNIPA PDF 全文); chapter/section positions recorded as numbering evidence. **Cite article numbers, never number from memory.**
 
 ## Discipline
 
@@ -76,7 +76,7 @@ The professional group follows the shared professional discipline (declare / con
 | patent-invalidation | 法45-47 (request / decision / effect); 细则69-76 (request / closed grounds / 1-month evidence deadline / response / amendment limit / oral hearing / withdrawal); 指南IV-3 (incl. 4.6 amendment), 指南IV-4 (oral hearing), 指南IV-8 (evidence) |
 | patent-evaluation-report | 法50.2, 法66.2; 细则62-63; 指南V-10 |
 | patent-claim-strategy | 法33 (amendment red line), 法22.3 (inventive step), 法29-30 (priority), 细则48-49 (division), 细则57.3 (response amendment), 指南II-4 3.2.1.1 (three-step), plus self-service drafting anchors (`cn-invention-utility.md`) for mechanical drafting |
-| 检索 (all skills) | 指南II-7; delegated / external-source discipline unchanged (ADR-0005); no in-package search, no keys |
+| 检索 (all skills) | 指南II-7; delegated / external-source discipline unchanged; no in-package search, no keys |
 
 ## 摘要 300 字 — 三处文本不一致 (annotate in outputs, 按细则为准)
 

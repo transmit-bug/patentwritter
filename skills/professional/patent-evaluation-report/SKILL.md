@@ -1,17 +1,17 @@
 ---
 name: patent-evaluation-report
-description: "Guide requesting and using a patent evaluation report (专利权评价报告) for CN utility models and designs — decide whether / by whom a report should be requested (专利权人 / 利害关系人 / 被控侵权人, 细则62), check the request conditions (授权后, 2个月内作出, 同一专利权只作一份, 可查阅复制, 细则63), state the report's evidentiary role in infringement disputes (法66.2) and the open-license obligation (法50.2), and frame how to read the CNIPA's novelty / inventive-step evaluation (指南 V-10 3.2/3.3) — noting the report is not an administrative decision and is not appealable. Evidence and prior-art assertions stay grounded in real delegated-search results / user-supplied material; the report itself is made by CNIPA, not drafted by the skill. Use when the user asks about a 专利权评价报告 / 评价报告, whether to request one, 维权前评估, or how to respond to an evaluation report's findings. Model-invoked discipline of the professional group (entry: patent-prosecution)."
+description: "Decide whether and how to use a CN patent evaluation report (专利权评价报告) for utility models and designs: who may request it and when, its evidentiary role in infringement disputes, the open-license obligation, and how to read the CNIPA's evaluation — the report itself is made by CNIPA, not drafted here. Use when the user asks about a 专利权评价报告 / 评价报告, whether to request one, 维权前评估, or how to respond to its findings."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
 # Patent Evaluation Report (专利权评价报告 — 请求与使用)
 
-Professional-group discipline skill (ADR-0007 decision 1). Unlike the pleading skills, the evaluation report is **made by CNIPA, not drafted by the agent** — this skill owns the decision logic around it: whether to request, by whom, when, and how to read and use the result. **Input = 实用新型 / 外观设计 专利文件 (claims or 图片/照片) + the purpose (维权前评估 / 应对侵权指控 / 开放许可).** Missing input → fail loud.
+Professional-group discipline skill. Unlike the pleading skills, the evaluation report is **made by CNIPA, not drafted by the agent** — this skill owns the decision logic around it: whether to request, by whom, when, and how to read and use the result. **Input = 实用新型 / 外观设计 专利文件 (claims or 图片/照片) + the purpose (维权前评估 / 应对侵权指控 / 开放许可).** Missing input → fail loud.
 
 ## Read first
 
-1. **Discipline**: `../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent. Follow it.
-2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-evaluation-report row: 法50.2, 法66.2; 细则62-63; 指南 V-10. Cite anchors, never renumber from memory.
+1. **Discipline**: `../patent-standards/references/professional-discipline.md`. Follow it.
+2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-evaluation-report row: 法50.2, 法66.2; 细则62-63; 指南 V-10. Cite anchors.
 3. **Honesty red line**: any prior-art discussion in the skill's output traces to real search results or user-supplied material — the skill never fabricates what CNIPA "would" find.
 4. **Workspace**: notes in `.patent/evaluation-report/<case>/` (suggest gitignored).
 
@@ -60,7 +60,7 @@ The report (指南 V-10 3.2 内容 / 3.3 检索) evaluates the utility model / d
 ## Boundaries
 
 - In scope: request decision, request-form check, report-reading framework, evidentiary-role statements.
-- Out of scope (sibling skills, per ADR-0007): 无效 → `patent-invalidation` (a negative report feeds it, it does not replace it); OA 答复 → `patent-oa-response`; 复审 → `patent-re-exam`; claim strategy → `patent-claim-strategy`; 侵权诉讼代理 → litigation, out of scope; drafting the report itself → CNIPA's function, never imitated.
+- Out of scope (sibling skills): 无效 → `patent-invalidation` (a negative report feeds it, it does not replace it); OA 答复 → `patent-oa-response`; 复审 → `patent-re-exam`; claim strategy → `patent-claim-strategy`; 侵权诉讼代理 → litigation, out of scope; drafting the report itself → CNIPA's function, never imitated.
 - Not a substitute for the agent's signature or formal filing.
 
 ## Minimal walkthrough (最小案例)

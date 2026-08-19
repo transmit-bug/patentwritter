@@ -18,6 +18,8 @@ npx skills add transmit-bug/patentwritter/skills/professional    # 只装专业�
 
 子路径安装后,跨组引用需一并补装共享与工具:`skills/patent-standards`(两组都需要)、`skills/tools/conversion`(自助组需要)、`skills/tools/patents-search`(可选)。也支持 `-s <names>` 按名选择。
 
+另有一条**分组安装面**:仓库根的 `.claude-plugin/marketplace.json` 声明四个分组,self-service / professional / tools / standards,供 Claude Code 插件市场按组安装。注意两种安装几何不同:skills CLI 恒按技能名拍平(上面命令),marketplace.json 才保留分组;它列出的是 14 个可见技能(隐藏 US 技能不在内),路径必须与源树同步,技能增删改名时一并更新。
+
 The **self-service chain** is the package's core; the professional chain and reserved US skills live under `professional/`, see package-repo `docs/guide/README.md`.
 
 `patent-intake` is the front door and orchestrator of the self-service chain; the disciplines below it each own one artifact. The workspace directory in the inventor's project is `patent-application/` (草稿/附图/成品, ADR-0008) — a **workspace name, not a skill name**.
@@ -28,7 +30,7 @@ The **self-service chain** is the package's core; the professional chain and res
 |---|---|---|
 | `self-service/patent-intake` | front door + orchestrator | routing (source × deliverable × type), interview, stage checklist, back edges, assembly handoff; shared `references/` |
 | `self-service/patent-drafting` | discipline | 权利要求书 + 说明书 + 摘要, the support chain as one owner (claims first, then specification) |
-| `self-service/patent-drawings` | discipline | 附图, numeral consistency, abstract figure |
+| `self-service/patent-drawings` | discipline | 附图, figure-type routing, numeral consistency, abstract figure |
 | `self-service/patent-compliance` | discipline | pre-filing self-check, report at `草稿/检查报告.md` |
 | `self-service/patent-filing` | discipline | filing / rectification guidance, 👤 steps marked |
 | `patent-standards` | shared service | standards index and on-demand anchors |

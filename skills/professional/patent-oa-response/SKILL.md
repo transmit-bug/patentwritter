@@ -1,17 +1,17 @@
 ---
 name: patent-oa-response
-description: "Draft a grounded response to a CN substantive-examination office action (审查意见答复, OA 答复) — parse the notice (type / deadline / itemized defects / legal basis / cited references), classify each rejection, rebuild inventive-step argumentation on the three-step method (三步法, 指南 II-4 3.2.1.1), choose the response strategy (opinion only / amend claims / amend spec / correction) with amendment-scope and estoppel checks, and produce an item-by-item opinion-statement draft for human review. Pure document discipline — no scripts, no keys, no in-package search; prior art comes from delegated / external sources and the user's own de-identified case archive. Use when the user asks to answer an office action, write an 意见陈述书, respond to a rejection on novelty / inventive step / clarity / support, or amend claims in response to an OA. Model-invoked discipline of the professional group (entry: patent-prosecution)."
+description: "Draft an item-by-item response to a CN substantive-examination office action (审查意见答复 / 意见陈述书): parse the notice, classify each rejection, rebuild inventive-step argumentation on the three-step method, and choose the strategy (opinion only / amend claims / amend spec / correction) with estoppel checks. Use when the user asks to answer an office action, write an 意见陈述书, respond to a rejection on novelty / inventive step / clarity / support, or amend claims in response to an OA."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
 # Responding to a CN Office Action (审查意见答复)
 
-Professional-group discipline skill (ADR-0007 decision 1). Owns the response logic only; every legal assertion traces to a declared anchor, every prior-art reference to a real delegated-search result or user-supplied material, every case reference to the user's own de-identified archive. **Input = 审查意见通知书 + 申请文件 (claims + specification, as filed and as amended).** If any input is missing, fail loud — never draft on guesswork.
+Professional-group discipline skill. Owns the response logic only (discipline and anchors under Read first). **Input = 审查意见通知书 + 申请文件 (claims + specification, as filed and as amended).** If any input is missing, fail loud — never draft on guesswork.
 
 ## Read first
 
-1. **Discipline**: `../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent (shared, jurisdiction-neutral). Follow it.
-2. **Anchors**: `../patent-standards/references/cn-professional.md` — the patent-oa-response row of the stage anchor map: 法22 / 26.4 / 33 / 37; 细则57.3 / 58 / 59; 指南 II-3 3.1 (单独对比), II-4 3.2.1.1 (三步法), II-8 4.10.3 / 4.11.3.2 (期限), II-8 5.1.1 / 5.2 (答复与修改). Cite these anchors, never renumber from memory.
+1. **Discipline**: `../patent-standards/references/professional-discipline.md`. Follow it.
+2. **Anchors**: `../patent-standards/references/cn-professional.md` — the patent-oa-response row of the stage anchor map: 法22 / 26.4 / 33 / 37; 细则57.3 / 58 / 59; 指南 II-3 3.1 (单独对比), II-4 3.2.1.1 (三步法), II-8 4.10.3 / 4.11.3.2 (期限), II-8 5.1.1 / 5.2 (答复与修改). Cite these anchors.
 3. **Honesty red line**: prior art only from real search-tool results or user-supplied material (`(prior art: <title>, <pub. no.>, <URL>)` / `(provided: <file or patent number>)`). Never invent references, dates, or experimental data.
 4. **Workspace**: `.patent/` support layer — `sources/` `materials/` `queries/` + case archive (see below); drafts land in `.patent/oa/<case>/` (suggest gitignored).
 
@@ -131,7 +131,7 @@ If the response touches the abstract: annotate the three-text inconsistency — 
 ## Boundaries
 
 - In scope: OA response at substantive examination (invention) and preliminary-examination correction paths (补正).
-- Out of scope (sibling skills, per ADR-0007): 复审 → `patent-re-exam`; 无效 (请求 + 答辩) → `patent-invalidation`; 评价报告 → `patent-evaluation-report`; professional claim strategy (答复修改策略 / 分案 / 优先权 / 布局) → `patent-claim-strategy`; mechanical drafting → B 组 self-service skills.
+- Out of scope (sibling skills): 复审 → `patent-re-exam`; 无效 (请求 + 答辩) → `patent-invalidation`; 评价报告 → `patent-evaluation-report`; professional claim strategy (答复修改策略 / 分案 / 优先权 / 布局) → `patent-claim-strategy`; mechanical drafting → the self-service group.
 - Not a substitute for the agent's signature or formal filing; the draft exists for human review.
 
 ## Minimal walkthrough (最小案例 — verify the path)
@@ -145,4 +145,4 @@ Input: 第一次审查意见通知书 (PDF) + 申请文件. 审查员观点: 权
 5. **Step 5**: item-by-item 意见陈述草稿, every assertion cited `(per 法22.3; 指南 第二部分第四章 3.2.1.1 — cnipa.gov.cn)`.
 6. **Step 6**: 人审闸门 closing phrase + self-check.
 
-(案例形态参照包仓库 `docs/research/pattern-d-oa-rag.md`(不随安装分发) 的创造性卡扣例; 论证纪律以本文件三步法为准, 不从案例模板导入.)
+(论证纪律以本文件三步法为准, 不从案例模板导入.)

@@ -6,7 +6,7 @@ allowed-tools: Read, Grep, Glob, Write, Edit
 
 # Filing and Rectification Guidance (递交与补正指引)
 
-Role: **discipline** of the self-service group (ADR-0009). A re-entry point independent of drafting — filing and rectification happen weeks later, against the finished deliverables. On completion, update the 递交 stage in `草稿/申请信息.md`.
+Role: **discipline** of the self-service group. A re-entry point independent of drafting — filing and rectification happen weeks later, against the finished deliverables. On completion, update the 递交 stage in `草稿/申请信息.md`.
 
 Standards pointer: `../patent-standards/`. Verify current amounts, deadlines, and portal prompts against the official system and the actual notice.
 
@@ -15,7 +15,7 @@ Input: the completed application file package + application type. This skill is 
 ## Before filing
 
 1. 👤 Confirm the applicant (individual / entity) and inventor list; information must match the ID documents.
-2. Check the file package is complete. Drafts under `草稿/` (invention / utility model: 申请信息.md / 权利要求书.md / 说明书.md / 摘要.md / 附图说明.md + drawings in `附图/`; design: 简要说明.md + 视图清单.md + pictures or photographs in `图片/`). Word deliverables under `成品/` (invention / utility model: 申请文件/权利要求书.docx + 说明书.docx + 摘要.docx + 技术交底书.docx; design: brief description) — when the degradation chain was taken, the .md drafts themselves are the upload source.
+2. Check the file package is complete. Drafts under `草稿/` (invention / utility model: 申请信息.md / 权利要求书.md / 说明书.md / 摘要.md / 附图说明.md + drawings in `附图/`; design: 简要说明.md + 视图清单.md + pictures or photographs in `图片/`). Word deliverables under `成品/` (invention / utility model: 申请文件/权利要求书.docx + 说明书.docx + 摘要.docx; design: brief description) — when the degradation chain was taken, the .md drafts themselves are the upload source. 技术交底书.docx is for the agency / internal review, never part of the CNIPA filing package — seeing it in `成品/` is not a missing-file finding.
 3. 👤 Prepare the e-filing environment: visit the Patent Business Processing System (cponline.cnipa.gov.cn), register an account and apply for a **digital certificate** (real-name verification needed on first application; effective within days).
 
 ## Filing (e-filing)

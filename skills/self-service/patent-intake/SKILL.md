@@ -6,7 +6,7 @@ allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion, Bash
 
 # Patent Intake (front door + orchestrator)
 
-Role: **front door + orchestrator** of the self-service group (ADR-0009). This skill routes the task, runs the interview, owns the stage checklist, and dispatches the disciplines — `../patent-drafting/`, `../patent-drawings/`, `../patent-compliance/`, `../patent-filing/`. It does not draft claims, specifications, drawings, or filing instructions, and it does not repeat patent-law explanations.
+Role: **front door + orchestrator** of the self-service group. This skill routes the task, runs the interview, owns the stage checklist, and dispatches the disciplines — `../patent-drafting/`, `../patent-drawings/`, `../patent-compliance/`, `../patent-filing/`. It does not draft claims, specifications, drawings, or filing instructions, and it does not repeat patent-law explanations.
 
 Cold start always begins here. If a route record already exists, re-enter this skill and resume from the stage checklist instead of re-routing.
 
@@ -31,7 +31,7 @@ Collect three axes:
 | Invention, filing set | `../patent-drafting/` → `../patent-drawings/` → `../patent-compliance/` |
 | Utility model, filing set | same chain, with the utility-model branch in `../patent-drafting/` and mandatory structural drawings |
 | Design, filing set | design branch in `references/design-points.md` → brief description/view list → `../patent-compliance/` (design checks) |
-| Disclosure only | assemble per `references/disclosure-document.md` → `../conversion/SKILL.md` |
+| Disclosure only | disclosure track: assemble per `references/disclosure-document.md` (interview four-element record + confirmed materials; no drafting disciplines, no filing-track gates) → `../conversion/SKILL.md` |
 | Both | complete the filing-set route, then assemble the disclosure |
 | Filing / rectification after documents exist | `../patent-filing/SKILL.md` |
 
@@ -70,7 +70,7 @@ Each discipline updates its own stage to ✓ when its completion standard passes
 
 ## Workspace layout
 
-In the inventor's project (ADR-0008; the directory is a **workspace name, not a skill name**): drafts under `patent-application/草稿/`, figures under `patent-application/附图/` (`源文件/` .dot sources, `预览/` svg, `嵌入/` png), deliverables under `patent-application/成品/`; support layer `.patent/` (`sources/` citation lists, `materials/` inventor materials, `queries/` search records). Never mix `草稿/` and `成品/`.
+In the inventor's project (the directory is a **workspace name, not a skill name**): drafts under `patent-application/草稿/`, figures under `patent-application/附图/` (`源文件/` .dot sources + original external figures as received, `预览/` svg, `嵌入/` png), deliverables under `patent-application/成品/`; support layer `.patent/` (`sources/` citation lists, `materials/` inventor materials, `queries/` search records). Never mix `草稿/` and `成品/`.
 
 ## Sequence
 
@@ -88,7 +88,7 @@ Ask about disclosure status and preserve the inventor's source trail. Prior-art 
 
 - Filing set, invention / utility model: execute `../patent-drafting/SKILL.md` (claims → specification → abstract), then `../patent-drawings/SKILL.md` when figures apply.
 - Filing set, design: execute the design branch in `references/design-points.md`; images are inventor-supplied.
-- Disclosure only: assemble per `references/disclosure-document.md`; do not manufacture claims or statutory filing sections merely to fill space.
+- Disclosure only: the **disclosure track** — assemble per `references/disclosure-document.md` from the interview four-element record and confirmed materials (route-aware sources in its assembly table). Do not run the drafting / drawings / compliance disciplines for it, and do not manufacture claims, abstract, or statutory filing sections merely to fill space; the filing-track gates (five-part structure, claims rules, support chain) do not apply to this document.
 
 Each discipline owns its own completion standard and updates the stage checklist.
 

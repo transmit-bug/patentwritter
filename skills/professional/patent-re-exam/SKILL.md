@@ -1,17 +1,17 @@
 ---
 name: patent-re-exam
-description: "Draft a re-examination request (复审请求书) for a CN patent application rejected at substantive examination — challenge the rejection decision item by item within the 3-month window (法41.1), limit amendments to removing the defects the rejection decision or re-exam notice points out (细则66), and lay out the re-exam procedure (形式审查 → 前置审查 → 合议审查 → 复审决定, 指南 IV-2; withdrawal 细则68; suit within 3 months 法41.2). Same discipline and grounding rules as patent-oa-response — the re-exam request re-argues the OA grounds (incl. three-step method, 指南 II-4 3.2.1.1) against the rejection decision. Use when the user asks to request re-examination, draft a 复审请求书, respond to a rejection decision (驳回决定), or challenge a 驳回. Model-invoked discipline of the professional group (entry: patent-prosecution)."
+description: "Draft a re-examination request (复审请求书) against a CN rejection decision: item-by-item challenge within the 3-month window, amendments limited to removing the pointed-out defects, and the procedure map (形式审查 → 前置审查 → 合议审查 → 复审决定). Re-argues the OA grounds against the rejection decision. Use when the user asks to request re-examination, draft a 复审请求书, respond to a rejection decision (驳回决定), or challenge a 驳回."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
 # Re-examination (复审 — 对驳回决定不服)
 
-Professional-group discipline skill (ADR-0007 decision 1). The OA-response skill answers the examiner; this skill answers the **rejection decision** (驳回决定, 法38 / 细则59). Owns the pleading logic only; every assertion traces to a declared anchor. **Input = 驳回决定 + 申请文件 (claims + spec, as amended at rejection) + the OA history leading to it.** Missing input → fail loud.
+Professional-group discipline skill. The OA-response skill answers the examiner; this skill answers the **rejection decision** (驳回决定, 法38 / 细则59). Owns the pleading logic only. **Input = 驳回决定 + 申请文件 (claims + spec, as amended at rejection) + the OA history leading to it.** Missing input → fail loud.
 
 ## Read first
 
-1. **Discipline**: `../patent-standards/references/professional-discipline.md` — declare / consume / cite / fail loud / never invent. Follow it.
-2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-re-exam row: 法41; 细则65-68; 指南 IV-2 (形式审查 / 前置审查 / 合议审查 / 复审决定). Cite anchors, never renumber from memory.
+1. **Discipline**: `../patent-standards/references/professional-discipline.md`. Follow it.
+2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-re-exam row: 法41; 细则65-68; 指南 IV-2 (形式审查 / 前置审查 / 合议审查 / 复审决定). Cite anchors.
 3. **Honesty red line**: prior art and evidence from real delegated-search results or user-supplied material only.
 4. **Workspace**: drafts in `.patent/re-exam/<case>/` (suggest gitignored).
 
@@ -62,7 +62,7 @@ Structure: 当事人信息 / 申请信息 (申请号、驳回决定文号、收�
 ## Boundaries
 
 - In scope: 复审请求书 against a substantive-examination rejection; procedure brief (前置审查 / 合议审查 / 修改限制 / 撤回 / 救济提示).
-- Out of scope (sibling skills, per ADR-0007): OA 答复 → `patent-oa-response`; 无效 → `patent-invalidation`; 评价报告 → `patent-evaluation-report`; claim strategy → `patent-claim-strategy`; 行政诉讼 (法41.2 起诉) → litigation, out of scope.
+- Out of scope (sibling skills): OA 答复 → `patent-oa-response`; 无效 → `patent-invalidation`; 评价报告 → `patent-evaluation-report`; claim strategy → `patent-claim-strategy`; 行政诉讼 (法41.2 起诉) → litigation, out of scope.
 - Not a substitute for the agent's signature or formal filing.
 
 ## Minimal walkthrough (最小案例)

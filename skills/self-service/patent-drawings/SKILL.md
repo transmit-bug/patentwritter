@@ -1,12 +1,12 @@
 ---
 name: patent-drawings
-description: "Generate the drawings (附图) for a CN patent specification — Graphviz structural diagrams and flowcharts, reference-numeral consistency with the specification text, abstract-figure designation. Requires the `dot` command in the environment. Design (外观设计) view rules redirect to `../patent-intake/references/design-points.md`."
+description: "Generate the drawings (附图) for a CN patent specification — figure-type routing first (dot-drawable flowcharts / block / state diagrams vs external figure types such as mechanical structure views, circuit schematics, sequence diagrams, curves), Graphviz rendering for the dot-routed figures, integration of inventor-supplied figures, reference-numeral consistency with the specification text, abstract-figure designation. Requires the `dot` command only when dot-drawable figures exist. Design (外观设计) view rules redirect to `../patent-intake/references/design-points.md`."
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
 # Generating the Drawings (附图)
 
-Role: **discipline** of the self-service group (ADR-0009). On completion, update the 附图 stage in `草稿/申请信息.md`.
+Role: **discipline** of the self-service group. On completion, update the 附图 stage in `草稿/申请信息.md`.
 
 Standards pointer: `../patent-standards/references/cn-invention-utility.md` and the applicable design reference. This skill uses the pointer; it does not reproduce statutory text.
 
@@ -15,7 +15,7 @@ Input: the claims + the specification text. Drawings are not free composition �
 ## Prerequisite
 
 ```bash
-dot -V   # if absent, state the missing dependency explicitly; do not force drawing
+dot -V   # needed only when dot-drawable figures exist (Step 2); if absent, state the missing dependency explicitly; do not force drawing
 ```
 
 ## Working protocol, every step with a completion standard
@@ -31,9 +31,24 @@ Extract every "<name>(<numeral>)" from the specification text and build the nume
 
 Check: parts mentioned in the text without numerals get numerals; parts you want to draw that the text never mentions — either add them to the text or don't draw them.
 
-### Step 2 Draw → Done when: each figure corresponds to a specification paragraph, all numerals come from the list, and the layout is landscape and well-filled
+### Step 2 Route every figure by type → Done when: every planned figure has exactly one route — dot-drawn, integrated, or listed in the 需求清单
 
-Render with Graphviz DOT into the layered figure workspace (ADR-0008; layout in `../patent-intake/SKILL.md` "Workspace layout"): `源文件/` holds the `.dot` sources, `预览/` the svg previews, `嵌入/` the png bitmaps used for Word embedding and filing. Output under `patent-application/附图/`:
+Classify each figure the specification's brief description of drawings expects:
+
+| Route | Figure types |
+|---|---|
+| **dot-drawn** (Step 3) | flowchart (流程图), module block / architecture diagram (框图), state-transition diagram, hierarchy / topology |
+| **external** | mechanical structure views (structure / section / axonometric / partial-enlarged), circuit schematics, sequence / timing diagrams, curves & waveforms, free-form schematics (optical path, force, principle), chemical structures, GUI views |
+
+dot expresses nodes and edges. A figure whose meaning lives in physical shapes, positions, cross-sections, or coordinates is **not** expressible in dot — never substitute a block diagram for it.
+
+External-route figures:
+- Search `.patent/materials/` for inventor-supplied originals. Found → integrate: the original as received goes to `附图/源文件/`, an embedding copy to `附图/嵌入/`; it then passes Steps 4-5 like a drawn figure.
+- Not found → record it in `草稿/附图需求清单.md`: figure number, type, what it must show (parts + numerals from the Step 1 list), view requirements. A utility-model structural figure in this file stays a delivery blocker (mandatory section below).
+
+### Step 3 Draw the dot-routed figures → Done when: each figure corresponds to a specification paragraph, all numerals come from the list, and the layout is landscape and well-filled
+
+Render with Graphviz DOT into the layered figure workspace (layout in `../patent-intake/SKILL.md` "Workspace layout"): `源文件/` holds the `.dot` sources and the original external figures as received, `预览/` the svg previews, `嵌入/` the png bitmaps used for Word embedding and filing. Output under `patent-application/附图/`:
 
 ```dot
 digraph {
@@ -54,7 +69,7 @@ dot -Tpng 源文件/fig1.dot -o 嵌入/fig1.png   # png for Word inline embeddin
 
 The `.md` drafts (草稿/说明书.md, 草稿/技术交底书.md) reference each figure as `../附图/嵌入/figN.png`.
 
-**Landscape-first layout** (readability rule, applies to every figure): the figure must read at a glance — **width greater than height, near-rectangular, canvas well filled (饱满)**. Squint at the svg preview: a landscape rectangle with no large empty corners and no dangling outliers passes.
+**Landscape-first layout** (readability rule, applies to every dot-drawn figure): the figure must read at a glance — **width greater than height, near-rectangular, canvas well filled (饱满)**. Squint at the svg preview: a landscape rectangle with no large empty corners and no dangling outliers passes.
 
 - Default `rankdir=LR` for chains and flows; structural diagrams stay balanced, not deep towers. Target 宽:高 roughly between 4:3 and 16:9.
 - A tall narrow snake (one node per rank, many ranks) fails: regroup branches into rows (`rank=same`), or split a long sequence into two figures (each still one subject per view).
@@ -66,19 +81,19 @@ Figure checks:
 - Line style: black-white line art; no color figures, photos, or gray shading (practice).
 - One view per figure, one subject per view (overall view / partial enlarged view / flowchart drawn separately).
 
-### Step 3 Cross-check → Done when: both directions, zero omissions
+### Step 4 Cross-check every figure, drawn or integrated → Done when: both directions, zero omissions
 
 - Direction A: every figure listed in the "brief description of drawings" exists among the drawings.
-- Direction B: every numeral in the drawings is mentioned in the specification text; the same part carries the same numeral .
+- Direction B: every numeral in the drawings is mentioned in the specification text; the same part carries the same numeral.
 - Reference numerals in the claims: only inside parentheses after the feature, never as limitations — the claims are patent-drafting's domain; here only the numeral digits are checked.
 
-### Step 4 Designate the abstract figure → Done when: a sensible figure is chosen and recorded
+### Step 5 Designate the abstract figure → Done when: a sensible figure is chosen and recorded
 
 When there are drawings, choose the single figure that best illustrates the technical features as the abstract figure, and record it in `草稿/附图说明.md`. Selection standard: the figure containing the independent claim's distinguishing feature (usually the system architecture figure or the main flowchart), not a partial detail figure.
 
 ## Utility model mandatory items
 
-A utility model **must** have drawings showing the shape / construction / combination of the product Missing structural drawings are a delivery blocker; after drawing, self-check for at least one structural figure first.
+A utility model **must** have drawings showing the shape / construction / combination of the product. Where the protected construction is physical shape or assembly, this is a **structure view — an external-route figure**; a block diagram alone does not carry shape/construction and does not satisfy the mandate. Missing structural drawings are a delivery blocker: route the need through `草稿/附图需求清单.md` instead of substituting a block diagram.
 
 ## Design (外观设计, six-view trigger → redirect)
 
@@ -86,11 +101,12 @@ A design's "drawings" are **pictures or photographs** not dot-rendered line diag
 
 ## Completion standard (before handover)
 
-- [ ] Numeral list matches the specification text in both directions (Steps 1 + 3)
+- [ ] Every figure routed (Step 2): dot-drawn, integrated from `.patent/materials/`, or listed in `草稿/附图需求清单.md`
+- [ ] Numeral list matches the specification text in both directions (Steps 1 + 4), for drawn and integrated figures alike
 - [ ] Figure-number order consistent with the brief description of drawings
-- [ ] Black-white line art, no stray annotations
-- [ ] Landscape, near-rectangular, well-filled layout for every figure
+- [ ] Black-white line art, no stray annotations (integrated originals that violate get flagged to the inventor, not silently accepted)
+- [ ] Landscape, near-rectangular, well-filled layout for every dot-drawn figure
 - [ ] Abstract figure designated (utility model: structural figure preferred)
-- [ ] Utility model: has a structural figure
-- [ ] Every figure produced as both `预览/figN.svg` and `嵌入/figN.png` (Word embedding figures generated, none missing)
+- [ ] Utility model: has a structural figure (external structure view where shape/construction is physical)
+- [ ] Drawn figures produced as both `预览/figN.svg` and `嵌入/figN.png`; integrated figures present in `源文件/` + `嵌入/` (Word embedding figures generated, none missing)
 - [ ] 附图 stage updated in `草稿/申请信息.md`

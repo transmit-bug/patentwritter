@@ -1,0 +1,5 @@
+# Optional dependency list (word-delivery skill) — all optional, install on demand; skip = take the degradation chain
+# Install example: pip install python-docx latex2mathml  /  install pandoc via your package manager — see each project's official docs
+python-docx>=1.1.0      # chain ①: inline .docx generation (Word delivery)
+latex2mathml>=3.77.0    # formulas: LaTeX → OMML (editable Word formulas; default keeps LaTeX source)
+pandoc                  # chain ②: command-line md → docx conversion

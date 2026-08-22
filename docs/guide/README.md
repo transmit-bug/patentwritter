@@ -16,7 +16,7 @@ npx skills add transmit-bug/patentwritter
 
 | 链路 | 入口 | 触发方式 | 覆盖 |
 |---|---|---|---|
-| **自助申请(B 组,self-service)** | `patent-intake` | model-invoked(说到写专利即触发) | 交底 → 类型判断 → 撰写 → 自检 → Word 交付 → 递交与补正 |
+| **自助申请(B 组,self-service)** | `patent-intake` | model-invoked(说到写专利即触发) | 交底 → 类型判断 → 撰写 → 自检 → md 定稿交付(Word 按需)→ 递交与补正 |
 | **专业授权(A 组,professional)** | `patent-prosecution` | user-invoked(`disable-model-invocation`,需显式 `/skill:patent-prosecution`) | OA 答复 / 复审 / 无效 / 评价报告 / 权利要求策略 |
 
 入口只做路由与输入闸门检查,不承载任何撰写逻辑;拿到路线后转交对应 discipline 技能执行。
@@ -56,7 +56,8 @@ B 组内共享的判断逻辑放在 `patent-intake/references/` 下按需读取(
 | 技能 | 职责 | 关键约束 |
 |---|---|---|
 | `patents-search` | 委托检索:Valyu 语义检索 API 查先有技术(USPTO/EPO 全文) | 可选工具,流程不依赖;CN 专利不在 Valyu 数据源内,CN 现有技术走 CNIPA 手动检索(search-guide);需自备 API key |
-| `conversion` | 纯文档转换纪律:Stage-1 材料摄入(docx/pptx → md)与 Stage-5 Word 交付(md → docx) | 零脚本零依赖(ADR-0005),环境探测降级链(python-docx → pandoc → 手动),全不可用则 fail loud |
+| `conversion` | 纯文档摄入纪律:Stage-1 材料摄入(docx/pptx → md,进访谈上下文) | 零脚本零依赖(ADR-0005),环境探测降级链,全不可用则 fail loud;不做 Word 交付 |
+| `word-delivery` | Word 交付纪律:md → docx(三件申请文件 + 交底书),模板填充,验收闸门;**用户主动调用**(`disable-model-invocation`)或路由记录 `Word导出: 已约定` 时才运行 | 修订回路:改 `草稿/*.md` 后重导出,永不手改已交付 docx(ADR-0013) |
 
 ### 跨组共享(`skills/patent-standards/`)
 

@@ -29,6 +29,7 @@
       "source": "./",
       "skills": [
         "./skills/tools/conversion",
+        "./skills/tools/word-delivery",
         "./skills/tools/patents-search"
       ]
     },

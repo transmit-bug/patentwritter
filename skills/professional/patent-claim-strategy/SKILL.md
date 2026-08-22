@@ -1,12 +1,12 @@
 ---
 name: patent-claim-strategy
-description: "Design the CN claim strategy around a prosecution: protection scope (essential-feature weighing, generalization, claim tiers, fallback positioning), the response amendment strategy under an OA (argue vs amend, amendment ladder, estoppel-aware drafting), and when to divide (分案) or claim priority (优先权) with their deadlines. Mechanical claim drafting stays in patent-drafting. Use when the user asks about claim scope, protection breadth, 保护范围, amendment strategy in an OA, or 分案 / 优先权."
+description: "Design the CN claim strategy around a prosecution: protection scope (essential-feature weighing, generalization, claim tiers, fallback positioning), the response amendment strategy under an OA (argue vs amend, amendment ladder, estoppel-aware drafting), and when to divide (分案) or claim priority (优先权) with their deadlines. Hosts the claims-register language tables (references/claim-language.md). Use when the user asks about claim scope, protection breadth, 保护范围, amendment strategy in an OA, or 分案 / 优先权."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
 # Claim Strategy (权利要求策略 — 保护范围 / 答复修改 / 分案 / 优先权)
 
-Professional-group discipline skill: the **strategy layer** over claim drafting. Mechanical drafting (claims text, 上位化 mechanics, dependent-claim structure) stays in the self-service skill `patent-drafting`; this skill decides **what scope to pursue and how to defend it**.
+Professional-group discipline skill: the **strategy layer** over claim drafting. Mechanical drafting (claims text, 上位化 mechanics, dependent-claim structure) stays in the self-service skill `patent-drafting`; this skill decides **what scope to pursue and how to defend it**, and owns the claims-register language tables (`references/claim-language.md` — term conversion and common mistakes, **claims register only**; specification narrative and 交底书 stay in the engineering register).
 
 ## Read first
 

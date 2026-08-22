@@ -19,7 +19,7 @@ Collect three axes:
    - **disclosure only**: technical disclosure for an agent or internal review;
    - **filing set**: claims, specification, abstract, and applicable drawings/brief description;
    - **both**: disclosure plus filing set.
-   Word output is a delivery choice handled by `../conversion/SKILL.md`, not a separate patent type.
+   Word/docx export is **not** an automatic deliverable. At interview, agree the delivery form with the inventor — finalized `.md` drafts only (default) / docx on request / docx per an agreed template — and record it in the route record's `Word导出` axis. Generating Word files is the separately user-invoked `../word-delivery/SKILL.md`; run it only when the inventor asks in the current turn or the route record pre-agrees it.
 3. **Patent type** — invention / utility model / design / undecided or possible dual filing. Use `references/type-decision.md`. Do not force a type from the document format or from a product name. If the source carries multiple independent inventive contributions, run the singleness check in `references/source-modes.md` before committing to one application.
 
 ## Routing table
@@ -31,7 +31,7 @@ Collect three axes:
 | Invention, filing set | `../patent-drafting/` → `../patent-drawings/` → `../patent-compliance/` |
 | Utility model, filing set | same chain, with the utility-model branch in `../patent-drafting/` and mandatory structural drawings |
 | Design, filing set | design branch in `references/design-points.md` → brief description/view list → `../patent-compliance/` (design checks) |
-| Disclosure only | disclosure track: assemble per `references/disclosure-document.md` (interview four-element record + confirmed materials; no drafting disciplines, no filing-track gates) → `../conversion/SKILL.md` |
+| Disclosure only | disclosure track: assemble per `references/disclosure-document.md` (interview four-element record + confirmed materials; no drafting disciplines, no filing-track gates); docx only via `../word-delivery/SKILL.md` on request |
 | Both | complete the filing-set route, then assemble the disclosure |
 | Filing / rectification after documents exist | `../patent-filing/SKILL.md` |
 
@@ -45,11 +45,14 @@ Route record:
 材料来源: 口述 / 文档 / 网页 / 对谈记录 / 代码 / 其他材料
 材料位置: …
 交付目标: 交底书 / 申请文件套件 / 两者
+Word导出: 未约定(按需,默认) / 已约定(时机/模板)
 申请类型: 发明 / 实用新型 / 外观设计 / 一案两请 / 待确认
 待确认事项: …
 模板: 项目默认 / 指定模板 / 无
 横切标志: 公开状态=… / 语言纯度=… / 数据可用性=… / 图可用性=… / 多贡献风险=…
 ```
+
+`Word导出` records the delivery-form agreement: by default no Word files are generated — the pipeline completes at self-checked `.md` drafts and docx is exported only when the inventor asks (`../word-delivery/SKILL.md`).
 
 Stage checklist (the resume mechanism — update it, never infer progress from which files exist):
 
@@ -62,7 +65,7 @@ Stage checklist (the resume mechanism — update it, never infer progress from w
 - [ ] 说明书
 - [ ] 附图
 - [ ] 自检  (report at 草稿/检查报告.md)
-- [ ] 交付
+- [ ] 交付  (.md 定稿；docx 仅当 Word导出 已约定或发明人当场要求)
 - [ ] 递交
 ```
 
@@ -98,7 +101,9 @@ Read `../patent-compliance/SKILL.md`. Run only the checks applicable to the sele
 
 ### 5. Assemble and deliver
 
-Read `../conversion/SKILL.md` for Markdown-to-Word conversion, template reuse, formula conversion, and the acceptance gate; read `references/disclosure-document.md` for the consolidated disclosure structure.
+The pipeline's default completion point is **finalized `.md` drafts**: assembly per `references/disclosure-document.md` (for the consolidated disclosure) plus zero unresolved criticals from step 4. Confirm the delivery form with the inventor. Generate Word files **only** when the inventor asks in the current turn or the route record says `Word导出: 已约定` — then read `../word-delivery/SKILL.md` for conversion chains, template reuse, formula conversion, and the acceptance gate.
+
+Revision requests after delivery follow the single-source rule: edits land in the owning draft under `草稿/`, affected checks re-run, then `../word-delivery/SKILL.md` regenerates — never hand-edit a delivered `.docx`.
 
 ### 6. Filing guidance, only when requested
 
@@ -126,4 +131,4 @@ Hand off to `../patent-filing/SKILL.md`. Do not load filing procedure during dra
 - [ ] Only the selected type and deliverable branches ran
 - [ ] Four elements or design points recorded; no invented material
 - [ ] Self-check report exists with no unresolved criticals; back edges routed and re-checked
-- [ ] Word output passed the conversion acceptance gate, or the degradation/blocker report was delivered
+- [ ] Delivery form agreed with the inventor and recorded (`Word导出` axis); if Word was requested, output passed the acceptance gate in `../word-delivery/SKILL.md`, or the degradation/blocker report was delivered

@@ -1,6 +1,8 @@
 # Claim Language Reference (权利要求语言参考)
 
-On-demand tables for Part A of the parent skill. Consult while writing A2 (independent claim), A3 (generalization ladder), and A5 (clarity convergence); the completion criteria stay in the parent skill.
+On-demand tables for claim drafting and claim amendment. Consult while writing or amending claims (independent-claim wording, generalization, dependent-claim structure).
+
+**Voice-wall application (语体边界, defined in `../../patent-drafting/SKILL.md`)**: these tables apply **only to the claims register (权利要求书)**. The specification narrative paragraphs and the 技术交底书 keep the inventor's engineering register; the conversion into statutory claim language happens once, here at the claims layer.
 
 ## Term conversion table (product words → patent words)
 

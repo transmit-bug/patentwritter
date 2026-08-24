@@ -1,18 +1,18 @@
 ---
 name: patent-compliance
-description: "Pre-filing self-check of the drafted CN patent deliverables — support chain, claim clarity, title and figure consistency, formula provenance. Reports severity, location, and repair guidance to 草稿/检查报告.md; checks existing drafts and never drafts or silently repairs content itself."
+description: "Pre-filing self-check of the drafted CN patent deliverables — support chain, claim clarity, title and figure consistency, formula provenance. Reports severity, location, and repair guidance to drafts/检查报告.md; checks existing drafts and never drafts or silently repairs content itself."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
 # Pre-Filing Self-Check
 
-Role: **discipline** of the self-service group, independent from the drafters by design — the checker and the drafter never share a file. On completion, update the 自检 stage in `草稿/申请信息.md`.
+Role: **discipline** of the self-service group, independent from the drafters by design — the checker and the drafter never share a file. On completion, update the 自检 stage in `drafts/申请信息.md`.
 
 This skill is the **backend gate that owns claim-formality rules** — they were deliberately moved out of `../patent-drafting/SKILL.md` so drafting can stay in content mode. It runs **only on the filing track** (交付目标 = 申请文件套件 / 两者); the disclosure track skips this skill entirely.
 
 Standards pointer: `../patent-standards/`. Use the relevant anchor when a check needs a legal interpretation; this skill owns the executable check, not a reproduction of the standards.
 
-Input: the drafts and supplied figures for the selected branch. Output a report at `草稿/检查报告.md` with `critical`, `important`, or `minor`, a location, the observed problem, and a repair instruction.
+Input: the drafts and supplied figures for the selected branch. Output a report at `drafts/检查报告.md` with `critical`, `important`, or `minor`, a location, the observed problem, and a repair instruction.
 
 ## Invention / utility-model checks
 
@@ -96,4 +96,4 @@ When this is a rectification task, compare each amended feature with the origina
 - [ ] Support chain and formula checks are complete where applicable
 - [ ] Figures, titles, terminology, and deliverable files are consistent
 - [ ] If Word output was requested, it is separately passed through `../word-delivery/SKILL.md` (user-invoked; md drafts are the completion point otherwise)
-- [ ] 自检 stage updated in `草稿/申请信息.md`
+- [ ] 自检 stage updated in `drafts/申请信息.md`

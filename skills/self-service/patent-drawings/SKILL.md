@@ -6,7 +6,7 @@ allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 
 # Generating the Drawings (附图)
 
-Role: **discipline** of the self-service group. On completion, update the 附图 stage in `草稿/申请信息.md`.
+Role: **discipline** of the self-service group. On completion, update the 附图 stage in `drafts/申请信息.md`.
 
 Standards pointer: `../patent-standards/references/cn-invention-utility.md` and the applicable design reference. This skill uses the pointer; it does not reproduce statutory text.
 
@@ -22,9 +22,9 @@ dot -V   # needed only when dot-drawable figures exist (Step 2-3); if absent, st
 
 This is the disclosed reference for the brief-tight track. Trigger: `patent-intake` assembled a `brief-tight` disclosure and needs 2-3 figures.
 
-- **Integrate first**: search `.patent/materials/` for an architecture/block or flow original — found → copy to `附图/源文件/` + `附图/嵌入/` and done.
-- **Brief dot fallback**: ≤8 nodes, `rankdir=LR`, one inventive-step flow, `dot -Tpng` to `嵌入/figN.png` (and svg to `预览/` if `dot` present); if `dot` absent, list in `草稿/附图需求清单.md` with type + required numerals, do not block delivery.
-- **Done when**: 2-3 `../附图/嵌入/figN.png` exist with caption `图N …`, each traceable to `§四` text; no full paper figure set copied.
+- **Integrate first**: search `.patent/materials/` for an architecture/block or flow original — found → copy to `figures/source/` + `figures/embed/` and done.
+- **Brief dot fallback**: ≤8 nodes, `rankdir=LR`, one inventive-step flow, `dot -Tpng` to `嵌入/figN.png` (and svg to `preview/` (alias `预览/`) if `dot` present); if `dot` absent, list in `草稿/附图需求清单.md` with type + required numerals, do not block delivery.
+- **Done when**: 2-3 `../figures/embed/figN.png` exist with caption `图N …`, each traceable to `§四` text; no full paper figure set copied.
 
 Filing figures continue below — the steps are the in-file reference that every filing run needs.
 
@@ -53,12 +53,12 @@ Classify each figure the specification's brief description of drawings expects:
 dot expresses nodes and edges. A figure whose meaning lives in physical shapes, positions, cross-sections, or coordinates is **not** expressible in dot — never substitute a block diagram for it.
 
 External-route figures:
-- Search `.patent/materials/` for inventor-supplied originals. Found → integrate: the original as received goes to `附图/源文件/`, an embedding copy to `附图/嵌入/`; it then passes Steps 4-5 like a drawn figure.
+- Search `.patent/materials/` for inventor-supplied originals. Found → integrate: the original as received goes to `figures/source/`, an embedding copy to `figures/embed/`; it then passes Steps 4-5 like a drawn figure.
 - Not found → record it in `草稿/附图需求清单.md`: figure number, type, what it must show (parts + numerals from the Step 1 list), view requirements. A utility-model structural figure in this file stays a delivery blocker (mandatory section below).
 
 ### Step 3 Draw the dot-routed figures → Done when: each figure corresponds to a specification paragraph, all numerals come from the list, and the layout is landscape and well-filled
 
-Render with Graphviz DOT into the layered figure workspace (layout in `../patent-intake/SKILL.md` "Workspace layout"): `源文件/` holds the `.dot` sources and the original external figures as received, `预览/` the svg previews, `嵌入/` the png bitmaps used for Word embedding and filing. Output under `patent-application/附图/`:
+Render with Graphviz DOT into the layered figure workspace (layout in `../patent-intake/SKILL.md` "Workspace layout"): `source/` (alias `源文件/`) holds the `.dot` sources and the original external figures as received, `preview/` (alias `预览/`) the svg previews, `embed/` (alias `嵌入/`) the png bitmaps used for Word embedding and filing. Output under `patent-application/figures/`:
 
 ```dot
 digraph {
@@ -77,7 +77,7 @@ dot -Tsvg 源文件/fig1.dot -o 预览/fig1.svg   # svg preview / version retent
 dot -Tpng 源文件/fig1.dot -o 嵌入/fig1.png   # png for Word inline embedding / filing; black-white line art fits practice
 ```
 
-The `.md` drafts (草稿/说明书.md, 草稿/技术交底书.md) reference each figure as `../附图/嵌入/figN.png`.
+The `.md` drafts (草稿/说明书.md, drafts/技术交底书.md) reference each figure as `../figures/embed/figN.png`.
 
 **Landscape-first layout** (readability rule, applies to every dot-drawn figure): the figure must read at a glance — **width greater than height, near-rectangular, canvas well filled (饱满)**. Squint at the svg preview: a landscape rectangle with no large empty corners and no dangling outliers passes.
 
@@ -118,5 +118,5 @@ A design's "drawings" are **pictures or photographs** not dot-rendered line diag
 - [ ] Landscape, near-rectangular, well-filled layout for every dot-drawn figure
 - [ ] Abstract figure designated (utility model: structural figure preferred)
 - [ ] Utility model: has a structural figure (external structure view where shape/construction is physical)
-- [ ] Drawn figures produced as both `预览/figN.svg` and `嵌入/figN.png`; integrated figures present in `源文件/` + `嵌入/` (Word embedding figures generated, none missing)
-- [ ] 附图 stage updated in `草稿/申请信息.md`
+- [ ] Drawn figures produced as both `预览/figN.svg` and `嵌入/figN.png`; integrated figures present in `source/` (alias `源文件/`) + `embed/` (alias `嵌入/`) (Word embedding figures generated, none missing)
+- [ ] 附图 stage updated in `drafts/申请信息.md`

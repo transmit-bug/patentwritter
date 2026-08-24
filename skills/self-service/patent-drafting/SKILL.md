@@ -19,7 +19,7 @@ Two registers live in this skill and must not leak into each other. This section
 
 Term consistency spans both registers: once Part A names a component 传感器, no document in this set may call it 感应器.
 
-On completion, update the 权利要求 and 说明书 stages in `草稿/申请信息.md` (✓, or `blocked: <reason>`).
+On completion, update the 权利要求 and 说明书 stages in `drafts/申请信息.md` (✓, or `blocked: <reason>`).
 
 ## Type differences (settle the template first)
 
@@ -146,7 +146,7 @@ State the name, technical field, technical problem, solution gist, and main uses
 
 ## Revision loop (after delivery)
 
-All review comments — the inventor's, the agency's, or complaints about a delivered Word file — land in the owning draft under `草稿/` (`权利要求书.md` / `说明书.md` / `摘要.md`). The delivered `.docx` files under `成品/` are regenerable exports produced by `../word-delivery/SKILL.md`; never edit them by hand. After a substantive revision, re-run the affected self-checks (`../patent-compliance/SKILL.md`) and re-export via `../word-delivery/`.
+All review comments — the inventor's, the agency's, or complaints about a delivered Word file — land in the owning draft under `drafts/` (alias `草稿/`) (`权利要求书.md` / `说明书.md` / `摘要.md`). The delivered `.docx` files under `deliverables/` (alias `成品/`) are regenerable exports produced by `../word-delivery/SKILL.md`; never edit them by hand. After a substantive revision, re-run the affected self-checks (`../patent-compliance/SKILL.md`) and re-export via `../word-delivery/`.
 
 ## Completion standard (before handover)
 
@@ -160,5 +160,5 @@ All review comments — the inventor's, the agency's, or complaints about a deli
 - [ ] Support chain: every claim feature has a source in the specification (in-skill loop closed)
 - [ ] Term consistency across claims, specification, abstract, and figures
 - [ ] Abstract contains the four elements' gist, no marketing language
-- [ ] 权利要求 / 说明书 stages updated in `草稿/申请信息.md`
+- [ ] 权利要求 / 说明书 stages updated in `drafts/申请信息.md`
 - [ ] No invented prior art, no fabricated data

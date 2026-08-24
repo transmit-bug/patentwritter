@@ -45,4 +45,4 @@ Build the view list from the faces involved by the design points. Use the invent
 
 ## Output
 
-Write `草稿/申请信息.md`, `草稿/简要说明.md`, and `草稿/视图清单.md`. The filing branch contains the request plus the supplied pictures/photographs and brief description; it does not contain claims, a technical specification, or an abstract.
+Write `drafts/申请信息.md`, `草稿/简要说明.md`, and `草稿/视图清单.md`. The filing branch contains the request plus the supplied pictures/photographs and brief description; it does not contain claims, a technical specification, or an abstract.

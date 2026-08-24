@@ -22,7 +22,7 @@ npx skills add transmit-bug/patentwritter/skills/professional    # 只装专业�
 
 The **self-service chain** is the package's core; the professional chain lives under `professional/`, see package-repo `docs/guide/README.md`.
 
-`patent-intake` is the front door and orchestrator of the self-service chain; the disciplines below it each own one artifact. The workspace directory in the inventor's project is `patent-application/` (草稿/附图/成品, ADR-0008) — a **workspace name, not a skill name**.
+`patent-intake` is the front door and orchestrator of the self-service chain; the disciplines below it each own one artifact. The workspace directory in the inventor's project is `patent-application/` (drafts/figures/deliverables, en primary, alias 草稿/附图/成品, ADR-0008) — a **workspace name, not a skill name**.
 
 ## Skill roles
 
@@ -31,7 +31,7 @@ The **self-service chain** is the package's core; the professional chain lives u
 | `self-service/patent-intake` | front door + orchestrator | routing (source × deliverable × type), interview, stage checklist, back edges, assembly handoff; shared `references/` |
 | `self-service/patent-drafting` | discipline | 说明书(可读技术 prose 先行) → 权利要求书(从说明书提炼) + 摘要, voice wall 语体边界,支撑链单一所有者 |
 | `self-service/patent-drawings` | discipline | 附图, figure-type routing, numeral consistency, abstract figure |
-| `self-service/patent-compliance` | discipline | 递交前自检(仅 filing 轨), report at `草稿/检查报告.md`,后端 claim 形式规则所有者 |
+| `self-service/patent-compliance` | discipline | 递交前自检(仅 filing 轨), report at `drafts/检查报告.md`,后端 claim 形式规则所有者 |
 | `self-service/patent-filing` | discipline | filing / rectification guidance, 👤 steps marked |
 | `patent-standards` | shared service | standards index and on-demand anchors |
 | `tools/conversion` | service | 材料摄入 DOCX/PPTX → Markdown (pipeline head, ingestion only) |
@@ -60,7 +60,7 @@ patent-intake (cold start / resume from stage checklist)
 材料 → .patent/materials/ (archive contract, five flags)
 申请信息.md (route record + stage checklist + Word导出 轴) ──► 说明书.md ──► 权利要求书.md + 摘要.md
       ──► 附图/ (源文件/ 预览/ 嵌入/ + 摘要附图) ──► 检查报告.md (filing 轨 only, critical=0 is the gate)
-      ──► 成品/申请文件/*.docx + 成品/技术交底书.docx (仅当 Word导出 已约定或发明人当场要求, via word-delivery)
+      ──► deliverables/application/*.docx + deliverables/disclosure.docx (仅当 Word导出 已约定或发明人当场要求, via word-delivery)
 ```
 
 **Knowledge flow** — single-source pointers, read-only; use read-only pointers:

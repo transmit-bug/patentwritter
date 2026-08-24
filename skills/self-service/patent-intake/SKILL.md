@@ -12,7 +12,7 @@ Cold start always begins here. If a route record already exists, re-enter this s
 
 ## Route inputs
 
-Collect three axes:
+Collect four axes (source × deliverable × type × target product):
 
 1. **Material source** — 口述 / 文档 (docx, pdf, pptx) / 网页 / 对谈记录 / 代码 / 其他材料 (paper, product material, technical publication). Source handling is not a set of branches: follow the unified protocol in `references/source-modes.md` (archive contract → ingestion channel → extract-confirm-fill). A paper is technical input, not automatically prior art or a complete invention disclosure.
 2. **Requested deliverable**
@@ -21,6 +21,7 @@ Collect three axes:
    - **both**: disclosure plus filing set.
    Word/docx export is **not** an automatic deliverable. At interview, agree the delivery form with the inventor — finalized `.md` drafts only (default) / docx on request / docx per an agreed template — and record it in the route record's `Word导出` axis. Generating Word files is the separately user-invoked `../word-delivery/SKILL.md`; run it only when the inventor asks in the current turn or the route record pre-agrees it.
 3. **Patent type** — invention / utility model / design / undecided or possible dual filing. Use `references/type-decision.md`. Decide type only when `references/type-decision.md` provides supporting evidence; when multiple independent contributions appear, apply the singleness check in `references/source-modes.md` and confirm with the inventor via AskUserQuestion before committing.
+4. **Target product (目标产物) — constrained output** — the concrete product/method/system the patent protects (e.g., "application-aware scheduling method", "UAV onboard system", "scheduling framework"). This constrains the entire drafting: every claim, embodiment, and figure must trace to this product; vague "AI technology" is not a product. Record it verbatim and use it as the title/independent-claim subject anchor. When unclear, ask via AskUserQuestion and block drafting until confirmed.
 
 ## Routing table — one trigger per branch
 
@@ -37,7 +38,7 @@ Collect three axes:
 
 ## State record
 
-Write and maintain `草稿/申请信息.md`. A route is selected only when source, deliverable, and type are recorded; if type or material meaning remains ambiguous, ask the inventor — do not draft by guessing.
+Write and maintain `drafts/申请信息.md`. A route is selected only when source, deliverable, type, **and target product** are recorded; if type, target product, or material meaning remains ambiguous, ask the inventor — do not draft by guessing.
 
 Route record:
 
@@ -47,6 +48,7 @@ Route record:
 交付目标: 交底书 / 申请文件套件 / 两者
 Word导出: 未约定(按需,默认) / 已约定(时机/模板)
 申请类型: 发明 / 实用新型 / 外观设计 / 一案两请 / 待确认
+目标产物: …（约束产物，如：面向自主无人机导航的应用感知调度方法/系统）
 待确认事项: …
 模板: 项目默认 / 指定模板 / 无
 横切标志: 公开状态=… / 语言纯度=… / 数据可用性=… / 图可用性=… / 多贡献风险=…
@@ -64,7 +66,7 @@ Stage checklist (the resume mechanism — update it, never infer progress from w
 - [ ] 权利要求
 - [ ] 说明书
 - [ ] 附图
-- [ ] 自检  (report at 草稿/检查报告.md)
+- [ ] 自检  (report at drafts/检查报告.md)
 - [ ] 交付  (.md 定稿；docx 仅当 Word导出 已约定或发明人当场要求)
 - [ ] 递交
 ```
@@ -73,7 +75,7 @@ Each discipline updates its own stage to ✓ when its completion standard passes
 
 ## Workspace layout
 
-In the inventor's project (the directory is a **workspace name, not a skill name**): drafts under `patent-application/草稿/`, figures under `patent-application/附图/` (`源文件/` .dot sources + original external figures as received, `预览/` svg, `嵌入/` png), deliverables under `patent-application/成品/`; support layer `.patent/` (`sources/` citation lists, `materials/` inventor materials, `queries/` search records). Keep `草稿/` for editable drafts and `成品/` for regenerable exports as separate directories.
+In the inventor's project (the directory is a **workspace name, not a skill name**): drafts under `patent-application/drafts/` (en, alias `草稿/`), figures under `patent-application/figures/` (`source/` .dot sources + original external figures as received, `preview/` svg, `embed/` png, aliases `源文件/`/`预览/`/`嵌入/`), deliverables under `patent-application/deliverables/` (alias `成品/`); support layer `.patent/` (`sources/` citation lists, `materials/` inventor materials, `queries/` search records). Keep `drafts/` (en, primary) for editable drafts and `deliverables/` for regenerable exports as separate directories; Chinese aliases remain readable but en is primary.
 
 ## Sequence
 
@@ -97,13 +99,13 @@ Each discipline owns its own completion standard and updates the stage checklist
 
 ### 4. Self-check → zero unresolved criticals
 
-Read `../patent-compliance/SKILL.md`. Run only the checks applicable to the selected type and deliverable; the report lands at `草稿/检查报告.md`. **Back edges are this skill's job**: route each unresolved critical back to the discipline that owns the artifact (`../patent-drafting/` for claims/specification support chains, `../patent-drawings/` for numeral/figure mismatches), then re-check. Return blockers to the inventor instead of silently filling them.
+Read `../patent-compliance/SKILL.md`. Run only the checks applicable to the selected type and deliverable; the report lands at `drafts/检查报告.md`. **Back edges are this skill's job**: route each unresolved critical back to the discipline that owns the artifact (`../patent-drafting/` for claims/specification support chains, `../patent-drawings/` for numeral/figure mismatches), then re-check. Return blockers to the inventor instead of silently filling them.
 
 ### 5. Assemble and deliver
 
 The pipeline's default completion point is **finalized `.md` drafts**: assembly per `references/disclosure-document.md` (for the consolidated disclosure) plus zero unresolved criticals from step 4. Confirm the delivery form with the inventor. Generate Word files **only** when the inventor asks in the current turn or the route record says `Word导出: 已约定` — then read `../word-delivery/SKILL.md` for conversion chains, template reuse, formula conversion, and the acceptance gate.
 
-Revision requests after delivery follow the single-source rule: edits land in the owning draft under `草稿/`, affected checks re-run, then `../word-delivery/SKILL.md` regenerates — never hand-edit a delivered `.docx`.
+Revision requests after delivery follow the single-source rule: edits land in the owning draft under `drafts/` (alias `草稿/`), affected checks re-run, then `../word-delivery/SKILL.md` regenerates — never hand-edit a delivered `.docx`.
 
 ### 6. Filing guidance, only when requested
 

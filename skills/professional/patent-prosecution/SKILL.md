@@ -30,15 +30,15 @@ Professional-group **entry** skill: user-invoked, orchestrates the five discipli
 
 ## Flow
 
-1. **Intake** — ask what the user has and what they want (max 4 questions via AskUserQuestion): the material in hand (通知书 / 驳回决定 / 无效请求 / 专利文本 / 目的), the patent type, and any deadlines (e.g. the OA 指定期限 / 复审 3-month window). Record the deadline at the top of the handoff — the discipline skills re-verify it, but the entry never lets a deadline go unnoticed.
+1. **Intake** — ask what the user has and what they want (max 4 questions via AskUserQuestion): the material in hand (通知书 / 驳回决定 / 无效请求 / 专利文本 / 目的), the patent type, and any deadlines (e.g. the OA 指定期限 / 复审 3-month window). Record the deadline at the top of the handoff — the discipline skills re-verify it, but the entry records every deadline at the top of the handoff.
 2. **Route** — use the dispatch table; when the situation spans stages (e.g. OA 答复 + 无效 readiness from a negative evaluation report), route the primary task and name the follow-on skill explicitly.
 3. **Gate check** — before dispatch, confirm the input the target skill needs (the "Input gate" column) is present or obtainable; anything missing is stated to the user (fail loud) rather than dispatched half-blind.
 4. **Dispatch** — hand off to the discipline skill with the material paths; the discipline skill runs its own workflow (read-first → parse → search → argue → draft → 人审闸门).
 
 ## Honesty red line (entry-level)
 
-- Prior art and evidence come only from real delegated-search results / user-supplied material — never invented.
-- Deadlines are read from the notice / decision, never assumed from memory; when the user doesn't know the deadline, the skill states what is needed, not a guess.
+- Prior art and evidence come only from real delegated-search results / user-supplied material, cited with source anchor (prior art: <title>, <url> / provided: <file>).
+- Deadlines are read from the notice / decision, read directly from the notice or decision; when the user doesn't know the deadline, the skill lists the required document and asks for it.
 - Every discipline skill ends with a 人审闸门 — the entry reminds the user that drafts are drafts until a human (agent / inventor) reviews and files them.
 
 ## Fail loud (网关)

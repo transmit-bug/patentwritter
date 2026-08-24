@@ -1,5 +1,7 @@
 # Disclosure Interview Question Bank (交底访谈问题库)
 
+The interview optimizes **content, not legal form**: what makes or breaks the later application is a complete, implementable, honestly-sourced description of the invention — formal defects are repairable downstream, missing content is not. The seven content principles this bank serves: state the prior art and its concrete deficiencies; keep problem → solution → effect complete; write to reproducible depth (no hidden parameters); keep the inventor's own words; one term per thing; source the background art; declare technical-reservation points explicitly. Answers stay verbatim in the inventor's engineering register — the **voice wall (语体边界)** defined in `../../patent-drafting/SKILL.md` owns that boundary; statutory claim language is applied downstream by patent-drafting / patent-compliance.
+
 Grouped by the four elements. Ask the groups in order; skip a question when the inventor's answer already covers it. At most 4 questions per AskUserQuestion. Record the answers into 草稿/申请信息.md.
 
 ## A. Technical problem (what is being solved)
@@ -19,7 +21,7 @@ Grouped by the four elements. Ask the groups in order; skip a question when the 
 
 ## C. Core formula and implementation gate (formula-bearing cases only)
 
-Ask this group for algorithm, control, signal-processing, image-processing, optimization, and scheduling inventions. Do not infer answers from a paper abstract or from a familiar algorithm name.
+Ask this group for algorithm, control, signal-processing, image-processing, optimization, and scheduling inventions. Write answers only from inventor-confirmed material; when uncertain, mark the gap as blocked and ask the inventor to clarify.
 
 19. What exact quantity is calculated or judged at the inventive step? Write the equation or logic predicate in your own notation. (→ core formula)
 20. What does every symbol mean, what are its units/range, and what are the input/output signals? (→ variable semantics and physical meaning)

@@ -1,6 +1,6 @@
 ---
 name: patent-drawings
-description: "Generate the drawings (附图) for a CN patent specification — figure-type routing first (dot-drawable flowcharts / block / state diagrams vs external figure types such as mechanical structure views, circuit schematics, sequence diagrams, curves), Graphviz rendering for the dot-routed figures, integration of inventor-supplied figures, reference-numeral consistency with the specification text, abstract-figure designation. Requires the `dot` command only when dot-drawable figures exist. Design (外观设计) view rules redirect to `../patent-intake/references/design-points.md`."
+description: "brief-tight disclosure figures (2-3, integrate or brief dot) and filing figures (dot routing, external integrate, numeral check) for CN patents. Use when the deliverable needs drawings — disclosure only needs brief-tight, filing set needs full routing. Design views redirect to patent-intake/design-points.md."
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
@@ -15,8 +15,18 @@ Input: the claims + the specification text. Drawings are not free composition �
 ## Prerequisite
 
 ```bash
-dot -V   # needed only when dot-drawable figures exist (Step 2); if absent, state the missing dependency explicitly; do not force drawing
+dot -V   # needed only when dot-drawable figures exist (Step 2-3); if absent, state the missing dependency explicitly; do not force drawing
 ```
+
+## Disclosure branch — brief-tight (only when deliverable needs `技术交底书`)
+
+This is the disclosed reference for the brief-tight track. Trigger: `patent-intake` assembled a `brief-tight` disclosure and needs 2-3 figures.
+
+- **Integrate first**: search `.patent/materials/` for an architecture/block or flow original — found → copy to `附图/源文件/` + `附图/嵌入/` and done.
+- **Brief dot fallback**: ≤8 nodes, `rankdir=LR`, one inventive-step flow, `dot -Tpng` to `嵌入/figN.png` (and svg to `预览/` if `dot` present); if `dot` absent, list in `草稿/附图需求清单.md` with type + required numerals, do not block delivery.
+- **Done when**: 2-3 `../附图/嵌入/figN.png` exist with caption `图N …`, each traceable to `§四` text; no full paper figure set copied.
+
+Filing figures continue below — the steps are the in-file reference that every filing run needs.
 
 ## Working protocol, every step with a completion standard
 

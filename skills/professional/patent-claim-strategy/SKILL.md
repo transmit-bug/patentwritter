@@ -1,18 +1,18 @@
 ---
 name: patent-claim-strategy
-description: "Design the CN claim strategy around a prosecution: protection scope (essential-feature weighing, generalization, claim tiers, fallback positioning), the response amendment strategy under an OA (argue vs amend, amendment ladder, estoppel-aware drafting), and when to divide (分案) or claim priority (优先权) with their deadlines. Mechanical claim drafting stays in patent-drafting. Use when the user asks about claim scope, protection breadth, 保护范围, amendment strategy in an OA, or 分案 / 优先权."
+description: "Design the CN claim strategy around a prosecution: protection scope (essential-feature weighing, generalization, claim tiers, fallback positioning), the response amendment strategy under an OA (argue vs amend, amendment ladder, estoppel-aware drafting), and when to divide (分案) or claim priority (优先权) with their deadlines. Hosts the claims-register language tables (references/claim-language.md). Use when the user asks about claim scope, protection breadth, 保护范围, amendment strategy in an OA, or 分案 / 优先权."
 allowed-tools: Read, Grep, Glob, Write, Edit
 ---
 
 # Claim Strategy (权利要求策略 — 保护范围 / 答复修改 / 分案 / 优先权)
 
-Professional-group discipline skill: the **strategy layer** over claim drafting. Mechanical drafting (claims text, 上位化 mechanics, dependent-claim structure) stays in the self-service skill `patent-drafting`; this skill decides **what scope to pursue and how to defend it**.
+Professional-group discipline skill: the **strategy layer** over claim drafting. Mechanical drafting (claims text, 上位化 mechanics, dependent-claim structure) stays in the self-service skill `patent-drafting`; this skill decides **what scope to pursue and how to defend it**, and owns the claims-register language tables (`references/claim-language.md` — term conversion and common mistakes, **claims register only**; specification narrative and 交底书 stay in the engineering register).
 
 ## Read first
 
 1. **Discipline**: `../patent-standards/references/professional-discipline.md`. Follow it.
 2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-claim-strategy row: 法33, 法22.3, 法29-30 (优先权), 细则48-49 (分案), 细则57.3, 指南 II-4 3.2.1.1; plus `cn-invention-utility.md` for drafting mechanics (法22 / 26.4, 细则22-25).
-3. **Honesty red line**: prior art from real delegated-search results / user-supplied material only; strategy is argued against the actual cited references, never against imagined ones.
+3. **Honesty red line**: prior art from real delegated-search results / user-supplied material only; strategy is argued against the actual cited references, only against the actual cited references.
 4. **Workspace**: strategy notes in `.patent/strategy/<case>/` (suggest gitignored).
 
 ## 1. Protection-scope design (保护范围设计)
@@ -30,7 +30,7 @@ Professional-grade scope decisions, from the four elements up:
 Given an OA (or a rejection decision), decide the response shape before drafting:
 
 1. **argue vs amend vs both**: pure argument preserves scope but risks the finding; amendment trades scope for allowability; the default is both — argue the disputed finding, amend only what is truly indefensible.
-2. **Amendment ladder**: prefer the *lowest* rung that overcomes the defect while keeping the broadest defensible scope — a specific rung of the 上位化 ladder, a 细化 feature, or a 变体/增强 combination from the fallback tier. Never jump straight to the narrowest embodiment.
+2. **Amendment ladder**: prefer the *lowest* rung that overcomes the defect while keeping the broadest defensible scope — a specific rung of the 上位化 ladder, a 细化 feature, or a 变体/增强 combination from the fallback tier. Start from the lowest rung that overcomes the defect; keep the narrowest embodiment as the last fallback.
 3. **细则57.3 discipline**: amendments are directed to the defects the notice points out (OA response); in 复审 they are limited to removing the rejection decision's defects (细则66 — narrower); in 无效 the limits are stricter still (细则73 — claims only, no broadening). The amendment power shrinks down the pipeline — spend the broad-amendment capital while the OA is still open.
 4. **法33 red line**: every amendment checked against the original specification + claims; a feature with no original-disclosure support is inadmissible — prefer the supported rung, mark 「待发明人指认段落」 if the location is uncertain.
 5. **禁反悔 review**: after choosing amendments, re-read the final claim set for what it concedes (a narrowed feature set is a public record); if a concession buys nothing, argue instead.
@@ -55,7 +55,7 @@ Strategy view (anchors 法29-30, verified against the official text):
 ## Grounded output & fail loud (网关)
 
 - No claim text / specification → stop.
-- A strategy recommendation that depends on unverified legal detail (e.g. 细则60 content beyond 细则48's citation, 指南 Part I filing rules) → declare `[STANDARD] CN <topic>` and read the material, or fail loud for that part; never fill from memory.
+- A strategy recommendation that depends on unverified legal detail (e.g. 细则60 content beyond 细则48's citation, 指南 Part I filing rules) → declare `[STANDARD] CN <topic>` and read the material, or fail loud for that part; keep that part unwritten and report the missing basis (fail loud).
 - No prior art for scope positioning → say the landscape is unknown and scope is argued without it (and recommend the search), rather than inventing a landscape.
 
 ## Boundaries

@@ -1,6 +1,6 @@
 # United States — Verified Anchors (US — 核实锚点)
 
-> Consumers: professional group (patent-application-creator / patent-claims-analyzer, currently hidden).
+> Consumers: none currently (US anchor table reserved for future US direction).
 > Verification: 2026-08-10 verified item by item against official sources.
 
 ## Discipline

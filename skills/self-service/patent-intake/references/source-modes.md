@@ -33,7 +33,7 @@ Set during extraction, written into `草稿/申请信息.md`. Downstream skills 
 | Flag | Trigger | Consumer |
 |---|---|---|
 | 公开状态 | paper published / webpage accessible / shown to a third party | novelty go/no-go before drafting; grace-period check (`interview.md` group F) |
-| 语言纯度 | material is marketing or colloquial language | terminology regularization before claims (conversion table in `../../patent-drafting/SKILL.md`) |
+| 语言纯度 | material is marketing or colloquial language | regularization happens **only at the claims layer** during drafting (tables now in `../../patent-claim-strategy/references/claim-language.md`, claims register only); the disclosure and specification narrative keep the inventor's engineering words |
 | 数据可用性 | material carries real experimental / test data | beneficial effects may cite it, with measurement conditions stated |
 | 图可用性 | material carries figures | filing-track figures: dot-drawable types are **redraw source only** (never pasted), external types route per `../../patent-drawings/SKILL.md` Step 2 (integrated or requested); the disclosure track may embed confirmed figures as-is |
 | 多贡献风险 | one material contains multiple independent inventive contributions | singleness check → split-application decision (record it; do not silently merge) |

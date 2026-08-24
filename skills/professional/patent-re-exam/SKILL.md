@@ -35,7 +35,7 @@ Parse the decision into items: each 驳回理由 (法条 + 事实认定 + 审查
 - **事实认定错误**: the decision misstates the claim features or the reference's disclosure — read the reference, verify, and rebut with citation.
 - **法条适用错误**: e.g. a novelty finding under 法22.2 that violates 单独对比 (指南 II-3 3.1), or an inventive-step finding that skips a step of the three-step method (指南 II-4 3.2.1.1) — argue the method was misapplied.
 - **新理由 (reasons not previously raised)**: a rejection reason the applicant never had the chance to answer in the OA exchange — point it out (前置审查 / 合议审查 is the applicant's first opportunity to respond to it).
-- **修改以克服缺陷**: if amendment is chosen, it must be **限于消除驳回决定或复审通知书指出的缺陷** (细则66) — narrower than the OA amendment power; never introduce new subject matter (法33); 替换页 (细则58).
+- **修改以克服缺陷**: if amendment is chosen, it must be **限于消除驳回决定或复审通知书指出的缺陷** (细则66) — narrower than the OA amendment power; keep all amendments within the original disclosure scope (法33); 替换页 (细则58).
 
 ### Step 3 — Draft the 复审请求书
 

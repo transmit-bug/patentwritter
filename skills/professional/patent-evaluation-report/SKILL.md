@@ -12,7 +12,7 @@ Professional-group discipline skill. Unlike the pleading skills, the evaluation 
 
 1. **Discipline**: `../patent-standards/references/professional-discipline.md`. Follow it.
 2. **Anchors**: `../patent-standards/references/cn-professional.md` — patent-evaluation-report row: 法50.2, 法66.2; 细则62-63; 指南 V-10. Cite anchors.
-3. **Honesty red line**: any prior-art discussion in the skill's output traces to real search results or user-supplied material — the skill never fabricates what CNIPA "would" find.
+3. **Honesty red line**: any prior-art discussion in the skill's output traces to real search results or user-supplied material — the skill traces every prior-art discussion only to real search results or user-provided material.
 4. **Workspace**: notes in `.patent/evaluation-report/<case>/` (suggest gitignored).
 
 ## When a report is needed (何时需要)
@@ -31,7 +31,7 @@ Professional-group discipline skill. Unlike the pleading skills, the evaluation 
 2. **时机**: after grant announcement (授权公告后); the applicant may also request at registration (办理登记手续时). The report is made **within 2 months** of the request (细则63) — the timeline matters when a dispute deadline looms.
 3. **唯一性**: only one report per patent right regardless of how many requesters (细则63) — a later requester gets the existing report, not a new evaluation.
 4. **查阅复制**: any entity or individual may inspect / copy (细则63) — assume the report is public to the other side in a dispute.
-5. **成本**: 评价报告请求费 (细则110) — stated, never priced.
+5. **成本**: 评价报告请求费 (细则110) — stated, follows the amount shown in the system at filing time.
 
 ## Request check (请求书核对)
 
@@ -42,7 +42,7 @@ Request form fields: 专利号、专利类型 (实用新型 / 外观设计)、�
 The report (指南 V-10 3.2 内容 / 3.3 检索) evaluates the utility model / design against novelty and inventive step (实用新型) or 明显区别 (外观设计). Reading discipline:
 
 - **检索范围**: what the CNIPA searched (databases, classifications) — a finding "未发现影响新颖性的对比文件" is grounded in that search, not an absolute guarantee.
-- **逐项结论**: each evaluated claim (or design) and its conclusion (是否具备新颖性 / 创造性), with cited references. The skill re-reads any cited reference before commenting — never restates the report from memory.
+- **逐项结论**: each evaluated claim (or design) and its conclusion (是否具备新颖性 / 创造性), with cited references. The skill re-reads any cited reference before commenting — re-reads each cited reference before commenting.
 - **效力**: the report is **not an administrative decision and is not appealable** (指南 V-10); in litigation it is an evidentiary document, and the court may still independently assess validity (法66.2). When the user asks "can we appeal the report", answer 不可诉 with the anchor.
 
 ## Use cases (使用位置)
@@ -60,7 +60,7 @@ The report (指南 V-10 3.2 内容 / 3.3 检索) evaluates the utility model / d
 ## Boundaries
 
 - In scope: request decision, request-form check, report-reading framework, evidentiary-role statements.
-- Out of scope (sibling skills): 无效 → `patent-invalidation` (a negative report feeds it, it does not replace it); OA 答复 → `patent-oa-response`; 复审 → `patent-re-exam`; claim strategy → `patent-claim-strategy`; 侵权诉讼代理 → litigation, out of scope; drafting the report itself → CNIPA's function, never imitated.
+- Out of scope (sibling skills): 无效 → `patent-invalidation` (a negative report feeds it, it does not replace it); OA 答复 → `patent-oa-response`; 复审 → `patent-re-exam`; claim strategy → `patent-claim-strategy`; 侵权诉讼代理 → litigation, out of scope; drafting the report itself → CNIPA's function, remains CNIPA's function; the skill interprets and guides instead.
 - Not a substitute for the agent's signature or formal filing.
 
 ## Minimal walkthrough (最小案例)

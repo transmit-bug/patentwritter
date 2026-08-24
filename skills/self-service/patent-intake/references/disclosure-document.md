@@ -1,43 +1,63 @@
-# 技术交底书 Assembly (技术交底书组装)
+# 技术交底书 Assembly — brief-tight 交底
 
-A 技术交底书 (invention disclosure) is the **single consolidated document** handed to a patent agency for drafting, or used for internal patentability review. It is not a filing document. One 交底书 = one document; the three filing documents stay separate (their .docx are `成品/申请文件/`, for CNIPA 分文件递交).
+A 技术交底书 is the **brief-tight** consolidated disclosure handed to an agency for drafting or internal review. Leading word **brief-tight** = 紧凑态：让代理人据此独立起草申请文件。One 交底书 = one file `草稿/技术交底书.md`；三件套 filing docs stay separate `成品/申请文件/`。
 
-Assembled at Stage-5 (before Word delivery) by the patent-intake entry skill: merge the tracked sources into `草稿/技术交底书.md`, then convert it to `成品/技术交底书.docx` (delivery chain in `../../conversion/SKILL.md`).
+Assembled at Stage-5 by `patent-intake`: merge tracked sources into `草稿/技术交底书.md`. The `.md` is the truth; docx export is a separate user-invoked step via `../../word-delivery/SKILL.md`.
 
-## Rule tracks (规则双轨 — which rules gate which document)
+## Leading word
 
-| Track | Gates | Rule set |
+**brief-tight** recruits the prior "tight loop" — small, checkable. Every run the agent reaches for the same budget: **1–3 core formulas, 2–3 figures, template six rows**. Repeated as token `brief-tight` in pointers and checks.
+
+## Rule tracks — one trigger per branch
+
+| Track | When to load this file | Rule set |
 |---|---|---|
-| **Disclosure track (交底轨)** | `技术交底书.md` / `.docx` only | This file's assembly table + assembly rules — the **complete** rule set |
-| **Filing track (申请文件轨)** | 权利要求书 / 说明书 / 摘要 (`../../patent-drafting/SKILL.md`) | Statutory drafting gates — five-part structure, claims format / citation / clarity, 支撑链, 阶梯 |
+| **brief-tight track** | deliverable = 交底书 / 两者（any run that must produce `技术交底书.md`） | This file alone — the complete disclosed reference |
+| filing track | deliverable = 申请文件套件 | `../../patent-drafting/SKILL.md` (spec-first + voice wall + full sufficient-disclosure gate) |
 
-The disclosure is written for a human reader (the agency, or internal review); patent law enters **downstream**, when the agency drafts the filing set. So the filing-track gates (five-part structure, claims format, generalization, support chain, statutory openings) never apply here. The reverse holds too: a rule not written in this file is not a disclosure requirement — do not import one. When a filing-track rule seems to conflict with the assembly rules below, the assembly rules win on this track.
+Patent law is handled downstream in filing track. On brief-tight track, this file is the authority; keep filing gates in `patent-drafting` there.
 
-## Structure and assembly table (route-aware sources)
+## Steps — what the agent does, in order
 
-交付目标=两者: the filing drafts exist and are the sources. 交付目标=交底书: the sources are the interview four-element record and confirmed materials — **never** documents that were not produced (do not run patent-drafting just to create them). It leads with the invention itself: problem → solution → core formulas/logic → embodiments/effect → distinguishing features → alternatives, then the appendices.
+Each step ends on a checkable completion criterion.
 
-| 交底书章节 | 来源 · 两者 | 来源 · 仅交底书 | 说明 |
-|---|---|---|---|
-| 基本信息（发明名称 / 申请类型 / 申请人 / 发明人 / 日期 / 模板标识） | 草稿/申请信息.md | 同左 | 照抄 |
-| 模板适配说明（使用的模板、继承范围、降级项） | 草稿/申请信息.md 或交付检查报告 | 同左 | 仅供内部审阅，不复制模板占位文字 |
-| 一、技术领域 | 说明书.md §技术领域 | 四要素记录 / 已确认材料中的领域定位 | 照抄；一句话说清领域即可，不套法定句式 |
-| 二、背景技术 | 说明书.md §背景技术 | 发明人已知的现有方案（访谈 / 已确认材料），可保留发明人原话 | 照抄；诚实红线不变 — 只写发明人已知的现有方案 / 客观通用问题 / 检索工具真实返回的结果 |
-| 三、要解决的技术问题 | 草稿/申请信息.md 中记录的四要素·技术问题 | 同左 | 照抄，不重写 |
-| 四、技术方案（含核心公式 / 逻辑 / 已确认实施例） | 说明书.md §发明内容的技术方案部分 | 已确认材料 / 访谈记录中的方案描述 | 照抄，并在对应处**内嵌附图** `../附图/嵌入/figN.png`，每图配图注「图N …」与 附图说明 一致 |
-| 五、技术效果 | 草稿/申请信息.md 中记录的四要素·技术效果 | 同左 | 照抄（数据或机理，不新造） |
-| 六、与现有技术的区别特征 | 草稿/申请信息.md 中记录的四要素·区别特征 | 同左 | 照抄 |
-| 七、替代方案与保护退路 | 草稿/申请信息.md / 说明书实施例 | 访谈中确认的变体 | 照抄已确认的变体，不替发明人创造方案 |
-| 八、附图说明 | 附图说明.md | 有图才写：按实际内嵌的图列图注；无图整节省略 | 照抄（编号 + 标记清单；摘要附图仅两者路由） |
-| 附录 S：资料依据与来源清单 | `.patent/sources/` 与 `.patent/queries/` 的已确认记录 | 同左 | 正文保持清洁；仅列真实来源和检索记录 |
-| 附录 A：权利要求草案（全文） | 权利要求书.md | **省略本附录** | 仅当权利要求书.md 已存在；绝不为凑附录起草权利要求 |
-| 附录 B：摘要 | 摘要.md | **省略本附录** | 仅当摘要.md 已存在 |
+### 1 Verify source → Done when: source map is closed
+Confirm `草稿/申请信息.md` four elements + `.patent/materials/` provenance. When an element is marked `blocked`, pause that part and ask the inventor for the missing piece; proceed only with confirmed material.
 
-## Assembly rules (the complete disclosure-track rule set)
+### 2 Map template → Done when: one template slot per交底章节
+Bind `examples/技术交底书模板.doc` slots to the six rows below. List any template slot without source and any source without slot as `待补图/待补式` for the inventor to confirm.
 
-- **This is an assembly, not a redraft**: copy every section verbatim from its tracked source; do not rewrite, generalize, or "improve" into statutory formats. The four elements stay exactly as recorded in 草稿/申请信息.md.
-- The body is clean prose: do not place author/year/source-parentheses in the middle of technical paragraphs. Use `[S#]` only where needed, with the full entry in 附录 S. Markdown syntax is a source notation, not deliverable text.
-- **Figures**: confirmed figures may be embedded in the disclosure as-is (copies land in `附图/嵌入/` for path stability, referenced `../附图/嵌入/figN.png`, figure workspace in `../../patent-drawings/SKILL.md`); the redraw / figure-type routing discipline is a filing-track requirement and does not block the disclosure. The md lives in 草稿/, so the `../` steps up to the project root.
-- **具体实施方式 duplication** (两者路由 only): embodiments stay in 说明书.md / 说明书.docx — the 交底书's 附录 and the companion `成品/申请文件/说明书.docx` together give the agency the full picture. 仅交底书: confirmed embodiments belong in 四、技术方案, verbatim.
-- **Honesty red line applies unchanged** (shared by both tracks): no invented prior art, patents, literature, or experimental data anywhere in the assembled document.
-- **One file**: the whole disclosure is one `技术交底书.md` → one `技术交底书.docx`. Never split it, never add timestamps.
+### 3 Assemble sections → Done when: every paragraph traces to `申请信息.md` or confirmed material and paper chapter structure is absent
+Copy verbatim per the table. Write clean prose as the default. Append a single `[S#]` at sentence end only where the sentence directly quotes paper data, a table value, or a figure; otherwise rely on traceability via `申请信息.md` + `.patent/sources`. Budget: whole document ≤5 `[S#]` tags total.
+
+### 4 Embed brief-tight figures → Done when: 2–3 figures embedded as `../附图/嵌入/figN.png` with caption `图N …`, files present in both `附图/嵌入/` and `附图/源文件/` (route via `../../patent-drawings/SKILL.md`)
+When inventor material supplies an architecture or flow original, integrate it as-is to both directories. When no supply exists, create a brief dot-flow with ≤8 nodes, LR direction, 4:3–16:9 tight canvas that traces the inventive step.
+
+### 5 Tight formula check → Done when: 1–3 core formulas each show variable map and boundary handling on the same page, and body reads as engineering prose
+Tight gate is a budgeted pointer to `../../patent-drafting/SKILL.md` A3: retain only the relation that makes the distinguishing feature work, show meaning/units/in-out/boundary alongside it, and present non-core derivations as a single `[S#]` citation. Keep body in engineering register with ordinary prose and sentence-end citations only.
+
+## Reference — assembly table (flat peer-set, template-aligned)
+
+Six rows only — every row is a disclosure need.
+
+| 交底章节 | 来源 | 写法 |
+|---|---|---|
+| 基本信息 + 模板适配 | `申请信息.md` | 照抄；模板占位文字保留在来源，不复制进正文 |
+| 一、技术领域 | 四要素定位 | 写成一句话技术领域陈述 |
+| 二、背景技术 | 发明人已知现有方案 / 客观通用问题 / 检索真实返回 | 保留发明人原话，只写可溯源的内容；仅对直接引用的对比数据或文献结论加一句尾 `[S#]` |
+| 三、要解决的技术问题 | `申请信息.md` 四要素·技术问题 | 照抄 |
+| 四、技术方案（含 brief-tight 图式） | 四要素·技术方案 + 确认的实施例（≤2个真实变体）+ 2–3图 + 1–3式 | 图文式 co-located：文字讲流程，图显结构/流向，式给判据；每式紧跟变量表与边界处理 |
+| 五、技术效果 / 六、区别特征 / 七、替代方案 | `申请信息.md` 对应四要素 | 数据写明条件，机理写清因果 |
+| 八、附图说明 + 附录 S | `附图/嵌入/` 实际内嵌图 + `.patent/sources|queries/` | 一图一句话编号；附录 S 为唯一附录，≤5 条可省略，未引用则留空 |
+
+**Co-location rule**: Keep a concept's definition, its figure, and its formula under one heading (`§四`). Reading `§四` brings all three together.
+
+**Single source of truth**: Four elements live once in `申请信息.md`; copy from there. Keep claims and abstract in their filing files `权利要求书.md`/`摘要.md` on filing track; write disclosure as four elements + figures + formulas within the six rows above, with rights drafting produced on filing track via `patent-drafting B`.
+
+## Completion — brief-tight bar (both checkable and exhaustive)
+
+- [ ] 2–3 figures embedded, each with caption and paired files `附图/嵌入/*.png` + `附图/源文件/*`
+- [ ] 1–3 core formulas, each with variable map + I/O + boundary, tight gate satisfied; remaining formulas consolidated to `[S#]`
+- [ ] §四 stays free of paper deep tower and full parameter tables; whole document traces to 申请信息 or `[S#]`
+- [ ] Engineering register: ordinary prose, single stable file `技术交底书.md`
+- [ ] 附录 S ≤5 条，按需可省略；全文 ` [S#]` ≤5 处且仅在直接引用句尾

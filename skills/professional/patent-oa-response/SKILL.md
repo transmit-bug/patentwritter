@@ -6,20 +6,20 @@ allowed-tools: Read, Grep, Glob, Write, Edit
 
 # Responding to a CN Office Action (审查意见答复)
 
-Professional-group discipline skill. Owns the response logic only (discipline and anchors under Read first). **Input = 审查意见通知书 + 申请文件 (claims + specification, as filed and as amended).** If any input is missing, fail loud — never draft on guesswork.
+Professional-group discipline skill. Owns the response logic only (discipline and anchors under Read first). **Input = 审查意见通知书 + 申请文件 (claims + specification, as filed and as amended).** If any input is missing, fail loud — draft only when required notice and application files are present; otherwise report the missing input and pause.
 
 ## Read first
 
 1. **Discipline**: `../patent-standards/references/professional-discipline.md`. Follow it.
 2. **Anchors**: `../patent-standards/references/cn-professional.md` — the patent-oa-response row of the stage anchor map: 法22 / 26.4 / 33 / 37; 细则57.3 / 58 / 59; 指南 II-3 3.1 (单独对比), II-4 3.2.1.1 (三步法), II-8 4.10.3 / 4.11.3.2 (期限), II-8 5.1.1 / 5.2 (答复与修改). Cite these anchors.
-3. **Honesty red line**: prior art only from real search-tool results or user-supplied material (`(prior art: <title>, <pub. no.>, <URL>)` / `(provided: <file or patent number>)`). Never invent references, dates, or experimental data.
+3. **Honesty red line**: prior art only from real search-tool results or user-supplied material (`(prior art: <title>, <pub. no.>, <URL>)` / `(provided: <file or patent number>)`). Ground every prior-art claim with a real search result or inventor-provided file, cited as (prior art: <title>, <pub. no.>, <URL>) or (provided: <file>).
 4. **Workspace**: `.patent/` support layer — `sources/` `materials/` `queries/` + case archive (see below); drafts land in `.patent/oa/<case>/` (suggest gitignored).
 
 ## Workflow
 
 ### Step 0 — Input gate (fail loud)
 
-- **PDF-first**: the notice is given as a file path (PDF preferred). Never ask the user to hand-paste or hand-copy the notice text. If the PDF has no extractable text (scan), state exactly that and offer OCR or a text-bearing PDF — still no hand-typing.
+- **PDF-first**: the notice is given as a file path (PDF preferred). Receive the notice as a file path (PDF preferred). When the PDF lacks extractable text (scan), report that state and offer OCR or a text-bearing PDF so the text becomes machine-readable.
 - **申请文件**: claims + specification needed to judge support (法33) and amendment direction (细则57.3). Missing → say what is missing, stop that part.
 - No notice at all → stop. No output is better than an unverified response.
 
@@ -30,7 +30,7 @@ Extract and record, per notice item, into `.patent/oa/<case>/notice_struct.md`:
 | Field | Meaning |
 |---|---|
 | `notice_kind` | 第一次审查意见通知书 / 再次审查意见通知书 / 补正通知书 / 驳回前通知 |
-| `response_period` | **the period stated in the notice** (指定期限) — never assume |
+| `response_period` | **the period stated in the notice** (指定期限) — read the value directly from the notice |
 | `patent_type` | invention / utility model |
 | `defects[]` | per item: `item_no` (通知书条目编号), `statute` (法条, e.g. 法22.3), `examiner_view` (审查员观点), `compare_refs` (对比文件号), `claim_refs` (涉及的权利要求) |
 | `defect_types` | novelty / inventiveness / clarity / support / disclosure / unity / formality / other |
@@ -44,7 +44,7 @@ Search is mandatory and comes before any argument is written:
 
 - **Prior art (delegated / external)**: same discipline as the B group — declare `[PRIOR-ART] <technology description>`, resolve via the **patents-search** skill (Valyu) or whatever search tool the environment exposes, or user-supplied material. Verify the examiner's cited references by reading them where possible (环境检索, e.g. provided PDFs). No search tool and no user-supplied prior art → fail loud for that portion.
 - **Case archive (user's own de-identified history)**: a user-supplied directory (e.g. `.patent/cases/history/`), format = the case-note contract below. Retrieval = **environment capability only** (Read / Grep / Glob over the directory) — the package ships zero scripts, zero vector DBs, zero keys.
-- **空库禁糊弄**: if the archive is empty and search returned nothing usable, output only an outline + strategy options — never pretend to cite a historical case, never fabricate a reference.
+- **空库禁糊弄**: if the archive is empty and search returned nothing usable, output only an outline + strategy options — cite only real archive hits with case id and difference, and cite only real search results or user-provided references.
 - Every case hit is cited with `(案例 <case_id>: 差异 <diff_fields>)` — the difference vs the current case (statutes / defect_types / domain / patent_type), and why it is relevant.
 
 ### Step 3 — Defect classification & argumentation (理由分类 + 三步法)
@@ -75,7 +75,7 @@ The four-part creative-argumentation habit (absorbed from the mode-D case practi
 
 Offer at minimum: **仅意见陈述 / 修改权利要求 / 修改说明书 / 补正形式**. For each option:
 
-- **超范围风险标注** (per 法33): every amendment is checked against the original specification + claims scope; a risky amendment is labeled with the risk, never silently passed.
+- **超范围风险标注** (per 法33): every amendment is checked against the original specification + claims scope; a risky amendment is labeled with the risk, is always labeled with its risk.
 - **细则57.3**: amendments after an OA shall be directed to the defects pointed out in the notice; 全面适应性修改 keeps the text consistent (细则58 replacement pages).
 - **禁反悔审查**: review statements and amendments for what they would concede in a later infringement dispute (禁止反悔原则) — flag any wording that narrows scope unnecessarily.
 
@@ -122,7 +122,7 @@ Body (suggested): 通知书要点 → 策略 → 陈述要点 → 修改摘要 �
 
 ## Deadlines (期限纪律)
 
-第一次审查意见 4 个月 / 再次 2 个月 (指南 II-8 4.10.3 / 4.11.3.2) — background for planning only. The operative deadline is the 指定期限 stated in the notice; it is extendable on request per 细则 — the skill states the mechanism, never hard-codes a number.
+第一次审查意见 4 个月 / 再次 2 个月 (指南 II-8 4.10.3 / 4.11.3.2) — background for planning only. The operative deadline is the 指定期限 stated in the notice; it is extendable on request per 细则 — the skill states the mechanism, reads the number from the notice.
 
 ## Abstract note (摘要 300 字)
 

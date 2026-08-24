@@ -54,7 +54,7 @@ Evidence: 证据一式两份 with the request (细则69.1); grounds may be added
 **First pass — grounds & evidence audit** (before drafting anything):
 
 1. **理由范围**: is each asserted ground inside the closed list of 细则69.2? A ground outside it is inadmissible — say so, anchored.
-2. **证据核实**: for each piece of evidence — 真实性 (is it a real document?), 公开时间 (is it prior art against the patent? disclosure date), 公开内容 (what does it actually disclose?). Read the evidence; never accept the requester's characterization.
+2. **证据核实**: for each piece of evidence — 真实性 (is it a real document?), 公开时间 (is it prior art against the patent? disclosure date), 公开内容 (what does it actually disclose?). Read the evidence; verify the characterization against the evidence text before accepting it.
 3. **证据与理由的因果关系**: does the evidence actually support the ground as pleaded? (e.g. a novelty ground needs a single reference disclosing every feature.)
 
 **Response strategy**: 针对证据论述 (distinguishing features not disclosed in the cited reference / no technical teaching / combination not obvious — three-step method in defense); 提供反证 (counter-evidence, incl. evidence that the alleged prior art was not public before the filing date); 据理反驳. When necessary, amend claims to **partially maintain** the patent — under the narrow invalidation limits of 细则73:

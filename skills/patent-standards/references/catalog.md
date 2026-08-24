@@ -35,7 +35,7 @@
 
 ## Declared external sources (声明外部源)
 
-Human-operated sources the set **documents but never automates**. Peer-level with delegated tools, not a fallback ladder: skills only reference the source info and citation anchors; no crawler / thin-wrapper code ships in the package.
+Human-operated sources the set **documents for manual lookup; automation stays in delegated tools and environment**. Peer-level with delegated tools, not a fallback ladder: skills only reference the source info and citation anchors; no crawler / thin-wrapper code ships in the package.
 
 ### CNIPA Publication & Announcement System (国家知识产权局 公布公告系统)
 

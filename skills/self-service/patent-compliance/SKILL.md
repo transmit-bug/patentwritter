@@ -8,6 +8,8 @@ allowed-tools: Read, Grep, Glob, Write, Edit
 
 Role: **discipline** of the self-service group, independent from the drafters by design — the checker and the drafter never share a file. On completion, update the 自检 stage in `草稿/申请信息.md`.
 
+This skill is the **backend gate that owns claim-formality rules** — they were deliberately moved out of `../patent-drafting/SKILL.md` so drafting can stay in content mode. It runs **only on the filing track** (交付目标 = 申请文件套件 / 两者); the disclosure track skips this skill entirely.
+
 Standards pointer: `../patent-standards/`. Use the relevant anchor when a check needs a legal interpretation; this skill owns the executable check, not a reproduction of the standards.
 
 Input: the drafts and supplied figures for the selected branch. Output a report at `草稿/检查报告.md` with `critical`, `important`, or `minor`, a location, the observed problem, and a repair instruction.
@@ -20,15 +22,19 @@ Split every claim into features and locate each feature in the specification's s
 
 ### 2. Claim clarity
 
+**Scope: scan 权利要求书.md only.** These are claims-register checks; the specification's narrative paragraphs and any 技术交底书 are exempt — do not flag "所述" usage or statutory phrasing there (the specification is deliberately written in engineering prose per the voice wall in patent-drafting).
+
 Scan for:
 
 - undefined "所述" terms;
 - leading phrases such as “优选”“例如”“最好” in claims;
-- claims that rely on figure-only or specification-only language;
+- claims that rely on figure-only or specification-only language (e.g. "如图…所示");
 - mixed claim subjects;
 - inconsistent terminology;
 - multiple-dependent claims that create an invalid citation chain;
-- numerals used as limitations rather than parenthetical references.
+- a dependent claim citing a later claim; a multiple dependent claim citing more than one alternative or serving as the basis of another multiple dependent claim; a citation part that does not restate the full subject;
+- numerals used as limitations rather than parenthetical references;
+- more than one full stop in a single claim.
 
 ### 3. Title and subject consistency
 
@@ -89,5 +95,5 @@ When this is a rectification task, compare each amended feature with the origina
 - [ ] Every critical has a location and repair instruction
 - [ ] Support chain and formula checks are complete where applicable
 - [ ] Figures, titles, terminology, and deliverable files are consistent
-- [ ] Word delivery is separately passed through `../conversion/SKILL.md`
+- [ ] If Word output was requested, it is separately passed through `../word-delivery/SKILL.md` (user-invoked; md drafts are the completion point otherwise)
 - [ ] 自检 stage updated in `草稿/申请信息.md`

@@ -1,7 +1,5 @@
-# Optional dependency list (conversion skill) — all optional, install on demand; skip = take the degradation chain
-# Version floors from external evaluation (2026-08-12, research/absorb-conversion-tools.md); reference only.
-# Install example: pip install python-docx  /  pandoc — see each project's official docs
-python-docx>=1.1.0      # chain ①: inline .docx generation (Word delivery)
+# Optional dependency list (conversion skill, ingestion only) — all optional, install on demand; skip = take the degradation chain
+# Install example: pip install mammoth python-pptx — see each project's official docs
 mammoth>=1.6.0          # ingestion: .docx → Markdown
+python-docx>=1.1.0      # ingestion fallback: .docx → Markdown (when mammoth unavailable)
 python-pptx>=0.6.21     # ingestion: .pptx → Markdown
-latex2mathml>=3.77.0    # formulas: LaTeX → OMML (editable Word formulas; default keeps LaTeX source)

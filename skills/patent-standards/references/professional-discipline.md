@@ -18,4 +18,4 @@
 请提供: <concrete options — enable a retrieval tool, supply the material as a file, or waive>
 ````
 
-5. **Never invent** — never restate the law from memory; the per-jurisdiction anchor files and the contract are the only authority.
+5. **Write only from declared sources and delegated-search results** — never restate the law from memory; the per-jurisdiction anchor files and the contract are the only authority.

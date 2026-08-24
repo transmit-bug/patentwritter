@@ -12,9 +12,9 @@ The package source lives in `skills/<group>/<name>/SKILL.md` — functional grou
 
 The package ships skills under the skills.sh category layout (see `docs/adr/0004-self-service-package.md` for the 2026-08-11 restructure; 2026-08-13 内容英文化并迁入 `skills/en/` 语言组):
 
-- **`skills/self-service/` — 自助组(本包主体,ADR-0009 后 5 技能)**: `patent-intake`(前门+编排:路由三轴+统一来源处理+访谈+阶段清单+回边路由,共享 `references/`), `patent-drafting`(权利要求书+说明书+摘要,支撑链单一所有者), `patent-drawings`(附图), `patent-compliance`(递交前自检), `patent-filing`(递交与补正)。外观设计分支由 intake 转入 `patent-intake/references/design-points.md`;来源处理统一走 `patent-intake/references/source-modes.md`;标准仅通过 `patent-standards` 文件索引按需读取。
-- **`skills/professional/` — 专业组(ADR-0007 已实现)**:入口 `patent-prosecution`(user-invoked, `disable-model-invocation: true`)编排授权链路五 discipline — `patent-oa-response`(OA 答复,旗舰)、`patent-re-exam`(复审)、`patent-invalidation`(无效,请求+答辩双向)、`patent-evaluation-report`(评价报告)、`patent-claim-strategy`(权利要求策略),五 discipline 均 model-invoked、正常参与发现;另寄放保留的 US 技能(`patent-application-creator`, `patent-claims-analyzer`,`metadata.internal: true` 隐藏,待重做)。
-- **`skills/tools/`** — `conversion`(纯文档转换纪律:Word 交付/材料摄入,零脚本零依赖,见 `requirements-optional.txt`)、`patents-search`(委托检索,可选工具,流程不依赖)。
+- **`skills/self-service/` — 自助组(本包主体,ADR-0009 后 5 技能)**: `patent-intake`(前门+编排:路由三轴+统一来源处理+访谈+阶段清单+回边路由,共享 `references/`,交付形态由 `Word导出` 轴记录), `patent-drafting`(说明书可读 prose 先行→权利要求书提炼+摘要,voice wall 语体边界,支撑链单一所有者), `patent-drawings`(附图), `patent-compliance`(递交前自检,仅 filing 轨,后端 claim 形式规则所有者), `patent-filing`(递交与补正)。外观设计分支由 intake 转入 `patent-intake/references/design-points.md`;来源处理统一走 `patent-intake/references/source-modes.md`;标准仅通过 `patent-standards` 文件索引按需读取。
+- **`skills/professional/` — 专业组(ADR-0007 已实现, 6 技能)**:入口 `patent-prosecution`(user-invoked, `disable-model-invocation: true`)编排授权链路五 discipline — `patent-oa-response`(OA 答复,旗舰)、`patent-re-exam`(复审)、`patent-invalidation`(无效,请求+答辩双向)、`patent-evaluation-report`(评价报告)、`patent-claim-strategy`(权利要求策略),五 discipline 均 model-invoked、正常参与发现。
+- **`skills/tools/`** — `conversion`(纯文档摄入纪律: .docx/.pptx → Markdown,零脚本零依赖)、`word-delivery`(Word 交付纪律: md → docx,按需触发,单源规则,见 `requirements-optional.txt`)、`patents-search`(委托检索,可选工具,流程不依赖)。
 - **`skills/patent-standards/`** — 跨组共享(薄 SKILL.md 索引 + `references/`):发明/实用新型、外观设计、US 分型锚点(2026-08-11/12 对 CNIPA 全文核实)+ 权威文本目录 + 声明外部源(CNIPA 公布公告系统)。
 - **分组 = 安装单元**(ADR-0011,实测):`npx skills add <repo>/skills/self-service` 只装自助组;`/skills/professional` 只装专业组;整包全装。子路径安装后跨组引用需补装 `patent-standards` 与相关 `tools/`;分组地图与安装命令见 `skills/README.md`。
 

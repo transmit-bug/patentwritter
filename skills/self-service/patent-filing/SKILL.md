@@ -37,7 +37,7 @@ Input: the completed application file package + application type. This skill is 
 ## Design e-filing points
 
 - A design filing uses the request, pictures or photographs, and brief description; it does not use invention/utility-model claims, specification, or abstract.
-- Picture/photo format and size: follow the upload prompts of the Patent Business Processing System and ensure the protected appearance is clearly shown. Do not rely on remembered legacy size rules.
+- Picture/photo format and size: follow the upload prompts of the Patent Business Processing System for current size and format requirements and ensure the protected appearance is clearly shown; treat any remembered legacy size rules as non-authoritative.
 - Views: submit orthographic views for the faces involved by the design points (six views only when six faces are involved; view rules in `../patent-intake/references/design-points.md`), black-white/gray in practice; keep color only when color protection is claimed — then submit color pictures or photographs.
 - Designate in the system the single image best showing the design points.
 

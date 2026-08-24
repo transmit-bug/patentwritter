@@ -47,8 +47,6 @@ B 组内共享的判断逻辑放在 `patent-intake/references/` 下按需读取(
 | `patent-evaluation-report` | 实用新型/外观维权前评估、应对侵权指控、开放许可 | 专利文本 + 用途 |
 | `patent-claim-strategy` | 保护范围权衡、OA 修改策略、分案/优先权决策 | 权利要求 + 说明书 + 可得的先有技术 |
 
-另有两个**隐藏保留**的 US 技能(`patent-application-creator`、`patent-claims-analyzer`,`metadata.internal: true`),不在正常发现范围,待 A 组 US 方向重做时启用。
-
 **A 组边界(ADR-0007 决策 7)**:FTO / 专利布局 / 维权 / 许可(授权后业务)与 US 执业不在范围内;全新申请的机械撰写也不走 A 组——回到 B 组入口。
 
 ### 工具组(`skills/tools/`)
@@ -56,7 +54,8 @@ B 组内共享的判断逻辑放在 `patent-intake/references/` 下按需读取(
 | 技能 | 职责 | 关键约束 |
 |---|---|---|
 | `patents-search` | 委托检索:Valyu 语义检索 API 查先有技术(USPTO/EPO 全文) | 可选工具,流程不依赖;CN 专利不在 Valyu 数据源内,CN 现有技术走 CNIPA 手动检索(search-guide);需自备 API key |
-| `conversion` | 纯文档转换纪律:Stage-1 材料摄入(docx/pptx → md)与 Stage-5 Word 交付(md → docx) | 零脚本零依赖(ADR-0005),环境探测降级链(python-docx → pandoc → 手动),全不可用则 fail loud |
+| `conversion` | 纯文档摄入: .docx/.pptx → Markdown (Stage-1) | 零脚本零依赖(ADR-0005),环境探测降级链(python-docx/pptx → 手动),全不可用则 fail loud |
+| `word-delivery` | Word 交付: md → docx (Stage-5, 按需触发,单源规则) | 零脚本,探测 python-docx → pandoc → 手动,模板填充仅链①,全不可用则 fail loud |
 
 ### 跨组共享(`skills/patent-standards/`)
 

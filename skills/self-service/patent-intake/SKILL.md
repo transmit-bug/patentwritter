@@ -1,6 +1,6 @@
 ---
 name: patent-intake
-description: "Front door and orchestrator for self-service Chinese patent work — routing, inventor interview, stage checklist, discipline dispatch and back-edge routing. Use when the user wants to write a patent application, continue an interrupted one, or produce a technical disclosure."
+description: "brief-tight disclosure assembly or filing-set routing for self-service Chinese patents — interview four elements, dispatch drafting/drawings, assemble disclosure. Use when the user wants a technical disclosure (交底书, brief-tight) or a filing set (权利要求书/说明书)."
 allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion, Bash
 ---
 
@@ -19,21 +19,21 @@ Collect three axes:
    - **disclosure only**: technical disclosure for an agent or internal review;
    - **filing set**: claims, specification, abstract, and applicable drawings/brief description;
    - **both**: disclosure plus filing set.
-   Word output is a delivery choice handled by `../conversion/SKILL.md`, not a separate patent type.
-3. **Patent type** — invention / utility model / design / undecided or possible dual filing. Use `references/type-decision.md`. Do not force a type from the document format or from a product name. If the source carries multiple independent inventive contributions, run the singleness check in `references/source-modes.md` before committing to one application.
+   Word/docx export is **not** an automatic deliverable. At interview, agree the delivery form with the inventor — finalized `.md` drafts only (default) / docx on request / docx per an agreed template — and record it in the route record's `Word导出` axis. Generating Word files is the separately user-invoked `../word-delivery/SKILL.md`; run it only when the inventor asks in the current turn or the route record pre-agrees it.
+3. **Patent type** — invention / utility model / design / undecided or possible dual filing. Use `references/type-decision.md`. Decide type only when `references/type-decision.md` provides supporting evidence; when multiple independent contributions appear, apply the singleness check in `references/source-modes.md` and confirm with the inventor via AskUserQuestion before committing.
 
-## Routing table
+## Routing table — one trigger per branch
 
 | Decision | Handoff |
 |---|---|
-| Any supplied material | source intake per `references/source-modes.md` (documents go through `../conversion/SKILL.md`), then interview |
-| Inventor description or incomplete material | disclosure interview (this skill, `references/interview.md`) |
-| Invention, filing set | `../patent-drafting/` → `../patent-drawings/` → `../patent-compliance/` |
-| Utility model, filing set | same chain, with the utility-model branch in `../patent-drafting/` and mandatory structural drawings |
-| Design, filing set | design branch in `references/design-points.md` → brief description/view list → `../patent-compliance/` (design checks) |
-| Disclosure only | disclosure track: assemble per `references/disclosure-document.md` (interview four-element record + confirmed materials; no drafting disciplines, no filing-track gates) → `../conversion/SKILL.md` |
-| Both | complete the filing-set route, then assemble the disclosure |
-| Filing / rectification after documents exist | `../patent-filing/SKILL.md` |
+| any supplied material | source intake `references/source-modes.md` (`../conversion/SKILL.md` ingestion), then interview |
+| description incomplete | disclosure interview `references/interview.md` (four elements; formula-bearing runs C) |
+| invention filing set | `../patent-drafting/` → `../patent-drawings/` (full) → `../patent-compliance/` |
+| utility filing set | same chain, utility branch in drafting, structural drawings mandatory |
+| design filing set | design branch `references/design-points.md` → `../patent-compliance/` |
+| brief-tight disclosure only | assemble `references/disclosure-document.md` (brief-tight, ≤3 formulas, 2-3 figures) + `../patent-drawings/` Disclosure branch (brief-tight); no filing gates; docx via `../word-delivery/SKILL.md` on request |
+| both | filing-set route first, then brief-tight assembly from filing drafts |
+| filing/rectification | `../patent-filing/SKILL.md` |
 
 ## State record
 
@@ -45,11 +45,14 @@ Route record:
 材料来源: 口述 / 文档 / 网页 / 对谈记录 / 代码 / 其他材料
 材料位置: …
 交付目标: 交底书 / 申请文件套件 / 两者
+Word导出: 未约定(按需,默认) / 已约定(时机/模板)
 申请类型: 发明 / 实用新型 / 外观设计 / 一案两请 / 待确认
 待确认事项: …
 模板: 项目默认 / 指定模板 / 无
 横切标志: 公开状态=… / 语言纯度=… / 数据可用性=… / 图可用性=… / 多贡献风险=…
 ```
+
+`Word导出` records the delivery-form agreement: by default no Word files are generated — the pipeline completes at self-checked `.md` drafts and docx is exported only when the inventor asks (`../word-delivery/SKILL.md`).
 
 Stage checklist (the resume mechanism — update it, never infer progress from which files exist):
 
@@ -62,7 +65,7 @@ Stage checklist (the resume mechanism — update it, never infer progress from w
 - [ ] 说明书
 - [ ] 附图
 - [ ] 自检  (report at 草稿/检查报告.md)
-- [ ] 交付
+- [ ] 交付  (.md 定稿；docx 仅当 Word导出 已约定或发明人当场要求)
 - [ ] 递交
 ```
 
@@ -70,7 +73,7 @@ Each discipline updates its own stage to ✓ when its completion standard passes
 
 ## Workspace layout
 
-In the inventor's project (the directory is a **workspace name, not a skill name**): drafts under `patent-application/草稿/`, figures under `patent-application/附图/` (`源文件/` .dot sources + original external figures as received, `预览/` svg, `嵌入/` png), deliverables under `patent-application/成品/`; support layer `.patent/` (`sources/` citation lists, `materials/` inventor materials, `queries/` search records). Never mix `草稿/` and `成品/`.
+In the inventor's project (the directory is a **workspace name, not a skill name**): drafts under `patent-application/草稿/`, figures under `patent-application/附图/` (`源文件/` .dot sources + original external figures as received, `预览/` svg, `嵌入/` png), deliverables under `patent-application/成品/`; support layer `.patent/` (`sources/` citation lists, `materials/` inventor materials, `queries/` search records). Keep `草稿/` for editable drafts and `成品/` for regenerable exports as separate directories.
 
 ## Sequence
 
@@ -84,11 +87,11 @@ For invention / utility model, read `references/interview.md` and record the fou
 
 Ask about disclosure status and preserve the inventor's source trail. Prior-art search is optional: `references/search-guide.md` + `../patents-search/` before drafting the background art.
 
-### 3. Dispatch drafting — only the requested branch
+### 3. Dispatch — only the requested branch, brief-tight stays tight
 
-- Filing set, invention / utility model: execute `../patent-drafting/SKILL.md` (claims → specification → abstract), then `../patent-drawings/SKILL.md` when figures apply.
-- Filing set, design: execute the design branch in `references/design-points.md`; images are inventor-supplied.
-- Disclosure only: the **disclosure track** — assemble per `references/disclosure-document.md` from the interview four-element record and confirmed materials (route-aware sources in its assembly table). Do not run the drafting / drawings / compliance disciplines for it, and do not manufacture claims, abstract, or statutory filing sections merely to fill space; the filing-track gates (five-part structure, claims rules, support chain) do not apply to this document.
+- Filing set, invention/utility: `../patent-drafting/SKILL.md` (spec-first, tight not required) → `../patent-drawings/SKILL.md` full routing.
+- Design: `references/design-points.md`.
+- brief-tight disclosure only: `references/disclosure-document.md` (≤3 formulas, 2-3 figures, template structure) + `../patent-drawings/SKILL.md` Disclosure branch. No `patent-drafting`/`patent-compliance` on this branch; rights and abstract stay in filing track.
 
 Each discipline owns its own completion standard and updates the stage checklist.
 
@@ -98,25 +101,27 @@ Read `../patent-compliance/SKILL.md`. Run only the checks applicable to the sele
 
 ### 5. Assemble and deliver
 
-Read `../conversion/SKILL.md` for Markdown-to-Word conversion, template reuse, formula conversion, and the acceptance gate; read `references/disclosure-document.md` for the consolidated disclosure structure.
+The pipeline's default completion point is **finalized `.md` drafts**: assembly per `references/disclosure-document.md` (for the consolidated disclosure) plus zero unresolved criticals from step 4. Confirm the delivery form with the inventor. Generate Word files **only** when the inventor asks in the current turn or the route record says `Word导出: 已约定` — then read `../word-delivery/SKILL.md` for conversion chains, template reuse, formula conversion, and the acceptance gate.
+
+Revision requests after delivery follow the single-source rule: edits land in the owning draft under `草稿/`, affected checks re-run, then `../word-delivery/SKILL.md` regenerates — never hand-edit a delivered `.docx`.
 
 ### 6. Filing guidance, only when requested
 
-Hand off to `../patent-filing/SKILL.md`. Do not load filing procedure during drafting unless the route record asks for it.
+Hand off to `../patent-filing/SKILL.md`. Load filing guidance from `../patent-filing/SKILL.md` when the route record marks filing as requested; otherwise keep drafting focused on the current track.
 
-## Single pointers
+## Single pointers — disclosed references (load only when branch fires)
 
-- Type choice: `references/type-decision.md`.
-- Source handling and the five flags: `references/source-modes.md`.
-- Design interview and views: `references/design-points.md`.
-- Disclosure assembly: `references/disclosure-document.md`.
-- Prior-art search: `references/search-guide.md` and `../patents-search/`.
-- CN standards: `../patent-standards/SKILL.md` and the one relevant reference named there — no statutory text or Rule-basis tables copied here.
+- brief-tight disclosure assembly: `references/disclosure-document.md`
+- type choice: `references/type-decision.md`
+- source intake + five flags: `references/source-modes.md`
+- design views: `references/design-points.md`
+- search (optional, before background art): `references/search-guide.md` + `../patents-search/`
+- standards (file index, not body): `../patent-standards/SKILL.md`
 
 ## Boundaries
 
 - Case facts, papers, formulas, citations, and experimental results belong to the project support workspace and drafts, never to this skill's files.
-- Do not run every discipline by default; invoke only the branches required by the requested deliverable and type.
+- Invoke only the disciplines required by the deliverable and type recorded in the route; other branches remain dormant until the route asks for them.
 - Disciplines are never called sideways by each other — handoffs happen through artifact files and this orchestrator.
 
 ## Completion standard
@@ -126,4 +131,4 @@ Hand off to `../patent-filing/SKILL.md`. Do not load filing procedure during dra
 - [ ] Only the selected type and deliverable branches ran
 - [ ] Four elements or design points recorded; no invented material
 - [ ] Self-check report exists with no unresolved criticals; back edges routed and re-checked
-- [ ] Word output passed the conversion acceptance gate, or the degradation/blocker report was delivered
+- [ ] Delivery form agreed with the inventor and recorded (`Word导出` axis); if Word was requested, output passed the acceptance gate in `../word-delivery/SKILL.md`, or the degradation/blocker report was delivered

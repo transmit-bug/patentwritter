@@ -16,7 +16,7 @@ This branch is for appearance protection. It does not use the invention/utility-
 
 ## Product class
 
-Record the product name and the applicable classification hint from the official classification material. Do not infer a class from a marketing name alone.
+Record the product name and the applicable classification hint from the official classification material. Determine class only from official classification material; when only a marketing name exists, ask the inventor to confirm.
 
 ## Brief description
 

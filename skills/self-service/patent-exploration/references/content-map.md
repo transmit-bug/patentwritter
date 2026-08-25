@@ -4,7 +4,7 @@ Purpose: make sure the agent and the inventor see the **same territory** before 
 
 ## When to build
 
-Every mining-mode run builds one `内容地图.md` under `.patent/exploration/`. Socratic-only runs can skip it, but if any document was ingested, build it.
+Every mining-mode run builds one `内容地图.md` under `patents/<patent-name>/.patent/exploration/` (case-root-relative `.patent/exploration/`). Socratic-only runs can skip it, but if any document was ingested, build it.
 
 ## Structure
 

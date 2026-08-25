@@ -22,11 +22,11 @@ A skills **package** (`skills/`) for writing patent applications, installable vi
 
 **标记一致**:附图标记与说明书文字双向一致(细则第21条)。
 
-**阶段清单**:`草稿/申请信息.md` 中的可恢复状态机 — 摄入/路由/访谈/权利要求/说明书/附图/自检/交付/递交,每技能完成时自更新 ✓ 或 blocked(附原因);续跑依据清单而非文件存在性(ADR-0009)。
+**阶段清单**:`drafts/application-info.md` 中的可恢复状态机 — intake/route/interview/claims/specification/drawings/self-check/delivery/filing,每技能完成时自更新 ✓ 或 blocked(附原因);续跑依据清单而非文件存在性(ADR-0009)。
 
 **规则双轨**:撰写规则分两轨,单一定义在 `patent-intake/references/disclosure-document.md` — 申请文件轨(五部分结构、权利要求格式/引用/清楚、支撑链、阶梯;只约束权利要求书/说明书/摘要)与交底轨(组装表+组装规则+诚实红线;只约束技术交底书,面向代理机构/内部评审的人类读者)。轨间互不进口;交底书绝不为凑格式起草法定章节(ADR-0012)。
 
-**来源模式**:统一来源处理协议 — 来源是两个正交参数(形态→摄入通道,完整度→访谈策略);归档契约(原样落 `.patent/materials/`+来源登记)+ 提取-确认-补齐;五横切标志(公开状态/语言纯度/数据可用性/图可用性/多贡献风险)写入申请信息,下游只读标志不读来源。
+**来源模式**:统一来源处理协议 — 来源是两个正交参数(形态→摄入通道,完整度→访谈策略);归档契约(原样落 `.patent/materials/`+来源登记)+ 提取-确认-补齐;五横切标志(公开状态/语言纯度/数据可用性/图可用性/多贡献风险)写入 application-info,下游只读标志不读来源。
 
 ## Language
 
@@ -75,5 +75,5 @@ External design kept as reference material for a future skill group without chan
 _Avoid_: expanding current scope with archived designs
 
 **`.patent/` workspace (支撑层工作目录)**:
-The tiered support layer under the inventor's project root: `sources/` (declarations, citation lists), `materials/` (inventor materials, retrieved documents), `queries/` (search records and results). Draft application files stay in the visible `patent-application/`; `.patent/` is suggested gitignored.
-_Avoid_: mixing support layer into draft directory
+The tiered support layer inside each case root `patents/<patent-name>/` (one directory per application; directory name = target product recorded at routing, frozen once routing completes): `sources/` (declarations, citation lists), `materials/` (inventor materials, retrieved documents), `queries/` (search records and results). Draft application files stay in the visible `drafts/`; `.patent/` is suggested gitignored. Workspace machinery (directories, internal records such as `application-info.md` / `check-report.md`) is English-only; Chinese appears only in the authored deliverable documents themselves.
+_Avoid_: mixing support layer into draft directory; sharing `.patent/` across case roots

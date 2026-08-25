@@ -4,7 +4,7 @@ Any material source — 口述, 文档 (docx / pdf / pptx), 网页, 对谈记录
 
 ## Archive contract (mandatory, every source)
 
-Archive the source **as-is** under `.patent/materials/` and register provenance in `drafts/申请信息.md` (材料位置): what it is, when obtained, how obtained, whose it is. This is the physical basis of the honesty red line — the user must always be able to say where a piece of content came from.
+Archive the source **as-is** under `.patent/materials/` and register provenance in `drafts/application-info.md` ((material-location field)): what it is, when obtained, how obtained, whose it is. This is the physical basis of the honesty red line — the user must always be able to say where a piece of content came from.
 
 ## Ingestion channel table (form → channel)
 
@@ -28,7 +28,7 @@ Modes that emerge: oral description = empty extraction → full question bank (*
 
 ## Five cross-cutting flags (what downstream skills consume)
 
-Set during extraction, written into `drafts/申请信息.md`. Downstream skills read flags, never the source kind:
+Set during extraction, written into `drafts/application-info.md`. Downstream skills read flags, never the source kind:
 
 | Flag | Trigger | Consumer |
 |---|---|---|

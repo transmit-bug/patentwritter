@@ -29,7 +29,7 @@ If the inventor cannot distinguish appearance from function, ask what a competit
 
 ## Output record
 
-Write only the decision and its plain-language explanation into `drafts/申请信息.md`:
+Write only the decision and its plain-language explanation into `drafts/application-info.md`:
 
 ```text
 申请类型: 发明 / 实用新型 / 外观设计 / 一案两请 / 待确认

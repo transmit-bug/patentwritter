@@ -12,7 +12,7 @@ The package source lives in `skills/<group>/<name>/SKILL.md` — functional grou
 
 The package ships skills under the skills.sh category layout (see `docs/adr/0004-self-service-package.md` for the 2026-08-11 restructure; 2026-08-13 内容英文化并迁入 `skills/en/` 语言组):
 
-- **`skills/self-service/` — 自助组(本包主体,ADR-0009 后 5 技能)**: `patent-intake`(前门+编排:路由三轴+统一来源处理+访谈+阶段清单+回边路由,共享 `references/`,交付形态由 `Word导出` 轴记录), `patent-drafting`(说明书可读 prose 先行→权利要求书提炼+摘要,voice wall 语体边界,支撑链单一所有者), `patent-drawings`(附图), `patent-compliance`(递交前自检,仅 filing 轨,后端 claim 形式规则所有者), `patent-filing`(递交与补正)。外观设计分支由 intake 转入 `patent-intake/references/design-points.md`;来源处理统一走 `patent-intake/references/source-modes.md`;标准仅通过 `patent-standards` 文件索引按需读取。
+- **`skills/self-service/` — 自助组(本包主体,ADR-0009 后 6 技能)**: `patent-intake`(前门+编排:路由四轴+统一来源处理+访谈+阶段清单+回边路由,共享 `references/`,交付形态由 `word-export` 字段记录;工作区层级化:一案一目录 `patents/<专利名>/`,目录名冻结规则见 SKILL.md,支撑层 `.patent/` 移入案内), `patent-exploration`(内容研讨:任何形态材料→内容地图→技术拆解→可专利点矩阵→Socratic 研讨→保护方向,向 intake 移交), `patent-drafting`(说明书可读 prose 先行→权利要求书提炼+摘要,voice wall 语体边界,支撑链单一所有者), `patent-drawings`(附图), `patent-compliance`(递交前自检,仅 filing 轨,后端 claim 形式规则所有者), `patent-filing`(递交与补正)。外观设计分支由 intake 转入 `patent-intake/references/design-points.md`;来源处理统一走 `patent-intake/references/source-modes.md`;标准仅通过 `patent-standards` 文件索引按需读取。
 - **`skills/professional/` — 专业组(ADR-0007 已实现, 6 技能)**:入口 `patent-prosecution`(user-invoked, `disable-model-invocation: true`)编排授权链路五 discipline — `patent-oa-response`(OA 答复,旗舰)、`patent-re-exam`(复审)、`patent-invalidation`(无效,请求+答辩双向)、`patent-evaluation-report`(评价报告)、`patent-claim-strategy`(权利要求策略),五 discipline 均 model-invoked、正常参与发现。
 - **`skills/tools/`** — `conversion`(纯文档摄入纪律: .docx/.pptx → Markdown,零脚本零依赖)、`word-delivery`(Word 交付纪律: md → docx,按需触发,单源规则,见 `requirements-optional.txt`)、`patents-search`(委托检索,可选工具,流程不依赖)。
 - **`skills/patent-standards/`** — 跨组共享(薄 SKILL.md 索引 + `references/`):发明/实用新型、外观设计、US 分型锚点(2026-08-11/12 对 CNIPA 全文核实)+ 权威文本目录 + 声明外部源(CNIPA 公布公告系统)。
@@ -26,6 +26,17 @@ The package ships skills under the skills.sh category layout (see `docs/adr/0004
 - 仓库侧文档(`docs/research/`、`docs/prototype/`、`docs/plan/`)不随安装分发,**安装副本里解析不到,不得以任何形式出现在技能正文中** —— 既不写成可解析的相对路径,也不作 `package-repo docs/...` 式溯源注释(安装后的 agent 看不到它,只能读到死重)。
 - **安装侧自包含(硬规则)**:技能正文(含 frontmatter `description` 与 `references/` 全部文件)必须自解释,零仓库侧引用——不引 ADR 号(`ADR-NNNN` 是 `docs/adr/` 里的仓库侧决策号)、不引 `CONTEXT.md` 词表当定义权威、不引 `docs/` 路径、不引仓库侧组名词汇(如旧「A 组/B 组」)。规则要么在本地写完整,要么指向安装几何下可解析的 shipped 文件;验证事实可陈述(如「2026-08-11 对 CNIPA 官方全文逐条核实」),但不带仓库路径。术语首次使用处本地定义或指向 shipped 定义文件(如「规则双轨」的操作定义在 `patent-intake/references/disclosure-document.md`)。`CONTEXT.md` 是维护者侧镜像词表,永远不是安装侧定义权威。验证:装到临时目录后对 `skills/` 全部安装文件 grep `ADR-|docs/(research|prototype|adr|plan)|CONTEXT\.md|package-repo|A 组|B 组`,零命中才通过。
 - 仓库侧工件(`docs/adr/`、`CONTEXT.md`、`docs/research/`)只服务仓库内浏览与维护,引用它们的是 AGENTS.md、ADR、README 等仓库文档,不是技能正文。`npx skills` CLI 按设计把技能拍平到 `<agent-skills-dir>/<skill-name>/`(安装目标取 frontmatter `name`,不保留源树分组,实测 v1.5.22);分组安装面由仓库根 `.claude-plugin/marketplace.json` 提供(Claude Code 插件市场,四分组),该清单必须与源树同步 —— 技能增删/改名/迁移时一并更新,路径悬空即失效。
+
+## 技能安装纪律（硬规则）
+
+- **禁止全局安装**：严禁执行全局安装（如 `~/.pi/agent/skills/`）。本仓库所有 skills 必须通过项目级安装：
+  ```bash
+  npx skills add .                 # 整包 / 本地验证
+  npx skills add transmit-bug/patentwritter  # 远端整包
+  npx skills add <repo>/skills/self-service  # 分组按需
+  ```
+  产物仅落于项目目录内的 `.agents/skills/` 与 `skills-lock.json`，该目录已被 gitignore，属可再生状态。全局目录 `~/.pi/agent/skills/` 必须保持为空/不存在；如已存在须立即 `rm -rf ~/.pi/agent/skills` 清理。
+- 校验：安装后以临时目录 `npx skills add <repo>` 验证安装几何（flat 拍平）与引用解析，无全局残留。
 
 ## Agent skills
 

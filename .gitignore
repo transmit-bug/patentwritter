@@ -1,6 +1,7 @@
-patent-applications/
+# 案例工作产物(若在本仓库内起草,一案一目录):
+patents/
 
-# 发明人项目支撑层工作目录(建议 gitignore;申请文件草稿 patent-application/ 保持可见)
+# 发明人项目支撑层工作目录(建议 gitignore;申请文件草稿 drafts/ 保持可见)
 .patent/
 .DS_Store
 __pycache__/
@@ -21,3 +22,6 @@ skills/*
 !skills/professional/
 !skills/self-service/
 !skills/tools/
+
+# 本地安装测试区:
+tmp/

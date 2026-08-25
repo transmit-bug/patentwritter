@@ -8,7 +8,7 @@ npx skills add transmit-bug/patentwritter
 
 **方向(2026-08-11 重构后;2026-08-13 ADR-0007 落地)**:面向**发明人/非专业人士的自助申请向导**,覆盖专利申请全流程(交底 → 类型判断 → 撰写 → 自检 → 递交与补正;发明/实用新型/外观设计)。专业代理人方向(A 组)已按 `docs/adr/0007-professional-group-integration.md` 分阶段实现并落地 `skills/en/professional/`(授权链路:OA 答复 / 复审 / 无效 / 评价报告 / 权利要求策略 + 入口),见 `docs/plan/professional-integration.md`。
 
-**`.patent/` 支撑层工作目录**:发明人项目根目录下三档分级(`sources/` 引用清单、`materials/` 素材、`queries/` 检索记录),与申请文件草稿目录 `patent-application/`(工作区目录名,与技能名无关,ADR-0008)分治;建议加入发明人项目的 gitignore(留痕可自行取消)。
+**`.patent/` 支撑层工作目录**:位于每个专利的案根目录 `patents/<专利名>/` 内(一案一目录,目录名 = 路由时确定的目标产物,路由后冻结),三档分级(`sources/` 引用清单、`materials/` 素材、`queries/` 检索记录),与申请文件草稿目录 `drafts/`、图目录 `figures/`、交付目录 `deliverables/` 分治;建议加入发明人项目的 gitignore(留痕可自行取消)。工作区机制(目录、内部记录如 `application-info.md`/`check-report.md`)全英文,中文只出现在撰写的产物文档本身。
 
 **诚实红线**:不编造现有技术、专利号、文献、实验数据。背景技术只写发明人已知的、客观通用问题、检索工具真实返回的三类素材。
 
@@ -17,10 +17,11 @@ npx skills add transmit-bug/patentwritter
 ```
 skills/                              # 功能分组 = 安装单元(ADR-0011;无语言层)
 ├── README.md                       # 分组地图 + 安装命令 + 自助链路三流模型
-├── self-service/                    # 自助组(本包主体,ADR-0009 后 5 技能)
-│   ├── patent-intake/              # 前门+编排:路由三轴+统一来源处理+访谈+阶段清单+回边路由
+├── self-service/                    # 自助组(本包主体,ADR-0009 后 6 技能)
+│   ├── patent-exploration/         # 内容研讨：任何形态材料→内容地图→技术拆解→可专利点矩阵→Socratic 研讨→保护方向，向 intake 移交
+│   ├── patent-intake/              # 前门+编排:路由四轴+统一来源处理+访谈+阶段清单+回边路由
 │   ├── patent-drafting/            # 说明书可读 prose 先行→权利要求书提炼+摘要(voice wall 语体边界,支撑链单一所有者)
-│   ├── patent-drawings/            # 附图+附图标记一致性+摘要附图
+│   ├── patent-drawings/            # drawings + numeral consistency + abstract figure
 │   ├── patent-compliance/          # 递交前自检(仅 filing 轨, backend claim 形式规则所有者)
 │   └── patent-filing/              # 递交与补正指引
 ├── professional/                    # 专业组(ADR-0007 已实现, 6 技能)

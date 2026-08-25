@@ -22,7 +22,7 @@ When the inventor provides existing .docx (disclosure / design description / old
 
 Ingested materials and images land in `.patent/materials/` (see the "Workspace layout" section of patent-intake), never mixed into the application documents directory.
 
-Ingestion output is **interview context, not a draft**: extracted text follows the extract-confirm-fill protocol in `../patent-intake/references/source-modes.md`; nothing is copied into `drafts/` (alias `草稿/`) without inventor confirmation.
+Ingestion output is **interview context, not a draft**: extracted text follows the extract-confirm-fill protocol in `../patent-intake/references/source-modes.md`; nothing is copied into `drafts/` without inventor confirmation.
 
 ## Optional dependencies
 

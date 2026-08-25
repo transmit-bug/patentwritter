@@ -4,7 +4,7 @@ This file is the ingestion discipline for `patent-exploration`. It reuses the ar
 
 ## Archive contract (mandatory, every source)
 
-Same as `patent-intake`: archive the source **as-is** under `.patent/materials/` and register provenance in `drafts/申请信息.md` (材料位置) or, if intake has not yet started, in `.patent/exploration/来源登记.md`: what it is, when obtained, how obtained, whose it is.
+Same as `patent-intake`: archive the source **as-is** under `patents/<patent-name>/.patent/materials/` (case-root-relative `.patent/materials/`, see `../../patent-intake/SKILL.md` Workspace layout) and register provenance in `drafts/application-info.md` (material-location) or, if intake has not yet started, in `.patent/exploration/来源登记.md` (case-root-relative `.patent/exploration/`): what it is, when obtained, how obtained, whose it is.
 
 No source is discarded. No source is pre-judged as "prior art" or "disclosure complete".
 
@@ -12,7 +12,7 @@ No source is discarded. No source is pre-judged as "prior art" or "disclosure co
 
 | Form | Channel |
 |---|---|
-| docx / pptx / pdf | `../../conversion/SKILL.md` discipline (pure document, zero scripts) → Markdown under `.patent/materials/` |
+| docx / pptx / pdf | `../../conversion/SKILL.md` discipline (pure document, zero scripts) → Markdown under `patents/<patent-name>/.patent/materials/` (case-root-relative) |
 | 网页 / 链接 | environment fetch → Markdown snapshot |
 | 口述 / 对谈记录 | transcribe verbatim → Markdown |
 | 代码 / 数据表 | archive as-is + Markdown summary of what it implements |

@@ -45,7 +45,7 @@ Use when the relevant triple/point is unclear:
 
 ## Logging — 研讨纪要.md
 
-After each round, append to `.patent/exploration/研讨纪要.md`:
+After each round, append to `patents/<patent-name>/.patent/exploration/研讨纪要.md` (case-root-relative `.patent/exploration/`):
 
 ```markdown
 ## Round N — <topic>

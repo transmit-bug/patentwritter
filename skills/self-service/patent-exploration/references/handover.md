@@ -33,7 +33,7 @@ For each direction, write:
 
 ## Writing the handover stub
 
-Create `.patent/exploration/移交-intake.md` (handover stub) with:
+Create `patents/<patent-name>/.patent/exploration/移交-intake.md` (case-root-relative `.patent/exploration/`, handover stub) with:
 
 ```markdown
 # 移交 patent-intake
@@ -54,7 +54,7 @@ Create `.patent/exploration/移交-intake.md` (handover stub) with:
 - [ ] 证据缺口: ...
 - [ ] 单一性: 是否多件
 - [ ] 公开风险: ...
-- [ ] 交付形态: md only / docx on request — 记录到 申请信息.md Word导出 轴
+- [ ] 交付形态: md only / docx on request — 记录到 application-info.md word-export 轴
 
 附件: 内容地图 / 技术拆解 / 可专利点清单 / 研讨纪要 / 保护方向建议
 ```
@@ -73,7 +73,7 @@ If the user chose "暂不进入 intake" (explore only), just archive the package
 
 ## Done when
 
-- The stub exists under `.patent/exploration/` and the user has been asked: "是否现在进入 patent-intake 定四要素？(是 / 先存档 / 再聊一轮)".
+- The stub exists under `patents/<patent-name>/.patent/exploration/` (case-root-relative `.patent/exploration/`) and the user has been asked: "是否现在进入 patent-intake 定四要素？(是 / 先存档 / 再聊一轮)".
 - The user's choice is recorded.
 
 No silent auto-dispatch. Always ask.

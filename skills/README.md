@@ -22,7 +22,7 @@ npx skills add transmit-bug/patentwritter/skills/professional    # 只装专业�
 
 The **self-service chain** is the package's core; the professional chain lives under `professional/`, see package-repo `docs/guide/README.md`.
 
-`patent-intake` is the front door and orchestrator of the self-service chain; the disciplines below it each own one artifact. The workspace directory in the inventor's project is `patent-application/` (drafts/figures/deliverables, en primary, alias 草稿/附图/成品, ADR-0008) — a **workspace name, not a skill name**.
+`patent-intake` is the front door and orchestrator of the self-service chain; the disciplines below it each own one artifact. The workspace is hierarchical in the inventor's project: one directory per application under `patents/<patent-name>/` (case root; directory name = target product, frozen at routing), each holding `drafts/`, `figures/`, `deliverables/` plus the case-local `.patent/` support layer — a **workspace name, not a skill name**.
 
 ## Skill roles
 
@@ -31,12 +31,12 @@ The **self-service chain** is the package's core; the professional chain lives u
 | `self-service/patent-intake` | front door + orchestrator | routing (source × deliverable × type), interview, stage checklist, back edges, assembly handoff; shared `references/` |
 | `self-service/patent-exploration` | content lab | 内容研讨：任何形态材料→内容地图→技术拆解→可专利点矩阵→Socratic 研讨→保护方向，向 intake 移交 |
 | `self-service/patent-drafting` | discipline | 说明书(可读技术 prose 先行) → 权利要求书(从说明书提炼) + 摘要, voice wall 语体边界,支撑链单一所有者 |
-| `self-service/patent-drawings` | discipline | 附图, figure-type routing, numeral consistency, abstract figure |
-| `self-service/patent-compliance` | discipline | 递交前自检(仅 filing 轨), report at `drafts/检查报告.md`,后端 claim 形式规则所有者 |
+| `self-service/patent-drawings` | discipline | drawings, figure-type routing, numeral consistency, abstract figure |
+| `self-service/patent-compliance` | discipline | 递交前自检(仅 filing 轨), report at `drafts/check-report.md`, back-end claim formalities owner |
 | `self-service/patent-filing` | discipline | filing / rectification guidance, 👤 steps marked |
 | `patent-standards` | shared service | standards index and on-demand anchors |
-| `tools/conversion` | service | 材料摄入 DOCX/PPTX → Markdown (pipeline head, ingestion only) |
-| `tools/word-delivery` | service | Word 交付 md → docx (pipeline tail,按需触发, disable-model-invocation,单源规则) |
+| `tools/conversion` | service | material ingestion DOCX/PPTX → Markdown (pipeline head, ingestion only) |
+| `tools/word-delivery` | service | Word delivery md → docx (pipeline tail, on demand, disable-model-invocation, single-source rule) |
 | `tools/patents-search` | service | delegated prior-art search (optional) |
 
 Merge rationale (ADR-0009): a skill survives only if it passes one of four tests — independent re-entry, distinct tool surface / failure mode, checker independence from drafter, load budget. router+application and claims+specification failed all four and were merged into `patent-intake` / `patent-drafting`.
@@ -51,18 +51,18 @@ patent-exploration (optional content lab, before intake)
 ├─ source intake ──► conversion (ingestion only) / environment fetch
 ├─ interview ──────► references/interview.md · design-points.md · type-decision.md
 ├─ dispatch ───────► patent-drafting (spec → claims → abstract) → patent-drawings
-├─ gate ───────────► patent-compliance (filing 轨 only) ── critical? ── back edge ──► drafting/drawings
-├─ deliver ────────► word-delivery (Word 交付,按需触发, delivery form = 申请信息.md Word导出 轴)
+├─ gate ───────────► patent-compliance (filing track only) ── critical? ── back edge ──► drafting/drawings
+├─ deliver ────────► word-delivery (Word 交付,按需触发, delivery form = application-info.md word-export field)
 └─ on request ─────► patent-filing (weeks later, independent re-entry)
 ```
 
 **Data flow** — artifacts decide the order; disciplines communicate only through artifact files and the orchestrator:
 
 ```text
-材料 → .patent/materials/ (archive contract, five flags)
-申请信息.md (route record + stage checklist + Word导出 轴) ──► 说明书.md ──► 权利要求书.md + 摘要.md
-      ──► 附图/ (源文件/ 预览/ 嵌入/ + 摘要附图) ──► 检查报告.md (filing 轨 only, critical=0 is the gate)
-      ──► deliverables/application/*.docx + deliverables/disclosure.docx (仅当 Word导出 已约定或发明人当场要求, via word-delivery)
+materials → .patent/materials/ (archive contract, five flags)
+application-info.md (route record + stage checklist + word-export) ──► 说明书.md ──► 权利要求书.md + 摘要.md
+      ──► figures/ (source/ preview/ embed/ + abstract figure) ──► drafts/check-report.md (filing track only, critical=0 is the gate)
+      ──► deliverables/application/*.docx + deliverables/disclosure.docx (only when word-export is agreed or the inventor asks in-turn, via word-delivery)
 ```
 
 **Knowledge flow** — single-source pointers, read-only; use read-only pointers:
@@ -77,9 +77,9 @@ search ────────────────────────�
 
 ## Route ownership
 
-- **Intake** owns source handling (archive contract + ingestion channel + extract-confirm-fill), the three routing axes, interview sequencing, stage progression, back-edge routing, and assembly handoff.
+- **Intake** owns source handling (archive contract + ingestion channel + extract-confirm-fill), the four routing axes, interview sequencing, stage progression, back-edge routing, and assembly handoff.
 - **Disciplines** own only their artifact and update their own stage in the checklist.
 - **Standards** owns legal source locations; downstream skills point, they do not reproduce.
-- **Conversion** owns material intake at the pipeline head; **word-delivery** owns Word acceptance at the tail (按需触发, 单源规则: 草稿/ 为唯一真源, 成品/ 为可再生导出)。
+- **Conversion** owns material intake at the pipeline head; **word-delivery** owns Word acceptance at the tail (on-demand trigger, single-source rule: drafts/ is the only editable truth, deliverables/ are regenerable exports).
 
 Case facts, papers, formulas, citations, and experimental data belong to the project support workspace and drafts, never to this package's skills.

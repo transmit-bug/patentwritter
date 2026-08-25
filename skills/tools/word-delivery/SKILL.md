@@ -1,6 +1,6 @@
 ---
 name: word-delivery
-description: Word delivery of application documents — converts the .md drafts under 草稿/ into the two delivery sets under 成品/ (three filing .docx plus one consolidated 技术交底书.docx), with environment-probed degradation chains, template filling (style inheritance / content fill), and a Word acceptance gate. Runs only on an explicit user request ("convert to Word", "generate docx", "export to Word", "use my Word template") or when the route record pre-agrees it — never as an automatic end-of-pipeline step. Revisions always go back to drafts/*.md first; the .docx is a regenerable artifact, never a source.
+description: Word delivery of application documents — converts the .md drafts under drafts/ into the two delivery sets under deliverables/ (three filing .docx plus one consolidated 技术交底书.docx), with environment-probed degradation chains, template filling (style inheritance / content fill), and a Word acceptance gate. Runs only on an explicit user request ("convert to Word", "generate docx", "export to Word", "use my Word template") or when the route record pre-agrees it — never as an automatic end-of-pipeline step. Revisions always go back to drafts/*.md first; the .docx is a regenerable artifact, never a source.
 disable-model-invocation: true
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
@@ -14,35 +14,35 @@ This skill is a **document-only capability**: md→docx is generated inline by t
 Run this skill **only** when one of these holds:
 
 1. The user explicitly asks for Word output in the current turn ("转Word" / "generate docx" / "export to Word" / "fill my template"); or
-2. `drafts/申请信息.md` records `Word导出: 已约定` — agreed at interview or in an earlier turn.
+2. `drafts/application-info.md` records `word-export: agreed` — agreed at interview or in an earlier turn.
 
-Otherwise do nothing except point to the `.md` drafts under `drafts/` (alias `草稿/`). Markdown-to-Word conversion is never an automatic end-of-pipeline step; the pipeline's own completion standard is finalized, self-checked `.md` drafts.
+Otherwise do nothing except point to the `.md` drafts under `drafts/`. Markdown-to-Word conversion is never an automatic end-of-pipeline step; the pipeline's own completion standard is finalized, self-checked `.md` drafts.
 
 ## Single-source rule (revision loop)
 
-The `.md` drafts under `drafts/` (alias `草稿/`) are the **only editable truth**. Everything under `deliverables/` (alias `成品/`) is a regenerable export.
+The `.md` drafts under `drafts/` are the **only editable truth**. Everything under `deliverables/` is a regenerable export.
 
-- Any revision request — including complaints about a delivered `.docx` — is fixed in the owning draft (`权利要求书.md`, `说明书.md`, `摘要.md`, `技术交底书.md`), then this skill re-runs to regenerate. Keep `.docx` under `deliverables/` (alias `成品/`) as regenerable exports; make all edits in the owning `drafts/*.md` draft and regenerate.
+- Any revision request — including complaints about a delivered `.docx` — is fixed in the owning draft (`权利要求书.md`, `说明书.md`, `摘要.md`, `技术交底书.md`), then this skill re-runs to regenerate. Keep `.docx` under `deliverables/` as regenerable exports; make all edits in the owning `drafts/*.md` draft and regenerate.
 - When a revision touches claims / specification substance, re-run the applicable checks in `../patent-compliance/SKILL.md` before re-exporting.
 - Regeneration is idempotent and cheap: re-export all deliverables after any substantive edit, so the sets never drift apart.
 
 ## Delivery degradation chain
 
-Goal: turn the `.md` drafts under `drafts/` (alias `草稿/`) into the **two delivery sets** under `deliverables/` (alias `成品/`) (layout in `../patent-intake/SKILL.md` "Workspace layout"). **Drafts and deliverables never mix**: everything under `deliverables/` (alias `成品/`) is directly usable, nothing under `drafts/` (alias `草稿/`) is final.
+Goal: turn the `.md` drafts under `drafts/` into the **two delivery sets** under `deliverables/` (layout in `../patent-intake/SKILL.md` "Workspace layout"). **Drafts and deliverables never mix**: everything under `deliverables/` is directly usable, nothing under `drafts/` is final.
 
 1. **申请文件** (CNIPA 分文件递交用): three same-named `.docx`, one file per document, no timestamps.
 2. **技术交底书** (交代理机构/内部评审用): one consolidated `.docx`.
 
-**Step 0 — assemble `drafts/技术交底书.md` first**: merge the tracked sources per the route-aware assembly table in `../patent-intake/references/disclosure-document.md` — 两者: 申请信息 / 说明书 / 附图 / 权利要求书 / 摘要 drafts; 仅交底书: the interview four-element record + confirmed materials (no filing drafts, no filing-track gates). Then convert every deliverable source the route actually produced — on a disclosure-only route that is `技术交底书.md` alone.
+**Step 0 — assemble `drafts/技术交底书.md` first**: merge the tracked sources per the route-aware assembly table in `../patent-intake/references/disclosure-document.md` — both: application-info / 说明书 / figures / 权利要求书 / 摘要 drafts; disclosure-only: the interview four-element record + confirmed materials (no filing drafts, no filing-track gates). Then convert every deliverable source the route actually produced — on a disclosure-only route that is `技术交底书.md` alone.
 
-| Source file (草稿/) | Delivered file (成品/) |
+| Source file (drafts/) | Delivered file (deliverables/) |
 |---|---|
 | 权利要求书.md | 申请文件/权利要求书.docx |
 | 说明书.md | 申请文件/说明书.docx |
 | 摘要.md | 申请文件/摘要.docx |
 | 技术交底书.md | 技术交底书.docx |
 
-Figure references inside the `.md` drafts are written as relative paths `../figures/embed/figN.png` (figures live in `figures/embed/`, see `../patent-drawings/SKILL.md` Step 2). **Run all conversion commands from inside `drafts/` (alias `草稿/`)** so those `../` paths resolve against the project root `patent-application/`.
+Figure references inside the `.md` drafts are written as relative paths `../figures/embed/figN.png` (figures live in `figures/embed/`, see `../patent-drawings/SKILL.md` Step 2). **Run all conversion commands from inside `drafts/`** so those `../` paths resolve against the case root `patents/<patent-name>/`.
 
 ### Probe (do this first; it decides the chain)
 
@@ -56,29 +56,29 @@ Before conversion, classify the source: plain prose, tables/figures, or **formul
 
 ### Chain ① python-docx available → generate inline
 
-Write an inline Python script (python-docx): read each source from `drafts/` (alias `草稿/`), resolve `../figures/embed/figN.png` **relative to the source file's directory** (not the working directory), map headings to Word's built-in heading styles, convert Markdown emphasis/links/blockquote/list/checklist/table syntax into native Word runs, paragraphs, list styles, and tables, embed the figures inline (keep aspect ratio; width at a clearly legible size), and write the output to `deliverables/application/` (three filing docs) or `deliverables/` (alias `成品/`) (技术交底书).
+Write an inline Python script (python-docx): read each source from `drafts/`, resolve `../figures/embed/figN.png` **relative to the source file's directory** (not the working directory), map headings to Word's built-in heading styles, convert Markdown emphasis/links/blockquote/list/checklist/table syntax into native Word runs, paragraphs, list styles, and tables, embed the figures inline (keep aspect ratio; width at a clearly legible size), and write the output to `deliverables/application/` (three filing docs) or `deliverables/` (技术交底书).
 
 When a `.docx` template is supplied, the modes and fill protocol in the "Template filling" section below govern. Chain ① is the only chain that can fill content into a template's own structure; it preserves page setup, headers/footers, styles, numbering, and table geometry where safe, and reports every unsupported feature.
 
 - **Formulas**: convert every core formula to editable OMML; define variables in adjacent prose; preserve equation numbering if the template has it. Before conversion, verify that the source formula is semantically complete rather than merely a string containing Greek letters. Emit every core formula as editable OMML with variable definitions alongside; treat Markdown delimiters and raw LaTeX as source notation only.
 - **PNG only**: Word inline embedding supports bitmaps only; the figure pipeline already produces both formats as PNG (see `../patent-drawings/SKILL.md` Step 2).
-- **Native structure**: `**加粗**`, headings, lists, checkboxes, blockquotes, and `---` become Word structure, never visible Markdown punctuation.
+- **Native structure**: `**bold**`, headings, lists, checkboxes, blockquotes, and `---` become Word structure, never visible Markdown punctuation.
 
 ### Chain ② pandoc available → command conversion
 
 ```bash
-cd 草稿
+cd drafts
 pandoc 权利要求书.md -o ../deliverables/application/权利要求书.docx
 pandoc 说明书.md -o ../deliverables/application/说明书.docx
 pandoc 摘要.md -o ../deliverables/application/摘要.docx
 pandoc 技术交底书.md -o ../deliverables/disclosure.docx
 ```
 
-Run from inside `drafts/` (alias `草稿/`): pandoc resolves the figure paths `../figures/embed/figN.png` against the working directory, so `../` steps up to the project root. (Alternative: run from the root with `pandoc --resource-path=草稿 草稿/xxx.md -o ...`.) `--reference-doc` is **style inheritance only** — it cannot place content into a template's structure; for content fill see the "Template filling" section. Spot-check after conversion for missing figures and formula conversion.
+Run from inside `drafts/`: pandoc resolves the figure paths `../figures/embed/figN.png` against the working directory, so `../` steps up to the case root (`patents/<patent-name>/`). (Alternative: run from the root with `pandoc --resource-path=drafts drafts/xxx.md -o ...`.) `--reference-doc` is **style inheritance only** — it cannot place content into a template's structure; for content fill see the "Template filling" section. Spot-check after conversion for missing figures and formula conversion.
 
 ### Chain ③ neither available → deliver .md + manual save-as
 
-Deliver the `.md` drafts from `drafts/` (alias `草稿/`) (the assembled `技术交底书.md` included) and give the inventor a one-line instruction: open the .md with WPS/Word (or copy-paste) and choose "Save As" → .docx.
+Deliver the `.md` drafts from `drafts/` (the assembled `技术交底书.md` included) and give the inventor a one-line instruction: open the .md with WPS/Word (or copy-paste) and choose "Save As" → .docx.
 
 ### Word acceptance gate
 
@@ -108,7 +108,7 @@ Content-fill protocol:
 
 Degradation: without a docx-capable environment (chain ① unavailable), content fill is **impossible** — state it loudly and fall back to style inheritance or `.md` + paste instructions. Fill by writing into a copy of the template, keeping the supplied template file unchanged; map each draft section to its template slot without appending after the body.
 
-Record back into drafts/申请信息.md (模板适配说明): which template was used, mode taken, inheritance scope, and any downgrade.
+Record back into drafts/application-info.md (template-adaptation note): which template was used, mode taken, inheritance scope, and any downgrade.
 
 ## Optional dependencies
 

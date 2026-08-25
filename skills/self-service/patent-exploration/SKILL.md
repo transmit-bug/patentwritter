@@ -39,7 +39,7 @@ Any of these is a valid entry, single or combined:
 - 现有专利/申请 (yours or others')
 - 实验记录、会议纪要、口述、网页、技术博客、代码片段
 
-All sources follow one ingestion rule: see `references/source-handling.md`. Archive as-is under `.patent/materials/`, register provenance, then convert to Markdown for discussion. The skill never infers "this paper = prior art against you" — a paper is technical input first.
+All sources follow one ingestion rule: see `references/source-handling.md`. Archive as-is under `.patent/materials/` inside the case root `patents/<patent-name>/` (case-root-relative `.patent/materials/`, see `../patent-intake/SKILL.md` Workspace layout), register provenance, then convert to Markdown for discussion. The skill never infers "this paper = prior art against you" — a paper is technical input first.
 
 ## Two modes — one skill
 
@@ -56,7 +56,7 @@ For "我给你一份材料，帮我看看":
 5. **Gap** — optional prior-art gap pass: what does this content add beyond what is already known? Delegates to `../patents-search/SKILL.md` and `references/search-guide.md` in `../patent-intake/references/` when requested; never fabricates citations.
 6. **Direction** — propose 1–3 protection directions with trade-offs; ask the user to pick. See `references/handover.md`.
 
-Done when: `references/handover.md` handover package exists under `.patent/exploration/`.
+Done when: `references/handover.md` handover package exists under `patents/<patent-name>/.patent/exploration/` (case-root-relative `.patent/exploration/`).
 
 ### Mode B — Socratic (研讨): idea in → clarity out
 
@@ -81,11 +81,11 @@ ingest → map → deconstruct ⇄ discuss (Socratic) → mine → gap? → dire
 - `ingest → map → deconstruct` is the fast path (one pass, ~1 turn each).
 - `deconstruct ⇄ discuss` is the iterative core; expect 2–5 rounds.
 - `mine → direction` converges; do not expand again after direction is agreed.
-- `handover` is the gate to `patent-intake`: write `.patent/exploration/研讨纪要.md` and `.patent/exploration/可专利点清单.md`, then offer `是否现在进入 patent-intake 定四要素？`
+- `handover` is the gate to `patent-intake`: write `patents/<patent-name>/.patent/exploration/研讨纪要.md` and `可专利点清单.md` (case-root-relative `.patent/exploration/`), then offer `是否现在进入 patent-intake 定四要素？`
 
 ## Output — handover package (not a filing set)
 
-All outputs land under `.patent/exploration/` (exploration workspace, sibling to `.patent/materials/`):
+All outputs land under `patents/<patent-name>/.patent/exploration/` (case-root-relative `.patent/exploration/`, exploration workspace sibling to `.patent/materials/`):
 
 | File | Purpose |
 |---|---|

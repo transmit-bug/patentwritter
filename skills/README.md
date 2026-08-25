@@ -2,7 +2,7 @@
 
 ```text
 skills/
-├── self-service/     自助组:发明人自助链路(5 技能,包主体)
+├── self-service/     自助组:发明人自助链路(6 技能,包主体)
 ├── professional/     专业组:CN 授权链路(入口 + 5 discipline, 6 技能)
 ├── tools/            工具组:conversion(材料摄入)、word-delivery(Word 交付,按需)、patents-search(委托检索,可选)
 └── patent-standards/ 跨组共享:分型法律锚点(两组均依赖)
@@ -12,7 +12,7 @@ skills/
 
 ```bash
 npx skills add transmit-bug/patentwritter                        # 整包(推荐,15 技能引用全通)
-npx skills add transmit-bug/patentwritter/skills/self-service    # 只装自助组 5 技能
+npx skills add transmit-bug/patentwritter/skills/self-service    # 只装自助组 6 技能
 npx skills add transmit-bug/patentwritter/skills/professional    # 只装专业组 6 可见技能
 ```
 
@@ -29,6 +29,7 @@ The **self-service chain** is the package's core; the professional chain lives u
 | Skill | Role | Owns |
 |---|---|---|
 | `self-service/patent-intake` | front door + orchestrator | routing (source × deliverable × type), interview, stage checklist, back edges, assembly handoff; shared `references/` |
+| `self-service/patent-exploration` | content lab | 内容研讨：任何形态材料→内容地图→技术拆解→可专利点矩阵→Socratic 研讨→保护方向，向 intake 移交 |
 | `self-service/patent-drafting` | discipline | 说明书(可读技术 prose 先行) → 权利要求书(从说明书提炼) + 摘要, voice wall 语体边界,支撑链单一所有者 |
 | `self-service/patent-drawings` | discipline | 附图, figure-type routing, numeral consistency, abstract figure |
 | `self-service/patent-compliance` | discipline | 递交前自检(仅 filing 轨), report at `drafts/检查报告.md`,后端 claim 形式规则所有者 |
@@ -45,7 +46,8 @@ Merge rationale (ADR-0009): a skill survives only if it passes one of four tests
 **Control flow** — who drives whom; strictly downward, back edges owned by the orchestrator:
 
 ```text
-patent-intake (cold start / resume from stage checklist)
+patent-exploration (optional content lab, before intake)
+  └─ handover ──► patent-intake (cold start / resume from stage checklist)
 ├─ source intake ──► conversion (ingestion only) / environment fetch
 ├─ interview ──────► references/interview.md · design-points.md · type-decision.md
 ├─ dispatch ───────► patent-drafting (spec → claims → abstract) → patent-drawings

@@ -5,6 +5,7 @@
       "name": "self-service",
       "source": "./",
       "skills": [
+        "./skills/self-service/patent-exploration",
         "./skills/self-service/patent-intake",
         "./skills/self-service/patent-drafting",
         "./skills/self-service/patent-drawings",

@@ -4,8 +4,9 @@
 
 ## 定位
 
-- **工厂**：按薄技能 + 委托 + 单一来源组织，定边界与质量门。
+- **工厂**：按薄技能 + 委托 + 单一来源组织，定边界与质量门；任务是让技能在别处好用。
 - **非工作区**：验证用例建于临时目录，跑通即清，不在仓库内留 `patents/`。
+- **目标**：把发明人的碎片材料（口述/PPT/论文/代码/照片）收敛为可追溯、可分工、可验证的专利资产。
 - 消费方手册见 `docs/usage/`，架构见 `docs/usage/architecture.md`。
 
 ## 结构
@@ -16,6 +17,15 @@ skills/professional  6：prosecution(入口) + 5 discipline
 skills/tools         3：conversion / word-delivery / patents-search
 skills/patent-standards  1：分型法律锚点单一来源
 ```
+
+## 产出在消费方是什么
+
+一句话链路：`任意材料 → 交底书底座(四要素+可复现+区别清晰) → 申请文件(支撑闭环) → 自检 gate → 交付/递交 → 授权攻防`。自助入口 `patent-intake`，授权入口 `patent-prosecution`。
+
+- **交底书底座**：四要素完整/实施可复现/区别清晰/来源诚实/形态紧凑（brief-tight：6 行组装表 + 1-3 式 + 2-3 图，≤5 个 `[S#]`），定义见 `patent-intake/references/disclosure-document.md`。
+- **申请文件与附图**：撰写/附图各有质量门与产物，阶段清单 `drafts/application-info.md` 为状态机，可中断续跑。
+- **诚实可验证**：背景技术只写三类素材，法律断言指向 `patent-standards` 分型锚点，缺依据 fail loud；五横切标志写入 `application-info.md` 供下游只读。
+- 详情见 `docs/usage/README.md` 与 `docs/usage/writing-disclosure.md`。
 
 ## 如何改
 

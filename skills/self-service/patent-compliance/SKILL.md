@@ -40,6 +40,8 @@ Scan for:
 
 Compare the route record, title, independent claim subject, dependent-claim citation parts, specification, abstract, and filenames. Any mismatch is critical.
 
+**Title rule gate**: `drafts/技术交底书.md` 的 `#` 标题与 `drafts/application-info.md` 的 `target-product`/发明名称须为 `一种<基于/面向><核心手段>的<对象+效果>方法`（及系统可选，见 `../patent-intake/references/disclosure-document.md` 发明名称规范），15–30字为佳、不超35字、用`的`不用`之`、英文缩写不上标题；缺`一种`前缀或含`VAE/MDFA/ROM`等缩写、含`之`字、超长均记 `critical` 并给出按规范的重命名建议。
+
 ### 4. Figure consistency
 
 Compare the specification's reference-numeral set, figure labels, and brief description in both directions. Check figure numbering, missing images, embedded paths, and the designated abstract figure.

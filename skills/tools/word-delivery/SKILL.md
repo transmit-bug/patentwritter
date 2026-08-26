@@ -80,6 +80,10 @@ Run from inside `drafts/`: pandoc resolves the figure paths `../figures/embed/fi
 
 Deliver the `.md` drafts from `drafts/` (the assembled `技术交底书.md` included) and give the inventor a one-line instruction: open the .md with WPS/Word (or copy-paste) and choose "Save As" → .docx.
 
+### Title gate（复用 intake 规范）
+
+`drafts/技术交底书.md` 的 `#` 标题即发明名称，须符合 `../patent-intake/references/disclosure-document.md` 发明名称规范（`一种…的…方法`，见上）。Word 封面/页眉中的标题与该 `#` 逐字一致；缺 `一种`、含英文缩写/ `之`、超长均在 acceptance gate 记 fail。
+
 ### Word acceptance gate
 
 A DOCX is complete only when all applicable checks pass: zero Markdown tokens (`**`, leading `>`, raw list markers, `$...$`, backticks, `---`, `[ ]`); headings have native heading styles; tables and figures are present; core formulas are editable/readable OMML with variables defined; source citations are absent from the clean body except approved `[S#]` markers; and template placeholders/instructions are absent. In content-fill mode additionally: zero unfilled placeholders, and every unfilled template slot is reported (see "Template filling"). Reopen and inspect the generated DOCX structurally before handover. Record counts for paragraphs, tables, figures, formulas, and residual Markdown markers.

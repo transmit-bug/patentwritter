@@ -11,13 +11,23 @@ Grouped by the four elements. Ask the groups in order; skip a question when the 
 3. How widespread is this trouble? Who hurts most? (→ problem importance, for the background art)
 4. Has anyone tried to solve it before? How, and why didn't it work? (→ distinguishing-feature material + background-art material)
 
-## B. Technical solution (how it is solved)
+## B. Technical solution — 8 要点全量访谈（单篇闭合饱满披露专用）
 
-5. What is the minimal set of parts/steps your solution needs? List them in order. (→ essential-technical-feature candidates)
-6. What does each step / part do? (→ functional role of each feature)
-7. Is there any step that "works without it"? (→ reverse-pin the essential features: can the problem still be solved if it is deleted)
-8. What are the key parameters? (values / thresholds / counts / dimensions — → dependent-claim material and sufficient disclosure)
-9. How does data / signal flow? Who sends to whom? (→ connection relationships, for the drawings and embodiments)
+本组按单篇闭合 8 要点展开，确保 §四可单篇复现。按序提问，缺项记 blocked 不编造。覆盖 ①总体 ②设计构思 ③按时序分步 ④可自编程度 ⑤必要源码摘录 ⑥物理变量释义 ⑦推导 ⑧硬件 + 实施例。
+
+5. 总体：系统的总体架构是什么？输入输出边界与整体数据/信号流向如何？（→ ①总体）
+6. 设计构思：核心发明构思与技术原理是什么？为什么这样设计能解决技术问题？（→ ②设计构思）
+7. 按时序分步：按时间/数据流顺序，方案分几步？每步的输入、处理、输出分别是什么？（→ ③按时序分步物理过程 S1→Sn）
+8. 可自编程度：该方案的可自编/可复现程度如何？哪些环节可完全自编，哪些依赖外部库/平台？工程化落地需要哪些适配？（→ ④可自编程度）
+9. 必要源码摘录：关键算法/流程的核心伪代码或源码片段是什么？（可贴 10-30 行，标注语言与关键行含义）（→ ⑤必要源码摘录）
+10. 物理变量释义：涉及的所有物理量/符号/变量的含义、量纲、取值范围与边界条件分别是什么？（→ ⑥物理变量释义）
+11. 推导：核心公式的来源与推导过程是什么？有无等价变形或替代形式？（→ ⑦推导）
+12. 硬件：硬件组成、部署形态与软硬件分工如何？系统部署在何种硬件/环境上？（→ ⑧硬件）
+13. 实施例：能否给出一个完整实施例（参数取值+执行轨迹+输出结果）以验证可复现性？（→ 实施例收束）
+14. 数据/信号流补充：各模块间数据/信号如何流转？谁发给谁？（→ 连接关系与附图依据，补 ③⑧）
+15. 关键参数：关键阈值/数量/维度/超参如何选取？有何依据？（→ 支撑链与充分公开，补 ④⑥）
+
+> 8 要点访谈完成判定：①-⑧ 均有发明人确认材料，源码与变量与推导与硬件均可回溯，无隐藏参数；缺项在 `drafts/申请信息.md` 记 blocked，不进正文。
 
 ## C. Core formula and implementation gate (formula-bearing cases only)
 
@@ -30,31 +40,35 @@ Ask this group for algorithm, control, signal-processing, image-processing, opti
 
 Completion gate: the core formula/logic is written, all variables are defined, boundary handling is known, and at least one embodiment and claim feature are linked to it. If any item is missing, record a blocker in drafts/application-info.md and pause only the affected core feature.
 
+> 注：C 组与 B 组 8 要点中的 ⑥⑦ 互补，B 组覆盖全量 8 要点框架，C 组对公式承载型再做变量/边界/推导的细化 gate。
+
 ## D. Distinguishing feature (what differs from existing practice)
 
-10. How is this step usually done on the market / in existing products? (→ closest prior art)
-11. Compared with that, what did you add? Which step did you change? (→ distinguishing feature, the core of the claims)
-12. Is this difference "never done by anyone", or "done but not done well"? (→ inventive-step argument material)
-13. Have you thought of other approaches achieving the same effect? (→ variants, fallback-deployment material)
+16. How is this step usually done on the market / in existing products? (→ closest prior art)
+17. Compared with that, what did you add? Which step did you change? (→ distinguishing feature, the core of the claims)
+18. Is this difference "never done by anyone", or "done but not done well"? (→ inventive-step argument material)
+19. Have you thought of other approaches achieving the same effect? (→ variants, fallback-deployment material)
 
 ## E. Technical effect (how it is proven)
 
-14. What's the benefit of doing it this way? (→ beneficial effects)
-15. How do you prove these benefits? Is there test / comparison data? What are the numbers? (→ data if available; otherwise mechanism reasoning only)
-16. Any side effects / costs? (→ honestly state the weaknesses, to avoid being caught in examination)
+20. What's the benefit of doing it this way? (→ beneficial effects)
+21. How do you prove these benefits? Is there test / comparison data? What are the numbers? (→ data if available; otherwise mechanism reasoning only)
+22. Any side effects / costs? (→ honestly state the weaknesses, to avoid being caught in examination)
 
 ## F. Disclosure and risk (triggers the grace-period reminder)
 
-17. Has this been disclosed before — published, exhibited, sold, open-sourced, posted, or shown to a third party?
-18. Could anyone else know the solution through colleagues, partners, outsourcing, or an unauthorized disclosure?
+23. Has this been disclosed before — published, exhibited, sold, open-sourced, posted, or shown to a third party?
+24. Could anyone else know the solution through colleagues, partners, outsourcing, or an unauthorized disclosure?
 
 When either answer is yes, record the date, channel, audience, evidence, and whether the inventor claims a statutory exception. Point to `../../patent-standards/references/cn-invention-utility.md` for the current disclosure/grace-period treatment; do not paste legal explanations into the interview record.
 
-## Closing check (are the four elements complete)
+## Closing check (are the four elements complete, 8 要点饱满)
 
 | Element | Test | What happens if missing |
 |---|---|---|
-| Technical problem | can state in one sentence "what is solved" | cannot write the summary of invention; the independent claim has no anchor |
-| Technical solution | can name the minimal part/step set | claims become hollow, only fillable by fabrication |
+| Technical problem | can state in one sentence "what is solved" + 2-4 句饱满背景 | cannot write the summary of invention; the independent claim has no anchor |
+| Technical solution | can name the minimal part/step set + 8 要点饱满展开可复现 | claims become hollow, only fillable by fabrication |
 | Distinguishing feature | can say "what was added / changed vs existing practice" | the characterizing portion has nothing to write |
-| Technical effect | has data or mechanism basis | the effect paragraphs can only be padded |
+| Technical effect | has data or mechanism basis, 2-4 句饱满 | the effect paragraphs can only be padded |
+
+> 单篇闭合要求：技术方案按 8 要点在正文写全，变量/推导/源码/硬件/实施例不外链至申请信息.md。

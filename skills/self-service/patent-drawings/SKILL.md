@@ -1,6 +1,6 @@
 ---
 name: patent-drawings
-description: "brief-tight disclosure figures (2-3, integrate or brief dot) and filing figures (dot routing, external integrate, numeral check) for CN patents. Use when the deliverable needs drawings — disclosure only needs brief-tight, filing set needs full routing. Design views redirect to patent-intake/design-points.md."
+description: "单篇闭合 disclosure figures (≥2, integrate or saturated dot) and filing figures (dot routing, external integrate, numeral check) for CN patents. Use when the deliverable needs drawings — disclosure only needs 单篇闭合, filing set needs full routing. Design views redirect to patent-intake/design-points.md."
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
@@ -18,9 +18,9 @@ Input: the claims + the specification text. Drawings are not free composition �
 dot -V   # needed only when dot-drawable figures exist (Step 2-3); if absent, state the missing dependency explicitly; do not force drawing
 ```
 
-## Disclosure branch — brief-tight (only when deliverable needs `技术交底书`)
+## Disclosure branch — 单篇闭合 (only when deliverable needs `技术交底书`)
 
-This is the disclosed reference for the brief-tight track. Trigger: `patent-intake` assembled a `brief-tight` disclosure and needs 2-3 figures.
+This is the disclosed reference for the 单篇闭合 track. Trigger: `patent-intake` assembled a `单篇闭合` disclosure and needs ≥2 figures.
 
 - **Integrate first**: search `.patent/materials/` for an architecture/block or flow original — found → copy to `figures/source/` + `figures/embed/` and done.
 - **Brief dot fallback**: ≤8 nodes, `rankdir=LR`, one inventive-step flow, `dot -Tpng` to `embed/figN.png` (and svg to `preview/`) if `dot` present; if `dot` absent, list in `drafts/figure-requests.md` with type + required numerals, do not block delivery.

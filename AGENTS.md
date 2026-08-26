@@ -22,7 +22,7 @@ skills/patent-standards  1：分型法律锚点单一来源
 
 一句话链路：`任意材料 → 交底书底座(四要素+可复现+区别清晰) → 申请文件(支撑闭环) → 自检 gate → 交付/递交 → 授权攻防`，贯穿声明全周期。自助入口 `patent-intake`，授权入口 `patent-prosecution`，生态而非单点工具。
 
-- **交底书底座**：四要素完整/实施可复现/区别清晰/来源诚实/形态紧凑（brief-tight：6 行组装表 + 1-3 式 + 2-3 图，≤5 个 `[S#]`），定义见 `patent-intake/references/disclosure-document.md`。
+- **交底书底座**：四要素完整/实施可复现/区别清晰/来源诚实/形态饱满（单篇闭合：8 要点 + 图≥2式≥2上不封顶），定义见 `patent-intake/references/disclosure-document.md`。
 - **申请文件与附图**：撰写/附图各有质量门与产物，阶段清单 `drafts/application-info.md` 为状态机，可中断续跑。
 - **诚实可验证**：背景技术只写三类素材，法律断言指向 `patent-standards` 分型锚点，缺依据 fail loud；五横切标志写入 `application-info.md` 供下游只读。
 - 详情见 `docs/usage/README.md` 与 `docs/usage/writing-disclosure.md`。

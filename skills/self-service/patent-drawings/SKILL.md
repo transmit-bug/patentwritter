@@ -1,6 +1,6 @@
 ---
 name: patent-drawings
-description: "单篇闭合 disclosure figures (≥2, integrate or saturated dot) and filing figures (dot routing, external integrate, numeral check) for CN patents. Use when the deliverable needs drawings — disclosure only needs 单篇闭合, filing set needs full routing. Design views redirect to patent-intake/design-points.md."
+description: "tight disclosure figures (1图可过检, integrate or dot) and filing figures (dot routing, external integrate, numeral check) for CN patents. Use when the deliverable needs drawings — disclosure follows tight 人话三块, filing set needs full routing. Design views redirect to patent-intake/design-points.md."
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
@@ -18,13 +18,13 @@ Input: the claims + the specification text. Drawings are not free composition �
 dot -V   # needed only when dot-drawable figures exist (Step 2-3); if absent, state the missing dependency explicitly; do not force drawing
 ```
 
-## Disclosure branch — 单篇闭合 (only when deliverable needs `技术交底书`)
+## Disclosure branch — tight (only when deliverable needs `技术交底书`)
 
-This is the disclosed reference for the 单篇闭合 track. Trigger: `patent-intake` assembled a `单篇闭合` disclosure and needs ≥2 figures.
+This is the disclosed reference for the tight track. Trigger: `patent-intake` assembled a tight disclosure and needs figures.
 
 - **Integrate first**: search `.patent/materials/` for an architecture/block or flow original — found → copy to `figures/source/` + `figures/embed/` and done.
 - **Brief dot fallback**: ≤8 nodes, `rankdir=LR`, one inventive-step flow, `dot -Tpng` to `embed/figN.png` (and svg to `preview/`) if `dot` present; if `dot` absent, list in `drafts/figure-requests.md` with type + required numerals, do not block delivery.
-- **Done when**: 2-3 `../figures/embed/figN.png` exist with caption `图N …`, each traceable to `§四` text; no full paper figure set copied.
+- **Done when**: ≥1 `../figures/embed/figN.png` exists with caption `图N …`, each traceable to `§四` text; no full paper figure set copied. 简单案 1 图可过检，复杂案按需上不封顶。
 
 Filing figures continue below — the steps are the in-file reference that every filing run needs.
 

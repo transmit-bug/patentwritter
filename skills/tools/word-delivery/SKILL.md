@@ -56,7 +56,7 @@ Before conversion, classify the source: plain prose, tables/figures, or **formul
 
 ### Chain ① python-docx available → generate inline
 
-Write an inline Python script (python-docx): read each source from `drafts/`, resolve `../figures/embed/figN.png` **relative to the source file's directory** (not the working directory), map headings to Word's built-in heading styles, convert Markdown emphasis/links/blockquote/list/checklist/table syntax into native Word runs, paragraphs, list styles, and tables, embed the figures inline (keep aspect ratio; width at a clearly legible size), and write the output to `deliverables/application/` (three filing docs) or `deliverables/` (技术交底书). 封面/页眉/页脚写入中性 `技术交底书（供代理机构据此独立起草申请文件）`，不发射过程控制词；控制词仅在 `drafts/application-info.md` 跟踪。
+Write an inline Python script (python-docx): read each source from `drafts/`, resolve `../figures/embed/figN.png` **relative to the source file's directory** (not the working directory), map headings to Word's built-in heading styles, convert Markdown emphasis/links/blockquote/list/checklist/table syntax into native Word runs, paragraphs, list styles, and tables, embed the figures inline (keep aspect ratio; width at a clearly legible size), and write the output to `deliverables/application/` (three filing docs) or `deliverables/` (技术交底书). 封面/页眉/页脚**以模板槽位为准**：有模板时保留模板既有封面/页眉/页脚结构与样式并仅填入 `#` 标题，无模板时回退中性 `技术交底书（供代理机构据此独立起草申请文件）`；过程词仅在 `drafts/application-info.md` 跟踪。
 
 When a `.docx` template is supplied, the modes and fill protocol in the "Template filling" section below govern. Chain ① is the only chain that can fill content into a template's own structure; it preserves page setup, headers/footers, styles, numbering, and table geometry where safe, and reports every unsupported feature.
 
@@ -82,11 +82,13 @@ Deliver the `.md` drafts from `drafts/` (the assembled `技术交底书.md` incl
 
 ### Title gate（复用 intake 规范）
 
-`drafts/技术交底书.md` 的 `#` 标题即发明名称，须符合 `../patent-intake/references/disclosure-document.md` 发明名称规范（`一种…的…方法`，见上）。Word 封面/页眉中的标题与该 `#` 逐字一致；缺 `一种`、含英文缩写/ `之`、超长均在 acceptance gate 记 fail。Word 封面副标题与页眉/页脚统一发射中性 `技术交底书（供代理机构据此独立起草申请文件）`，不发射任何过程控制词；控制词仅保留于 `drafts/application-info.md` 与 skill 内跟踪，不进 Word 正文/封面/页眉/页脚/表格。
+`drafts/技术交底书.md` 的 `#` 标题即发明名称，须符合 `../patent-intake/references/disclosure-document.md` 发明名称规范（`一种…的…方法`，见上）。Word 封面/页眉中的标题与该 `#` 逐字一致；缺 `一种`、含英文缩写/ `之`、超长均在 acceptance gate 记 fail。Word 封面副标题与页眉/页脚**以模板槽位为准**：有模板时按模板既有副标题/页眉/页脚原样保留并仅填入 `#` 标题，无模板时回退中性 `技术交底书（供代理机构据此独立起草申请文件）`；过程词仅保留于 `drafts/application-info.md` 与 skill 内跟踪，不进 Word 正文/封面/页眉/页脚/表格。
 
 ### Word acceptance gate
 
 A DOCX is complete only when all applicable checks pass: zero Markdown tokens (`**`, leading `>`, raw list markers, `$...$`, backticks, `---`, `[ ]`); headings have native heading styles; tables and figures are present; core formulas are editable/readable OMML with variables defined; source citations are absent from the clean body except approved `[S#]` markers; and template placeholders/instructions are absent. In content-fill mode additionally: zero unfilled placeholders, and every unfilled template slot is reported (see "Template filling"). Reopen and inspect the generated DOCX structurally before handover. Record counts for paragraphs, tables, figures, formulas, and residual Markdown markers.
+
+**封面/页眉/页脚/正文硬禁（出现即 fail）**：禁止出现 `Technical Disclosure Document` 英文、`paper_XX` 案件内码、`紧凑版/饱满版` 等过程词、`使用说明： 本册为可再生成导出…` 等模板占位说明；封面仅保留 `#` 标题与模板既有中性副标题（有模板按模板槽位，无模板回退中性 `技术交底书（供代理机构据此独立起草申请文件）`），页眉/页脚按模板槽位，无模板回退中性，不写过程词。
 
 ### Fail loud
 

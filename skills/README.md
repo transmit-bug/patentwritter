@@ -11,14 +11,14 @@ skills/
 **分组 = 安装单元**(实测 2026-08-13):
 
 ```bash
-npx skills add transmit-bug/patentwritter                        # 整包(推荐,15 技能引用全通)
+npx skills add transmit-bug/patentwritter                        # 整包(推荐,16 技能引用全通)
 npx skills add transmit-bug/patentwritter/skills/self-service    # 只装自助组 6 技能
 npx skills add transmit-bug/patentwritter/skills/professional    # 只装专业组 6 可见技能
 ```
 
 子路径安装后,跨组引用需一并补装共享与工具:`skills/patent-standards`(两组都需要)、`skills/tools/conversion`(材料摄入)、`skills/tools/word-delivery`(Word 交付,按需)、`skills/tools/patents-search`(可选)。也支持 `-s <names>` 按名选择。
 
-另有一条**分组安装面**:仓库根的 `.claude-plugin/marketplace.json` 声明四个分组,self-service / professional / tools / standards,供 Claude Code 插件市场按组安装。注意两种安装几何不同:skills CLI 恒按技能名拍平(上面命令),marketplace.json 才保留分组;它列出的是 15 个技能,路径必须与源树同步,技能增删改名时一并更新。
+另有一条**分组安装面**:仓库根的 `.claude-plugin/marketplace.json` 声明四个分组,self-service / professional / tools / standards,供 Claude Code 插件市场按组安装。注意两种安装几何不同:skills CLI 恒按技能名拍平(上面命令),marketplace.json 才保留分组;它列出的是 16 个技能,路径必须与源树同步,技能增删改名时一并更新。
 
 The **self-service chain** is the package's core; the professional chain lives under `professional/`, see package-repo `docs/guide/README.md`.
 

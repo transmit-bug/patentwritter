@@ -22,7 +22,7 @@ dot -V   # needed only when dot-drawable figures exist (Step 2-3); if absent, st
 
 适用于交底书分支。触发条件：`patent-intake` 已组装交底书且需要附图。
 
-- **优先复用**：在 `.patent/materials/` 中查找已有的架构或流程原图——找到则直接复用到 `figures/source/` 与 `figures/embed/`，完成。
+- **优先复用**：在 `.patent/materials/` 中查找已有的架构或流程原图——找到则直接复用到 `figures/source/` 与 `figures/embed/`（披露分支可原样内嵌已确认图，递交分支一律按 Step 2 外部图路径重绘/集成校验），完成。
 - **dot 兜底**：不超过 8 个节点，`rankdir=LR`，一条能体现发明构思的流程，`dot -Tpng` 生成 `embed/figN.png`（同时生成 `preview/` 的 svg 预览）；若环境无 `dot`，则在 `drafts/figure-requests.md` 中记录所需图的类型与标记，不阻塞交付。
 - **完成判定**：至少存在一个 `../figures/embed/figN.png`，带有 `图N …` 题注且可追溯到 §四的描述；不整套搬运论文配图。推荐≥1图，上不封顶，未提供需在 `application-info.md` 豁免说明。
 

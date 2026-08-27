@@ -32,7 +32,7 @@ Collect four axes (source × deliverable × type × target product):
 | invention filing set | `../patent-drafting/` → `../patent-drawings/` (full) → `../patent-compliance/` |
 | utility filing set | same chain, utility branch in drafting, structural drawings mandatory |
 | design filing set | design branch `references/design-points.md` → `../patent-compliance/` |
-| disclosure only | assemble `references/disclosure-document.md` (推荐按 `references/8-points.md` 8要点完整展开，未展开需豁免说明) + `../patent-drawings/` disclosure branch; no filing gates; docx via `../word-delivery/SKILL.md` on request |
+| disclosure only | assemble `references/disclosure-document.md` (推荐按 `references/8-points.md` 8要点完整展开，未展开需豁免说明) + `../patent-drawings/` disclosure branch + `../patent-compliance/` 轻量门禁（标题白名单+洁净）; docx via `../word-delivery/SKILL.md` on request |
 | both | filing-set route first, then disclosure assembly from filing drafts |
 | filing/rectification | `../patent-filing/SKILL.md` |
 
@@ -51,7 +51,7 @@ patent-type: invention / utility-model / design / dual-filing / undecided
 target-product: …(constrained output, e.g. application-aware scheduling method/system for UAV navigation)
 open-questions: …
 template: project-default / specified / none
-cross-cutting flags: disclosure-status=… / language-purity=… / data-availability=… / figure-availability=… / multi-contribution-risk=…
+cross-cutting flags: 公开状态=… / 语言纯度=… / 数据可用性=… / 图可用性=… / 多贡献风险=…
 ```
 
 The `word-export` field records the delivery-form agreement: by default no Word files are generated — the pipeline completes at self-checked `.md` drafts and docx is exported only when the inventor asks (`../word-delivery/SKILL.md`).
@@ -97,17 +97,17 @@ Ask about disclosure status and preserve the inventor's source trail. Prior-art 
 
 - Filing set, invention/utility: `../patent-drafting/SKILL.md` (spec-first) → `../patent-drawings/SKILL.md` full routing.
 - Design: `references/design-points.md`.
-- disclosure only: `references/disclosure-document.md` (推荐按 `references/8-points.md` 8要点完整展开，未展开需豁免说明) + `../patent-drawings/SKILL.md` disclosure branch. No `patent-drafting`/`patent-compliance` on this branch; rights and abstract stay in filing track.
+- disclosure only: `references/disclosure-document.md` (推荐按 `references/8-points.md` 8要点完整展开，未展开需豁免说明) + `../patent-drawings/SKILL.md` disclosure branch + `../patent-compliance/SKILL.md` 轻量门禁（标题白名单+洁净）。No `patent-drafting` on this branch; rights and abstract stay in filing track.
 
 Each discipline owns its own completion standard and updates the stage checklist.
 
 ### 4. Self-check → zero unresolved criticals
 
-Read `../patent-compliance/SKILL.md`. Run only the checks applicable to the selected type and deliverable; the report lands at `drafts/check-report.md`. **Back edges are this skill's job**: route each unresolved critical back to the discipline that owns the artifact (`../patent-drafting/` for claims/specification support chains, `../patent-drawings/` for numeral/figure mismatches), then re-check. Return blockers to the inventor instead of silently filling them.
+Read `../patent-compliance/SKILL.md`. 递交轨运行全量检查，披露轨运行轻量门禁（标题白名单+洁净+溯源收敛+图一致）；报告落 `drafts/check-report.md`。未过不标 `self-check ✓`。**Back edges are this skill's job**: route each unresolved critical back to the discipline that owns the artifact (`../patent-drafting/` for claims/specification support chains, `../patent-drawings/` for numeral/figure mismatches, 披露轨标题/洁净问题回 `references/disclosure-document.md` 组装), then re-check. Return blockers to the inventor instead of silently filling them.
 
 ### 5. Assemble and deliver
 
-The pipeline's default completion point is **finalized `.md` drafts**: assembly per `references/disclosure-document.md` (for the consolidated disclosure) plus zero unresolved criticals from step 4. Confirm the delivery form with the inventor. Generate Word files **only** when the inventor asks in the current turn or the route record says `word-export: agreed` — then read `../word-delivery/SKILL.md` for conversion chains, template reuse, formula conversion, and the acceptance gate.
+The pipeline's default completion point is **finalized `.md` drafts**: assembly per `references/disclosure-document.md` (for the consolidated disclosure) plus zero unresolved criticals from step 4（含披露轨轻量门禁）。交付前执行洁净门禁：`drafts/技术交底书.md` 须通过 `../patent-compliance/SKILL.md` 第3/5项检查，未过不标 `delivery ✓`。Confirm the delivery form with the inventor. Generate Word files **only** when the inventor asks in the current turn or the route record says `word-export: agreed` — then read `../word-delivery/SKILL.md` for conversion chains, template reuse, formula conversion, and the acceptance gate.
 
 Revision requests after delivery follow the single-source rule: edits land in the owning draft under `drafts/`, affected checks re-run, then `../word-delivery/SKILL.md` regenerates — never hand-edit a delivered `.docx`.
 

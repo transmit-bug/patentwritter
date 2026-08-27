@@ -38,6 +38,10 @@ Set during extraction, written into `drafts/application-info.md`. Downstream ski
 | 图可用性 | material carries figures | filing-track figures: dot-drawable types are **redraw source only** (never pasted), external types route per `../../patent-drawings/SKILL.md` Step 2 (integrated or requested); the disclosure track may embed confirmed figures as-is |
 | 多贡献风险 | one material contains multiple independent inventive contributions | singleness check → split-application decision (record it; do not silently merge) |
 
+## 披露层防火墙（交付物洁净）
+
+工作区路径与检索过程（`res/`、`.patent/`、`figures/source`、`abstract_inverted_index`、`PII` 等内部路径与检索痕迹）严禁写入交底书正文；正文仅写技术内容本身。所有溯源与缺口仅在 `drafts/申请信息.md` 与 `.patent/sources/` 归档，附录 S 仅保留一行 DOI 极简登记。
+
 ## Paper-source delta (the one source with extra traps)
 
 - **Two-column PDF text**: default `pdftotext` output interleaves the columns into unreadable text; extract per column (page width W: `pdftotext -x 40 -W W/2-30 -y 0 -H <pageheight>` for the left half, then `-x W/2+4` for the right) and concatenate — one faithful readable copy under `.patent/extract/`.

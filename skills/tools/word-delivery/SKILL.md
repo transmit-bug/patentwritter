@@ -56,7 +56,7 @@ Before conversion, classify the source: plain prose, tables/figures, or **formul
 
 ### Chain ① python-docx available → generate inline
 
-Write an inline Python script (python-docx): read each source from `drafts/`, resolve `../figures/embed/figN.png` **relative to the source file's directory** (not the working directory), map headings to Word's built-in heading styles, convert Markdown emphasis/links/blockquote/list/checklist/table syntax into native Word runs, paragraphs, list styles, and tables, embed the figures inline (keep aspect ratio; width at a clearly legible size), and write the output to `deliverables/application/` (three filing docs) or `deliverables/` (技术交底书). 封面/页眉/页脚**以模板槽位为准**：有模板时保留模板既有封面/页眉/页脚结构与样式并仅填入 `#` 标题，无模板时回退中性 `技术交底书（供代理机构据此独立起草申请文件）`；过程词仅在 `drafts/application-info.md` 跟踪。
+Write an inline Python script (python-docx): read each source from `drafts/`, resolve `../figures/embed/figN.png` **relative to the source file's directory** (not the working directory), map headings to Word's built-in heading styles, convert Markdown emphasis/links/blockquote/list/checklist/table syntax into native Word runs, paragraphs, list styles, and tables, embed the figures inline (keep aspect ratio; width at a clearly legible size), and write the output to `deliverables/application/` (three filing docs) or `deliverables/` (技术交底书). 封面/页眉/页脚**以模板槽位为准**：有模板时保留模板既有结构与样式并仅填入 `#` 标题，无模板时按 `../patent-intake/references/title-rule.md` 产出规范处理。
 
 When a `.docx` template is supplied, the modes and fill protocol in the "Template filling" section below govern. Chain ① is the only chain that can fill content into a template's own structure; it preserves page setup, headers/footers, styles, numbering, and table geometry where safe, and reports every unsupported feature.
 
@@ -82,13 +82,52 @@ Deliver the `.md` drafts from `drafts/` (the assembled `技术交底书.md` incl
 
 ### Title gate（复用 intake 规范）
 
-`drafts/技术交底书.md` 的 `#` 标题即发明名称，须符合 `../patent-intake/references/disclosure-document.md` 发明名称规范（`一种…的…方法`，见上）。Word 封面/页眉中的标题与该 `#` 逐字一致；缺 `一种`、含英文缩写/ `之`、超长均在 acceptance gate 记 fail。Word 封面副标题与页眉/页脚**以模板槽位为准**：有模板时按模板既有副标题/页眉/页脚原样保留并仅填入 `#` 标题，无模板时回退中性 `技术交底书（供代理机构据此独立起草申请文件）`；过程词仅保留于 `drafts/application-info.md` 与 skill 内跟踪，不进 Word 正文/封面/页眉/页脚/表格。
+`drafts/技术交底书.md` 的 `#` 标题即发明名称，须符合 `../patent-intake/references/disclosure-document.md` 发明名称规范（`一种…的…方法`，见上）。Word 封面/页眉中的标题与该 `#` 逐字一致；缺 `一种`、含英文缩写/ `之`、超长均在 acceptance gate 记 fail。Word 封面副标题与页眉/页脚**以模板槽位为准**：有模板时按模板既有副标题/页眉/页脚原样保留并仅填入 `#` 标题，无模板时按 `../patent-intake/references/title-rule.md` 产出规范处理。
 
 ### Word acceptance gate
 
 A DOCX is complete only when all applicable checks pass: zero Markdown tokens (`**`, leading `>`, raw list markers, `$...$`, backticks, `---`, `[ ]`); headings have native heading styles; tables and figures are present; core formulas are editable/readable OMML with variables defined; source citations are absent from the clean body except approved `[S#]` markers; and template placeholders/instructions are absent. In content-fill mode additionally: zero unfilled placeholders, and every unfilled template slot is reported (see "Template filling"). Reopen and inspect the generated DOCX structurally before handover. Record counts for paragraphs, tables, figures, formulas, and residual Markdown markers.
 
-**封面/页眉/页脚/正文硬禁（出现即 fail）**：禁止出现 `Technical Disclosure Document` 英文、`paper_XX` 案件内码、`紧凑版/饱满版` 等过程词、`使用说明： 本册为可再生成导出…` 等模板占位说明；封面仅保留 `#` 标题与模板既有中性副标题（有模板按模板槽位，无模板回退中性 `技术交底书（供代理机构据此独立起草申请文件）`），页眉/页脚按模板槽位，无模板回退中性，不写过程词。
+**封面/页眉/页脚/正文规范**：封面标题与正文标题一致，按 `../patent-intake/references/title-rule.md` 产出规范处理；校验出现 `Technical Disclosure Document` 英文、`paper_XX` 内码、`紧凑版/饱满版`、`使用说明：本册为可再生成导出…` 等过程词即记 fail。
+
+### Disclosure heading sanitizer（兜底清洗，chain ① inline 生成时强制执行）
+
+即使 `drafts/技术交底书.md` 已泄漏过程词，Word 转换阶段必须清洗后再写入 DOCX，不得把约束原文带入交付物。Chain ① 的 inline Python 脚本在写入标题/段落前执行以下清洗（chain ②/③ 提示人工清洗）：
+
+```python
+# 标题清洗与正文洁净（在 doc.add_heading / paragraph.text 赋值前执行）
+import re
+TITLE_WHITELIST = [
+    "一、总体架构", "二、设计构思", "三、分步实施描述",
+    "四、实施条件与可复现性说明", "五、关键算法伪代码",
+    "六、符号与参数说明", "七、公式推导与等价形式",
+    "八、硬件组成与部署形态", "九、具体实施例",
+]
+TITLE_KEY_MAP = {
+    "可自编程度": "实施条件与可复现性说明",
+    "必要源码摘录": "关键算法伪代码",
+    "物理变量释义": "符号与参数说明",
+}
+def sanitize_heading(text: str) -> str:
+    t = text.strip()
+    # 内部 Key 直挂标题的映射
+    for k, v in TITLE_KEY_MAP.items():
+        if k in t: t = t.replace(k, v)
+    if t.strip() == "推导": t = "公式推导与等价形式"
+    if t.strip() == "硬件": t = "硬件组成与部署形态"
+    # 白名单校验：不在白名单则告警并截断附加说明
+    is_whitelisted = any(t.startswith(w.split("（")[0]) or t == w for w in TITLE_WHITELIST)
+    if not is_whitelisted and "（" in t:
+        t = t.split("（")[0].strip()
+        if "分步" in t: t = "三、分步实施描述（N步）"
+    return t.strip()
+
+# 正文洁净：正文八章（不含附录 S）出现工作区路径即在 acceptance gate 记 fail
+WORKSPACE_PATH_PATTERNS = [r"res/", r"\.patent/", r"figures/source", r"abstract_inverted_index"]
+# 检测由 compliance 第3/5项执行，此处仅作最后一道兜底
+```
+
+清洗后标题必须命中 `../patent-intake/references/disclosure-document.md` 的"标题映射"白名单，否则在 acceptance gate 记 fail。
 
 ### Fail loud
 

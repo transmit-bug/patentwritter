@@ -8,7 +8,7 @@ allowed-tools: Read, Grep, Glob, Write, Edit
 
 Role: **discipline** of the self-service group, independent from the drafters by design — the checker and the drafter never share a file. On completion, update the self-check stage in drafts/application-info.md.
 
-This skill is the **backend gate that owns claim-formality rules** — they were deliberately moved out of `../patent-drafting/SKILL.md` so drafting can stay in content mode. It runs **only on the filing track** (交付目标 = 申请文件套件 / 两者); the disclosure track skips this skill entirely.
+This skill is the **backend gate that owns claim-formality rules** — they were deliberately moved out of `../patent-drafting/SKILL.md` so drafting can stay in content mode. 它在两条轨道均运行：递交轨运行全量检查（1-6），披露轨运行轻量门禁（仅第3项标题白名单+洁净 + 第5项溯源收敛 + 第4项图一致），未过不标 `self-check ✓`。
 
 Standards pointer: `../patent-standards/`. Use the relevant anchor when a check needs a legal interpretation; this skill owns the executable check, not a reproduction of the standards.
 
@@ -42,6 +42,12 @@ Compare the route record, title, independent claim subject, dependent-claim cita
 
 **Title rule gate**: `drafts/技术交底书.md` 的 `#` 标题与 `drafts/application-info.md` 的 `target-product`/发明名称须为 `一种<基于/面向><核心手段>的<对象+效果>方法`（及系统可选，见 `../patent-intake/references/disclosure-document.md` 发明名称规范），15–30字为佳、不超35字、用`的`不用`之`、英文缩写不上标题；缺`一种`前缀或含`VAE/MDFA/ROM`等缩写、含`之`字、超长均记 `critical` 并给出按规范的重命名建议。
 
+**Disclosure heading gate（交底书标题干净检查，披露轨必跑）**: 扫描 `drafts/技术交底书.md`：
+- 所有二级/三级标题必须在 `../patent-intake/references/disclosure-document.md` 的“标题映射”白名单内逐字命中（`一、总体架构` / `二、设计构思` / `三、分步实施描述（N步）` / `四、实施条件与可复现性说明` / `五、关键算法伪代码` / `六、符号与参数说明` / `七、公式推导与等价形式` / `八、硬件组成与部署形态` / `九、具体实施例`），命中白名单外标题即 `critical`；
+- 正文八章（不含附录 S）出现工作区路径（`res/`、`.patent/`、`figures/source`）或过程性说明句式即 `critical`；
+- 正文出现免责分散句式（每步/每式/每表末尾重复免责）即 `important`，提示收敛到 `application-info.md` 的 `blocked` 记录与附录 S 一行极简登记；
+- 分步每步机械填表 `输入：/处理：/输出：` 三行且无连贯段落即 `important`，提示按 `8-points.md` 去填表化改写。
+
 ### 4. Figure consistency
 
 Compare the specification's reference-numeral set, figure labels, and brief description in both directions. Check figure numbering, missing images, embedded paths, and the designated abstract figure.
@@ -57,6 +63,8 @@ For formula-bearing cases, verify each core equation or logic predicate has:
 - a source or inventor confirmation.
 
 Model-inferred core relations are critical blockers. Scan the clean body for inline author/year citation prose. Replace it with an approved `[S#]` marker and a source appendix or support-layer record. Markdown is acceptable in drafts but not in a finished DOCX.
+
+**Provenance convergence check（披露轨亦必跑）**: 诚实标注不得散落在每步/每式/每表末尾；应收敛到 `drafts/申请信息.md` 的 `blocked` 记录与附录 S 一行极简登记。扫描正文前八章（不含附录 S），出现重复免责句式即 `important`。
 
 ### 6. Abstract and effect
 

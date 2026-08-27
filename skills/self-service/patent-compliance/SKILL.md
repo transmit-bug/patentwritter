@@ -42,9 +42,10 @@ Compare the route record, title, independent claim subject, dependent-claim cita
 
 **Title rule gate**: `drafts/技术交底书.md` 的 `#` 标题与 `drafts/application-info.md` 的 `target-product`/发明名称须为 `一种<基于/面向><核心手段>的<对象+效果>方法`（及系统可选，见 `../patent-intake/references/disclosure-document.md` 发明名称规范），15–30字为佳、不超35字、用`的`不用`之`、英文缩写不上标题；缺`一种`前缀或含`VAE/MDFA/ROM`等缩写、含`之`字、超长均记 `critical` 并给出按规范的重命名建议。
 
-**Disclosure heading gate（交底书标题干净检查，披露轨必跑）**: 扫描 `drafts/技术交底书.md`：
-- 所有二级/三级标题必须在 `../patent-intake/references/disclosure-document.md` 的“标题映射”白名单内逐字命中（`一、总体架构` / `二、设计构思` / `三、分步实施描述（N步）` / `四、实施条件与可复现性说明` / `五、关键算法伪代码` / `六、符号与参数说明` / `七、公式推导与等价形式` / `八、硬件组成与部署形态` / `九、具体实施例`），命中白名单外标题即 `critical`；
-- 正文八章（不含附录 S）出现工作区路径（`res/`、`.patent/`、`figures/source`）或过程性说明句式即 `critical`；
+**Disclosure heading gate（交底书标题干净检查，披露轨必跑，两级白名单）**: 扫描 `drafts/技术交底书.md`：
+- H2 外框必须逐字命中 `../patent-intake/references/disclosure-document.md` 的外框白名单（`一、技术领域` / `二、背景技术` / `三、要解决的技术问题` / `四、技术方案` / `五、技术效果` / `六、区别特征` / `七、替代方案` / `八、附图说明` / `附录 S — 溯源登记`），缺 `一、技术领域`/`二、背景技术`/`三、要解决的技术问题`/`五、技术效果` 中任一即 `critical`；
+- `四、技术方案` 内 H3 必须逐字命中方案内白名单（`（一）总体架构` / `（二）设计构思` / `（三）分步实施描述（N步）` / `（四）实施条件与可复现性说明` / `（五）关键算法伪代码` / `（六）符号与参数说明` / `（七）公式推导与等价形式` / `（八）硬件组成与部署形态` / `（九）具体实施例`），旧式 `一、总体架构` 作 H2 即 `critical`（应为 H3 且括号序号）；
+- 正文外框 8 章（不含附录 S）出现工作区路径（`res/`、`.patent/`、`figures/source`）或过程性说明句式即 `critical`；
 - 正文出现免责分散句式（每步/每式/每表末尾重复免责）即 `important`，提示收敛到 `application-info.md` 的 `blocked` 记录与附录 S 一行极简登记；
 - 分步每步机械填表 `输入：/处理：/输出：` 三行且无连贯段落即 `important`，提示按 `8-points.md` 去填表化改写。
 

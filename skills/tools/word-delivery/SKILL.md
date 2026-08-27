@@ -90,44 +90,58 @@ A DOCX is complete only when all applicable checks pass: zero Markdown tokens (`
 
 **封面/页眉/页脚/正文规范**：封面标题与正文标题一致，按 `../patent-intake/references/title-rule.md` 产出规范处理；校验出现 `Technical Disclosure Document` 英文、`paper_XX` 内码、`紧凑版/饱满版`、`使用说明：本册为可再生成导出…` 等过程词即记 fail。
 
-### Disclosure heading sanitizer（兜底清洗，chain ① inline 生成时强制执行）
+### Disclosure heading sanitizer（兜底清洗，chain ① inline 生成时强制执行，两级白名单）
 
 即使 `drafts/技术交底书.md` 已泄漏过程词，Word 转换阶段必须清洗后再写入 DOCX，不得把约束原文带入交付物。Chain ① 的 inline Python 脚本在写入标题/段落前执行以下清洗（chain ②/③ 提示人工清洗）：
 
 ```python
-# 标题清洗与正文洁净（在 doc.add_heading / paragraph.text 赋值前执行）
+# 标题清洗与正文洁净（在 doc.add_heading / paragraph.text 赋值前执行，两级白名单）
 import re
-TITLE_WHITELIST = [
-    "一、总体架构", "二、设计构思", "三、分步实施描述",
-    "四、实施条件与可复现性说明", "五、关键算法伪代码",
-    "六、符号与参数说明", "七、公式推导与等价形式",
-    "八、硬件组成与部署形态", "九、具体实施例",
+# 外框 H2 白名单（逐字）
+OUTER_WHITELIST = [
+    "一、技术领域", "二、背景技术", "三、要解决的技术问题", "四、技术方案",
+    "五、技术效果", "六、区别特征", "七、替代方案", "八、附图说明", "附录 S — 溯源登记",
 ]
+# 方案内 H3 白名单（位于 四、技术方案 内，逐字）
+INNER_WHITELIST = [
+    "（一）总体架构", "（二）设计构思", "（三）分步实施描述",
+    "（四）实施条件与可复现性说明", "（五）关键算法伪代码",
+    "（六）符号与参数说明", "（七）公式推导与等价形式",
+    "（八）硬件组成与部署形态", "（九）具体实施例",
+]
+TITLE_WHITELIST = OUTER_WHITELIST + INNER_WHITELIST  # 兼容旧式校验
 TITLE_KEY_MAP = {
     "可自编程度": "实施条件与可复现性说明",
     "必要源码摘录": "关键算法伪代码",
     "物理变量释义": "符号与参数说明",
 }
-def sanitize_heading(text: str) -> str:
+def sanitize_heading(text: str, level: int = 2) -> str:
     t = text.strip()
     # 内部 Key 直挂标题的映射
     for k, v in TITLE_KEY_MAP.items():
         if k in t: t = t.replace(k, v)
     if t.strip() == "推导": t = "公式推导与等价形式"
     if t.strip() == "硬件": t = "硬件组成与部署形态"
+    # 旧式 H2 总体架构 → 修正为 H3 括号序号（应在 四、技术方案 内）
+    legacy_inner_as_h2 = ["总体架构", "设计构思", "分步实施描述", "实施条件", "关键算法", "符号与参数", "公式推导", "硬件组成"]
+    if level == 2 and any(k in t for k in legacy_inner_as_h2) and t.startswith("一、"):
+        # 提示应为 H3，此处仅截断附加说明，不自动降级层级
+        pass
     # 白名单校验：不在白名单则告警并截断附加说明
-    is_whitelisted = any(t.startswith(w.split("（")[0]) or t == w for w in TITLE_WHITELIST)
+    whitelist = OUTER_WHITELIST if level == 2 else INNER_WHITELIST
+    is_whitelisted = any(t == w or t.startswith(w.split("（")[0]) for w in whitelist)
     if not is_whitelisted and "（" in t:
         t = t.split("（")[0].strip()
-        if "分步" in t: t = "三、分步实施描述（N步）"
+        if "分步" in t:
+            t = "（三）分步实施描述（N步）" if level == 3 else "三、分步实施描述（N步）"
     return t.strip()
 
-# 正文洁净：正文八章（不含附录 S）出现工作区路径即在 acceptance gate 记 fail
+# 正文洁净：正文外框 8 章（不含附录 S）出现工作区路径即在 acceptance gate 记 fail
 WORKSPACE_PATH_PATTERNS = [r"res/", r"\.patent/", r"figures/source", r"abstract_inverted_index"]
 # 检测由 compliance 第3/5项执行，此处仅作最后一道兜底
 ```
 
-清洗后标题必须命中 `../patent-intake/references/disclosure-document.md` 的"标题映射"白名单，否则在 acceptance gate 记 fail。
+清洗后 H2 必须命中外框白名单、H3 必须命中方案内白名单（见 `../patent-intake/references/disclosure-document.md` 两级标题映射），否则在 acceptance gate 记 fail；旧式 `一、总体架构` 作 H2 视为层级错误。
 
 ### Fail loud
 

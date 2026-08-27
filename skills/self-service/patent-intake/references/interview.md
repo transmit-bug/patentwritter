@@ -11,9 +11,9 @@ Grouped by the four elements. Ask the groups in order; skip a question when the 
 3. How widespread is this trouble? Who hurts most? (→ problem importance, for the background art)
 4. Has anyone tried to solve it before? How, and why didn't it work? (→ distinguishing-feature material + background-art material)
 
-## B. Technical solution — tight 访谈（工程白话三块默认，复杂案 8 要点）
+## B. 技术方案访谈（合适语体，工程白话三块为底座）
 
-本组确保 §四单文件可复现。默认按工程白话三块提问（①总体 ②白话分步 ③可自编+实施例），复杂案再展开 8 要点天花板（见 `8-points.md`）。适用则答、不适用记 `N/A` 并在 `申请信息.md` 注明豁免理由，不编造。覆盖 ①总体 ②设计构思 ③按白话分步（第一步做什么→第二步做什么→数据传给谁，不用 S/M/P 符号） ④可自编程度 ⑤必要源码摘录 ⑥物理变量释义 ⑦推导 ⑧硬件 + 实施例。**简单案 3-5 步白话即可，复杂案才用 8 要点。**
+本组为 §四的单文件可复现做准备。默认围绕工程白话三块提问——总体架构、白话分步、可复现说明配合实施例；复杂案再按 `8-points.md` 按需展开八要点。适用则答，不适用记 `N/A` 并在 `申请信息.md` 注明豁免理由，不编造。覆盖：①总体 ②设计构思 ③白话分步（第一步做什么、数据传给谁） ④可自编程度 ⑤必要源码摘录 ⑥物理变量释义 ⑦推导 ⑧硬件与实施例。简单案用三块的 3-5 步白话即可，复杂案再展开。
 
 5. 总体：系统的总体架构是什么？输入输出边界与整体数据/信号流向如何？（→ ①总体）
 6. 设计构思：核心发明构思与技术原理是什么？为什么这样设计能解决技术问题？（→ ②设计构思）
@@ -27,8 +27,8 @@ Grouped by the four elements. Ask the groups in order; skip a question when the 
 14. 数据/信号流补充：各模块间数据/信号如何流转？谁发给谁？（→ 连接关系与附图依据，补 ③⑧）
 15. 关键参数：关键阈值/数量/维度/超参如何选取？有何依据？（→ 支撑链与充分公开，补 ④⑥）
 
-> 8 要点访谈完成判定：适用要点均有发明人确认材料（不适用记 `N/A: 物理复用通用服务器/无公式承载/白话三块已覆盖` 等豁免理由），源码/变量/推导/硬件按适用性回溯；缺项在 `drafts/申请信息.md` 记 blocked/N/A，不进正文。
-> **语体要求**：禁止追问 `SLR/VOSviewer/韧性四能力` 等论文黑话，改问“第一步先出啥、后出啥，数据怎么流”。
+> 完成判定：适用要点均有发明人确认材料（不适用记 `N/A` 并注明豁免理由，如“无公式承载”“复用通用服务器”），源码、变量、推导、硬件按适用性回溯；缺项在 `drafts/申请信息.md` 记 blocked/N/A，不进正文。
+> 语体上不追问 `SLR/VOSviewer` 等论文黑话，改问“第一步产出什么、传给谁，下一步做什么”。
 
 ## C. Core formula and implementation gate (formula-bearing cases only)
 
@@ -63,13 +63,13 @@ Completion gate: the core formula/logic is written, all variables are defined, b
 
 When either answer is yes, record the date, channel, audience, evidence, and whether the inventor claims a statutory exception. Point to `../../patent-standards/references/cn-invention-utility.md` for the current disclosure/grace-period treatment; do not paste legal explanations into the interview record.
 
-## Closing check (are the four elements complete, tight 可复现)
+## Closing check（四要素是否齐备）
 
-| Element | Test | What happens if missing |
+| 要素 | 检验 | 缺失会怎样 |
 |---|---|---|
-| Technical problem | can state in one sentence "what is solved" + 2-4 句背景 | cannot write the summary of invention; the independent claim has no anchor |
-| Technical solution | can name the minimal part/step set + 工程白话三块可复现（复杂案 8 要点） | claims become hollow, only fillable by fabrication |
-| Distinguishing feature | can say "what was added / changed vs existing practice" | the characterizing portion has nothing to write |
-| Technical effect | has data or mechanism basis, 2-4 句 | the effect paragraphs can only be padded |
+| 技术问题 | 能一句话说清“解决了什么”，并有 2-4 句背景 | 发明内容无锚点，独权无从写起 |
+| 技术方案 | 能说清最小可实施的部件或步骤集合，默认以工程白话三块呈现，复杂案按需展开八要点 | 权利要求空洞，只能靠编造填补 |
+| 区别特征 | 能说清“相对现有做法改了哪一步、加了什么” | 特征部分无内容可写 |
+| 技术效果 | 有数据或机理依据，2-4 句说清 | 效果段落只能空话填充 |
 
-> tight 要求：技术方案按工程白话三块默认（复杂案 8 要点）在正文写全，变量/推导/源码/硬件/实施例不外链至申请信息.md。
+> 要求：技术方案在正文写全，默认以工程白话三块呈现，复杂案按需展开八要点；变量、推导、源码、硬件与实施例不外链到申请信息。

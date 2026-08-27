@@ -1,6 +1,6 @@
 ---
 name: patent-intake
-description: "tight disclosure assembly or filing-set routing for self-service Chinese patents — interview four elements, dispatch drafting/drawings, assemble a tight self-contained disclosure. Use when the user wants a technical disclosure (交底书) or a filing set (权利要求书/说明书)."
+description: "disclosure assembly or filing-set routing for self-service Chinese patents — interview four elements, dispatch drafting/drawings, assemble a self-contained disclosure in appropriate engineering prose. Use when the user wants a technical disclosure (交底书) or a filing set (权利要求书/说明书)."
 allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion, Bash
 ---
 
@@ -32,8 +32,8 @@ Collect four axes (source × deliverable × type × target product):
 | invention filing set | `../patent-drafting/` → `../patent-drawings/` (full) → `../patent-compliance/` |
 | utility filing set | same chain, utility branch in drafting, structural drawings mandatory |
 | design filing set | design branch `references/design-points.md` → `../patent-compliance/` |
-| tight disclosure only | assemble `references/disclosure-document.md` (tight, 工程白话三块默认) + `../patent-drawings/` Disclosure branch (tight); no filing gates; docx via `../word-delivery/SKILL.md` on request |
-| both | filing-set route first, then tight assembly from filing drafts |
+| disclosure only | assemble `references/disclosure-document.md` (以工程白话三块为底座，复杂案按八要点展开) + `../patent-drawings/` disclosure branch; no filing gates; docx via `../word-delivery/SKILL.md` on request |
+| both | filing-set route first, then disclosure assembly from filing drafts |
 | filing/rectification | `../patent-filing/SKILL.md` |
 
 ## State record
@@ -93,11 +93,11 @@ For invention / utility model, read `references/interview.md` and record the fou
 
 Ask about disclosure status and preserve the inventor's source trail. Prior-art search is optional: `references/search-guide.md` + `../patents-search/` before drafting the background art.
 
-### 3. Dispatch — only the requested branch, tight stays self-contained
+### 3. Dispatch — only the requested branch
 
 - Filing set, invention/utility: `../patent-drafting/SKILL.md` (spec-first) → `../patent-drawings/SKILL.md` full routing.
 - Design: `references/design-points.md`.
-- tight disclosure only: `references/disclosure-document.md` (tight, 工程白话三块默认) + `../patent-drawings/SKILL.md` Disclosure branch. No `patent-drafting`/`patent-compliance` on this branch; rights and abstract stay in filing track.
+- disclosure only: `references/disclosure-document.md` (以工程白话三块为底座，复杂案按八要点展开) + `../patent-drawings/SKILL.md` disclosure branch. No `patent-drafting`/`patent-compliance` on this branch; rights and abstract stay in filing track.
 
 Each discipline owns its own completion standard and updates the stage checklist.
 
@@ -117,7 +117,7 @@ Hand off to `../patent-filing/SKILL.md`. Load filing guidance from `../patent-fi
 
 ## Single pointers — disclosed references (load only when branch fires)
 
-- tight disclosure assembly: `references/disclosure-document.md` (工程白话三块默认，复杂案见 `references/8-points.md`)
+- disclosure assembly: `references/disclosure-document.md` (以工程白话三块为底座，复杂案见 `references/8-points.md`)
 - type choice: `references/type-decision.md`
 - source intake + five flags: `references/source-modes.md`
 - design views: `references/design-points.md`

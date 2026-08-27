@@ -48,7 +48,7 @@ Structure: what the prior solution is → what specific problem its implementati
 
 ### A3 Summary of invention → Done when: problem/solution/effect correspond three ways, in readable prose
 
-For algorithm/control/signal/optimization inventions, run the **core-formula gate** (filing track, full). Identify 2-5 equations that make the distinguishing feature work, give each variable meaning/units/I/O and boundary handling, and map to the process step. If unknown, return a blocker; never invent. **tight disclosure uses the human-three-blocks default via `patent-intake/references/disclosure-document.md` — complex cases expand via `references/8-points.md`; do not apply the filing-only full gate there.**
+For algorithm/control/signal/optimization inventions, run the **core-formula gate** (filing track, full). Identify 2-5 equations that make the distinguishing feature work, give each variable meaning/units/I/O and boundary handling, and map to the process step. If unknown, return a blocker; never invent. 交底书分支以工程白话三块为底座（见 `patent-intake/references/disclosure-document.md`），复杂案按 `references/8-points.md` 按需展开；此处不套用申请文件分支的完整公式门槛。
 
 Three-way correspondence:
 - **Technical problem to be solved**: maps one-to-one to the background-art deficiencies; one sentence, optionally adding "本发明目的在于…".

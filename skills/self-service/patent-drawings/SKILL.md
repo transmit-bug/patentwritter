@@ -1,6 +1,6 @@
 ---
 name: patent-drawings
-description: "tight disclosure figures (1图可过检, integrate or dot) and filing figures (dot routing, external integrate, numeral check) for CN patents. Use when the deliverable needs drawings — disclosure follows tight 工程白话三块, filing set needs full routing. Design views redirect to patent-intake/design-points.md."
+description: "disclosure figures and filing figures for CN patents — disclosure with one figure as baseline (integrate or dot), filing with full dot routing, external integrate and numeral check. Use when the deliverable needs drawings. Design views redirect to patent-intake/design-points.md."
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 
@@ -18,13 +18,13 @@ Input: the claims + the specification text. Drawings are not free composition �
 dot -V   # needed only when dot-drawable figures exist (Step 2-3); if absent, state the missing dependency explicitly; do not force drawing
 ```
 
-## Disclosure branch — tight (only when deliverable needs `技术交底书`)
+## Disclosure branch — 交底书附图（仅当交付物含技术交底书）
 
-This is the disclosed reference for the tight track. Trigger: `patent-intake` assembled a tight disclosure and needs figures.
+适用于交底书分支。触发条件：`patent-intake` 已组装交底书且需要附图。
 
-- **Integrate first**: search `.patent/materials/` for an architecture/block or flow original — found → copy to `figures/source/` + `figures/embed/` and done.
-- **Brief dot fallback**: ≤8 nodes, `rankdir=LR`, one inventive-step flow, `dot -Tpng` to `embed/figN.png` (and svg to `preview/`) if `dot` present; if `dot` absent, list in `drafts/figure-requests.md` with type + required numerals, do not block delivery.
-- **Done when**: ≥1 `../figures/embed/figN.png` exists with caption `图N …`, each traceable to `§四` text; no full paper figure set copied. 简单案 1 图可过检，复杂案按需上不封顶。
+- **优先复用**：在 `.patent/materials/` 中查找已有的架构或流程原图——找到则直接复用到 `figures/source/` 与 `figures/embed/`，完成。
+- **dot 兜底**：不超过 8 个节点，`rankdir=LR`，一条能体现发明构思的流程，`dot -Tpng` 生成 `embed/figN.png`（同时生成 `preview/` 的 svg 预览）；若环境无 `dot`，则在 `drafts/figure-requests.md` 中记录所需图的类型与标记，不阻塞交付。
+- **完成判定**：至少存在一个 `../figures/embed/figN.png`，带有 `图N …` 题注且可追溯到 §四的描述；不整套搬运论文配图。简单案一图即可，复杂案按需上不封顶。
 
 Filing figures continue below — the steps are the in-file reference that every filing run needs.
 

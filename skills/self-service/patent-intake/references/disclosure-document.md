@@ -1,17 +1,17 @@
-# 技术交底书 Assembly — tight 单文件可复现
+# 技术交底书 Assembly — 单文件可复现（工程白话）
 
-A 技术交底书 is the **tight** self-contained disclosure for an agency to draft from without extra material. One file `drafts/技术交底书.md`; filing docs stay separate `deliverables/application/`.
-Assembled at Stage-5 by `patent-intake`; the `.md` is the truth, docx via `../../word-delivery/SKILL.md` on request.
+一份技术交底书是一份单文件可复现的披露材料，代理人据此可独立起草申请文件，无需外链补料。一份交底书对应一个文件 `drafts/技术交底书.md`，申请文件三件套另存于 `deliverables/application/`。
+由 `patent-intake` 在 Stage-5 组装，`.md` 为准，docx 按需经 `../../word-delivery/SKILL.md` 另行导出。
 
-## Leading word
-**tight** recruits the pretrained tight loop — single file, reproducible, no external补料. Default budget: **工程白话三块即可过检**（①总体 ②白话分步3-5步“第一步做什么→数据给谁” ③可自编+1图1实施例），复杂案才展开天花板见 `references/8-points.md`。
+## 语体与分层
+以**工程白话**为合适语体：用“第一步做什么、数据传给谁”的自然表述，让同行能照着复现。默认以三块为底座——总体架构、白话分步、可复现说明配合一图一例；复杂案再按 `references/8-points.md` 按需展开八要点，上不封顶。
 
-## Rule tracks — one trigger per branch
-| Track | When to load this file | Rule set |
+## 适用分支
+| 分支 | 何时加载本文件 | 规则 |
 |---|---|---|
-| **tight track** | deliverable = 交底书 / 两者 | This file alone |
-| filing track | deliverable = 申请文件套件 | `../../patent-drafting/SKILL.md` |
-Patent law lives downstream; this file owns disclosure only.
+| 交底书 | 交付物含交底书时 | 仅本文件 |
+| 申请文件 | 交付物为申请文件套件时 | `../../patent-drafting/SKILL.md` |
+专利法的审查口径在申请文件分支处理，本文件只负责把技术讲清楚。
 
 ## 正文内容 — 仅含可回溯段落
 每段可追溯至 `申请信息.md` 或确认材料：
@@ -27,8 +27,8 @@ Each step ends on a checkable completion criterion.
 Confirm `drafts/申请信息.md` 四要素 + `.patent/materials/` + `.patent/sources/` 溯源完整；blocked 项暂停并向发明人追问，不进正文。
 ### 2 Map template → Done when: 每章已有对应模板槽位
 Bind `examples/技术交底书模板.doc` 槽位到下表章节；模板占位文字保留在来源，不复制进正文。无模板时回退中性副标题（见 `references/title-rule.md`）。
-### 3 Assemble → Done when: 每段可追溯且无论文章节复刻，图/式按需已处理
-Write clean prose。默认按工程白话三块组装；复杂案按 `references/8-points.md` 展开 8 要点。图/式按需：简单案 1 图1例可过检，复杂案上不封顶，豁免记 `application-info.md`；已嵌入图含 `图N …` 题注且成对 `figures/embed/` + `figures/source/`（via `../../patent-drawings/SKILL.md`），已呈现公式每式紧跟变量表与边界同页。发明名称按 `references/title-rule.md`。
+### 3 Assemble → Done when: 每段可追溯、无论文章节复刻，图/式已按需处理
+用工程白话书写，默认以三块为底座组装，复杂案按 `references/8-points.md` 展开八要点。图与式按需安排：简单案一图一例即可，复杂案上不封顶；无需时在 `application-info.md` 注明豁免。已嵌入的图带有 `图N …` 题注，成对存放于 `figures/embed/` 与 `figures/source/`（经 `../../patent-drawings/SKILL.md`），已呈现的公式每式紧跟变量表与边界，同页可读。发明名称按 `references/title-rule.md` 处理。
 
 ## Disclosed references — load only when branch fires
 - 8 要点天花板（复杂案）：`references/8-points.md`
@@ -40,12 +40,12 @@ Write clean prose。默认按工程白话三块组装；复杂案按 `references
 | 一、技术领域 | 四要素定位 | 2-4 句说清领域与场景 |
 | 二、背景技术 | 可溯源三类素材 | 2-4 句说清，只写可溯源内容 |
 | 三、要解决的技术问题 | `申请信息.md` technical-problem | 2-4 句照抄并展开 |
-| 四、技术方案 | 四要素·方案 + 实施例 + 图/式按需 | 工程白话三块默认，复杂案按 `8-points.md` 展开 |
+| 四、技术方案 | 四要素·方案 + 实施例 + 图/式按需 | 以工程白话三块为底座，复杂案按 `8-points.md` 按需展开 |
 | 五、技术效果 | `申请信息.md` technical-effect | 数据写明条件，机理写清因果 |
 | 六、区别特征 / 七、替代方案 | `申请信息.md` | 说清区别与等效替代 |
 | 八、附图说明 + 附录 S | `figures/embed/` + `.patent/sources` | 一图一句话；附录 S 按需精炼 |
 
-## Completion — tight bar
-- [ ] 单文件可复现：工程白话三块（复杂案按 `8-points.md`）已组装，无外链
-- [ ] 图/式按需已处理或已豁免（`application-info.md`），附录 S 按需精炼
-> 详细校验（句数、题注成对、变量表同页等）由 `patent-compliance` 按需执行，不在交底书表面重复约束。
+## 完成自检
+- [ ] 已按工程白话三块（复杂案按 `8-points.md`）组装，单文件可复现，无外链
+- [ ] 图与式已按需处理或在 `application-info.md` 注明豁免，附录 S 按需精炼
+> 更细的校验按需由 `patent-compliance` 执行。

@@ -24,7 +24,7 @@ dot -V   # needed only when dot-drawable figures exist (Step 2-3); if absent, st
 
 - **优先复用**：在 `.patent/materials/` 中查找已有的架构或流程原图——找到则直接复用到 `figures/source/` 与 `figures/embed/`，完成。
 - **dot 兜底**：不超过 8 个节点，`rankdir=LR`，一条能体现发明构思的流程，`dot -Tpng` 生成 `embed/figN.png`（同时生成 `preview/` 的 svg 预览）；若环境无 `dot`，则在 `drafts/figure-requests.md` 中记录所需图的类型与标记，不阻塞交付。
-- **完成判定**：至少存在一个 `../figures/embed/figN.png`，带有 `图N …` 题注且可追溯到 §四的描述；不整套搬运论文配图。简单案一图即可，复杂案按需上不封顶。
+- **完成判定**：至少存在一个 `../figures/embed/figN.png`，带有 `图N …` 题注且可追溯到 §四的描述；不整套搬运论文配图。推荐≥1图，上不封顶，未提供需在 `application-info.md` 豁免说明。
 
 Filing figures continue below — the steps are the in-file reference that every filing run needs.
 

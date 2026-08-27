@@ -32,7 +32,7 @@ Collect four axes (source × deliverable × type × target product):
 | invention filing set | `../patent-drafting/` → `../patent-drawings/` (full) → `../patent-compliance/` |
 | utility filing set | same chain, utility branch in drafting, structural drawings mandatory |
 | design filing set | design branch `references/design-points.md` → `../patent-compliance/` |
-| disclosure only | assemble `references/disclosure-document.md` (以工程白话三块为底座，复杂案按八要点展开) + `../patent-drawings/` disclosure branch; no filing gates; docx via `../word-delivery/SKILL.md` on request |
+| disclosure only | assemble `references/disclosure-document.md` (推荐按 `references/8-points.md` 8要点完整展开，未展开需豁免说明) + `../patent-drawings/` disclosure branch; no filing gates; docx via `../word-delivery/SKILL.md` on request |
 | both | filing-set route first, then disclosure assembly from filing drafts |
 | filing/rectification | `../patent-filing/SKILL.md` |
 
@@ -97,7 +97,7 @@ Ask about disclosure status and preserve the inventor's source trail. Prior-art 
 
 - Filing set, invention/utility: `../patent-drafting/SKILL.md` (spec-first) → `../patent-drawings/SKILL.md` full routing.
 - Design: `references/design-points.md`.
-- disclosure only: `references/disclosure-document.md` (以工程白话三块为底座，复杂案按八要点展开) + `../patent-drawings/SKILL.md` disclosure branch. No `patent-drafting`/`patent-compliance` on this branch; rights and abstract stay in filing track.
+- disclosure only: `references/disclosure-document.md` (推荐按 `references/8-points.md` 8要点完整展开，未展开需豁免说明) + `../patent-drawings/SKILL.md` disclosure branch. No `patent-drafting`/`patent-compliance` on this branch; rights and abstract stay in filing track.
 
 Each discipline owns its own completion standard and updates the stage checklist.
 
@@ -117,7 +117,7 @@ Hand off to `../patent-filing/SKILL.md`. Load filing guidance from `../patent-fi
 
 ## Single pointers — disclosed references (load only when branch fires)
 
-- disclosure assembly: `references/disclosure-document.md` (以工程白话三块为底座，复杂案见 `references/8-points.md`)
+- disclosure assembly: `references/disclosure-document.md` (实施级规范描述，推荐按 `references/8-points.md` 8要点完整展开)
 - type choice: `references/type-decision.md`
 - source intake + five flags: `references/source-modes.md`
 - design views: `references/design-points.md`

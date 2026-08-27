@@ -1,51 +1,67 @@
-# 技术交底书 Assembly — 单文件可复现（工程白话）
+# 技术交底书 Assembly — 单文件可复现（实施级规范描述）
 
-一份技术交底书是一份单文件可复现的披露材料，代理人据此可独立起草申请文件，无需外链补料。一份交底书对应一个文件 `drafts/技术交底书.md`，申请文件三件套另存于 `deliverables/application/`。
-由 `patent-intake` 在 Stage-5 组装，`.md` 为准，docx 按需经 `../../word-delivery/SKILL.md` 另行导出。
+一份技术交底书是一份单文件可复现的披露材料，代理人据此可独立起草申请文件，无需外链补料。一份交底书对应一个文件 `drafts/技术交底书.md`，申请文件三件套另存于 `deliverables/application/`。由 `patent-intake` 在 Stage-5 组装，`.md` 为准，docx 按需经 `../../word-delivery/SKILL.md` 另行导出。
 
 ## 语体与分层
-以**工程白话**为合适语体：用“第一步做什么、数据传给谁”的自然表述，让同行能照着复现。默认以三块为底座——总体架构、白话分步、可复现说明配合一图一例；复杂案再按 `references/8-points.md` 按需展开八要点，上不封顶。
+
+以**实施级规范描述**为语体：以输入—处理—输出与数据流向为主线，用规范、准确、可复现的技术语言表述，使本领域技术人员无需外链即可复现。推荐按 `references/8-points.md` 8要点完整展开（上不封顶；未展开项在 `application-info.md` 标注豁免及依据，写作仅以发明人确认材料与可追溯来源为依据，缺项记 blocked 并向发明人追问补充），产物的专业度由结构完整性与可复现深度承载。
 
 ## 适用分支
+
 | 分支 | 何时加载本文件 | 规则 |
 |---|---|---|
 | 交底书 | 交付物含交底书时 | 仅本文件 |
 | 申请文件 | 交付物为申请文件套件时 | `../../patent-drafting/SKILL.md` |
+
 专利法的审查口径在申请文件分支处理，本文件只负责把技术讲清楚。
 
 ## 正文内容 — 仅含可回溯段落
+
 每段可追溯至 `申请信息.md` 或确认材料：
-- 技术领域与应用场景（2-4 句说清领域与场景）
+
+- 技术领域与应用场景（2-4句说清领域与场景）
 - 可溯源背景技术（发明人已知方案 / 客观通用问题 / 检索真实返回）
-- 白话分步（第一步做什么→第二步做什么→数据给谁，3-5 步自然语言）
-- 按需展开：源码/变量/推导/硬件/实施例（无公式/无硬件记 `N/A` 于 `申请信息.md`）
-> 正文形态：单一稳定文件，无外链。待确认事项仅记 `drafts/申请信息.md`。校验：是否仅含上列四类段落。
+- 分步实施描述（按技术逻辑分步阐明输入/处理/输出与流向，3-8步，标题自描述如 `分步实施描述（6步）`）
+- 8要点完整展开：总体 / 设计构思 / 分步实施描述 / 可自编程度 / 必要源码 / 物理变量 / 推导 / 硬件与实施例收束（分型豁免：机械/结构类无公式可记 `N/A` 并写明依据；算法/控制/信号/优化/调度类⑤⑥⑦推荐具备，至少1式+1伪代码+变量表与边界，写作仅以确认材料为依据，缺项在 `申请信息.md` 记 `blocked: <缺项>` 或 `formula: N/A — 无公式承载（依据）` 并向发明人追问）
+
+> 正文形态：单一稳定文件，无外链。待确认事项仅记 `drafts/申请信息.md`。校验：每段均能在 `申请信息.md` 或确认材料中找到依据。
 
 ## Steps — what the agent does, in order
-Each step ends on a checkable completion criterion.
-### 1 Verify source → Done when: 四要素与溯源均已归档且无 blocked
-Confirm `drafts/申请信息.md` 四要素 + `.patent/materials/` + `.patent/sources/` 溯源完整；blocked 项暂停并向发明人追问，不进正文。
-### 2 Map template → Done when: 每章已有对应模板槽位
-Bind `examples/技术交底书模板.doc` 槽位到下表章节；模板占位文字保留在来源，不复制进正文。无模板时回退中性副标题（见 `references/title-rule.md`）。
-### 3 Assemble → Done when: 每段可追溯、无论文章节复刻，图/式已按需处理
-用工程白话书写，默认以三块为底座组装，复杂案按 `references/8-points.md` 展开八要点。图与式按需安排：简单案一图一例即可，复杂案上不封顶；无需时在 `application-info.md` 注明豁免。已嵌入的图带有 `图N …` 题注，成对存放于 `figures/embed/` 与 `figures/source/`（经 `../../patent-drawings/SKILL.md`），已呈现的公式每式紧跟变量表与边界，同页可读。发明名称按 `references/title-rule.md` 处理。
 
-## Disclosed references — load only when branch fires
-- 8 要点天花板（复杂案）：`references/8-points.md`
+Each step ends on a checkable completion criterion.
+
+### 1 Verify source → Done when: 四要素与溯源均已归档且无 blocked
+
+Confirm `drafts/申请信息.md` 四要素 + `.patent/materials/` + `.patent/sources/` 溯源完整；对 blocked 项暂停该部分并向发明人追问，追问到位后再写入正文。
+
+### 2 Map template → Done when: 每章已有对应模板槽位
+
+Bind `examples/技术交底书模板.doc` 槽位到下表章节；模板占位文字保留在来源，按槽位写入确认材料。无模板时使用中性副标题（见 `references/title-rule.md`）。
+
+### 3 Assemble → Done when: 每段均可追溯，图/式已按推荐配置完整呈现
+
+以实施级规范描述撰写，推荐按 `references/8-points.md` 8要点完整组装（上不封顶；未展开项已在 `application-info.md` 标注豁免及依据）。图与式推荐配置：≥1图+≥1式+≥1数值实施例，算法/控制类推荐≥1式+1伪代码+变量表与边界；豁免按分型在 `application-info.md` 标注依据。已嵌入的图带有 `图N …` 题注，成对存放于 `figures/embed/` 与 `figures/source/`（经 `../../patent-drawings/SKILL.md`），已呈现的公式每式紧跟变量表（含义/单位/输入输出/取值范围）与边界，同页可读且与分步实施描述互指并存。发明名称按 `references/title-rule.md` 处理。
+
+## Disclosed references — recommended
+
+- 8要点完整结构：`references/8-points.md`（推荐完整展开，未展开需豁免说明）
 - 发明名称规范：`references/title-rule.md`
 
 ## Reference — assembly table（紧凑版）
+
 | 章节 | 来源 | 写法 |
 |---|---|---|
-| 一、技术领域 | 四要素定位 | 2-4 句说清领域与场景 |
-| 二、背景技术 | 可溯源三类素材 | 2-4 句说清，只写可溯源内容 |
-| 三、要解决的技术问题 | `申请信息.md` technical-problem | 2-4 句照抄并展开 |
-| 四、技术方案 | 四要素·方案 + 实施例 + 图/式按需 | 以工程白话三块为底座，复杂案按 `8-points.md` 按需展开 |
+| 一、技术领域 | 四要素定位 | 2-4句说清领域与场景 |
+| 二、背景技术 | 可溯源三类素材 | 2-4句说清，只写可追溯内容 |
+| 三、要解决的技术问题 | `申请信息.md` technical-problem | 2-4句照抄并展开 |
+| 四、技术方案 | 四要素·方案 + 实施例 + 图/式 | 推荐按 `8-points.md` 8要点完整展开 |
 | 五、技术效果 | `申请信息.md` technical-effect | 数据写明条件，机理写清因果 |
 | 六、区别特征 / 七、替代方案 | `申请信息.md` | 说清区别与等效替代 |
 | 八、附图说明 + 附录 S | `figures/embed/` + `.patent/sources` | 一图一句话；附录 S 按需精炼 |
 
 ## 完成自检
-- [ ] 已按工程白话三块（复杂案按 `8-points.md`）组装，单文件可复现，无外链
-- [ ] 图与式已按需处理或在 `application-info.md` 注明豁免，附录 S 按需精炼
+
+- [ ] 已推荐按 `8-points.md` 8要点完整组装（未展开项已在 `application-info.md` 标注豁免及依据），单文件可复现，无外链；分步实施描述与公式/伪代码互指并存，描述说明流向，定义给出可计算形式
+- [ ] 图与式已按推荐配置完整呈现或在 `application-info.md` 标注豁免及依据（推荐≥1图+≥1式+≥1数值实施例；算法类推荐≥1式+≥1伪代码+变量表+边界），附录 S 按需精炼
+- [ ] 100分审美复核（交底书版）：可读性/完整性/可实施性/创新凸显/结构合规，总分<60建议返工（见 `interview.md` 5维表）
 > 更细的校验按需由 `patent-compliance` 执行。

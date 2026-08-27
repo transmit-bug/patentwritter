@@ -1,6 +1,6 @@
 ---
 name: patent-drawings
-description: "tight disclosure figures (1图可过检, integrate or dot) and filing figures (dot routing, external integrate, numeral check) for CN patents. Use when the deliverable needs drawings — disclosure follows tight 人话三块, filing set needs full routing. Design views redirect to patent-intake/design-points.md."
+description: "tight disclosure figures (1图可过检, integrate or dot) and filing figures (dot routing, external integrate, numeral check) for CN patents. Use when the deliverable needs drawings — disclosure follows tight 工程白话三块, filing set needs full routing. Design views redirect to patent-intake/design-points.md."
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash
 ---
 

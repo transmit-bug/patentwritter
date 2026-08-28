@@ -109,6 +109,12 @@ A utility model **must** have drawings showing the shape / construction / combin
 
 A design's "drawings" are **pictures or photographs** not dot-rendered line diagrams — **dot does not apply**. The view rules (number of views per the faces the design points involve, six orthographic views, omitted-view statements, black-white/gray, view naming) have their single executable version in `../patent-intake/references/design-points.md`; this skill does not repeat the rules.
 
+## Boundaries
+
+- Owns figure routing, dot rendering, and numeral cross-check only; never drafts claims/specification, never invents structure — gaps route to `drafts/figure-requests.md` as blocker.
+- Drawings mirror specification numerals; never introduce numerals absent from text — add to text or do not draw.
+- Design views delegate to `../patent-intake/references/design-points.md`; dot does not apply to designs.
+
 ## Completion standard (before handover)
 
 - [ ] Every figure routed (Step 2): dot-drawn, integrated from `.patent/materials/`, or listed in `drafts/figure-requests.md`

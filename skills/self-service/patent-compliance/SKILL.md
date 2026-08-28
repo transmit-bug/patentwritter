@@ -84,6 +84,12 @@ Run only the design branch when the route says design:
 
 Use the design standards pointer for questions not answered by these checks.
 
+## Boundaries
+
+- Owns checks only; never drafts or repairs content — reports severity/location/repair guidance, routes back via `../patent-intake/SKILL.md` Stage 4 back edges.
+- Never invents prior art or data; gaps stay as `critical: blocked`.
+- Claim-formality checks own the register; drafting owns the voice wall — do not flag specification prose for "所述".
+
 ## Rectification checks
 
 When this is a rectification task, compare each amended feature with the original disclosure and figures. Flag newly introduced subject matter as critical and do not silently broaden the draft.

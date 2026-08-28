@@ -144,6 +144,12 @@ State the name, technical field, technical problem, solution gist, and main uses
 
 ---
 
+## Boundaries
+
+- Owns the specification (five parts), claims, and abstract only; never interviews, never draws figures, never checks formally — those are `../patent-intake/`, `../patent-drawings/`, `../patent-compliance/` via artifact files.
+- Never invents prior art, data, or core formulas; gaps return as `blocked` to intake.
+- Honesty red line owns background-art sourcing; this skill normalizes confirmed material only.
+
 ## Revision loop (after delivery)
 
 All review comments — the inventor's, the agency's, or complaints about a delivered Word file — land in the owning draft under `drafts/` (`权利要求书.md` / `说明书.md` / `摘要.md`). The delivered `.docx` files under `deliverables/` are regenerable exports produced by `../word-delivery/SKILL.md`; never edit them by hand. After a substantive revision, re-run the affected self-checks (`../patent-compliance/SKILL.md`) and re-export via `../word-delivery/`.

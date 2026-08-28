@@ -117,9 +117,10 @@ Hand off to `../patent-filing/SKILL.md`. Load filing guidance from `../patent-fi
 
 ## Single pointers — disclosed references (load only when branch fires)
 
-- disclosure assembly: `references/disclosure-document.md` (实施级规范描述，推荐按 `references/8-points.md` 8要点完整展开)
+- disclosure assembly: `references/disclosure-document.md` (实施级规范描述，H3 必达，见 `references/8-points.md`)
+- 可专利点提取（paper/多贡献必经）: `../patent-exploration/references/deconstruction.md` + `../patent-exploration/references/mining-matrix.md`（paper=综述/案例且无可计算链时，先产 `.patent/exploration/` 清单，0核心点则转探索报告不硬拼8章）
 - type choice: `references/type-decision.md`
-- source intake + five flags: `references/source-modes.md`
+- source intake + 可专利性: `references/source-modes.md`（含六旗标）
 - design views: `references/design-points.md`
 - search (optional, before background art): `references/search-guide.md` + `../patents-search/`
 - standards (file index, not body): `../patent-standards/SKILL.md`

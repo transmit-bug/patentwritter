@@ -26,7 +26,7 @@ The interview mode **emerges** from material completeness; the question bank nev
 
 Modes that emerge: oral description = empty extraction → full question bank (**mining**); a paper or complete draft = near-full extraction → only boundary conditions asked (**confirm**); a webpage or slide deck = partial extraction → gap-filling (**mixed**).
 
-## Five cross-cutting flags (what downstream skills consume)
+## Five cross-cutting flags + 可专利性 (what downstream skills consume)
 
 Set during extraction, written into `drafts/application-info.md`. Downstream skills read flags, never the source kind:
 
@@ -37,10 +37,11 @@ Set during extraction, written into `drafts/application-info.md`. Downstream ski
 | 数据可用性 | material carries real experimental / test data | beneficial effects may cite it, with measurement conditions stated |
 | 图可用性 | material carries figures | filing-track figures: dot-drawable types are **redraw source only** (never pasted), external types route per `../../patent-drawings/SKILL.md` Step 2 (integrated or requested); the disclosure track may embed confirmed figures as-is |
 | 多贡献风险 | one material contains multiple independent inventive contributions | singleness check → split-application decision (record it; do not silently merge) |
+| 可专利性 | paper=综述/案例研究且无可计算技术方案（无输入—处理—输出链）则 `无`，经 `../patent-exploration/references/deconstruction.md` + `mining-matrix.md` 仍无核心点 | `无` 时产 `.patent/exploration/` 探索报告，不硬拼交底书；`中` 时按 `8-points` 必达补体量 |
 
-## 披露层防火墙（交付物洁净）
+## 披露层防火墙（交付物洁净+去学术化）
 
-工作区路径与检索过程（`res/`、`.patent/`、`figures/source`、`abstract_inverted_index`、`PII` 等内部路径与检索痕迹）严禁写入交底书正文；正文仅写技术内容本身。所有溯源与缺口仅在 `drafts/申请信息.md` 与 `.patent/sources/` 归档，附录 S 仅保留一行 DOI 极简登记。
+工作区路径与检索过程（`res/`、`.patent/`、`figures/source`、`abstract_inverted_index`、`PII` 等内部路径与检索痕迹）严禁写入交底书正文；正文仅写技术本身。综述黑话 `SLR/VOSviewer/整合框架/可持续生态/显著提升/三角验证` 等禁入正文，改写为输入—处理—输出可复现句式（见 `../patent-exploration/references/mining-matrix.md`）。所有溯源与缺口仅在 `drafts/申请信息.md` 与 `.patent/sources/` 归档，附录 S 仅一行 DOI。
 
 ## Paper-source delta (the one source with extra traps)
 

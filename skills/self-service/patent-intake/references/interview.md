@@ -11,9 +11,9 @@ Grouped by the four elements. Ask the groups in order; skip a question when the 
 3. How widespread is this trouble? Who hurts most? (→ problem importance, for the background art)
 4. Has anyone tried to solve it before? How, and why didn't it work? (→ distinguishing-feature material + background-art material)
 
-## B. 技术方案访谈（实施级规范描述，推荐8要点完整）
+## B. 技术方案访谈（实施级规范描述，H3 必达）
 
-本组为 §四的单文件可复现做准备，推荐按 `8-points.md` 8要点提问，未覆盖项按分型在 `申请信息.md` 注明豁免理由，不编造。覆盖：①总体 ②设计构思 ③分步实施描述（输入/处理/输出与流向） ④可自编程度 ⑤必要源码摘录 ⑥物理变量释义 ⑦推导 ⑧硬件与实施例。
+本组为 §四的单文件可复现做准备，按 `8-points.md` H3 必达提问：算法/控制类必达全量，综述类同N/A记blocked。覆盖：①总体 ②设计构思 ③分步（输入/处理/输出与流向） ④可自编程度 ⑤伪代码 ⑥变量 ⑦推导 ⑧硬件与实施例。先必经 `../patent-exploration/references/deconstruction.md` + `mining-matrix.md` 提炼可专利点；若 paper=综述且无可计算技术方案，先产探索报告不硬拼。
 
 5. 总体：系统的总体架构是什么？输入输出边界与整体数据/信号流向如何？（→ ①总体）
 6. 设计构思：核心发明构思与技术原理是什么？为什么这样设计能解决技术问题？（→ ②设计构思）
@@ -27,8 +27,7 @@ Grouped by the four elements. Ask the groups in order; skip a question when the 
 14. 数据/信号流补充：各模块间数据/信号如何流转？谁发给谁？（→ 连接关系与附图依据，补 ③⑧）
 15. 关键参数：关键阈值/数量/维度/超参如何选取？有何依据？（→ 支撑链与充分公开，补 ④⑥）
 
-> 完成判定：8要点逐项均有发明人确认材料或已按分型豁免说明（机械/结构类无公式可记 `N/A — 无公式承载`；算法/控制/信号/优化/调度类⑤⑥⑦推荐具备，至少1式+1伪代码+变量表与边界），缺项在 `drafts/申请信息.md` 记 blocked，不进正文。
-> 语体：不追问 `SLR/VOSviewer` 论文黑话，改问“该步骤的输入/处理/输出与流向是什么”；算法类追问“该步骤计算什么量、公式如何定义、变量含义与边界是什么”，规范描述与公式互指，不以描述替代定义；专业度由可复现深度体现，不在对话中强调语体标签。
+> 完成判定：H3 必达未达记 `blocked:缺可计算定义` 不以豁免规避；机械/结构类⑦可 N/A 需写等效路径，综述类⑤⑦同N/A记blocked须补概念定义表+数值实施例。语体：不追问 `SLR/VOSviewer` 黑话，改问输入/处理/输出与流向；算法类追问计算量、公式定义、变量边界，规范描述与公式互指。
 > 转正文去填表化：访谈中的"输入/处理/输出"是为问全逻辑，转正文时须用连贯段落平铺直叙——反例（禁止）`输入：... 处理：... 输出：... 本步对应伪代码第X行` 三行填表；正例"路侧单元采集排队长度与相位剩余时间，经边缘节点时间对齐后拼成状态向量，经 V2X 送至协同层写入共享状态表，供决策层裁剪为观测向量。" 标题白名单见 `8-points.md`，保持标题干净不附加说明。
 >
 > **交底书100分审美尺（防过简/防论文化双向）**：1可读性25（电梯2句+术语括号注解）/2完整性30（每步输入-处理-输出+异常分支）/3可实施性20（公式+变量表+伪代码+阈值范围）/4创新凸显15（对比表）/5结构合规10（背景2-4句三类素材）。算法类“公式≥1且变量表完整”未达标则可实施性扣15分，总分<60建议返工，60分以上可进入撰写但建议补齐推荐项。
@@ -50,8 +49,11 @@ Completion gate: the core formula/logic is written, all variables are defined, b
 
 16. How is this step usually done on the market / in existing products? (→ closest prior art)
 17. Compared with that, what did you add? Which step did you change? (→ distinguishing feature, the core of the claims)
+17a. 若把具体阈值/数值/载体去掉，效果还成立吗？换载体（云边）呢？有无等效替换手段？（→ 可上位化三问，见 `../patent-exploration/references/mining-matrix.md:Generalizability`）
 18. Is this difference "never done by anyone", or "done but not done well"? (→ inventive-step argument material)
 19. Have you thought of other approaches achieving the same effect? (→ variants, fallback-deployment material)
+
+> paper综述类：先问“该管理域中哪个具体技术环节（全景拼接/边缘预处理/数字孪生 feeding/空域廊道化审批）可提炼为方法/产品改进”，再定可专利落点，不把研究方法当方案。
 
 ## E. Technical effect (how it is proven)
 
@@ -71,8 +73,8 @@ When either answer is yes, record the date, channel, audience, evidence, and whe
 | 要素 | 检验 | 缺失会怎样 |
 |---|---|---|
 | 技术问题 | 能一句话说清“解决了什么”，并有2-4句背景 | 发明内容无锚点，独权无从写起 |
-| 技术方案 | 能说清最小可实施的部件或步骤集合，推荐按8要点完整呈现（未覆盖项已豁免说明） | 权利要求空洞，只能靠编造填补 |
+| 技术方案 | 能说清最小可实施的部件或步骤集合，按 H3 必达完整呈现（未达记blocked） | 权利要求空洞，只能靠编造填补 |
 | 区别特征 | 能说清“相对现有做法改了哪一步、加了什么” | 特征部分无内容可写 |
 | 技术效果 | 有数据或机理依据，2-4句说清 | 效果段落只能空话填充 |
 
-> 要求：技术方案在正文写全，推荐按8要点完整呈现（未覆盖项已豁免说明）；变量、推导、源码、硬件与实施例不外链到申请信息。
+> 要求：技术方案在正文写全，按 H3 必达完整呈现；变量/推导/源码/硬件与实施例不外链，未达记blocked。

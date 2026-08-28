@@ -47,7 +47,8 @@ Compare the route record, title, independent claim subject, dependent-claim cita
 - `四、技术方案` 内 H3 必须逐字命中方案内白名单（`（一）总体架构` / `（二）设计构思` / `（三）分步实施描述（N步）` / `（四）实施条件与可复现性说明` / `（五）关键算法伪代码` / `（六）符号与参数说明` / `（七）公式推导与等价形式` / `（八）硬件组成与部署形态` / `（九）具体实施例`），旧式 `一、总体架构` 作 H2 即 `critical`（应为 H3 且括号序号）；
 - 正文外框 8 章（不含附录 S）出现工作区路径（`res/`、`.patent/`、`figures/source`）或过程性说明句式即 `critical`；
 - 正文出现免责分散句式（每步/每式/每表末尾重复免责）即 `important`，提示收敛到 `application-info.md` 的 `blocked` 记录与附录 S 一行极简登记；
-- 分步每步机械填表 `输入：/处理：/输出：` 三行且无连贯段落即 `important`，提示按 `8-points.md` 去填表化改写。
+- 分步每步机械填表 `输入：/处理：/输出：` 三行且无连贯段落即 `important`，提示按 `8-points.md` 去填表化改写；
+- 综述类连续 `（五）N/A`+`（七）N/A` 且 `（九）无技术参数` 即 `important:缺可计算载体`，提示补概念定义表+替代路径+数值实施例；正文出现 `SLR/VOSviewer/三角验证/可持续生态` 等综述黑话即 `important:去学术化`。
 
 ### 4. Figure consistency
 
@@ -66,6 +67,11 @@ For formula-bearing cases, verify each core equation or logic predicate has:
 Model-inferred core relations are critical blockers. Scan the clean body for inline author/year citation prose. Replace it with an approved `[S#]` marker and a source appendix or support-layer record. Markdown is acceptable in drafts but not in a finished DOCX.
 
 **Provenance convergence check（披露轨亦必跑）**: 诚实标注不得散落在每步/每式/每表末尾；应收敛到 `drafts/申请信息.md` 的 `blocked` 记录与附录 S 一行极简登记。扫描正文前八章（不含附录 S），出现重复免责句式即 `important`。
+
+**体量/可专利性门禁（披露轨亦跑，防少且学术）**:
+- 正文 `drafts/技术交底书.md` 总行数 <150 且非综述分型豁免（`application-info:可专利性≠无`）即 `important:体量不足`，提示按 `8-points` H3 必达补齐；
+- `可专利性=无` 且已产8章即 `important:缺可专利技术方案`，提示转 `patent-exploration` 探索报告不硬拼；
+- 正文出现 `PRISMA/文献计量/合著网络` 等研究方法冒充技术方案即 `important:研究方法≠技术方案`。
 
 ### 6. Abstract and effect
 

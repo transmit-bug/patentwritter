@@ -17,13 +17,8 @@ npx skills add transmit-bug/patentwritter
 ```
 skills/                              # 功能分组 = 安装单元(ADR-0011;无语言层)
 ├── README.md                       # 分组地图 + 安装命令 + 自助链路三流模型
-├── self-service/                    # 自助组(本包主体,ADR-0009 后 6 技能)
-│   ├── patent-exploration/         # 内容研讨：任何形态材料→内容地图→技术拆解→可专利点矩阵→Socratic 研讨→保护方向，向 intake 移交
-│   ├── patent-intake/              # 前门+编排:路由四轴+统一来源处理+访谈+阶段清单+回边路由
-│   ├── patent-drafting/            # 说明书可读 prose 先行→权利要求书提炼+摘要(voice wall 语体边界,支撑链单一所有者)
-│   ├── patent-drawings/            # drawings + numeral consistency + abstract figure
-│   ├── patent-compliance/          # 递交前自检(仅 filing 轨, backend claim 形式规则所有者)
-│   └── patent-filing/              # 递交与补正指引
+├── self-service/                    # 自助组(本包主体,精简一站式 1 技能)
+│   └── patent/                     # 论文→交底书主链路：摄入→分型→四要素→撰写→自检（替代原 6 技能）
 ├── professional/                    # 专业组(ADR-0007 已实现, 6 技能)
 │   ├── patent-prosecution/         # 入口(user-invoked):授权链路编排路由
 │   ├── patent-oa-response/         # OA 答复(旗舰:模式 D 纯文档收编 + 三步法)
@@ -32,7 +27,6 @@ skills/                              # 功能分组 = 安装单元(ADR-0011;无�
 │   ├── patent-evaluation-report/   # 专利权评价报告(请求与解读)
 │   └── patent-claim-strategy/      # 权利要求策略(保护范围/答复修改/分案/优先权)
 ├── tools/
-│   ├── conversion/                 # 纯文档摄入纪律: .docx/.pptx → Markdown (零脚本,可选依赖)
 │   ├── word-delivery/              # Word 交付纪律: md → docx,按需触发,单源规则(零脚本,可选依赖)
 │   └── patents-search/             # 委托检索(可选工具,流程不依赖)
 └── patent-standards/               # 跨组共享:薄索引 + 分型 references(发明/实用新型、外观、US 锚点 + CN 专业执业锚点 + 共享专业纪律 + 目录 + 声明外部源)

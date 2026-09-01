@@ -16,7 +16,7 @@ npx skills add transmit-bug/patentwritter
 
 | 链路 | 入口 | 触发方式 | 覆盖 |
 |---|---|---|---|
-| **自助申请(B 组,self-service)** | `patent-intake` | model-invoked(说到写专利即触发) | 交底 → 类型判断 → 撰写 → 自检 → Word 交付 → 递交与补正 |
+| **自助申请(B 组,self-service)** | `patent` | model-invoked(说到写专利即触发) | 论文→交底书主链路：摄入→分型→四要素→撰写→自检，兼申请文件；综述止步可专利点分析 |
 | **专业授权(A 组,professional)** | `patent-prosecution` | user-invoked(`disable-model-invocation`,需显式 `/skill:patent-prosecution`) | OA 答复 / 复审 / 无效 / 评价报告 / 权利要求策略 |
 
 入口只做路由与输入闸门检查,不承载任何撰写逻辑;拿到路线后转交对应 discipline 技能执行。
@@ -25,15 +25,16 @@ npx skills add transmit-bug/patentwritter
 
 ### B 组:自助申请(`skills/self-service/`)
 
-| 技能 | 职责 | 不做什么 |
-|---|---|---|
-| `patent-intake` | 前门+编排(ADR-0009 合并原 router+application)。统一来源处理(归档契约+摄入通道+提取-确认-补齐+五标志)、按**材料来源 × 交付目标 × 专利类型**三轴问路、访谈四要素、阶段清单状态机、回边路由、组装交付 | 不写权利要求/说明书/附图,不复述法律条文 |
-| `patent-drafting` | 权利要求书+说明书五段式+摘要,一个技能内先权项后说明书;必要特征判定(删除测试)、独权撰写、上位化阶梯、从权退路布防、背景技术诚实协议、三向对应、支撑链 | 不访谈发明人;缺输入回 intake,不自行发问 |
-| `patent-drawings` | 附图。Graphviz(`dot`)画结构图/流程图,标记双向一致性,指定摘要附图 | 外观视图规则不在此(单一版本在 `patent-intake/references/design-points.md`);无 `dot` 时 fail loud |
-| `patent-compliance` | 递交前自检。只查所请求的交付物,报告落 `草稿/检查报告.md`(严重度/位置/修复指引) | 不做递交操作指导;检查者独立于起草者 |
-| `patent-filing` | 递交与补正。电子申请注册/缴费/流程,补正通知书处理协议(常见补正项 + 超范围红线 + 期限) | 不写申请文件本身 |
+单技能精简一站式 `patent`（替代原 6 技能 intake/drafting/drawings/compliance/exploration/filing）：
 
-B 组内共享的判断逻辑放在 `patent-intake/references/` 下按需读取(来源模式 `source-modes.md`、访谈、类型判定 `type-decision.md`、外观要点 `design-points.md`、交底书结构、检索指引 `search-guide.md`)。
+| 阶段 | 职责 |
+|---|---|
+| Step 0 摄入 | 原文落 `.patent/materials/`，内联探测 mammoth/python-docx/python-pptx → Markdown，溯源一行 |
+| Step 1 分型 | 技术论文(A)→进撰写；综述/案例(B)→止步 `可专利点分析.md` |
+| Step 2 四要素 | 12问拿齐 技术问题/方案/区别特征/效果，缺一不写 |
+| Step 3 撰写 | 单文件交底书 7节 + 申请文件分支(说明书→权利要求→摘要) |
+| Step 4 附图 | 复用原图 + dot 流程图(≤8节点)，落 `figures/` |
+| Step 5 自检 | 轻量3项(支撑/清楚性/一致性)落 `check-report.md` |
 
 ### A 组:专业授权(`skills/professional/`)
 
@@ -44,18 +45,14 @@ B 组内共享的判断逻辑放在 `patent-intake/references/` 下按需读取(
 | `patent-oa-response` | 收到审查意见通知书,要写意见陈述书 | 通知书(优先 PDF)+ 申请文件(权利要求 + 说明书) |
 | `patent-re-exam` | 收到驳回决定,要在 3 个月内提复审 | 驳回决定 + 申请文件 + OA 历史 |
 | `patent-invalidation` | 无效双向:主动请求无效,或作为专利权人答辩 | 请求方向:授权文本 + 证据;答辩方向:无效请求书 + 证据 + 授权文本 |
-| `patent-evaluation-report` | 实用新型/外观维权前评估、应对侵权指控、开放许可 | 专利文本 + 用途 |
-| `patent-claim-strategy` | 保护范围权衡、OA 修改策略、分案/优先权决策 | 权利要求 + 说明书 + 可得的先有技术 |
-
-**A 组边界(ADR-0007 决策 7)**:FTO / 专利布局 / 维权 / 许可(授权后业务)与 US 执业不在范围内;全新申请的机械撰写也不走 A 组——回到 B 组入口。
+**A 组边界(ADR-0007 决策 7)**:FTO / 专利布局 / 维权 / 许可(授权后业务)与 US 执业不在范围内;全新申请的机械撰写也不走 A 组——回到 B 组 `patent`。
 
 ### 工具组(`skills/tools/`)
 
 | 技能 | 职责 | 关键约束 |
 |---|---|---|
-| `patents-search` | 委托检索:Valyu 语义检索 API 查先有技术(USPTO/EPO 全文) | 可选工具,流程不依赖;CN 专利不在 Valyu 数据源内,CN 现有技术走 CNIPA 手动检索(search-guide);需自备 API key |
-| `conversion` | 纯文档摄入: .docx/.pptx → Markdown (Stage-1) | 零脚本零依赖(ADR-0005),环境探测降级链(python-docx/pptx → 手动),全不可用则 fail loud |
-| `word-delivery` | Word 交付: md → docx (Stage-5, 按需触发,单源规则) | 零脚本,探测 python-docx → pandoc → 手动,模板填充仅链①,全不可用则 fail loud |
+| `word-delivery` | Word 交付: md → docx (按需触发,单源规则) | 零脚本,探测 python-docx → pandoc → 手动,模板填充仅链①,全不可用则 fail loud |
+| `patents-search` | 委托检索:Valyu 语义检索 API 查先有技术(USPTO/EPO 全文) | 可选工具,流程不依赖;CN 专利不在 Valyu 数据源内,CN 现有技术走 CNIPA 手动检索;需自备 API key |
 
 ### 跨组共享(`skills/patent-standards/`)
 

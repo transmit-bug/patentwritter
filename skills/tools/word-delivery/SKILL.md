@@ -23,17 +23,17 @@ Otherwise do nothing except point to the `.md` drafts under `drafts/`. Markdown-
 The `.md` drafts under `drafts/` are the **only editable truth**. Everything under `deliverables/` is a regenerable export.
 
 - Any revision request — including complaints about a delivered `.docx` — is fixed in the owning draft (`权利要求书.md`, `说明书.md`, `摘要.md`, `技术交底书.md`), then this skill re-runs to regenerate. Keep `.docx` under `deliverables/` as regenerable exports; make all edits in the owning `drafts/*.md` draft and regenerate.
-- When a revision touches claims / specification substance, re-run the applicable checks in `../patent-compliance/SKILL.md` before re-exporting.
+- When a revision touches claims / specification substance, re-run the applicable checks in Step 5 of `../patent/SKILL.md` before re-exporting.
 - Regeneration is idempotent and cheap: re-export all deliverables after any substantive edit, so the sets never drift apart.
 
 ## Delivery degradation chain
 
-Goal: turn the `.md` drafts under `drafts/` into the **two delivery sets** under `deliverables/` (layout in `../patent-intake/SKILL.md` "Workspace layout"). **Drafts and deliverables never mix**: everything under `deliverables/` is directly usable, nothing under `drafts/` is final.
+Goal: turn the `.md` drafts under `drafts/` into the **two delivery sets** under `deliverables/` (layout in `../patent/SKILL.md` "产物与目录"). **Drafts and deliverables never mix**: everything under `deliverables/` is directly usable, nothing under `drafts/` is final.
 
 1. **申请文件** (CNIPA 分文件递交用): three same-named `.docx`, one file per document, no timestamps.
 2. **技术交底书** (交代理机构/内部评审用): one consolidated `.docx`.
 
-**Step 0 — assemble `drafts/技术交底书.md` first**: merge the tracked sources per the route-aware assembly table in `../patent-intake/references/disclosure-document.md` — both: application-info / 说明书 / figures / 权利要求书 / 摘要 drafts; disclosure-only: the interview four-element record + confirmed materials (no filing drafts, no filing-track gates). Then convert every deliverable source the route actually produced — on a disclosure-only route that is `技术交底书.md` alone.
+**Step 0 — assemble `drafts/技术交底书.md` first**: merge the tracked sources per `../patent/SKILL.md` Step 3 — filing branch merges application-info / 说明书 / figures / 权利要求书 / 摘要 drafts; disclosure-only branch uses the interview four-element record + confirmed materials. Then convert every deliverable source the route actually produced — on a disclosure-only route that is `技术交底书.md` alone.
 
 | Source file (drafts/) | Delivered file (deliverables/) |
 |---|---|
@@ -42,7 +42,7 @@ Goal: turn the `.md` drafts under `drafts/` into the **two delivery sets** under
 | 摘要.md | 申请文件/摘要.docx |
 | 技术交底书.md | 技术交底书.docx |
 
-Figure references inside the `.md` drafts are written as relative paths `../figures/embed/figN.png` (figures live in `figures/embed/`, see `../patent-drawings/SKILL.md` Step 2). **Run all conversion commands from inside `drafts/`** so those `../` paths resolve against the case root `patents/<patent-name>/`.
+Figure references inside the `.md` drafts are written as relative paths `../figures/embed/figN.png` (figures live in `figures/embed/`, see `../patent/SKILL.md` Step 4). **Run all conversion commands from inside `drafts/`** so those `../` paths resolve against the case root `patents/<patent-name>/`.
 
 ### Probe (do this first; it decides the chain)
 
@@ -56,12 +56,12 @@ Before conversion, classify the source: plain prose, tables/figures, or **formul
 
 ### Chain ① python-docx available → generate inline
 
-Write an inline Python script (python-docx): read each source from `drafts/`, resolve `../figures/embed/figN.png` **relative to the source file's directory** (not the working directory), map headings to Word's built-in heading styles, convert Markdown emphasis/links/blockquote/list/checklist/table syntax into native Word runs, paragraphs, list styles, and tables, embed the figures inline (keep aspect ratio; width at a clearly legible size), and write the output to `deliverables/application/` (three filing docs) or `deliverables/` (技术交底书). 封面/页眉/页脚**以模板槽位为准**：有模板时保留模板既有结构与样式并仅填入 `#` 标题，无模板时按 `../patent-intake/references/title-rule.md` 产出规范处理。
+Write an inline Python script (python-docx): read each source from `drafts/`, resolve `../figures/embed/figN.png` **relative to the source file's directory** (not the working directory), map headings to Word's built-in heading styles, convert Markdown emphasis/links/blockquote/list/checklist/table syntax into native Word runs, paragraphs, list styles, and tables, embed the figures inline (keep aspect ratio; width at a clearly legible size), and write the output to `deliverables/application/` (three filing docs) or `deliverables/` (技术交底书). 封面/页眉/页脚**以模板槽位为准**：有模板时保留模板既有结构与样式并仅填入 `#` 标题，无模板时按 `../patent/SKILL.md` 标题规范处理（`一种…的…方法`）。
 
 When a `.docx` template is supplied, the modes and fill protocol in the "Template filling" section below govern. Chain ① is the only chain that can fill content into a template's own structure; it preserves page setup, headers/footers, styles, numbering, and table geometry where safe, and reports every unsupported feature.
 
 - **Formulas**: convert every core formula to editable OMML; define variables in adjacent prose; preserve equation numbering if the template has it. Before conversion, verify that the source formula is semantically complete rather than merely a string containing Greek letters. Emit every core formula as editable OMML with variable definitions alongside; treat Markdown delimiters and raw LaTeX as source notation only.
-- **PNG only**: Word inline embedding supports bitmaps only; the figure pipeline already produces both formats as PNG (see `../patent-drawings/SKILL.md` Step 2).
+- **PNG only**: Word inline embedding supports bitmaps only; the figure pipeline already produces both formats as PNG (see `../patent/SKILL.md` Step 4).
 - **Native structure**: `**bold**`, headings, lists, checkboxes, blockquotes, and `---` become Word structure, never visible Markdown punctuation.
 
 ### Chain ② pandoc available → command conversion
@@ -80,68 +80,15 @@ Run from inside `drafts/`: pandoc resolves the figure paths `../figures/embed/fi
 
 Deliver the `.md` drafts from `drafts/` (the assembled `技术交底书.md` included) and give the inventor a one-line instruction: open the .md with WPS/Word (or copy-paste) and choose "Save As" → .docx.
 
-### Title gate（复用 intake 规范）
+### Title gate
 
-`drafts/技术交底书.md` 的 `#` 标题即发明名称，须符合 `../patent-intake/references/disclosure-document.md` 发明名称规范（`一种…的…方法`，见上）。Word 封面/页眉中的标题与该 `#` 逐字一致；缺 `一种`、含英文缩写/ `之`、超长均在 acceptance gate 记 fail。Word 封面副标题与页眉/页脚**以模板槽位为准**：有模板时按模板既有副标题/页眉/页脚原样保留并仅填入 `#` 标题，无模板时按 `../patent-intake/references/title-rule.md` 产出规范处理。
+`drafts/技术交底书.md` 的 `#` 标题即发明名称，须符合 `../patent/SKILL.md` 发明名称规范（`一种…的…方法`）。Word 封面/页眉中的标题与该 `#` 逐字一致；缺 `一种`、含英文缩写/ `之`、超长均在 acceptance gate 记 fail。Word 封面副标题与页眉/页脚**以模板槽位为准**：有模板时按模板既有副标题/页眉/页脚原样保留并仅填入 `#` 标题，无模板时按标题规范处理。
 
 ### Word acceptance gate
 
 A DOCX is complete only when all applicable checks pass: zero Markdown tokens (`**`, leading `>`, raw list markers, `$...$`, backticks, `---`, `[ ]`); headings have native heading styles; tables and figures are present; core formulas are editable/readable OMML with variables defined; source citations are absent from the clean body except approved `[S#]` markers; and template placeholders/instructions are absent. In content-fill mode additionally: zero unfilled placeholders, and every unfilled template slot is reported (see "Template filling"). Reopen and inspect the generated DOCX structurally before handover. Record counts for paragraphs, tables, figures, formulas, and residual Markdown markers.
 
-**封面/页眉/页脚/正文规范**：封面标题与正文标题一致，按 `../patent-intake/references/title-rule.md` 产出规范处理；校验出现 `Technical Disclosure Document` 英文、`paper_XX` 内码、`紧凑版/饱满版`、`使用说明：本册为可再生成导出…` 等过程词即记 fail。
-
-### Disclosure heading sanitizer（兜底清洗，chain ① inline 生成时强制执行，两级白名单）
-
-即使 `drafts/技术交底书.md` 已泄漏过程词，Word 转换阶段必须清洗后再写入 DOCX，不得把约束原文带入交付物。Chain ① 的 inline Python 脚本在写入标题/段落前执行以下清洗（chain ②/③ 提示人工清洗）：
-
-```python
-# 标题清洗与正文洁净（在 doc.add_heading / paragraph.text 赋值前执行，两级白名单）
-import re
-# 外框 H2 白名单（逐字）
-OUTER_WHITELIST = [
-    "一、技术领域", "二、背景技术", "三、要解决的技术问题", "四、技术方案",
-    "五、技术效果", "六、区别特征", "七、替代方案", "八、附图说明", "附录 S — 溯源登记",
-]
-# 方案内 H3 白名单（位于 四、技术方案 内，逐字）
-INNER_WHITELIST = [
-    "（一）总体架构", "（二）设计构思", "（三）分步实施描述",
-    "（四）实施条件与可复现性说明", "（五）关键算法伪代码",
-    "（六）符号与参数说明", "（七）公式推导与等价形式",
-    "（八）硬件组成与部署形态", "（九）具体实施例",
-]
-TITLE_WHITELIST = OUTER_WHITELIST + INNER_WHITELIST  # 兼容旧式校验
-TITLE_KEY_MAP = {
-    "可自编程度": "实施条件与可复现性说明",
-    "必要源码摘录": "关键算法伪代码",
-    "物理变量释义": "符号与参数说明",
-}
-def sanitize_heading(text: str, level: int = 2) -> str:
-    t = text.strip()
-    # 内部 Key 直挂标题的映射
-    for k, v in TITLE_KEY_MAP.items():
-        if k in t: t = t.replace(k, v)
-    if t.strip() == "推导": t = "公式推导与等价形式"
-    if t.strip() == "硬件": t = "硬件组成与部署形态"
-    # 旧式 H2 总体架构 → 修正为 H3 括号序号（应在 四、技术方案 内）
-    legacy_inner_as_h2 = ["总体架构", "设计构思", "分步实施描述", "实施条件", "关键算法", "符号与参数", "公式推导", "硬件组成"]
-    if level == 2 and any(k in t for k in legacy_inner_as_h2) and t.startswith("一、"):
-        # 提示应为 H3，此处仅截断附加说明，不自动降级层级
-        pass
-    # 白名单校验：不在白名单则告警并截断附加说明
-    whitelist = OUTER_WHITELIST if level == 2 else INNER_WHITELIST
-    is_whitelisted = any(t == w or t.startswith(w.split("（")[0]) for w in whitelist)
-    if not is_whitelisted and "（" in t:
-        t = t.split("（")[0].strip()
-        if "分步" in t:
-            t = "（三）分步实施描述（N步）" if level == 3 else "三、分步实施描述（N步）"
-    return t.strip()
-
-# 正文洁净：正文外框 8 章（不含附录 S）出现工作区路径即在 acceptance gate 记 fail
-WORKSPACE_PATH_PATTERNS = [r"res/", r"\.patent/", r"figures/source", r"abstract_inverted_index"]
-# 检测由 compliance 第3/5项执行，此处仅作最后一道兜底
-```
-
-清洗后 H2 必须命中外框白名单、H3 必须命中方案内白名单（见 `../patent-intake/references/disclosure-document.md` 两级标题映射），否则在 acceptance gate 记 fail；旧式 `一、总体架构` 作 H2 视为层级错误。
+**封面/页眉/页脚/正文规范**：封面标题与正文标题一致，按 `../patent/SKILL.md` 标题规范处理；校验出现 `Technical Disclosure Document` 英文、`paper_XX` 内码、`紧凑版/饱满版`、`使用说明：本册为可再生成导出…` 等过程词即记 fail。正文出现工作区路径（`res/`/`.patent/`/`figures/source`）即记 fail。
 
 ### Fail loud
 
@@ -161,8 +108,8 @@ Scope: content fill applies to the 技术交底书. The three 申请文件 docx 
 Content-fill protocol:
 
 1. **Ingest the template** → Done when: a section map is recorded — every heading, placeholder, and table in the template, with what belongs in each.
-2. **Map drafts to slots** → Done when: every 交底书 section (assembly table in `../patent-intake/references/disclosure-document.md`) has a target slot; draft sections without a slot and template slots without a source are both listed — neither silently dropped nor filled.
-3. **Fill** → Done when: each slot receives its content verbatim (assembly rules apply — copy, don't rewrite); template boilerplate (cover, headers/footers, numbering, fixed clauses) is preserved untouched; the template's own styles carry the inserted text.
+2. **Map drafts to slots** → Done when: every 交底书 section has a target slot; draft sections without a slot and template slots without a source are both listed — neither silently dropped nor filled.
+3. **Fill** → Done when: each slot receives its content verbatim; template boilerplate (cover, headers/footers, numbering, fixed clauses) is preserved untouched; the template's own styles carry the inserted text.
 4. **Verify** → Done when: zero unfilled placeholders remain (`{{...}}`, `【...】`, `____`); no template instructions copied into the body; the filled DOCX passes the acceptance gate above.
 
 Degradation: without a docx-capable environment (chain ① unavailable), content fill is **impossible** — state it loudly and fall back to style inheritance or `.md` + paste instructions. Fill by writing into a copy of the template, keeping the supplied template file unchanged; map each draft section to its template slot without appending after the body.
@@ -176,5 +123,5 @@ See `requirements-optional.txt` in the same directory. All "optional, install on
 ## Boundaries
 
 - Only structured conversion of text / images / tables; layout beautification (headers / footers / page numbers / font sizes) follows the official filing requirements and is out of scope for this skill.
-- This skill never edits the substance of the drafts — content revisions belong to the drafting disciplines via the single-source rule above.
+- This skill never edits the substance of the drafts — content revisions belong to the single-source rule above.
 - This skill is zero-script: any urge to "download a script / run a repo conversion tool" is out of bounds — generate inline or degrade.

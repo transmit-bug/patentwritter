@@ -12,19 +12,18 @@
 ## 结构
 
 ```
-skills/self-service  6：intake(前门+编排) / exploration / drafting / drawings / compliance / filing
+skills/self-service  1：patent（精简一站式：摄入→分型→四要素→撰写→自检，一站替代 intake/drafting/drawings/compliance/exploration/filing）
 skills/professional  6：prosecution(入口) + 5 discipline
-skills/tools         3：conversion / word-delivery / patents-search
+skills/tools         2：word-delivery(按需 Word 交付) / patents-search(可选检索)
 skills/patent-standards  1：分型法律锚点单一来源
 ```
-
 ## 产出在消费方是什么（生命周期生态）
 
-一句话链路：`任意材料 → 交底书底座(四要素+可复现+区别清晰) → 申请文件(支撑闭环) → 自检 gate → 交付/递交 → 授权攻防`，贯穿声明全周期。自助入口 `patent-intake`，授权入口 `patent-prosecution`，生态而非单点工具。
+一句话链路：`任意材料 → 交底书底座(四要素+可复现+区别清晰) → 申请文件(支撑闭环) → 自检 gate → 交付/递交 → 授权攻防`，贯穿声明全周期。自助入口 `patent`，授权入口 `patent-prosecution`，生态而非单点工具。
 
-- **交底书底座**：四要素完整/单文件可复现（tight）/区别清晰/来源诚实，定义见 `patent-intake/references/disclosure-document.md`。
-- **申请文件与附图**：撰写/附图各有质量门与产物，阶段清单 `drafts/application-info.md` 为状态机，可中断续跑。
-- **诚实可验证**：背景技术只写三类素材，法律断言指向 `patent-standards` 分型锚点，缺依据 fail loud；五横切标志写入 `application-info.md` 供下游只读。
+- **交底书底座**：四要素完整/单文件可复现/区别清晰/来源诚实，定义见 `patent/SKILL.md` Step 2–3。
+- **申请文件与附图**：撰写/附图各有质量门与产物，自检见 `patent/SKILL.md` Step 5。
+- **诚实可验证**：背景技术只写三类素材，法律断言指向 `patent-standards` 分型锚点，缺依据 fail loud。
 - 详情见 `docs/usage/README.md` 与 `docs/usage/writing-disclosure.md`。
 
 ## 如何改

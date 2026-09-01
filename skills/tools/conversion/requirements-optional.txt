@@ -1,5 +1,0 @@
-# Optional dependency list (conversion skill, ingestion only) — all optional, install on demand; skip = take the degradation chain
-# Install example: pip install mammoth python-pptx — see each project's official docs
-mammoth>=1.6.0          # ingestion: .docx → Markdown
-python-docx>=1.1.0      # ingestion fallback: .docx → Markdown (when mammoth unavailable)
-python-pptx>=0.6.21     # ingestion: .pptx → Markdown

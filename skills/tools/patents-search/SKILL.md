@@ -11,11 +11,11 @@ license: MIT
 
 # Patents Search
 
-Search patents with natural language queries powered by Valyu's semantic search API. Invoked by the self-service flow (patent-intake optional novelty search, see `patent-intake/references/search-guide.md`) as the delegated-search main path; results are consumed as real prior art under the honesty red line — never invented.
+Search patents with natural language queries powered by Valyu's semantic search API. Invoked optionally by the self-service flow (`patent` Step 0/2, honesty red line) as the delegated-search path; results are consumed as real prior art — never invented.
 
 ## CN coverage warning
 
-Per the official list, Valyu's patent sources cover only **US (USPTO)** and **EP (EPO)**: `valyu/valyu-patents` (USPTO, full text with figures), `valyu/valyu-patents-epo` (EPO, full text with figures). **CN hits are not guaranteed** — when CN prior art is needed, use the CNIPA manual search (see search-guide.md).
+Per the official list, Valyu's patent sources cover only **US (USPTO)** and **EP (EPO)**: `valyu/valyu-patents` (USPTO, full text with figures), `valyu/valyu-patents-epo` (EPO, full text with figures). **CN hits are not guaranteed** — when CN prior art is needed, use CNIPA manual search.
 
 ## Requirements
 

@@ -24,9 +24,8 @@
       "name": "tools",
       "source": "./",
       "skills": [
-        "./skills/tools/conversion",
-        "./skills/tools/patents-search",
-        "./skills/tools/word-delivery"
+        "./skills/tools/word-delivery",
+        "./skills/tools/patents-search"
       ]
     },
     {
